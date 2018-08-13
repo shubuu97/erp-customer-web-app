@@ -3,7 +3,8 @@ import AddressFormView from  '../../components/AddressFormView';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import ContactDetails from '../../components/ContactDetails';
-import RaisedButton from 'material-ui/RaisedButton'
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField'
 
 class BasicInfoForm extends Component
 {
@@ -17,7 +18,6 @@ console.log(values,"collectedValues")
         return(
 
             <form onSubmit={handleSubmit(this.submit)}>
-            <div><span>yogiii</span></div>
             <AddressFormView {...this.props}/>
             <ContactDetails {...this.props}/>
             <RaisedButton  label ="submit" name="submit" type="submit"/>

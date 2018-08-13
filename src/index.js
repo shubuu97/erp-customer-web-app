@@ -28,17 +28,17 @@ const middleware = [thunk, fetchMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
   }
-  const persistConfig = {
-    key: 'root',
-    storage,
-    stateReconciler: hardSet,
-    blacklist: ['batchReducer.plantsDetails.plants'],
-  };
-  const persistedReducer = persistReducer(persistConfig, reducer);
+  // // const persistConfig = {
+  // //   key: 'root',
+  // //   storage,
+  // //   stateReconciler: hardSet,
+  // //   blacklist: ['batchReducer.plantsDetails.plants'],
+  // };
+ // const persistedReducer = persistReducer(persistConfig, reducer);
 
   export const store = createStore(
     // reducer,
-    persistedReducer,
+    reducer,
     applyMiddleware(...middleware),
   
   );
