@@ -26,7 +26,7 @@ const styles = theme => ({
 class DialogSelect extends React.Component {
   state = {
     open: false,
-    age: '',
+    age: 'customer',
   };
 
   handleChange = name => event => {
@@ -64,11 +64,9 @@ class DialogSelect extends React.Component {
                   onChange={this.handleChange('age')}
                   input={<Input id="age-simple" />}
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Company</MenuItem>
-                  <MenuItem value={20}>Customer</MenuItem>
+                 
+                  <MenuItem value={'comapany'}>Company</MenuItem>
+                  <MenuItem value={'customer'}>Customer</MenuItem>
                  
                 </Select>
               
