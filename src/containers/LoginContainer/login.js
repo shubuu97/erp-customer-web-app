@@ -1,14 +1,19 @@
 import React,{PureComponent} from 'react';
-
-export default class Login extends PureComponent
+import LoginView from '../../components/Login/Login';
+import {reduxForm} from 'redux-form'
+class Login extends PureComponent
 {
  render()
  {
    return(
        <div>
-           login container will come here
+           <LoginView/>
         </div>
    )
  }   
 }
 
+
+export default reduxForm(
+ {form:'LoginForm'}
+)(Login)

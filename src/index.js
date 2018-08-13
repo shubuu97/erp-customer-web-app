@@ -15,6 +15,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import fetchMiddleware from './middlewares/axiosMiddleWare';
 import reducer from './reducers';
 import Login from '../src/containers/LoginContainer/login';
+import CompanyRegister from '../src/containers/Register/CompanyRegistration/companyRegistration';
 import BasicInfoForm from './containers/BasicInfo/basicInfoForm';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -28,17 +29,17 @@ const middleware = [thunk, fetchMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
   }
-  const persistConfig = {
-    key: 'root',
-    storage,
-    stateReconciler: hardSet,
-    blacklist: ['batchReducer.plantsDetails.plants'],
-  };
-  const persistedReducer = persistReducer(persistConfig, reducer);
+  // // const persistConfig = {
+  // //   key: 'root',
+  // //   storage,
+  // //   stateReconciler: hardSet,
+  // //   blacklist: ['batchReducer.plantsDetails.plants'],
+  // };
+ // const persistedReducer = persistReducer(persistConfig, reducer);
 
   export const store = createStore(
     // reducer,
-    persistedReducer,
+    reducer,
     applyMiddleware(...middleware),
   
   );
@@ -53,6 +54,7 @@ ReactDOM.render(
 <Route exact path="/app" component={App} />
 <Route exact path="/" component={Login}/>
 <Route exact path ="/basicinfo" component={BasicInfoForm}/>
+<Route exact path="/companyRegister" component={CompanyRegister}/>
 </Switch>
 </BrowserRouter>
 </Provider>
