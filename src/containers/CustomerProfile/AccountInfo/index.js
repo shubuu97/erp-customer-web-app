@@ -6,6 +6,7 @@ import {reduxForm,Field} from 'redux-form';
 
 import AddressInfoFields from '../../../components/common/AddressInfo/adddressInfoFields';
 import BasicInfoFields from '../../../components/common/BasicInfo/BasicInfoFields';
+import AccountInfo from './accountInfoFields';
 import MenuItem from 'material-ui/MenuItem';
 
 
@@ -25,6 +26,12 @@ class CustomerInfo extends Component
                         <Field name={info.name} label={info.label} component={info.component} />)
                 }
                 )}
+                {AccountInfo.map((info)=> {
+                    return (
+                        <Field name={info.name} label={info.label} component={info.component} />)
+                })
+
+                }
                 <header>Address Details</header>
              { AddressInfoFields.map((info)=>
              {
