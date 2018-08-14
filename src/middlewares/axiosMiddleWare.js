@@ -1,6 +1,10 @@
+
+import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
 import { generateV1uuid } from '../utills/helper';
+let authToken = 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YWNmNzI1NjI5MjNiMTAwMTAyOWZlZDYiLCJ1c2VyTmFtZSI6IkFPQjY3Njc2NyIsImNvbXBhbnlJZHMiOlsiNWFkODY5ZjA0NzI4ODUwMDExZDc1OTc4Il0sInVzZXJDb21wYW55SWQiOiI1YWQ4NjlmMDQ3Mjg4NTAwMTFkNzU5NzgiLCJyb2xlSWQiOlt7Il9pZCI6IjVhZmFkNmQ2ZDZiMjYxMDAxMTcxNjM2NCIsIm5hbWUiOiJDb21wYW55IFN1cGVyIEFkbWluIn0seyJfaWQiOiI1YjFmNjFmNDZlNjVmMDAwMTEwMDQwNjgiLCJuYW1lIjoiUE9fQXBwcm92ZXIifSx7Il9pZCI6IjViMjM5YWNlZmZjNDA2MDAxMmNhNDM3ZiIsIm5hbWUiOiJTdXBwbGllcl9BcHByb3ZlciJ9LHsiX2lkIjoiNWIyMzljMTRmZmM0MDYwMDEyY2E0MzgyIiwibmFtZSI6Ikludm9pY2VfQXBwcm92ZXIifV0sImlhdCI6MTUzMjc2NDc2OSwiZXhwIjoxNTM1MzU2NzY5fQ.AZOqHqutY8zb322AP1XQxrWsbIeCY3F0RgC7sqffbrLBzCYSxzWUHEUjT0_Lmg_bdQSnOJgagIt9lMEGz-nW0Uuq0rTfk4Pg7mglG2wXG3KNQpC40dpJ7naMwFUL5GgDUSigjQevoQPQ5Lix1LfxvHUES_6t4oC5-_yv5uNeGNk'
+
 //import { onLogout } from '../actions/userRoles';
 
 // pure function
@@ -24,7 +28,7 @@ const httpVerbs = {
   delete: 'DELETE',
 };
 
-const fetchMiddleware = store => next => (action) => {
+const axiosMiddleware = store => next => (action) => {
   if (!action || !action.fetchConfig) {
     return next(action);
   }
@@ -47,57 +51,23 @@ const fetchMiddleware = store => next => (action) => {
     };
   };
 
+const state = store.getState();
 
-  const state = store.getState();
-  const metaHeaders = {
-    CorrelationId: generateV1uuid(),
-    'Content-Type': config.contentType || 'application/json',
-  };
-  if (config.isFormData) {
-    delete metaHeaders['Content-Type'];
-  }
+let requestObject = {};
+requestObject.method = method;
+requestObject.url = path;
+if(config.body)
+requestObject.data=config.body;
+requestObject.headers={Authorization: `${authToken}`,'Content-Type':'application/json'}
 
-  if (!config.doNotSendAuthHeader) {
-    metaHeaders.Authorization = state.userRolesReducer && state.userRolesReducer.authToken;
-    metaHeaders.checkauth = true;
-  }
 
-  const metaOptions = {
-    method,
-    headers: {
-      ...metaHeaders,
-      ...headers,
-    },
-  };
 
-  let options = addOptionalOptions(config, metaOptions);
 
-  const passOnParams = _pickBy(config.passOnParams, param => param);
-  if (config.passOnParams) {
-    options = {
-      ...options,
-      ...passOnParams,
-    };
-  }
-
-  fetch(
-    path,
-    options,
+  axios(
+    requestObject
   )
-    .then(response => response.json()
-      .then((jsonData) => {
-        if (jsonData.message === 'jwt expired') {
-         // dispatch(onLogout());
-        } else {
-          return Promise.resolve(jsonData);
-        }
-      })
-      .catch((err) => 
-        // @todo temp handling, need to fix bff api response
-         Promise.resolve({})
-      ))
-    .then(json => dispatch(successHandler(subreddit, json, id, action.successCbPassOnParams)))
+    .then(responseData => dispatch(successHandler(subreddit, responseData.data, id, action.successCbPassOnParams)))
     .catch(error => dispatch(failureHandler(subreddit, error, 500)));
 };
 
-export default fetchMiddleware;
+export default axiosMiddleware;
