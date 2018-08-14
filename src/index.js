@@ -19,7 +19,9 @@ import CompanyRegister from '../src/containers/Register/CompanyRegistration/comp
 import CustomerRegister from '../src/containers/Register/CustomerRegistration/customerRegistration';
 import BasicInfoForm from './containers/BasicInfo/basicInfoForm';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AccountInfo from './containers/CompanyProfile/AccountInfo'
+import AccountInfo from './containers/CompanyProfile/AccountInfo';
+import LicenceInfo from './components/CompanyProfile/LicenceInfo';
+import SiteInfo from './components/CompanyProfile/SiteInfo'
 
 if (module.hot) {
   module.hot.accept();
@@ -59,6 +61,8 @@ ReactDOM.render(
 <Route exact path="/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customerRegister" component={CustomerRegister}/>
 <Route exact path="/AccountInfo" component={AccountInfo}/>
+<Route exact path="/LicenceInfo" component={LicenceInfo}/>
+<Route exact path="/SiteInfo" component = {SiteInfo}/>
 </Switch>
 </BrowserRouter>
 </Provider>

@@ -24,5 +24,8 @@ class Login extends PureComponent
 
 
 export default reduxForm(
- {form:'LoginForm'}
+ {
+   form:'LoginForm',
+  
+  }
 )(Login)
