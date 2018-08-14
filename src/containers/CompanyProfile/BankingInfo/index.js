@@ -4,6 +4,8 @@ import React,{Component} from 'react';
 
 import {reduxForm} from 'redux-form';
 
+import RaiseButton from 'material-ui/RaisedButton';
+
 
 class BankingInfo extends Component
 {
@@ -12,6 +14,8 @@ class BankingInfo extends Component
         return(
             <div>
             <BankingInfoComponent/>
+            <RaiseButton label="Save" />
+            <RaiseButton primary={true} label="Submit for approval" />
             </div>
         )
     }
@@ -19,7 +23,7 @@ class BankingInfo extends Component
 
 export default reduxForm({
     form:'CompanyBankingInfo'
-})(BankingInfoComponent)
+})(BankingInfo)
 
 
       

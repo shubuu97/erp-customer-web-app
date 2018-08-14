@@ -23,7 +23,9 @@ import AccountInfo from './containers/CompanyProfile/AccountInfo';
 import LicenceInfo from './containers/CompanyProfile/LicenceInfo';
 import SiteInfo from './containers/CompanyProfile/SiteInfo'
 import CustomerInfo from './containers/CustomerProfile/AccountInfo';
-import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo'
+import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo';
+import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo'
+
 if (module.hot) {
   module.hot.accept();
 }
@@ -66,6 +68,8 @@ ReactDOM.render(
 <Route exact path="/SiteInfo" component = {SiteInfo}/>
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
+<Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
+
 </Switch>
 </BrowserRouter>
 </Provider>
