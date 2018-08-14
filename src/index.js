@@ -20,10 +20,12 @@ import CustomerRegister from '../src/containers/Register/CustomerRegistration/cu
 import BasicInfoForm from './containers/BasicInfo/basicInfoForm';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AccountInfo from './containers/CompanyProfile/AccountInfo';
-import LicenceInfo from './components/CompanyProfile/LicenceInfo';
-import SiteInfo from './components/CompanyProfile/SiteInfo'
-import CustomerInfo from './containers/CustomerProfile/AccountInfo'
+import LicenceInfo from './containers/CompanyProfile/LicenceInfo';
+import SiteInfo from './containers/CompanyProfile/SiteInfo'
+import CustomerInfo from './containers/CustomerProfile/AccountInfo';
+import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo';
 import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo'
+
 if (module.hot) {
   module.hot.accept();
 }
@@ -65,6 +67,7 @@ ReactDOM.render(
 <Route exact path="/LicenceInfo" component={LicenceInfo}/>
 <Route exact path="/SiteInfo" component = {SiteInfo}/>
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
+<Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
 
 </Switch>
