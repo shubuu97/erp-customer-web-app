@@ -1,9 +1,11 @@
-import {addressInfo,basicInfo} from './customerRegisterFields.js';
+//import {addressInfo,basicInfo} from './customerRegisterFields.js';
 import { Field } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput,SelectFieldInput } from '../../common/MaterialUiComponents';
 import RaiseButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
+import BasicInfo from '../../common/BasicInfo/BasicInfoFields';
+import AddressInfo from '../../common/AddressInfo/adddressInfoFields';
 let props ={};
 props.country = ['India','China'];
 props.state = ['Rajasthan','Karnatak'];
@@ -14,13 +16,13 @@ export default class CustomerRegistration extends Component {
         return (
             <div>
                 <header>Basic Info</header>
-                {basicInfo.map((info) => {
+                {BasicInfo.map((info) => {
                     return (
                         <Field name={info.name} label={info.label} component={info.component} />)
                 }
                 )}
                 <header>Address Details</header>
-             { addressInfo.map((info)=>
+             { AddressInfo.map((info)=>
              {
                  console.log(info.name)
                  
