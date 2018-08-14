@@ -24,7 +24,7 @@ import LicenceInfo from './containers/CompanyProfile/LicenceInfo';
 import SiteInfo from './containers/CompanyProfile/SiteInfo'
 import CustomerInfo from './containers/CustomerProfile/AccountInfo';
 import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo';
-import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo'
+import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo';
 
 if (module.hot) {
   module.hot.accept();
