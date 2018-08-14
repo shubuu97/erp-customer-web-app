@@ -1,28 +1,32 @@
-//import {addressInfo,basicInfo} from './customerRegisterFields.js';
-import { Field } from 'redux-form';
-import React, { Component } from 'react';
-import { TextFieldInput,SelectFieldInput } from '../../common/MaterialUiComponents';
-import RaiseButton from 'material-ui/RaisedButton';
+import CustomerRegistration from '../../../components/Register/CustomerRegistration/customerRegistration';
+
+import React,{Component} from 'react';
+
+import {reduxForm,Field} from 'redux-form';
+
+import AddressInfoFields from '../../../components/common/AddressInfo/adddressInfoFields';
+import BasicInfoFields from '../../../components/common/BasicInfo/BasicInfoFields';
 import MenuItem from 'material-ui/MenuItem';
-import BasicInfo from '../../common/BasicInfo/BasicInfoFields';
-import AddressInfo from '../../common/AddressInfo/adddressInfoFields';
+
+
 let props ={};
 props.country = ['India','China'];
 props.state = ['Rajasthan','Karnatak'];
 props.city = ['jaipur','banglaore'];
-
-export default class CustomerRegistration extends Component {
-    render() {
-        return (
+class CustomerInfo extends Component
+{
+    render()
+    {
+        return(
             <div>
                 <header>Basic Info</header>
-                {BasicInfo.map((info) => {
+                {BasicInfoFields.map((info) => {
                     return (
                         <Field name={info.name} label={info.label} component={info.component} />)
                 }
                 )}
                 <header>Address Details</header>
-             { AddressInfo.map((info)=>
+             { AddressInfoFields.map((info)=>
              {
                  console.log(info.name)
                  
@@ -47,3 +51,17 @@ export default class CustomerRegistration extends Component {
         )
     }
 }
+
+export default reduxForm({
+    form:'CustomeInfo',
+    initialValues:{firstName:'Allonblcik',
+    middleName:'',
+   lastName:'jj',
+   emailId:'jay@allonblock',
+  designation:'software engineer',
+locationAddress:"529,5th Floor",
+city:'Jaipur',
+state:'Rajasthan',
+country:'India',
+zipCode:'302020'}
+})(CustomerInfo)
