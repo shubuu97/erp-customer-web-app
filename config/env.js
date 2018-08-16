@@ -15,7 +15,7 @@ if(process.env.NODE_ENV=="production")
 if(process.env.NODE_ENV=="development")
 {
  
-  configObject.APPLICATION_BFF_URL = "https://deverp.allonblock.com/admin-bff"
+  configObject.APPLICATION_BFF_URL = "http://13.127.202.129:2005/customer-bff"
   configObject.DEFAULT_COMPANY_ID =  "abc"
   configObject.MEDIA_SERVICE_ADDRESS = "https://deverp.allonblock.com/media-service"
   

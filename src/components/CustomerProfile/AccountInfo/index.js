@@ -1,0 +1,58 @@
+import CustomerRegistration from '../../../components/Register/CustomerRegistration/customerRegistration';
+
+import React,{Component} from 'react';
+
+import {reduxForm,Field} from 'redux-form';
+
+import AddressInfoFields from '../../common/AddressInfo/adddressInfoFields';
+import BasicInfoFields from '../../common/BasicInfo/BasicInfoFields';
+import AccountInfo from './accountInfoFields';
+import MenuItem from 'material-ui/MenuItem';
+
+
+let prop ={};
+prop.country = ['India','China'];
+prop.state = ['Rajasthan','Karnatak'];
+prop.city = ['jaipur','banglaore'];
+export default (props)=>
+{
+   
+        return(
+            <div>
+                <header>Basic Info</header>
+                {BasicInfoFields.map((info) => {
+                    return (
+                        <Field name={info.name} label={info.label} component={info.component} />)
+                }
+                )}
+                {AccountInfo.map((info)=> {
+                    return (
+                        <Field name={info.name} label={info.label} component={info.component} />)
+                })
+
+                }
+                <header>Address Details</header>
+             { AddressInfoFields.map((info)=>
+             {
+                 console.log(prop[info.name],"info")
+                 
+                 if(info.type=='select')
+                 {
+                
+                 return (
+                    
+                     <Field name={info.name} component={info.component} label={info.label}>
+                     {prop[info.name].map((name)=>
+                    {
+                       return (<MenuItem value={name} primaryText={name} />)
+                    })}
+                     </Field>
+
+                 )
+                }
+                return (<Field name={info.name} label={info.label} component={info.component} />)
+             })
+             }
+            </div>
+        )
+    }

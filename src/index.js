@@ -53,7 +53,7 @@ if (process.env.NODE_ENV !== 'production') {
   
   );
   export const persistor = persistStore(store);
-console.log(process.env)
+console.log(process.env.APPLICATION_BFF_URL,"url")
 
 ReactDOM.render(
  <MuiThemeProvider>
