@@ -5,7 +5,7 @@ const registerData = (state = {
     error: '',
     isFetching: false,
     //didInvalidate: false,
-    registerLookUpData: []
+    lookUpData: []
   }, action) => {
     switch (action.type) {
       case REGISTER_CONSTANTS.REQUEST_CUSTOMER_REGISTER:
@@ -16,10 +16,11 @@ const registerData = (state = {
         });
       case REGISTER_CONSTANTS.RECEIVED_CUSTOMER_REGISTER:
         return Object.assign({}, state, {
+          error:'',
           isFetching: false,
           type: action.type,
           //didInvalidate: false,
-          itemsForItemSearch: action.data,
+          lookUpData: action.data,
           lastUpdated: action.receivedAt,
         });
       case REGISTER_CONSTANTS.RECEIVED_CUSTOMER_REGISTER_ERROR:
@@ -27,6 +28,8 @@ const registerData = (state = {
           isFetching: false,
           type: action.type,
           error: action.error,
+          lookUpData:[],
+          lastUpdated:action.receivedAt
         });
     }
     return state;

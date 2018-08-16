@@ -25,6 +25,8 @@ import SiteInfo from './containers/CompanyProfile/SiteInfo'
 import CustomerInfo from './containers/CustomerProfile/AccountInfo';
 import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo';
 import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo';
+import CompanyProfile from './containers/CompanyProfile/CompanyProfileTab';
+import CustomerProfile from './containers/CustomerProfile/CustomerProfileTab';
 
 if (module.hot) {
   module.hot.accept();
@@ -69,6 +71,9 @@ ReactDOM.render(
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
+<Route path="/companyProfile" component = {CompanyProfile}/>
+<Route path="/customerProfile" component = {CustomerProfile}/>
+
 
 </Switch>
 </BrowserRouter>
