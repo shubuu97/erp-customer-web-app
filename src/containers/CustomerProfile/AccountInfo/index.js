@@ -1,5 +1,5 @@
 
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 
 import {reduxForm,Field} from 'redux-form';
 
