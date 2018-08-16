@@ -3,4 +3,3 @@ export const RECEIVED_BASICINFO_DATA = 'RECEIVED_BASICINFO_DATA';
 export const RECEIVED_BASICINFO_DATA_ERROR = 'RECEIVED_BASICINFO_DATA_ERROR';
 
 export const BASICINFO_URL=`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`;
-console.log(BASICINFO_URL,"aa");
