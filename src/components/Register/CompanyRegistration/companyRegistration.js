@@ -13,7 +13,6 @@ export default class CompanyRegistration extends Component {
                         <Field name={companyField.name} label={companyField.label} component={TextFieldInput} />)
                 }
                 )}
-                <RaiseButton label='Register' />
             </div>
         )
     }
