@@ -1,4 +1,6 @@
 import CompanyRegistration from '../../../components/Register/CompanyRegistration/companyRegistration';
+import {fetchBasicInfoData} from '../../../action/basicInfoActions';
+import {connect} from 'react-redux'
 
 import React,{Component} from 'react';
 
@@ -7,6 +9,11 @@ import {reduxForm} from 'redux-form';
 
 class AccountInfo extends Component
 {
+    componentDidMount()
+    {
+        console.log("came")
+        this.props.dispatch(fetchBasicInfoData({_id: "5b7514dfab851a001b83452a"},'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/basicinfo/search`))
+    }
     render()
     {
         return(
@@ -17,14 +24,21 @@ class AccountInfo extends Component
     }
 }
 
-export default reduxForm({
-    form:'AccountInfo',
-    initialValues:{firstName:'Allonblcik',
-    middleName:'',
-   lastName:'jj',
-   officialEmailAddress:'jay@allonblock',
-  designation:'software engineer'}
-})(AccountInfo)
+AccountInfo = reduxForm({
+    form:'AccountInfo'}
+)(AccountInfo);
+
+function mapStateToProps(state)
+{
+ let initialValues = {};
+ initialValues =  state.basicInfodata.basicInfoData
+
+ return {initialValues}
+}
+
+export default connect(mapStateToProps)(AccountInfo)
+
+
 
 
       
