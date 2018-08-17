@@ -4,7 +4,8 @@ import {postCustomerRegisterData} from '../../../action/registerActions'
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
-import withLoader from '../../../components/LoaderHoc.js'
+import withLoader from '../../../components/LoaderHoc.js';
+import asyncValidate from './validate.js'
 
 class CompanyRegistration extends PureComponent {
   submit = (formData) => {
@@ -52,7 +53,8 @@ const mapStateToProps = (state) =>
   
   return {
     isLoading,
-    registerReducer
+    registerReducer,
+    asyncValidate
   }
 }
 
