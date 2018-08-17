@@ -25,6 +25,7 @@ class CustomerInfo extends Component
     }
     render()
     {
+        console.log(this.props,'yyyy')
         return(
             <div>
                <AccountInfo/>

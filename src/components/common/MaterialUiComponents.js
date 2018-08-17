@@ -11,7 +11,6 @@ const TextFieldInput = ({
     ...custom
   }) =>
   { 
-    console.log(touched,error)
     return(
     <TextField
       label={label}

@@ -3,9 +3,7 @@ var schema = yup.object().shape({
     firstName: yup.string().required(),
     lastName:yup.string().required(),
     email: yup.string().email().required(),
-    address: yup.string().required(),
-    companyName:yup.string().required(),
-
+    address: yup.string().required()
   });
 const asyncValidate = values => {
 
