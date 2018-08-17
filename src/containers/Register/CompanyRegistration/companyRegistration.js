@@ -3,7 +3,8 @@ import CompanyRegister from '../../../components/Register/CompanyRegistration/co
 import {postCustomerRegisterData} from '../../../action/registerActions'
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import RaisedButton from 'material-ui/RaisedButton'
+import RaisedButton from 'material-ui/RaisedButton';
+import withLoader from '../../../components/LoaderHoc.js'
 
 class CompanyRegistration extends PureComponent {
   submit = (formData) => {
@@ -45,7 +46,14 @@ CompanyRegistration = reduxForm(
 
 const mapStateToProps = (state) =>
 {
-  return {}
+  console.log(state,"register state");
+  let isLoading = state.registerReducer.isFetching;
+  let registerReducer = state.registerReducer;
+  
+  return {
+    isLoading,
+    registerReducer
+  }
 }
 
-export default connect(mapStateToProps)(CompanyRegistration)
+export default connect(mapStateToProps)(withLoader(CompanyRegistration))
