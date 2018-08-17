@@ -42,7 +42,9 @@ class CompanyRegistration extends PureComponent {
 }
 
 CompanyRegistration = reduxForm(
-  { form: 'CompanyRegistration' }
+  { form: 'CompanyRegistration',
+  asyncValidate
+}
 )(CompanyRegistration)
 
 const mapStateToProps = (state) =>
@@ -54,7 +56,7 @@ const mapStateToProps = (state) =>
   return {
     isLoading,
     registerReducer,
-    asyncValidate
+    
   }
 }
 
