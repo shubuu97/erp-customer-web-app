@@ -42,8 +42,4 @@ class LicenceInfo extends Component {
     }
 }
 
-export default reduxForm(
-    {
-        form:'LicenceInfo'
-    }
-)(LicenceInfo)
+export default LicenceInfo
