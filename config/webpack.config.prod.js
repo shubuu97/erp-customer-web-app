@@ -186,6 +186,12 @@ module.exports = {
                       },
                     },
                     {
+                      loader: require.resolve('less-loader'),
+                      options: {
+                        importLoaders: 1,
+                      },
+                    },
+                    {
                       loader: require.resolve('postcss-loader'),
                       options: {
                         // Necessary for external CSS imports to work
