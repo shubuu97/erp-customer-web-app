@@ -9,9 +9,6 @@ let SiteInfo = [
         name:'siteLicenceType',label:'Site Licence Type',component:SelectFieldInput,type:'select'
        },
        {
-        name:'licenceNumber',label:'Licence Number',component:TextFieldInput,type:'text'
-       },
-       {
         name:'siteLicenceNo',label:'Site Licence Number',component:SelectFieldInput,type:'select'
        },
        {
