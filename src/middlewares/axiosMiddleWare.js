@@ -44,6 +44,7 @@ const axiosMiddleware = store => next => (action) => {
   const method = httpVerbs[argMethod.toLowerCase()];
 
   const headers = config.headers && { ...config.headers } || {};
+  console.log(headers,"headers")
   const successHandler = config.success;
   const failureHandler = config.failure || function (subreddit, error, errCode) {
     return {
@@ -58,8 +59,10 @@ requestObject.method = method;
 requestObject.url = path;
 if(config.body)
 requestObject.data=config.body;
-requestObject.headers={Authorization: `${authToken}`,'Content-Type':'application/json'}
+requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'application/json'}
 
+
+console.log(requestObject.headers,"request header")
 
 
 
