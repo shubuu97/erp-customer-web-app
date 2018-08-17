@@ -5,7 +5,7 @@ var schema = yup.object().shape({
     companyStreetAddress: yup.string().email().required(),
     companyEmailAddress: yup.string().required(),
     companyContactNo:yup.string().required(),
-    preferredPaymentMethod:yup.string().required(),
+    
 
   });
 const asyncValidate = values => {
