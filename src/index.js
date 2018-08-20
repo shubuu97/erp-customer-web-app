@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
@@ -27,6 +26,8 @@ import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo';
 import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo';
 import CompanyProfile from './containers/CompanyProfile/CompanyProfileTab';
 import CustomerProfile from './containers/CustomerProfile/CustomerProfileTab';
+import './assets/stylesheets/main.css';
+// import './assets/stylesheets/main.less';
 
 if (module.hot) {
   module.hot.accept();
