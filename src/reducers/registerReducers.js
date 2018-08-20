@@ -5,7 +5,7 @@ const registerData = (state = {
     error: '',
     isFetching: false,
     //didInvalidate: false,
-    lookUpData: []
+    lookUpData: {data:{},message:null}
   }, action) => {
     switch (action.type) {
       case REGISTER_CONSTANTS.REQUEST_CUSTOMER_REGISTER:

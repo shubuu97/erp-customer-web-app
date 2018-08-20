@@ -4,12 +4,11 @@ import {postCustomerRegisterData} from '../../../action/registerActions'
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
-import withLoader from '../../../components/LoaderHoc.js';
-import asyncValidate from './validate.js'
-
+import withLoader from '../../../components/LoaderHoc';
+import asyncValidate from './validate.js';
+import withMessage from '../../../components/messageHoc/index'
 class CompanyRegistration extends PureComponent {
   submit = (formData) => {
-    console.log(formData)
     let postData = {};
     postData.basicInfo = {};
     postData.basicInfo.firstName = formData.firstName;
@@ -28,7 +27,7 @@ class CompanyRegistration extends PureComponent {
 
   }
   render() {
-    console.log(this.props, "props");
+  
     const { handleSubmit } = this.props;
     return (
       <div>
@@ -43,21 +42,20 @@ class CompanyRegistration extends PureComponent {
 
 CompanyRegistration = reduxForm(
   { form: 'CompanyRegistration',
-  asyncValidate
-}
+  asyncValidate }
 )(CompanyRegistration)
 
 const mapStateToProps = (state) =>
 {
-  console.log(state,"register state");
   let isLoading = state.registerReducer.isFetching;
   let registerReducer = state.registerReducer;
-  
+  console.log(state,"fff")
+  let message = state.registerReducer.lookUpData.message;
   return {
     isLoading,
     registerReducer,
-    
+    message
   }
 }
 
-export default connect(mapStateToProps)(withLoader(CompanyRegistration))
+export default connect(mapStateToProps)(withMessage(withLoader(CompanyRegistration)))
