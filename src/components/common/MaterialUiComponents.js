@@ -9,15 +9,19 @@ const TextFieldInput = ({
     label,
     meta: { touched, error },
     ...custom
-  }) => (
+  }) =>
+  { 
+    return(
     <TextField
-      hintText={label}
-      floatingLabelText={label}
+      label={label}
+      placeholder={label}
       errorText={touched && error}
+     
       {...input}
       {...custom}
     />
   )
+}
 
   const SelectFieldInput = ({
     input,

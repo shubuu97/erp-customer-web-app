@@ -1,25 +1,29 @@
-import SiteInfoComponent from '../../../components/CompanyProfile/SiteInfo';
+import LicenseInfoComponent from '../../../components/CompanyProfile/LicenceInfo';
 
 import React,{Component} from 'react';
 
 import {reduxForm} from 'redux-form';
 
+import asyncValidate from './validate.js'
 
-class SiteInfo extends Component
+
+class LicenseInfo extends Component
 {
     render()
     {
         return(
             <div>
-            <SiteInfoComponent/>
+            <LicenseInfoComponent/>
             </div>
         )
     }
 }
 
 export default reduxForm({
-    form:'SiteInfo'
-})(SiteInfo)
+    form:'LicenseInfo',
+    asyncValidate
+
+})(LicenseInfo)
 
 
       

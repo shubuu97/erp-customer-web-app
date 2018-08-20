@@ -5,6 +5,7 @@ import React,{Component} from 'react';
 import {reduxForm} from 'redux-form';
 
 import RaiseButton from 'material-ui/RaisedButton';
+import asyncValidate from './validate.js'
 
 
 class BankingInfo extends Component
@@ -22,7 +23,8 @@ class BankingInfo extends Component
 }
 
 export default reduxForm({
-    form:'CompanyBankingInfo'
+    form:'CompanyBankingInfo',
+    asyncValidate
 })(BankingInfo)
 
 

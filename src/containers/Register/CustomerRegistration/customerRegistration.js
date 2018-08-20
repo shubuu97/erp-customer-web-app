@@ -2,7 +2,8 @@ import React,{PureComponent} from 'react';
 import CustomerRegister from '../../../components/Register/CustomerRegistration/customerRegistration.js';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import {postCustomerRegisterData} from '../../../action/registerActions'
+import {postCustomerRegisterData} from '../../../action/registerActions';
+import asyncValidate from './validate.js'
 
 import RaisedButton from 'material-ui/RaisedButton'
 
@@ -51,7 +52,8 @@ class CustomerRegistration extends PureComponent
 
 
 CustomerRegistration = reduxForm(
- {form:'CustomerRegistration'}
+ {form:'CustomerRegistration',
+ asyncValidate}
 )(CustomerRegistration);
 
 const mapStateToProps = (state) =>

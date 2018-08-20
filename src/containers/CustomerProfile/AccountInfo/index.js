@@ -7,7 +7,8 @@ import { fetchBasicInfoData } from '../../../action/basicInfoActions';
 import CustomerRegistration from '../../../components/Register/CustomerRegistration/customerRegistration';
 import {connect} from 'react-redux';
 import AccountInfo from '../../../components/CustomerProfile/AccountInfo'
-import {fetchProfileFormData} from '../../../action/profileFormData'
+import {fetchProfileFormData} from '../../../action/profileFormData';
+import asyncValidate from './validate.js'
 
 
 
@@ -24,6 +25,7 @@ class CustomerInfo extends Component
     }
     render()
     {
+        console.log(this.props,'yyyy')
         return(
             <div>
                <AccountInfo/>
@@ -34,6 +36,7 @@ class CustomerInfo extends Component
 
 CustomerInfo = reduxForm({
     form:'CustomerInfo',
+    asyncValidate
     
 })(CustomerInfo)
 function mapStateToProps(state)

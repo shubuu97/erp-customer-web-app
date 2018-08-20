@@ -3,6 +3,7 @@ import SiteInfoComponent from '../../../components/CompanyProfile/SiteInfo';
 import React,{Component} from 'react';
 
 import {reduxForm} from 'redux-form';
+import asyncValidate from './validate.js'
 
 
 class SiteInfo extends Component
@@ -18,7 +19,8 @@ class SiteInfo extends Component
 }
 
 export default reduxForm({
-    form:'AccountInfo'
+    form:'SiteInfo',
+    asyncValidate
 })(SiteInfo)
 
 
