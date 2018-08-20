@@ -42,11 +42,16 @@ class Login extends Component
            <div className="btn-parent">
               <RaiseButton  type={'submit'} primary={true} label="Sign In"/>
            </div>
-           <div className="btn-parent">
-              <RaiseButton  type={'submit'} label="Sign Up"/>
-           </div>
+          
+              
+           
       </form>
-    </div>
+      
+        <div> 
+      <RaiseButton  type={'submit'} label="Sign Up For Customer" onClick={()=>{this.props.history.push('/customerRegister')}}/>
+      <RaiseButton  type={'submit'} label="Sign Up For Company" onClick={()=>{this.props.history.push('/companyRegister')}}/>
+          </div>
+   </div>
         </div>
    )
  }   

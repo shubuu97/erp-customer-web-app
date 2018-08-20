@@ -7,6 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
 let props ={};
 props.paymentTerms = ['FFF','AAA'];
+props.invoiceCurrencyCode=['INR','USD']
 
 class BankingInfo  extends Component {
     render() {
@@ -19,13 +20,13 @@ class BankingInfo  extends Component {
              
              if(info.type=='select')
              {
-            
-             return (
+            {console.log(props[info.name],'details')}
+                         return (
                 
                  <Field name={info.name} component={info.component} label={info.label}>
-                 {props[info.name].map((name)=>
+                 {props[info.name].map((name,index)=>
                 {
-                   return (<MenuItem value={name} primaryText={name} />)
+                   return (<MenuItem value={name} primaryText={name} key={index} />)
                 })}
                  </Field>
 
