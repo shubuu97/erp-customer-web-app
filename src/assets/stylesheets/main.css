@@ -1859,6 +1859,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .Select-menu-outer .Select-menu > div{
     background:transparent !important;
 }
+.btn-parent {
+	display: inline-block;
+	margin: 0 8px;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -2573,3 +2577,5 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     }
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
+
+
