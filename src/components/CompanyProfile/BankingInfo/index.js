@@ -16,7 +16,7 @@ class BankingInfo  extends Component {
            <header className="box-heading2 col-sm-12">Company Banking Details</header>
          { CompanyBankingDetails.map((info)=>
          {
-             console.log(info.name)
+            
              
              if(info.type=='select')
              {
