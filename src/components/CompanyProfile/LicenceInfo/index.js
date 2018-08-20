@@ -5,7 +5,7 @@ import { TextFieldInput } from '../../common/MaterialUiComponents';
 import RaiseButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem'
 let props ={};
-props.licenceType = ['India','China'];
+props.licenceType = [{label:'India',name:'India'},{label:'China',name:'India'}];
 props.companyCategory = ['Rajasthan','Karnatak'];
 props.country = ['India','China'];
 props.state = ['Rajasthan','Karnatak'];
@@ -25,11 +25,8 @@ class LicenceInfo extends Component {
             
              return (
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                 <Field name={info.name} component={info.component} label={info.label}>
-                 {props[info.name].map((name)=>
-                {
-                   return (<MenuItem value={name} primaryText={name} />)
-                })}
+                 <Field options={props[info.name]} name={info.name} component={info.component} label={info.label}>
+                 
                  </Field>
                 </div>
              )

@@ -705,92 +705,7 @@ table .custom-input input[type="date"]{
 /*************************************** TABLE CSS *****************************************/
 
 /*========================================= TABS CSS ==============================================*/
-.supplier-tabs {
-	display: flex;
-	margin-bottom: 40px;
-	border-bottom: solid 1px #eee;
-}
-.supplier-tabs .list-group-item {
-    float: none;
-    margin-bottom: 0;
-    border-top: solid 1px #eee;
-    border-right: solid 1px #eee;
-}
-.supplier-tabs .list-group-item.list-group-item-success {
-	margin-bottom: -1px;
-	background: #eee !important;
-}
-.supplier-tabs .list-group-item:hover {
-    background: #f9f9f9 !important;
-}
-.supplier-tabs .list-group-item:first-child {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-left: solid 1px #eee;
-}
-.supplier-tabs .list-group-item a {
-	color: #777;
-	text-decoration: none;
-	display: inline-flex;
-}
-.supplier-tabs .list-group-item.list-group-item-success a {
-	color: #333;
-}
-.supplier-tabs .list-group-item:first-child {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.supplier-tabs .list-group-item:last-child {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-.list-group-item, .list-group-item-success{
-    background-color: #fff !important;
-    border: none;
-}
-/*========================================= TABS CSS ==============================================*/
 
-.jumbotron {
-    background-color: transparent;
-    padding-top: 100px;
-}
-.Select-value {
-    color: #000;
-}
-.content.main-block {
-    float: left;
-    width: 100%;
-}
-a:focus {
-	outline: none;
-}
-
-.footer {
-	position: fixed;
-	width: 100%;
-	height: 50px;
-	background: #004974;
-	bottom: 0;
-	text-transform: uppercase;
-	font-weight: 400;
-    font-size: .9em;
-    float: left;
-	letter-spacing: 1px;
-	color: #fff;
-	text-align: center;
-	padding-top: 0;
-	z-index: 99;
-	line-height: 50px;
-}
-.main-container {
-    height: auto;
-    width: 100%;
-    position: absolute;
-    padding: 0 0 60px;
-}
-.addNew{
-    padding-top:0 !important;
-}
 /*============================================= STRAIN PAGE CSS ===========================================*/
 .strainBlock {
     background: #FFF;
@@ -1594,6 +1509,12 @@ table .custom-input {
     margin-top:10px;
     margin-bottom:50px;
     font-size:1rem;
+}
+.MuiTab-label-21 {
+    font-size: 14px !important;
+}
+.MuiTab-label-56 {
+    font-size: 14px !important;
 }
 /*========================================= GRAPH BOX CSS =======================================*/
 .box-heading h2 {
@@ -2578,6 +2499,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         padding-right: 0;
         margin-right: 0;
     }
+    
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 
