@@ -7,10 +7,12 @@ import RaiseButton from 'material-ui/RaisedButton';
 export default class CompanyRegistration extends Component {
     render() {
         return (
-            <div>
+            <div  className="row d-flex">
                 {companyFields.map((companyField) => {
                     return (
-                        <Field name={companyField.name} label={companyField.label} component={TextFieldInput} />)
+                        <div className="form-d col-md-4 col-sm-6 form-input">
+                            <Field name={companyField.name} label={companyField.label} component={TextFieldInput} />
+                        </div>) 
                 }
                 )}
             </div>
