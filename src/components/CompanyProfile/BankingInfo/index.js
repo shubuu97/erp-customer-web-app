@@ -7,6 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
 let props ={};
 props.paymentTerms = ['FFF','AAA'];
+props.invoiceCurrencyCode=['INR','USD']
 
 class BankingInfo  extends Component {
     render() {
@@ -23,9 +24,9 @@ class BankingInfo  extends Component {
              return (
                 <div className="form-d col-md-4 col-sm-6 form-input">
                  <Field name={info.name} component={info.component} label={info.label}>
-                 {props[info.name].map((name)=>
+                 {props[info.name].map((name,index)=>
                 {
-                   return (<MenuItem value={name} primaryText={name} />)
+                   return (<MenuItem value={name} primaryText={name} key={index} />)
                 })}
                  </Field>
                 </div>

@@ -1,16 +1,21 @@
 import  * as yup from 'yup';
-var schema = yup.object().shape({
-    accountNo: yup.string().required(),
-    invoiceCurrency: yup.string().email().required(),
-    printNameOnCheck: yup.string().required(),
-    currencyCode:yup.string().required(),
+
+var bankDetailsSchema = yup.object().shape({
     bankName:yup.string().required(),
-    bankBranch: yup.string().email().required(),
-    routingNo: yup.string().required(),
-    accountNo:yup.string().required(),
-    bankBranch:yup.string().required(),
+    bankRoutingNumber: yup.string().required(),
+    bankAccountNumber:yup.string().required(),
+    branchName:yup.string().required(),
     bankNumber:yup.string().required(),
     accountStatus:yup.string().required(),
+})
+var schema = yup.object().shape({
+    accountNumber: yup.string().required(),
+    invoiceCurrencyCode: yup.string().required(),
+    nameOnCheque: yup.string().required(),
+    currencyCode:yup.string().required(),
+    
+    bankDetails:yup.array(bankDetailsSchema)
+    
 
 
   });
@@ -32,6 +37,7 @@ const asyncValidate = values => {
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
                 let reduxFormErrors = {};
+                console.log(errors,"errors of yup")
 
                 errors.inner.forEach(error => {
                     reduxFormErrors[error.path] = error.message;

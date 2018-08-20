@@ -12,7 +12,7 @@ let CompanyBankInfo = [
         name:'paymentTerms',label:'Payment Terms',component:SelectFieldInput,type:'select'
        },
        {
-        name:'invoiceCurrency',label:'Invoice Currency',component:TextFieldInput,type:'text'
+        name:'invoiceCurrencyCode',label:'Invoice Currency',component:TextFieldInput,type:'text'
        },
        {
         name:'printNameOnCheck',label:'Print Name On Check As',component:TextFieldInput,type:'text'
