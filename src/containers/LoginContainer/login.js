@@ -45,8 +45,8 @@ class Login extends Component
            <div className="btn-parent">
               <RaiseButton  type={'submit'} label="Sign Up"/>
            </div>
-      </form>
-    </div>
+        </form>
+       </div>
         </div>
    )
  }   
