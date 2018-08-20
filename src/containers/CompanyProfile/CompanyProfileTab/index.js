@@ -43,7 +43,7 @@ class CompanyProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className="right-content">
+      <div>
         <div className={classes.root}>
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="Account" />
