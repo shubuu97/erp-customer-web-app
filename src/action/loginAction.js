@@ -4,7 +4,7 @@ import dynamicActionWrapper from '../utills/actionHelpers';
 
 
 export const requestLogin = subreddit => ({
-    type: LOGIN_CONSTANTS.RECEIVED_LOGIN,
+    type: LOGIN_CONSTANTS.REQUEST_LOGIN,
     subreddit
 })
 

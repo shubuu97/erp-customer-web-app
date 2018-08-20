@@ -1,4 +1,4 @@
-import React,{PureComponent} from 'react';
+import React,{Component} from 'react';
 import LoginView from '../../components/Login/Login';
 import {reduxForm,Field} from 'redux-form';
 import RaiseButton from 'material-ui/RaisedButton';
@@ -9,7 +9,7 @@ import SignUpButton from '../../components/SignUpButton';
 import {postLogin} from '../../action/loginAction';
 import logologin from '../../assets/images/logo-main.png';
 import {connect} from 'react-redux'
-class Login extends PureComponent
+class Login extends Component
 {
   loginSubmitHandler=(values)=>
   {
@@ -19,9 +19,17 @@ class Login extends PureComponent
    this.props.dispatch(postLogin(values,'',`${process.env.APPLICATION_BFF_URL}/iam/user/login`));
 
   }
+  componentDidUpdate(prevProps)
+    {
+    if(this.props.lookUpData&& this.props.lookUpData.data&&this.props.lookUpData.data.authToken)
+
+    {
+    this.props.history.push('/companyProfile')
+    }
+    }
  render()
  {
- 
+ console.log("rener runs")
   const {handleSubmit} = this.props
    return(
        <div className="login-container">
@@ -48,14 +56,18 @@ class Login extends PureComponent
 Login = reduxForm(
  {
    form:'LoginForm',
-  
+    
   }
 )(Login)
 
 function mapStateToProps(state)
-{
-  return {}
+{ 
+  let isLoading = state.loginReducer.isFetching
+  let loginData = state.loginReducer;
+  let lookUpData = state.loginReducer.lookUpData
+  return {isLoading,loginData,lookUpData}
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(
+  (Login))
 

@@ -1,5 +1,6 @@
 /** Render hijacking HOC for inducing loader */
 import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const rectLoader = () => (<div className='loader-wrapper'>
     <div className="spinner">
@@ -10,15 +11,25 @@ const rectLoader = () => (<div className='loader-wrapper'>
         <div className="rect5"></div>
     </div>
 </div>);
+const matLoader = () => (
+   <div>
+      
+    <CircularProgress />
+    </div>
+);
+
 
 const withLoader = (WrappedComponent) => {
+console.log(this.props,"props of the")
     return class Enhancer extends WrappedComponent {
         render() {
-            console.log(this.props,"wrapped")
+           
             if (this.props.isLoading) {
-                return rectLoader();
+                return matLoader();
             }
-            return super.render();
+            console.log(super.render,'ff')
+            
+            return (super.render())
         }
 
     };
