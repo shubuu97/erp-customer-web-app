@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 import AccountInfo from '../../../components/CustomerProfile/AccountInfo'
 import {fetchProfileFormData} from '../../../action/profileFormData';
 import asyncValidate from './validate.js'
+import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
+import RaiseButton from 'material-ui/RaisedButton';
 
 
 
@@ -16,6 +18,19 @@ import asyncValidate from './validate.js'
 class CustomerInfo extends Component
 
 {
+    updateSubmitHandler=(values)=>
+    {
+      console.log(this.props,"props fff")
+  
+    console.log(values,"aa");
+
+    let requestObj={
+        basicInfo:values,
+        _id:"5b7530f8a3b7320018ee14b7"
+    }
+     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo`));
+  
+    }
     componentDidMount()
     {
         console.log("came");
@@ -25,10 +40,14 @@ class CustomerInfo extends Component
     }
     render()
     {
+        const {handleSubmit} = this.props;
         console.log(this.props,'yyyy')
         return(
             <div>
+                <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
                <AccountInfo/>
+               <RaiseButton type={'submit'} primary={true} label="Submit"/>
+               </form>
             </div>
         )
     }
