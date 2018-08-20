@@ -60,6 +60,7 @@ ReactDOM.render(
 <Provider store={store}>
 <BrowserRouter>
 <Switch>
+<div className="right-content">
 <Route exact path="/app" component={App} />
 <Route exact path="/" component={Login}/>
 <Route exact path ="/basicinfo" component={BasicInfoForm}/>
@@ -74,8 +75,9 @@ ReactDOM.render(
 <Route path="/companyProfile" component = {CompanyProfile}/>
 <Route path="/customerProfile" component = {CustomerProfile}/>
 
-
+</div>
 </Switch>
+
 </BrowserRouter>
 </Provider>
 </MuiThemeProvider>, document.getElementById('root'));

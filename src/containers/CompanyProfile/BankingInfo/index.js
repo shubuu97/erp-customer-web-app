@@ -15,8 +15,10 @@ class BankingInfo extends Component
         return(
             <div>
             <BankingInfoComponent/>
-            <RaiseButton label="Save" />
-            <RaiseButton primary={true} label="Submit for approval" />
+                <div className="form-btn-group">
+                    <RaiseButton label="Save" />
+                    <RaiseButton primary={true} label="Submit for approval" />
+                </div>
             </div>
         )
     }

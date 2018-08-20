@@ -14,7 +14,7 @@ props.city = ['jaipur','banglaore'];
 class LicenceInfo extends Component {
     render() {
         return (
-            <div>
+            <div className="row d-flex">
           
          { LicenceInfoFields.map((info)=>
          {
@@ -24,17 +24,20 @@ class LicenceInfo extends Component {
              {
             
              return (
-                
+                <div className="form-d col-md-4 col-sm-6 form-input">
                  <Field name={info.name} component={info.component} label={info.label}>
                  {props[info.name].map((name)=>
                 {
                    return (<MenuItem value={name} primaryText={name} />)
                 })}
                  </Field>
-
+                </div>
              )
             }
-            return (<Field name={info.name} label={info.label} component={info.component} />)
+            return (
+                <div className="form-d col-md-4 col-sm-6 form-input">
+                <Field name={info.name} label={info.label} component={info.component} />
+                </div>)
          })
          }
         </div>

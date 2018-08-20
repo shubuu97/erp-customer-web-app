@@ -43,18 +43,20 @@ class CompanyProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Account" />
-            <Tab label="Licence" />
-            <Tab label="Site"  />
-            <Tab label="Baniing"/>
-          </Tabs>
-       
-        {value === 0 && <TabContainer><AccountInfo/></TabContainer>}
-        {value === 1 && <TabContainer><LicenceInfo/></TabContainer>}
-        {value === 2 && <TabContainer><SiteInfo/></TabContainer>}
-        {value === 3 && <TabContainer><BankingInfo/></TabContainer>}
+      <div>
+        <div className={classes.root}>
+            <Tabs value={value} onChange={this.handleChange}>
+              <Tab label="Account" />
+              <Tab label="Licence" />
+              <Tab label="Site"  />
+              <Tab label="Baniing"/>
+            </Tabs>
+        
+          {value === 0 && <TabContainer><AccountInfo/></TabContainer>}
+          {value === 1 && <TabContainer><LicenceInfo/></TabContainer>}
+          {value === 2 && <TabContainer><SiteInfo/></TabContainer>}
+          {value === 3 && <TabContainer><BankingInfo/></TabContainer>}
+        </div>
       </div>
     );
   }
