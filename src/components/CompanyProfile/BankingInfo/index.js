@@ -11,8 +11,8 @@ props.paymentTerms = ['FFF','AAA'];
 class BankingInfo  extends Component {
     render() {
         return (
-            <div>
-           <header>Company Banking Details</header>
+            <div className="row d-flex">
+           <header className="box-heading2 col-sm-12">Company Banking Details</header>
          { CompanyBankingDetails.map((info)=>
          {
              console.log(info.name)
@@ -21,23 +21,27 @@ class BankingInfo  extends Component {
              {
             
              return (
-                
+                <div className="form-d col-md-4 col-sm-6 form-input">
                  <Field name={info.name} component={info.component} label={info.label}>
                  {props[info.name].map((name)=>
                 {
                    return (<MenuItem value={name} primaryText={name} />)
                 })}
                  </Field>
-
+                </div>
              )
             }
-            return (<Field name={info.name} label={info.label} component={info.component} />)
+            return (<div className="form-d col-md-4 col-sm-6 form-input">
+                        <Field name={info.name} label={info.label} component={info.component} />
+                    </div>)
          })
          }
-            <header>Bank Details</header>
+            <header className="box-heading2 col-sm-12">Bank Details</header>
                 {BankDetailFields.map((info) => {
                     return (
-                        <Field name={info.name} label={info.label} component={info.component} />)
+                        <div className="form-d col-md-4 col-sm-6 form-input">
+                            <Field name={info.name} label={info.label} component={info.component} />
+                        </div>)
                 })
 
                 }
