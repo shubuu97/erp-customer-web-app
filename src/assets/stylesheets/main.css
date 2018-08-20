@@ -4,7 +4,8 @@ html{
     font-size:62.5%;}
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: #f3f9fe;}
+    background-color: #f3f9fe;
+    margin:0;}
 
 .json-pretty{
     line-height:1.3;

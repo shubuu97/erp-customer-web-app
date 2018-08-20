@@ -2,6 +2,7 @@ import React,{PureComponent} from 'react';
 import LoginView from '../../components/Login/Login';
 import {reduxForm,Field} from 'redux-form';
 import RaiseButton from 'material-ui/RaisedButton';
+//import {SaveButtonV1} from '../../components/common/SaveButton'
 import MenuItem from 'material-ui/MenuItem'
 import {SelectFieldInput} from '../../components/common/MaterialUiComponents';
 import SignUpButton from '../../components/SignUpButton';
@@ -22,10 +23,10 @@ class Login extends PureComponent
  
   const {handleSubmit} = this.props
    return(
-       <div>
-         <form onSubmit={handleSubmit(this.loginSubmitHandler)}>
+       <div className="login-container">
+         <form className="login" onSubmit={handleSubmit(this.loginSubmitHandler)}>
            <LoginView/>
-           <RaiseButton type={'submit'} primary={true} label="Sign In"/>
+           <RaiseButton  type={'submit'} primary={true} label="Sign In"/>
            <div>
            <SignUpButton/>
            </div>
