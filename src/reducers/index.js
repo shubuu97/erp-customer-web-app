@@ -5,6 +5,8 @@ import {basicInfodata} from './basicInfo';
 import {profileFormData} from './profileFormData';
 import loginReducer from './login';
 import updateBasicInfo from './updateBasicInfo'
+import {bankDetailsData} from './bankingDetails'
+import licenseData from './licenseInfo'
 let rootReducer = combineReducers(
     {
         //reducer code will come here
@@ -13,7 +15,9 @@ let rootReducer = combineReducers(
         basicInfodata,
         profileFormData,
         loginReducer,
-        updateBasicInfo
+        updateBasicInfo,
+        bankDetailsData,
+        licenseData
     }
 );
 

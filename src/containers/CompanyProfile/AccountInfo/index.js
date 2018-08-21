@@ -1,26 +1,46 @@
 import CompanyRegistration from '../../../components/Register/CompanyRegistration/companyRegistration';
-import {fetchBasicInfoData} from '../../../action/basicInfoActions';
+import {postBasicInfoData} from '../../../action/basicInfoActions';
 import {connect} from 'react-redux'
 
 import React,{Component} from 'react';
-
+import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
 import {reduxForm} from 'redux-form';
 import {fetchProfileFormData} from '../../../action/profileFormData'
+import Button from '@material-ui/core/Button';
+
+
 
 
 class AccountInfo extends Component
 {
+    updateSubmitHandler=(values)=>
+    {
+      console.log(this.props,"props fff")
+  
+    console.log(values,"aa");
+
+    let requestObj={
+        basicInfo:values,
+        _id:"5b7514dfab851a001b83452a"
+    }
+     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/basicinfo`));
+  
+    }
     componentDidMount()
     {
         console.log("came")
         this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/businesscustomer/register`));
-        this.props.dispatch(fetchBasicInfoData({_id: "5b7514dfab851a001b83452a"},'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/basicinfo/search`))
+        this.props.dispatch(postBasicInfoData({_id: "5b7514dfab851a001b83452a"},'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/basicinfo/search`))
     }
     render()
     {
+        const {handleSubmit} = this.props;
         return(
             <div>
+            <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <CompanyRegistration/>
+            <Button variant="contained" color='primary'>Save</Button>
+            </form>
             </div>
         )
     }

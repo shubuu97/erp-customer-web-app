@@ -10,12 +10,10 @@ import AccountInfo from './accountInfoFields';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
-
 let prop = {};
-prop.country = ['India', 'China'];
-prop.state = ['Rajasthan', 'Karnatak'];
-prop.city = ['jaipur', 'banglaore'];
-
+prop.country = [{label:'India',value:'India'},{label:'China',value:'India'}];
+prop.state = [{label:'India',value:'India'},{label:'China',value:'India'}];
+prop.city = [{label:'India',value:'India'},{label:'China',value:'India'}];
 
 const AddressInfo = (props) => {
     const { fields, meta: { error } } = props;

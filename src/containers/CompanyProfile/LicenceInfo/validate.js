@@ -2,8 +2,8 @@ import  * as yup from 'yup';
 var schema = yup.object().shape({
     licenceType: yup.string().required(),
     companyCategory:yup.string().required(),
-    companyStreetAddress: yup.string().email().required(),
-    companyEmailAddress: yup.string().required(),
+    companyStreetAddress: yup.string().required(),
+    companyEmailAddress: yup.string().email().required(),
     companyContactNo:yup.string().required(),
     
 
@@ -13,7 +13,7 @@ const asyncValidate = values => {
 
     return new Promise((resolve, reject) => {
 
-        console.log(values)
+        
 
         //Validate our form values against our schema! Also dont abort the validate early.
         schema.validate(values, {abortEarly: false})
@@ -22,7 +22,7 @@ const asyncValidate = values => {
                 resolve();
             })
             .catch(errors => {
-
+                console.log(errors,'dalet')
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
                 let reduxFormErrors = {};

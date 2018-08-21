@@ -41,7 +41,7 @@ class Login extends Component
     if(this.props.lookUpData&& this.props.lookUpData.data&&this.props.lookUpData.data.authToken)
 
     {
-    this.props.history.push('/companyProfile')
+    this.props.history.push('/customerProfile')
     }
     }
  render()

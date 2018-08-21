@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import {reduxForm,Field} from 'redux-form';
 
-import { fetchBasicInfoData } from '../../../action/basicInfoActions';
+import { postBasicInfoData } from '../../../action/basicInfoActions';
 import CustomerRegistration from '../../../components/Register/CustomerRegistration/customerRegistration';
 import {connect} from 'react-redux';
 import AccountInfo from '../../../components/CustomerProfile/AccountInfo'
@@ -36,13 +36,14 @@ class CustomerInfo extends Component
         console.log("came");
         this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
 
-        this.props.dispatch(fetchBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
+        this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
     }
     render()
     {
         const {handleSubmit} = this.props;
         console.log(this.props,'yyyy')
         return(
+            
             <div>
                 <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
                <AccountInfo/>
@@ -61,9 +62,10 @@ CustomerInfo = reduxForm({
 function mapStateToProps(state)
 {
  let initialValues = {};
- initialValues =  state.basicInfodata.basicInfoData
+ initialValues =  state.basicInfodata.basicInfoData;
+ let isLoading=state.basicInfodata.isFetching
 
- return {initialValues}
+ return {initialValues,isLoading}
 }
 
-export default connect(mapStateToProps)(CustomerInfo)
+export default connect(mapStateToProps)((CustomerInfo))

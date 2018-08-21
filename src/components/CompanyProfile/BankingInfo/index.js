@@ -1,13 +1,55 @@
 import CompanyBankingDetails from './companyBankingDetails';
-import { Field,reduxForm } from 'redux-form';
+import { Field,reduxForm, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
-let props ={};
-props.paymentTerms = ['FFF','AAA'];
-props.invoiceCurrencyCode=['INR','USD']
+let prop={};
+prop.paymentTerms = ['FFF','AAA'];
+prop.invoiceCurrencyCode=['INR','USD']
+
+let BankDetailComponent = (props)=>
+{
+    const { fields, meta: { error } } = props;
+    if(fields.length==0)
+    fields.push();
+    return (
+        <div>
+            
+            {fields.map((bankDetails, index) => (
+            
+                <div>
+                
+                {BankDetailFields.map((info) => {
+                    console.log(prop[info.name], "info")
+
+                    if (info.type == 'select') {
+
+                        return (
+
+                            <Field name={`${bankDetails}.${info.name}`} component={info.component} label={info.label}>
+                                {prop[info.name].map((name) => {
+                                    return (<MenuItem value={name} primaryText={name} />)
+                                })}
+                            </Field>
+
+                        )
+                    }
+                    return (<Field name={`${bankDetails}.${info.name}`} label={info.label} component={info.component} />)
+                })
+
+
+                }
+            
+            {fields.length!=1&&<Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button>}
+                </div>))}
+                <Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button>]
+        
+        </div>
+    )
+}
+
 
 class BankingInfo  extends Component {
     render() {
@@ -24,7 +66,7 @@ class BankingInfo  extends Component {
              return (
                 <div className="form-d col-md-4 col-sm-6 form-input">
                  <Field name={info.name} component={info.component} label={info.label}>
-                 {props[info.name].map((name,index)=>
+                 {prop[info.name].map((name,index)=>
                 {
                    return (<MenuItem value={name} primaryText={name} key={index} />)
                 })}
@@ -38,14 +80,15 @@ class BankingInfo  extends Component {
          })
          }
             <header className="box-heading2 col-sm-12">Bank Details</header>
-                {BankDetailFields.map((info) => {
+            <FieldArray name='bankDetails' component={BankDetailComponent}/>
+                {/* {BankDetailFields.map((info) => {
                     return (
                         <div className="form-d col-md-4 col-sm-6 form-input">
                             <Field name={info.name} label={info.label} component={info.component} />
                         </div>)
                 })
 
-                }
+                } */}
         </div>
         )
     }

@@ -23,7 +23,7 @@ const receiveBasicInfoDataError = (subreddit,err,errCode) => ({
     errorCode: errCode
 })
 
-export const fetchBasicInfoData = (data,subreddit,url) => dispatch => 
+export const postBasicInfoData = (data,subreddit,url) => dispatch => 
 dispatch(dynamicActionWrapper({
     path: url,
     method: 'post',
