@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 
 import {reduxForm} from 'redux-form';
 
-import RaiseButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import asyncValidate from './validate.js'
 
 
@@ -16,8 +16,8 @@ class BankingInfo extends Component
             <div>
             <BankingInfoComponent/>
                 <div className="form-btn-group">
-                    <RaiseButton label="Save" />
-                    <RaiseButton primary={true} label="Submit for approval" />
+                    <Button variant="contained" color='primary'>Save</Button>
+                    <Button variant="contained" color='primary'>Submit for approval</Button>
                 </div>
             </div>
         )

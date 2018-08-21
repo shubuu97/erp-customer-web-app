@@ -49,7 +49,7 @@ class CompanyProfileTab extends React.Component {
               <Tab label="Account" />
               <Tab label="Licence" />
               <Tab label="Site"  />
-              <Tab label="Baniing"/>
+              <Tab label="Banking"/>
             </Tabs>
         
           {value === 0 && <TabContainer><AccountInfo/></TabContainer>}

@@ -2,7 +2,7 @@ import LicenceInfoFields from './LiceneceInfo';
 import { Field,reduxForm } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
-import RaiseButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem'
 let props ={};
 props.licenceType = [{label:'India',name:'India'},{label:'China',name:'India'}];

@@ -10,7 +10,7 @@ import AccountInfo from '../../../components/CustomerProfile/AccountInfo'
 import {fetchProfileFormData} from '../../../action/profileFormData';
 import asyncValidate from './validate.js'
 import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
-import RaiseButton from 'material-ui/RaisedButton';
+import Button  from '@material-ui/core/Button';
 
 
 
@@ -46,7 +46,7 @@ class CustomerInfo extends Component
             <div>
                 <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
                <AccountInfo/>
-               <RaiseButton type={'submit'} primary={true} label="Submit"/>
+               <Button type={'submit'} primary={true} label="Submit"/>
                </form>
             </div>
         )
