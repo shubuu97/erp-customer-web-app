@@ -2,13 +2,30 @@ import React,{Component} from 'react';
 import LoginView from '../../components/Login/Login';
 import {reduxForm,Field} from 'redux-form';
 import RaiseButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+import { withStyles,withTheme } from '@material-ui/core/styles';
 //import {SaveButtonV1} from '../../components/common/SaveButton'
 import MenuItem from 'material-ui/MenuItem'
 import {SelectFieldInput} from '../../components/common/MaterialUiComponents';
 import SignUpButton from '../../components/SignUpButton';
 import {postLogin} from '../../action/loginAction';
 import logologin from '../../assets/images/logo-main.png';
-import {connect} from 'react-redux'
+import companyIcon from '../../assets/images/company-icon.png';
+import customerIcon from '../../assets/images/customer-icon.png';
+import {connect} from 'react-redux';
+
+
+const styles = theme => ({
+  button: {
+    fontSize:'1.4rem',
+    color:'#FFF',
+  },
+  buttonLogin:{
+    fontSize:'1.4rem',
+    color: '#FFF',
+  }
+});
+
 class Login extends Component
 {
   loginSubmitHandler=(values)=>
@@ -29,30 +46,28 @@ class Login extends Component
     }
  render()
  {
- console.log("rener runs")
+   const {classes,theme} = this.props;
+
+ console.log("props of this page",this.props)
   const {handleSubmit} = this.props
    return(
-       <div className="login-container">
-       <div className="login">
+      <div className="login-container">
+        <div className="login">
           <div className="login-logo">
               <img src={logologin} />
           </div>
-         <form onSubmit={handleSubmit(this.loginSubmitHandler)}>
-           <LoginView/>
-           <div className="btn-parent">
-              <RaiseButton  type={'submit'} primary={true} label="Sign In"/>
-           </div>
-          
-              
-           
-      </form>
-      
-        <div> 
-      <RaiseButton  type={'submit'} label="Sign Up For Customer" onClick={()=>{this.props.history.push('/customerRegister')}}/>
-      <RaiseButton  type={'submit'} label="Sign Up For Company" onClick={()=>{this.props.history.push('/companyRegister')}}/>
+          <form onSubmit={handleSubmit(this.loginSubmitHandler)}>
+            <LoginView/>
+            <div className="btn-parent-full">
+                <Button className={classes.buttonLogin} type={'submit'} variant="contained" color='primary'>Sign In</Button>
+            </div>
+          </form>      
+          <div className="login-btn"> 
+              <Button className={classes.button} type={'submit'} onClick={()=>{this.props.history.push('/companyRegister')}}><img src={companyIcon} />Company Sign Up</Button>
+              <Button className={classes.button}  type={'submit'} onClick={()=>{this.props.history.push('/customerRegister')}}><img src={customerIcon} />Customer Sign Up</Button>
           </div>
-   </div>
         </div>
+      </div>
    )
  }   
 }
@@ -73,6 +88,4 @@ function mapStateToProps(state)
   return {isLoading,loginData,lookUpData}
 }
 
-export default connect(mapStateToProps)(
-  (Login))
-
+export default connect(mapStateToProps)(withTheme()(withStyles(styles)(Login)))

@@ -3,9 +3,10 @@ import CompanyRegister from '../../../components/Register/CompanyRegistration/co
 import {postCustomerRegisterData} from '../../../action/registerActions'
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import withLoader from '../../../components/LoaderHoc';
 import asyncValidate from './validate.js';
+import logologin from '../../../assets/images/logo-main.png';
 import withMessage from '../../../components/messageHoc/index'
 class CompanyRegistration extends PureComponent {
   submit = (formData) => {
@@ -30,11 +31,18 @@ class CompanyRegistration extends PureComponent {
   
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.submit)}>
-          <CompanyRegister />
-          <RaisedButton primary={true} type='submit' label="Register" />
-        </form>
+      <div className="login-container register">
+        <div className="login">
+          <div className="login-logo">
+              <img src={logologin} />
+          </div>
+          <form onSubmit={handleSubmit(this.submit)}>
+            <CompanyRegister />
+            <div className="btn-parent-full">
+              <Button variant="contained" color='primary' type='submit' label="Register">Register</Button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

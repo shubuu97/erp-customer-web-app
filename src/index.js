@@ -18,7 +18,7 @@ import Login from '../src/containers/LoginContainer/login';
 import CompanyRegister from '../src/containers/Register/CompanyRegistration/companyRegistration';
 import CustomerRegister from '../src/containers/Register/CustomerRegistration/customerRegistration';
 import BasicInfoForm from './containers/BasicInfo/basicInfoForm';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AccountInfo from './containers/CompanyProfile/AccountInfo';
 import LicenceInfo from './containers/CompanyProfile/LicenceInfo';
 import SiteInfo from './containers/CompanyProfile/SiteInfo'
@@ -28,6 +28,22 @@ import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo';
 import CompanyProfile from './containers/CompanyProfile/CompanyProfileTab';
 import CustomerProfile from './containers/CustomerProfile/CustomerProfileTab';
 import './assets/stylesheets/main.css';
+import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#0e8c4d',
+    },
+    secondary: {
+      main: '#585858',
+    },
+    default:{
+      main:'#dc0909'
+    }
+  },
+});
 
 if (module.hot) {
   module.hot.accept();
@@ -56,16 +72,18 @@ if (process.env.NODE_ENV !== 'production') {
   export const persistor = persistStore(store);
 
 ReactDOM.render(
- <MuiThemeProvider>
+  <MuiThemeProvider theme={theme}>
 <Provider store={store}>
 <BrowserRouter>
 <Switch>
-<div className="right-content">
-<Route exact path="/app" component={App} />
+
 <Route exact path="/" component={Login}/>
-<Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customerRegister" component={CustomerRegister}/>
+
+<div className="right-content">
+<Route exact path="/app" component={App} />
+<Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/AccountInfo" component={AccountInfo}/>
 <Route exact path="/LicenceInfo" component={LicenceInfo}/>
 <Route exact path="/SiteInfo" component = {SiteInfo}/>
@@ -80,5 +98,6 @@ ReactDOM.render(
 
 </BrowserRouter>
 </Provider>
-</MuiThemeProvider>, document.getElementById('root'));
+</MuiThemeProvider>
+, document.getElementById('root'));
 registerServiceWorker();
