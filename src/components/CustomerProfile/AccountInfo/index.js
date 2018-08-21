@@ -10,7 +10,6 @@ import AccountInfo from './accountInfoFields';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 let prop = {};
 prop.country = ['India', 'China'];
 prop.state = ['Rajasthan', 'Karnatak'];

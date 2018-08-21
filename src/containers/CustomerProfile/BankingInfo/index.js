@@ -7,11 +7,17 @@ import {reduxForm} from 'redux-form';
 import RaiseButton from 'material-ui/RaisedButton';
 import asyncValidate from './validate.js';
 import {postBankingData} from '../../../action/banking'
+import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 
 
 class CustomerBankingDetails extends Component
 {
-    bankingDataSubmitHandler=(values)=>
+    componentDidMount()
+    {
+    
+        this.props.dispatch(fetchBankingDetailsData(`${process.env.APPLICATION_BFF_URL}/customer/bankingdetails?_id=5b73115a03a8187d56e12ae6`));
+    }
+    bankingDataSaveHandler=(values)=>
     {
       console.log(this.props,"props fff")
   
@@ -29,10 +35,10 @@ class CustomerBankingDetails extends Component
         const {handleSubmit} = this.props;
         return(
             <div>
-                 <form onSubmit={handleSubmit(this.bankingDataSubmitHandler)}>
+                 <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}>
             <BankingInfoComponent/>
-            <RaiseButton label="Save" />
-            <RaiseButton primary={true} type={'submit'} label="Submit for approval" />
+            <RaiseButton label="Save" type={'submit'} />
+            <RaiseButton primary={true}  label="Submit for approval" />
             </form>
             </div>
         )

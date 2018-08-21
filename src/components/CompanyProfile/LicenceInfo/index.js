@@ -5,11 +5,11 @@ import { TextFieldInput } from '../../common/MaterialUiComponents';
 import RaiseButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem'
 let props ={};
-props.licenceType = [{label:'India',name:'India'},{label:'China',name:'India'}];
-props.companyCategory = ['Rajasthan','Karnatak'];
-props.country = ['India','China'];
-props.state = ['Rajasthan','Karnatak'];
-props.city = ['jaipur','banglaore'];
+props.licenceType = [{label:'India',value:'India'},{label:'China',value:'India'}];
+props.companyCategory = [{label:'India',value:'India'},{label:'China',value:'India'}];
+props.country = [{label:'India',value:'India'},{label:'China',value:'India'}];
+props.state = [{label:'India',value:'India'},{label:'China',value:'India'}];
+props.city = [{label:'India',value:'India'},{label:'China',value:'India'}];
 
 class LicenceInfo extends Component {
     render() {
