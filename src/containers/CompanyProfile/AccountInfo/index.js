@@ -6,7 +6,9 @@ import React,{Component} from 'react';
 import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
 import {reduxForm} from 'redux-form';
 import {fetchProfileFormData} from '../../../action/profileFormData'
-import RaiseButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+
+
 
 
 class AccountInfo extends Component
@@ -37,7 +39,7 @@ class AccountInfo extends Component
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <CompanyRegistration/>
-            <RaiseButton type={'submit'} primary={true} label="Save"/>
+            <Button variant="contained" color='primary'>Save</Button>
             </form>
             </div>
         )

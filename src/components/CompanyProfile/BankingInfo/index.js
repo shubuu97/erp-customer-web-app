@@ -2,8 +2,7 @@ import CompanyBankingDetails from './companyBankingDetails';
 import { Field,reduxForm, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
-import RaiseButton from 'material-ui/RaisedButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
 let prop={};
@@ -42,9 +41,11 @@ let BankDetailComponent = (props)=>
 
 
                 }
-              {fields.length!=1&&<RaisedButton label="Remove" primary={true} onClick={() => fields.remove(index)} />}
+            
+            {fields.length!=1&&<Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button>}
                 </div>))}
-                <RaisedButton label="Add New" primary={true} onClick={() => fields.push()} />
+                <Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button>]
+        
         </div>
     )
 }

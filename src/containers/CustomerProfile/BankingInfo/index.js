@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 
 import {reduxForm} from 'redux-form';
 
-import RaiseButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import asyncValidate from './validate.js';
 import {postBankingData} from '../../../action/banking'
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
@@ -37,8 +37,10 @@ class CustomerBankingDetails extends Component
             <div>
                  <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}>
             <BankingInfoComponent/>
-            <RaiseButton label="Save" type={'submit'} />
-            <RaiseButton primary={true}  label="Submit for approval" />
+            <div className="form-btn-group">
+                <Button variant="contained" color='primary'>Save</Button> 
+                <Button variant="contained" color='primary' type={'submit'}>Submit for approval</Button>
+            </div>
             </form>
             </div>
         )

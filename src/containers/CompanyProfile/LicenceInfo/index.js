@@ -5,8 +5,11 @@ import React,{Component} from 'react';
 import {reduxForm} from 'redux-form';
 
 import asyncValidate from './validate.js'
-import RaiseButton from 'material-ui/RaisedButton';
 import { postLicenseData } from '../../../action/licenseInfo';
+import Button from '@material-ui/core/Button';
+
+
+
 
 
 class LicenseInfo extends Component
@@ -31,7 +34,7 @@ class LicenseInfo extends Component
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <LicenseInfoComponent/>
-            <RaiseButton type={'submit'} primary={true} label="Save"/>
+            <Button variant="contained" color='primary'>Save</Button>
             </form>
             </div>
         )
