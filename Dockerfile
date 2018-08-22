@@ -5,6 +5,6 @@ CMD mkdir /var/log/applogs
 CMD chmod +777 /var/log/applogs
 WORKDIR /customer-web-app
 ADD . /customer-web-app
+RUN npm install -g http-server
 RUN npm run build
-RUN npm install -g serve@9.6.0
-CMD serve -s build
+CMD http-server build
