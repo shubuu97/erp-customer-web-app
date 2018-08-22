@@ -7,63 +7,36 @@ import { fetchBasicInfoData } from '../../../action/basicInfoActions';
 import CustomerRegistration from '../../../components/Register/CustomerRegistration/customerRegistration';
 import {connect} from 'react-redux';
 import AccountInfo from '../../../components/CustomerProfile/AccountInfo'
-import {fetchProfileFormData} from '../../../action/profileFormData';
-import asyncValidate from './validate.js'
-import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
-import RaiseButton from 'material-ui/RaisedButton';
-
-
+import {fetchProfileFormData} from '../../../action/profileFormData'
+import withLoader from '../../../components/LoaderHoc'
+import { stat } from 'fs';
 
 
 class CustomerInfo extends Component
 
 {
-    updateSubmitHandler=(values)=>
-    {
-      console.log(this.props,"props fff")
   
-    console.log(values,"aa");
-
-    let requestObj={
-        basicInfo:values,
-        _id:"5b7530f8a3b7320018ee14b7"
-    }
-     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo`));
-  
-    }
-    componentDidMount()
-    {
-        console.log("came");
-        this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
-
-        this.props.dispatch(fetchBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
-    }
     render()
     {
-        const {handleSubmit} = this.props;
-        console.log(this.props,'yyyy')
         return(
             <div>
-                <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
                <AccountInfo/>
-               <RaiseButton type={'submit'} primary={true} label="Submit"/>
-               </form>
             </div>
         )
     }
 }
 
 CustomerInfo = reduxForm({
-    form:'CustomerInfo',
-    asyncValidate
+    form:'CustomerInfo'
     
 })(CustomerInfo)
 function mapStateToProps(state)
 {
+console.log(state,"state of the art")
  let initialValues = {};
  initialValues =  state.basicInfodata.basicInfoData
-
- return {initialValues}
+ let isLoading = state.basicInfodata.isFetching
+ return {initialValues, isLoading}
 }
 
-export default connect(mapStateToProps)(CustomerInfo)
+export default connect(mapStateToProps)(withLoader(CustomerInfo))

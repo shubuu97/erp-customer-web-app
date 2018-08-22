@@ -1,3 +1,4 @@
+import {fetchZip} from '../action/fetchFromZip';
 import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
@@ -29,9 +30,17 @@ const httpVerbs = {
 
 const axiosMiddleware = store => next => (action) => {
   if (!action || !action.fetchConfig) {
+   if(action.type=="@@redux-form/BLUR")
+   {
+    console.log("action middleware")
+     if(action.meta.form="CustomerRegistration"&&action.meta.field=="zipCode")
+     {
+      store.dispatch(fetchZip(`${process.env.APPLICATION_BFF_URL}/zipcode/${action.payload}`))
+     }
+   }
     return next(action);
   }
-
+console.log(action,"this action is from middleware")
   const { dispatch } = store;
   const { fetchConfig: config, subreddit, id } = action;
   // @todo multiple params

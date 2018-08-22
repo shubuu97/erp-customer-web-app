@@ -60,13 +60,13 @@ ReactDOM.render(
 <Provider store={store}>
 <BrowserRouter>
 <Switch>
-<div className="right-content">
-<Route exact path="/app" component={App} />
+  
 <Route exact path="/" component={Login}/>
-<Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customerRegister" component={CustomerRegister}/>
+<div className="right-content">
 <Route exact path="/AccountInfo" component={AccountInfo}/>
+<Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/LicenceInfo" component={LicenceInfo}/>
 <Route exact path="/SiteInfo" component = {SiteInfo}/>
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>

@@ -12,6 +12,7 @@ props.state = ['Rajasthan','Karnatak'];
 props.city = ['jaipur','banglaore'];
 
 export default class CustomerRegistration extends Component {
+
     render() {
         return (
             <div>
@@ -24,7 +25,6 @@ export default class CustomerRegistration extends Component {
                 <header>Address Details</header>
              { AddressInfo.map((info)=>
              {
-                 console.log(info.name)
                  
                  if(info.type=='select')
                  {

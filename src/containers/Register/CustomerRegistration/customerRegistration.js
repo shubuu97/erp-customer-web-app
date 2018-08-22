@@ -3,15 +3,14 @@ import CustomerRegister from '../../../components/Register/CustomerRegistration/
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {postCustomerRegisterData} from '../../../action/registerActions';
-import asyncValidate from './validate.js'
 
-import RaisedButton from 'material-ui/RaisedButton'
+
+import RaisedButton from 'material-ui/RaisedButton';
 
 class CustomerRegistration extends PureComponent
 {
   submit=(formData)=>
   {
-    console.log(formData)
    let postData = {};
    postData.basicInfo = {};
    postData.basicInfo.firstName = formData.firstName;
@@ -37,8 +36,8 @@ class CustomerRegistration extends PureComponent
   }
  render()
  {
-   console.log(this.props,"props");
    const {handleSubmit} = this.props;
+   console.log(this.props,"ff")
    return(
        <div>
          <form onSubmit={handleSubmit(this.submit)}>
@@ -52,8 +51,7 @@ class CustomerRegistration extends PureComponent
 
 
 CustomerRegistration = reduxForm(
- {form:'CustomerRegistration',
- asyncValidate}
+ {form:'CustomerRegistration'}
 )(CustomerRegistration);
 
 const mapStateToProps = (state) =>

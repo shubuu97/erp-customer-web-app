@@ -27,9 +27,8 @@ const AddressInfo = (props) => {
             {fields.map((Address, index) => (
             
                 <div>
-                {console.log(Address,"address")}
+             
                 {AddressInfoFields.map((info) => {
-                    console.log(prop[info.name], "info")
 
                     if (info.type == 'select') {
 
