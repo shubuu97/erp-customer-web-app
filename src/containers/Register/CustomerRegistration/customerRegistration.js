@@ -3,9 +3,10 @@ import CustomerRegister from '../../../components/Register/CustomerRegistration/
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {postCustomerRegisterData} from '../../../action/registerActions';
+import logologin from '../../../assets/images/logo-main.png';
+import asyncValidate from './validate.js'
 
-
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button'
 
 class CustomerRegistration extends PureComponent
 {
@@ -39,24 +40,41 @@ class CustomerRegistration extends PureComponent
    const {handleSubmit} = this.props;
    console.log(this.props,"ff")
    return(
-       <div>
+    <div className="login-container register">
+      <div className="login">
+        <div className="login-logo">
+          <img src={logologin} />
+        </div>
          <form onSubmit={handleSubmit(this.submit)}>
            <CustomerRegister />
-           <RaisedButton primary={true} type='submit' label="Register"/>
+           <div className="btn-parent-full">
+              <Button variant="contained" color='primary' type='submit'>Register</Button>
+           </div>
            </form>
         </div>
+    </div>
    )
  }   
 }
 
 
 CustomerRegistration = reduxForm(
- {form:'CustomerRegistration'}
+ {form:'CustomerRegistration',
+ enableReinitialize:true,
+ keepDirtyOnReinitialize:true
+}
 )(CustomerRegistration);
 
 const mapStateToProps = (state) =>
 {
-  return {}
+  let initialValues = {country:'india',state:'india'}
+ let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+ console.log(state.zipCodeData.lookUpData,"oooii")
+ initialValues.country = country;
+ initialValues.state = stateobj;
+ initialValues.city = city;
+ console.log(initialValues,"oooii")
+ return {initialValues:initialValues}
 }
 
 export default connect(mapStateToProps)(CustomerRegistration)

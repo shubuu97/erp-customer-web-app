@@ -1,4 +1,4 @@
-import {TextFieldInput,SelectFieldInput} from '../../../components/common/MaterialUiComponents';
+import {TextFieldInput,ReactSelectWrapper} from '../../../components/common/MaterialUiComponents';
 
 
 let CustomerBankInfo = [
@@ -13,7 +13,7 @@ let CustomerBankInfo = [
         name:'nameOnCheque',label:'Print Name On Check As',component:TextFieldInput,type:'text'
        },
        {
-        name:'invoiceCurrencyCode',label:'Invoice Currency',component:SelectFieldInput,type:'select'
+        name:'invoiceCurrencyCode',label:'Invoice Currency',component:ReactSelectWrapper,type:'select'
        },
        {
         name:'currencyCode',label:'CurrencyCode',component:TextFieldInput,type:'text'

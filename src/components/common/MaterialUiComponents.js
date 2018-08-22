@@ -1,7 +1,8 @@
 import ReactSelectWrapper from './reactSelectWrapper';
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
+import TextField from '@material-ui/core/TextField';
+
+import SelectField from '@material-ui/core/Select';
 
 
 const TextFieldInput = ({
@@ -46,6 +47,6 @@ const TextFieldInput = ({
   export  {
       TextFieldInput,
       ReactSelectWrapper,
-      SelectFieldInput
+      SelectFieldInput,
 }
   

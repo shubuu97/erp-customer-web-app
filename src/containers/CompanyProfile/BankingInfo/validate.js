@@ -1,18 +1,21 @@
 import  * as yup from 'yup';
-var schema = yup.object().shape({
-    accountNo: yup.string().required(),
-    paymentTerms:yup.string().required(),
-    invoiceCurrency: yup.string().email().required(),
-    printNameOnCheck: yup.string().required(),
-    currencyCode:yup.string().required(),
-    preferredPaymentMethod:yup.string().required(),
+var bankDetailsSchema = yup.object().shape({
     bankName:yup.string().required(),
-    bankBranch: yup.string().email().required(),
-    routingNo: yup.string().required(),
-    accountNo:yup.string().required(),
-    bankBranch:yup.string().required(),
+    bankRoutingNumber: yup.string().required(),
+    bankAccountNumber:yup.string().required(),
+    branchName:yup.string().required(),
     bankNumber:yup.string().required(),
     accountStatus:yup.string().required(),
+})
+var schema = yup.object().shape({
+    accountNumber: yup.string().required(),
+    paymentTerms:yup.string().required(),
+    invoiceCurrencyCode: yup.string().required(),
+    nameOnCheque: yup.string().required(),
+    currencyCode:yup.string().required(),
+    preferredPaymentMethods:yup.string().required(),
+    bankDetails:yup.array(bankDetailsSchema)
+    
 
 
   });

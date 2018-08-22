@@ -387,6 +387,9 @@ nav.navbar {
     margin-bottom: 7px;
     width: 100%;
 }
+.form-d label, .form-d input{
+    font-size:1.4rem;
+}
 .form-d{
     margin-bottom:25px;
 }
@@ -410,6 +413,9 @@ textarea {
 }
 .id-input {
     width: 46%;
+}
+button{
+    font-size:1.4rem !important;
 }
 .idto {
     line-height: 42px;
@@ -495,6 +501,10 @@ input[type="radio"], input[type="checkbox"]{vertical-align: sub}
 }
 .fix-input-table table td:nth-child(2) .custom-input input {
 	max-width: none;
+}
+.form-btn-group button {
+	margin-left: 8px;
+	color: #FFF;
 }
 /*************************************** FORM CSS *****************************************/
 
@@ -698,7 +708,7 @@ table .custom-input input[type="date"]{
     color: #000;
 }
 .form-d div:before, table td div:before {
-    background: #000 !important;
+    /* background: #000 !important; */
 }
 .table-custom th, .table-custom td{position: relative;}
 .table-custom td{padding: 4px 12px 15px 12px!important;}
@@ -1068,7 +1078,7 @@ li.logout a:hover, li.logout a:focus {
 	margin: auto;
 	width: 100%;
 	min-height: 100%;
-	background: #FFF url("../images/home-screen-bg.jpg") no-repeat;
+	background: #FFF url("../images/front-bg.jpg") no-repeat;
 	background-size: 100% 100%;
 }
 .login-container .jumbotron {
@@ -1081,7 +1091,7 @@ li.logout a:hover, li.logout a:focus {
 	max-width: 100%;
 	max-height: 100%;
 	overflow: hidden;
-	height: 500px;
+	height: 450px;
 	padding: 0;
 	border: none;
 	border-radius: 0;
@@ -1099,7 +1109,7 @@ li.logout a:hover, li.logout a:focus {
 .login-logo img {
 	width: auto;
     max-width: 100%;
-    width: 48%;
+    /* width: 48%; */
 }
 .form-group-lg .form-control {
 	padding: 15px 0;
@@ -1123,6 +1133,7 @@ li.logout a:hover, li.logout a:focus {
 	font-size:2rem;
     text-transform: uppercase;
 }
+
 /*=================================== LOGIN CONTAINER CSS================================== */ 
 
 .form-check.form-check-inline {
@@ -1795,6 +1806,68 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	color: #00598d;
 	margin-bottom: 20px;
 	margin-top: 20px;
+}
+.btn-parent-full button {
+    width: 100%;
+    height: 50px;
+}
+.login-btn {
+	margin-top: 10px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.login-btn button {
+	color: #616161;
+    text-transform: capitalize;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+.login-btn button img {
+	margin-right: 10px;
+	max-width: 25px;
+	max-height: 25px;
+}
+[class^="MuiTab-label-"] {
+    font-size: 1.4rem;
+}
+.form-d div {
+    font-size: 1.4rem;
+}
+[class^="css-1aya2g8"], [class^="css-2o5izw"] {
+    border: none !important;
+    border-bottom: solid 1px #999 !important;
+    background: #FFF !important;
+    padding: 4px 0px !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+}
+.css-d8oujb {
+	width: 0px important;
+}
+.css-1rtrksz {
+	padding: 2px 0 !important;
+}
+.css-d8oujb {
+    width: 0px !important;
+}
+.login-container.register .login {
+    height: 530px;
+    width: 450px;
+}
+.row.m-8 {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+.p-8 {
+    padding-left: 8px;
+    padding-right: 8px;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
@@ -2511,5 +2584,3 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
-
-

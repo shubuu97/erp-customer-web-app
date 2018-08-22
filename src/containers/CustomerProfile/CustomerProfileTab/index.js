@@ -8,8 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import AccountInfo from '../AccountInfo';
 import BankingInfo from '../BankingInfo';
 import {fetchProfileFormData} from '../../../action/profileFormData';
-import { fetchBasicInfoData } from '../../../action/basicInfoActions';
+import { postBasicInfoData } from '../../../action/basicInfoActions';
 import {connect} from 'react-redux';
+
 
 
 function TabContainer(props) {
@@ -44,7 +45,7 @@ class CustomerProfileTab extends React.Component {
   {
      this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
 
-      this.props.dispatch(fetchBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
+      this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
   }
   render() {
     const { classes } = this.props;

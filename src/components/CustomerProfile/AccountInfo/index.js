@@ -7,70 +7,69 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 import AddressInfoFields from '../../common/AddressInfo/adddressInfoFields';
 import BasicInfoFields from '../../common/BasicInfo/BasicInfoFields';
 import AccountInfo from './accountInfoFields';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 let prop = {};
-prop.country = ['India', 'China'];
-prop.state = ['Rajasthan', 'Karnatak'];
-prop.city = ['jaipur', 'banglaore'];
-
+prop.country = [{label:'India',value:'India'},{label:'China',value:'India'}];
+prop.state = [{label:'India',value:'India'},{label:'China',value:'India'}];
+prop.city = [{label:'India',value:'India'},{label:'China',value:'India'}];
 
 const AddressInfo = (props) => {
     const { fields, meta: { error } } = props;
     if(fields.length==0)
     fields.push();
     return (
-        <div>
+        <div className="col-sm-12">
             
             {fields.map((Address, index) => (
             
-                <div>
-             
+                <div className="row d-flex">
+                {console.log(Address,"address")}
                 {AddressInfoFields.map((info) => {
 
                     if (info.type == 'select') {
 
                         return (
-
-                            <Field name={`${Address}.${info.name}`} component={info.component} label={info.label}>
-                                {prop[info.name].map((name) => {
-                                    return (<MenuItem value={name} primaryText={name} />)
-                                })}
-                            </Field>
-
+                            <div className="col-md-4 col-sm-6 form-d form-input">
+                            <Field name={`${Address}.${info.name}`} options={prop[info.name]} component={info.component} label={info.label}></Field>
+                            </div>
                         )
                     }
-                    return (<Field name={`${Address}.${info.name}`} label={info.label} component={info.component} />)
+                    return (
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                        <Field name={`${Address}.${info.name}`} label={info.label} component={info.component} />
+                    </div>
+                    )
                 })
 
 
                 }
-              {fields.length!=1&&<RaisedButton label="Remove" primary={true} onClick={() => fields.remove(index)} />}
+              {fields.length!=1&&<div className="col-md-4 col-sm-6"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div>))}
-                <RaisedButton label="Add New" primary={true} onClick={() => fields.push()} />
+                <div className="form-btn-group">
+                    <Button onClick={() => fields.push()} variant="contained" color='primary'>Add New</Button>
+                </div>
         </div>
     )
 }
 export default (props) => {
 
     return (
-        <div>
-            <header>Basic Info</header>
+        <div className="row d-flex">
+            <header className="box-heading2 col-sm-12">Basic Info</header>
             {BasicInfoFields.map((info) => {
                 return (
-                    <Field name={info.name} label={info.label} component={info.component} />)
+                    <div className="col-md-4 col-sm-6 form-d form-input" >
+                        <Field name={info.name} label={info.label} component={info.component} />
+                    </div>
+                    )
             }
             )}
-            {AccountInfo.map((info) => {
-                return (
-                    <Field name={info.name} label={info.label} component={info.component} />)
-            })
-
-            }
-            <header>Address Details</header>
-            <FieldArray name="addressInfo" component={AddressInfo} />
+            
+            <header className="box-heading2 col-sm-12">Address Details</header>
+            
+                <FieldArray name="addressInfo" component={AddressInfo} />
             
         </div>
     )
