@@ -11,8 +11,8 @@ import { postBasicInfoData } from '../../../action/basicInfoActions';
 import {fetchProfileFormData} from '../../../action/profileFormData';
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 import {connect} from 'react-redux';
-import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
-
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+console.log(APPLICATION_BFF_URL,"APPLICATION_BFF_URL")
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -48,12 +48,6 @@ class CustomerProfileTab extends React.Component {
     this.setState({ value });
   };
  
-  componentDidMount()
-  {
-     this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
-
-      this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
-  }
   render() {
     const { classes } = this.props;
     const { value } = this.state;

@@ -45,7 +45,7 @@ class CustomerInfo extends Component
             <div>
                 <form>
                <AccountInfo/>
-               <Button type={'submit'} primary={true} label="Submit"/>
+               <Button type={'submit'} variant="contained" color='primary'   label="Submit">Save </Button>
                </form>
             </div>
         )
