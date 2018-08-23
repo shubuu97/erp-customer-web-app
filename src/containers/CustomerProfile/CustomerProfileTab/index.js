@@ -7,6 +7,11 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import AccountInfo from '../AccountInfo';
 import BankingInfo from '../BankingInfo';
+import {fetchProfileFormData} from '../../../action/profileFormData';
+import { postBasicInfoData } from '../../../action/basicInfoActions';
+import {connect} from 'react-redux';
+
+
 
 function TabContainer(props) {
   return (
@@ -36,7 +41,12 @@ class CustomerProfileTab extends React.Component {
     this.setState({ value });
   };
  
+  componentDidMount()
+  {
+     this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
 
+      this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
+  }
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -60,6 +70,10 @@ class CustomerProfileTab extends React.Component {
 CustomerProfileTab.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(CustomerProfileTab);
+CustomerProfileTab = withStyles(styles)(CustomerProfileTab)
+function mapStateToProps()
+{
+return {}
+}
+export default connect(mapStateToProps)(CustomerProfileTab);
 

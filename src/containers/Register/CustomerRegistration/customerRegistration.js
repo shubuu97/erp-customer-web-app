@@ -12,7 +12,6 @@ class CustomerRegistration extends PureComponent
 {
   submit=(formData)=>
   {
-    console.log(formData)
    let postData = {};
    postData.basicInfo = {};
    postData.basicInfo.firstName = formData.firstName;
@@ -38,8 +37,8 @@ class CustomerRegistration extends PureComponent
   }
  render()
  {
-   console.log(this.props,"props");
    const {handleSubmit} = this.props;
+   console.log(this.props,"ff")
    return(
     <div className="login-container register">
       <div className="login">
@@ -61,12 +60,21 @@ class CustomerRegistration extends PureComponent
 
 CustomerRegistration = reduxForm(
  {form:'CustomerRegistration',
- asyncValidate}
+ enableReinitialize:true,
+ keepDirtyOnReinitialize:true
+}
 )(CustomerRegistration);
 
 const mapStateToProps = (state) =>
 {
-  return {}
+  let initialValues = {country:'india',state:'india'}
+ let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+ console.log(state.zipCodeData.lookUpData,"oooii")
+ initialValues.country = country;
+ initialValues.state = stateobj;
+ initialValues.city = city;
+ console.log(initialValues,"oooii")
+ return {initialValues:initialValues}
 }
 
 export default connect(mapStateToProps)(CustomerRegistration)

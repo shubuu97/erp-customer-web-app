@@ -27,7 +27,6 @@ const AddressInfo = (props) => {
                 <div className="row d-flex">
                 {console.log(Address,"address")}
                 {AddressInfoFields.map((info) => {
-                    console.log(prop[info.name], "info")
 
                     if (info.type == 'select') {
 

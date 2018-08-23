@@ -14,31 +14,26 @@ props.city = ['jaipur','banglaore'];
 class SiteInfo extends Component {
     render() {
         return (
-            <div class="row d-flex">
+            <div>
           
          { SiteInfoFields.map((info)=>
          {
-             console.log(info.name)
              
              if(info.type=='select')
              {
             
              return (
-                <div className="form-d col-md-4 col-sm-6 form-input">
+                
                  <Field name={info.name} component={info.component} label={info.label}>
                  {props[info.name].map((name)=>
                 {
                    return (<MenuItem value={name} primaryText={name} />)
                 })}
                  </Field>
-                </div>
+
              )
             }
-            return (
-            <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={info.name} label={info.label} component={info.component} />
-            </div>   
-                )
+            return (<Field name={info.name} label={info.label} component={info.component} />)
          })
          }
         </div>
@@ -46,4 +41,8 @@ class SiteInfo extends Component {
     }
 }
 
-export default SiteInfo
+export default reduxForm(
+    {
+        form:'SiteInfo'
+    }
+)(SiteInfo)

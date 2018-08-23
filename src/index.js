@@ -85,6 +85,7 @@ ReactDOM.render(
 <Route exact path="/app" component={App} />
 <Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/AccountInfo" component={AccountInfo}/>
+<Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/LicenceInfo" component={LicenceInfo}/>
 <Route exact path="/SiteInfo" component = {SiteInfo}/>
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
