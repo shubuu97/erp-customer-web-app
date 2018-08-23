@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { reduxForm, Field,FieldArray} from 'redux-form';
+import { reduxForm, Field,FieldArray,FormSection} from 'redux-form';
 
 import CustomerBankDetails from '../../CustomerProfile/BankingInfo/customerBankDetails';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails';
@@ -8,8 +8,8 @@ import Button from '@material-ui/core/Button';
 
 import MenuItem from 'material-ui/MenuItem';
 let prop={};
-prop.paymentTerms = ['FFF','AAA'];
-prop.invoiceCurrencyCode=['INR','USD']
+prop.paymentTerms = [{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}];
+prop.invoiceCurrencyCode=[{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}]
 
 
 let BankDetailComponent = (props)=>
@@ -52,7 +52,7 @@ class CustomerBankingInfo extends Component {
         render() {
             return (<div className="row d-flex">
                 <header className="col-sm-12 box-heading2">Customer Banking Details</header>
-               
+                <FormSection name='bankingDetailInfo'> 
                 { CustomerBankDetails.map((info)=>
          {
              console.log(info.name)
@@ -75,7 +75,7 @@ class CustomerBankingInfo extends Component {
          }
                 <header className="box-heading2 col-sm-12">Bank Details</header>
                 <FieldArray name='bankDetails' component={BankDetailComponent}/>
-               
+               </FormSection>
             </div>
             )
 

@@ -29,7 +29,7 @@ console.log(this.props,"props of the")
             }
             console.log(super.render,'ff')
             
-            return (<WrappedComponent {...this.props}/>)
+            return <WrappedComponent {...this.props}/>
         }
 
     };

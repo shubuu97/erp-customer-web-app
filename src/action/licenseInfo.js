@@ -30,7 +30,7 @@ export const postLicenseData = (data, subreddit, assignOrgUrl) => dispatch =>
     body: data,
     initCb: requestLicenseData,
     successCb: receiveLicenseData,
-    failureCb: requestLicenseData,
+    failureCb: receiveLicenseDataError,
     subreddit,
     wrapperActionType: 'POST_ASSING_ORGANIZATIONS_TO_ITEMS_WRAPPER',
   }));

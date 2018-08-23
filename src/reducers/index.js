@@ -6,7 +6,10 @@ import {profileFormData} from './profileFormData';
 import loginReducer from './login';
 import updateBasicInfo from './updateBasicInfo'
 import {bankDetailsData} from './bankingDetails'
-import licenseData from './licenseInfo';
+import licenseData from './licenseInfo'
+import siteData from './siteInfo'
+import {siteDetailsData} from './siteDetails'
+import {licenseDetailsData} from './licenseDetails'
 import zipCodeData from './zipCode'
 let rootReducer = combineReducers(
     {
@@ -19,7 +22,11 @@ let rootReducer = combineReducers(
         updateBasicInfo,
         bankDetailsData,
         licenseData,
+        siteData,
+        siteDetailsData,
+        licenseDetailsData,
         zipCodeData
+
     }
 );
 

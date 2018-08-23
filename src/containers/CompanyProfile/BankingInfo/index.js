@@ -9,16 +9,18 @@ import asyncValidate from './validate.js'
 
 import {postBankingData} from '../../../action/banking'
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
-
+import {connect} from 'react-redux';
+import withLoader from '../../../components/LoaderHoc'
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 
 class BankingInfo extends Component
 {
 
-    componentDidMount()
-    {
+    // componentDidMount()
+    // {
     
-        this.props.dispatch(fetchBankingDetailsData(`${process.env.APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=5b6ead2a97942e5397f61cbe`));
-    }
+    //     this.props.dispatch(fetchBankingDetailsData(`${}/businesscustomer/bankingdetails?_id=5b7514dfab851a001b83452a`));
+    // }
     bankingDataSaveHandler=(values)=>
     {
       console.log(this.props,"props fff")
@@ -26,10 +28,10 @@ class BankingInfo extends Component
     console.log(values,"aa");
 
     let requestObj={
-        bankingDetailInfo:values,
-        businessCustomerId : "5b76c2ad58c25b0011629189"
+        ...values,
+        businessCustomerId : localStorage.getItem('id')
     }
-     this.props.dispatch(postBankingData(requestObj,'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/bankingdetails`));
+     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails`));
   
     }
     render()
@@ -41,7 +43,7 @@ class BankingInfo extends Component
 <BankingInfoComponent/>
 
                 <div className="form-btn-group">
-                    <Button variant="contained" color='primary'>Save</Button>
+                    <Button variant="contained" type='submit' color='primary'>Save</Button>
                     <Button variant="contained" color='primary'>Submit for approval</Button>
                 </div>
                 </form>
@@ -49,11 +51,22 @@ class BankingInfo extends Component
         )
     }
 }
-
-export default reduxForm({
+ BankingInfo=reduxForm({
     form:'CompanyBankingInfo',
     asyncValidate
 })(BankingInfo)
+
+const mapStateToProps=(state)=>
+{
+    let initialValues = state.bankDetailsData.lookUpData.data
+    let isLoading= state.bankDetailsData.isFetching
+    console.log(state,"state of licenese");
+    return {initialValues,isLoading}
+
+}
+
+
+export default connect(mapStateToProps)(withLoader(BankingInfo))
 
 
       

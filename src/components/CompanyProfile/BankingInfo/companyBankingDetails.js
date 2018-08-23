@@ -1,4 +1,4 @@
-import {TextFieldInput,SelectFieldInput} from '../../../components/common/MaterialUiComponents';
+import {TextFieldInput,SelectFieldInput,ReactSelectWrapper} from '../../../components/common/MaterialUiComponents';
 
 
 let CompanyBankInfo = [
@@ -9,7 +9,7 @@ let CompanyBankInfo = [
         name:'creditLimit',label:'Credit Limit',component:TextFieldInput,type:'text'
        },
        {
-        name:'paymentTerms',label:'Payment Terms',component:SelectFieldInput,type:'select'
+        name:'paymentTerms',label:'Payment Terms',component:ReactSelectWrapper,type:'select'
        },
        {
         name:'invoiceCurrencyCode',label:'Invoice Currency',component:TextFieldInput,type:'text'
@@ -21,7 +21,7 @@ let CompanyBankInfo = [
         name:'currencyCode',label:'CurrencyCode',component:TextFieldInput,type:'text'
        },
        {
-        name:'preferredPaymentMethods',label:'Prefereed Payment Method',component:TextFieldInput,type:'text'
+        name:'preferredPaymentMethods',label:'Preferred Payment Method',component:TextFieldInput,type:'text'
        },
        {
         name:'uploadVoidCheck',label:'Upload Void Check',component:TextFieldInput,type:'text'

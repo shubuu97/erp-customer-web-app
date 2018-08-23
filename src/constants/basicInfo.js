@@ -1,5 +1,7 @@
+import {APPLICATION_BFF_URL} from './urlConstants'
+
+
 export const REQUEST_BASICINFO_DATA = 'REQUEST_BASICINFO_DATA';
 export const RECEIVED_BASICINFO_DATA = 'RECEIVED_BASICINFO_DATA';
 export const RECEIVED_BASICINFO_DATA_ERROR = 'RECEIVED_BASICINFO_DATA_ERROR';
-
-export const BASICINFO_URL=`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`;
+export const BASICINFO_URL=`${APPLICATION_BFF_URL}/customer/basicinfo/search`;

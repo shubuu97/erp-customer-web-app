@@ -1,12 +1,12 @@
 import CompanyBankingDetails from './companyBankingDetails';
-import { Field,reduxForm, FieldArray } from 'redux-form';
+import { Field,reduxForm, FieldArray,FormSection } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
 let prop={};
-prop.paymentTerms = ['FFF','AAA'];
+prop.paymentTerms = [{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}];
 prop.invoiceCurrencyCode=['INR','USD']
 
 let BankDetailComponent = (props)=>
@@ -56,6 +56,8 @@ class BankingInfo  extends Component {
         return (
             <div className="row d-flex">
            <header className="box-heading2 col-sm-12">Company Banking Details</header>
+
+         <FormSection name='bankingDetailInfo'>
          { CompanyBankingDetails.map((info)=>
          {
             
@@ -65,11 +67,8 @@ class BankingInfo  extends Component {
             
              return (
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                 <Field name={info.name} component={info.component} label={info.label}>
-                 {prop[info.name].map((name,index)=>
-                {
-                   return (<MenuItem value={name} primaryText={name} key={index} />)
-                })}
+                 <Field options={prop[info.name]}  name={info.name} placeholder={info.label} component={info.component}>
+
                  </Field>
                 </div>
              )
@@ -89,6 +88,7 @@ class BankingInfo  extends Component {
                 })
 
                 } */}
+                </FormSection>
         </div>
         )
     }

@@ -7,7 +7,7 @@ RFReactSelect.defaultProps = {
 };
 
 
-export default function RFReactSelect({ input , options, multi, className }) {
+export default function RFReactSelect({ input , options, multi, className,placeholder}) {
   const { name, value, onBlur, onChange, onFocus } = input;
   const transformedValue = transformValue(value, options, multi);
   console.log(options,"options")
@@ -15,6 +15,7 @@ export default function RFReactSelect({ input , options, multi, className }) {
     <Select
       valueKey="value"
       name={name}
+      placeholder={placeholder}
       value={transformedValue}
       multi={multi}
       options={options}
