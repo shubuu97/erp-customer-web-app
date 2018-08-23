@@ -12,6 +12,7 @@ props.state = ['Rajasthan','Karnatak'];
 props.city = ['jaipur','banglaore'];
 
 export default class CustomerRegistration extends Component {
+
     render() {
         return (
             <div>

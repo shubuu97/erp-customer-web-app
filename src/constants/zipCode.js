@@ -1,0 +1,3 @@
+export const REQUEST_ZIP = 'REQUEST_ZIP';
+export const RECEIVED_ZIP = 'RECEIVED_ZIP';
+export const RECEIVED_ZIP_ERROR = 'RECEIVED_ZIP_ERROR';

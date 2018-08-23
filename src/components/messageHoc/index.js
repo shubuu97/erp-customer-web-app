@@ -45,9 +45,9 @@ const withMessage = (WrappedComponent) => {
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">{this.props.message}</span>}
+          message={<span id="message-id">{"An email has been send to your email id please Check the mail"}</span>}
           />
-          </div>:super.render()}
+          </div>:<WrappedComponent {...this.props}/>}
           </div>
             
             )

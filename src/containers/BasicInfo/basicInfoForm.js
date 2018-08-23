@@ -10,7 +10,6 @@ class BasicInfoForm extends Component
 {
 submit = (values)=>
 {
-console.log(values,"collectedValues")
 }
     render()
     {
@@ -37,7 +36,6 @@ const decoratedBasicInfoForm = reduxForm(
 
 function mapStateToProps(state)
 {
-    console.log(state)
     return { initialValues:{Name:'aman'}}
     
 }

@@ -40,12 +40,10 @@ class CustomerInfo extends Component
     // }
     render()
     {
-        const {handleSubmit} = this.props;
-        console.log(this.props,'yyyy')
         return(
             
             <div>
-                <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
+                <form>
                <AccountInfo/>
                <Button type={'submit'} primary={true} label="Submit"/>
                </form>
@@ -55,17 +53,16 @@ class CustomerInfo extends Component
 }
 
 CustomerInfo = reduxForm({
-    form:'CustomerInfo',
-    asyncValidate
+    form:'CustomerInfo'
     
 })(CustomerInfo)
 function mapStateToProps(state)
 {
+console.log(state,"state of the art")
  let initialValues = {};
- initialValues =  state.basicInfodata.basicInfoData;
- let isLoading=state.basicInfodata.isFetching
-
- return {initialValues,isLoading}
+ initialValues =  state.basicInfodata.basicInfoData
+ let isLoading = state.basicInfodata.isFetching
+ return {initialValues, isLoading}
 }
 
 export default connect(mapStateToProps)(withLoader(CustomerInfo))

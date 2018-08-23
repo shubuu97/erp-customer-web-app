@@ -48,7 +48,12 @@ class CustomerProfileTab extends React.Component {
     this.setState({ value });
   };
  
+  componentDidMount()
+  {
+     this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
 
+      this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
+  }
   render() {
     const { classes } = this.props;
     const { value } = this.state;

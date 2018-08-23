@@ -1,7 +1,6 @@
 import * as BASICINFO_CONSTANTS from '../constants/basicInfo';
 import dynamicActionWrapper from '../utills/actionHelpers';
 
-console.log(BASICINFO_CONSTANTS.BASICINFO_URL,"url")
 
 
 export const requestBasicInfoData = subreddit => ({

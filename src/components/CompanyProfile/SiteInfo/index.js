@@ -103,7 +103,7 @@ let Site = (props) => {
 class SiteInfo extends Component {
     render() {
         return (
-            <div class="row d-flex">
+            <div>
           
                 
                  <FieldArray name="siteInfo" component={Site} />
@@ -115,4 +115,8 @@ class SiteInfo extends Component {
     }
 }
 
-export default SiteInfo
+export default reduxForm(
+    {
+        form:'SiteInfo'
+    }
+)(SiteInfo)

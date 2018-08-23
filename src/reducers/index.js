@@ -10,6 +10,7 @@ import licenseData from './licenseInfo'
 import siteData from './siteInfo'
 import {siteDetailsData} from './siteDetails'
 import {licenseDetailsData} from './licenseDetails'
+import zipCodeData from './zipCode'
 let rootReducer = combineReducers(
     {
         //reducer code will come here
@@ -23,7 +24,8 @@ let rootReducer = combineReducers(
         licenseData,
         siteData,
         siteDetailsData,
-        licenseDetailsData
+        licenseDetailsData,
+        zipCodeData
 
     }
 );
