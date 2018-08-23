@@ -24,13 +24,13 @@ let LicenceInfo = [
         name:'companyContactNo',label:'Company Contact No',component:TextFieldInput,type:'text'
        },
        {
-           name:'country',label:'Country',component:ReactSelectWrapper,type:'select'
+           name:'country',label:'Country',component:TextFieldInput,type:'text'
           },
           {
-           name:'state',label:'state',component:ReactSelectWrapper,type:'select'
+           name:'state',label:'state',component:TextFieldInput,type:'text'
           },
           {
-           name:'city',label:'City',component:ReactSelectWrapper,type:'select'
+           name:'city',label:'City',component:TextFieldInput,type:'text'
           },
           {
            name:'zipCode',label:'Zip Code',component:TextFieldInput,type:'text'

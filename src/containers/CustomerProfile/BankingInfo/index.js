@@ -8,15 +8,16 @@ import Button from '@material-ui/core/Button';
 import asyncValidate from './validate.js';
 import {postBankingData} from '../../../action/banking'
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
-
-
+import withLoader from '../../../components/LoaderHoc';
+import {connect} from 'react-redux';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 class CustomerBankingDetails extends Component
 {
-    componentDidMount()
-    {
+    // componentDidMount()
+    // {
     
-        this.props.dispatch(fetchBankingDetailsData(`${process.env.APPLICATION_BFF_URL}/customer/bankingdetails?_id=5b73115a03a8187d56e12ae6`));
-    }
+    //     this.props.dispatch(fetchBankingDetailsData(`${}/customer/bankingdetails?_id=5b73115a03a8187d56e12ae6`));
+    // }
     bankingDataSaveHandler=(values)=>
     {
       console.log(this.props,"props fff")
@@ -24,10 +25,10 @@ class CustomerBankingDetails extends Component
     console.log(values,"aa");
 
     let requestObj={
-        bankingDetailInfo:values,
+        ...values,
         customerId:"5b7530f8a3b7320018ee14b7"
     }
-     this.props.dispatch(postBankingData(requestObj,'',`${process.env.APPLICATION_BFF_URL}/customer/bankingdetails`));
+     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/customer/bankingdetails`));
   
     }
     render()
@@ -38,19 +39,30 @@ class CustomerBankingDetails extends Component
                  <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}>
             <BankingInfoComponent/>
             <div className="form-btn-group">
-                <Button variant="contained" color='primary'>Save</Button> 
-                <Button variant="contained" color='primary' type={'submit'}>Submit for approval</Button>
+                <Button variant="contained" type='submit' color='primary'>Save</Button> 
+                <Button variant="contained"  color='primary' >Submit for approval</Button>
             </div>
             </form>
             </div>
         )
     }
 }
-
-export default reduxForm({
+CustomerBankingDetails=reduxForm({
     form:'CustomerBankingInfo',
-    asyncValidate
+    
 })(CustomerBankingDetails)
+
+const mapStateToProps=(state)=>
+{
+    let initialValues = state.bankDetailsData.lookUpData.data
+    let isLoading= state.bankDetailsData.isFetching
+    console.log(state,"state of licenese");
+    return {initialValues,isLoading}
+
+}
+
+
+export default connect(mapStateToProps)(withLoader(CustomerBankingDetails))
 
 
       

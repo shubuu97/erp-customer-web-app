@@ -6,14 +6,21 @@ import {reduxForm} from 'redux-form';
 
 import asyncValidate from './validate.js'
 import { postLicenseData } from '../../../action/licenseInfo';
+import {fetchLicenseDetailsData} from '../../../action/getLicenseInfo';
 import Button from '@material-ui/core/Button';
-
-
+import {connect} from 'react-redux';
+import withLoader from '../../../components/LoaderHoc'
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 
 
 
 class LicenseInfo extends Component
 {
+    // componentDidMount()
+    // {
+    
+    //     this.props.dispatch(fetchLicenseDetailsData(`${}/businesscustomer/companyinfo?_`));
+    // }
     updateSubmitHandler=(values)=>
     {
       console.log(this.props,"props fff")
@@ -21,10 +28,10 @@ class LicenseInfo extends Component
     console.log(values,"aa");
 
     let requestObj={
-        companyInfo:values,
-        businessCustomerId:"5b7514dfab851a001b83452a"
+        ...values,
+        businessCustomerId:localStorage.getItem('id')
     }
-     this.props.dispatch(postLicenseData(requestObj,'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/companyinfo`));
+     this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`));
   
     }
     render()
@@ -34,18 +41,28 @@ class LicenseInfo extends Component
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <LicenseInfoComponent/>
-            <Button variant="contained" color='primary'>Save</Button>
+            <Button variant="contained" type='submit' color='primary'>Save</Button>
             </form>
             </div>
         )
     }
 }
 
-export default reduxForm({
+LicenseInfo = reduxForm({
     form:'LicenseInfo',
-    asyncValidate
+
+    
 
 })(LicenseInfo)
 
+const mapStateToProps=(state)=>
+{
+    let initialValues = state.licenseDetailsData.lookUpData.data
+    let isLoading = state.licenseDetailsData.isFetching
+    console.log(state,"state of licenese");
+    return {initialValues,isLoading}
 
-      
+}
+
+
+export default connect(mapStateToProps)(withLoader(LicenseInfo))

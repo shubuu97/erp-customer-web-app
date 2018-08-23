@@ -11,8 +11,8 @@ import {fetchProfileFormData} from '../../../action/profileFormData';
 import asyncValidate from './validate.js'
 import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
 import Button  from '@material-ui/core/Button';
-
-
+import withLoader from '../../../components/LoaderHoc';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 
 
 class CustomerInfo extends Component
@@ -26,18 +26,18 @@ class CustomerInfo extends Component
 
     let requestObj={
         basicInfo:values,
-        _id:"5b7530f8a3b7320018ee14b7"
+        _id:localStorage.getItem('id')
     }
-     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo`));
+     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`));
   
     }
-    componentDidMount()
-    {
-        console.log("came");
-        this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/customer/register`));
+    // componentDidMount()
+    // {
+    //     console.log("came");
+    //     this.props.dispatch(fetchProfileFormData(`${}/customer/register`));
 
-        this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${process.env.APPLICATION_BFF_URL}/customer/basicinfo/search`))
-    }
+    //     this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${}/customer/basicinfo/search`))
+    // }
     render()
     {
         const {handleSubmit} = this.props;
@@ -68,4 +68,4 @@ function mapStateToProps(state)
  return {initialValues,isLoading}
 }
 
-export default connect(mapStateToProps)((CustomerInfo))
+export default connect(mapStateToProps)(withLoader(CustomerInfo))

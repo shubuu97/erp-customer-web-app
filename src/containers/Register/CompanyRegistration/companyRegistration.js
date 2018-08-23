@@ -7,7 +7,9 @@ import Button from '@material-ui/core/Button';
 import withLoader from '../../../components/LoaderHoc';
 import asyncValidate from './validate.js';
 import logologin from '../../../assets/images/logo-main.png';
-import withMessage from '../../../components/messageHoc/index'
+import withMessage from '../../../components/messageHoc/index';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+
 class CompanyRegistration extends PureComponent {
   submit = (formData) => {
     let postData = {};
@@ -20,7 +22,7 @@ class CompanyRegistration extends PureComponent {
     postData.basicInfo.companyName = formData.companyName;
 
 
-    this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${process.env.APPLICATION_BFF_URL}/businesscustomer/register`))
+    this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`))
 
 
 

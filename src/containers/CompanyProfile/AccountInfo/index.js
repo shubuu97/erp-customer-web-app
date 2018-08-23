@@ -1,14 +1,11 @@
 import CompanyRegistration from '../../../components/Register/CompanyRegistration/companyRegistration';
-import {postBasicInfoData} from '../../../action/basicInfoActions';
 import {connect} from 'react-redux'
-
 import React,{Component} from 'react';
 import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
 import {reduxForm} from 'redux-form';
-import {fetchProfileFormData} from '../../../action/profileFormData'
 import Button from '@material-ui/core/Button';
-
-
+import withLoader from '../../../components/LoaderHoc'
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 
 
 class AccountInfo extends Component
@@ -21,17 +18,12 @@ class AccountInfo extends Component
 
     let requestObj={
         basicInfo:values,
-        _id:"5b7514dfab851a001b83452a"
+        _id:localStorage.getItem('id')
     }
-     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/basicinfo`));
+     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/basicinfo`));
   
     }
-    componentDidMount()
-    {
-        console.log("came")
-        this.props.dispatch(fetchProfileFormData(`${process.env.APPLICATION_BFF_URL}/businesscustomer/register`));
-        this.props.dispatch(postBasicInfoData({_id: "5b7514dfab851a001b83452a"},'',`${process.env.APPLICATION_BFF_URL}/businesscustomer/basicinfo/search`))
-    }
+   
     render()
     {
         const {handleSubmit} = this.props;
@@ -54,11 +46,12 @@ function mapStateToProps(state)
 {
  let initialValues = {};
  initialValues =  state.basicInfodata.basicInfoData
+ let isLoading = state.basicInfodata.isFetching
 
- return {initialValues}
+ return {initialValues,isLoading}
 }
 
-export default connect(mapStateToProps)(AccountInfo)
+export default connect(mapStateToProps)(withLoader(AccountInfo))
 
 
 

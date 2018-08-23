@@ -1,22 +1,22 @@
-import * as BANKING_CONSTANTS from '../constants/bankingDetails';
+import * as SITE_CONSTANTS from '../constants/siteDetails';
 
-export const   bankDetailsData = (state = {
+export const   siteDetailsData = (state = {
     type: '',
     error: '',
     isFetching: false,
     didInvalidate: false,
-    lookUpData: {}
+    lookUpData: {},
 }, action) => {
     console.log(action)
     switch (action.type) {
 
-        case BANKING_CONSTANTS.REQUEST_BANKING_DETAILS_DATA:
+        case SITE_CONSTANTS.REQUEST_SITE_DETAILS_DATA:
             return Object.assign({}, state, {
                 isFetching: true,
                 type: action.type,
                 lastUpdated: action.receivedAt
             });
-        case BANKING_CONSTANTS.RECEIVED_BANKING_DETAILS_DATA:
+        case SITE_CONSTANTS.RECEIVED_SITE_DETAILS_DATA:
             return Object.assign({}, state, {
                 isFetching: false,
                 type: action.type,
@@ -24,11 +24,11 @@ export const   bankDetailsData = (state = {
                 lookUpData: action.data,
                 lastUpdated: action.receivedAt
             });
-        case BANKING_CONSTANTS.RECEIVED_BANKING_DETAILS_DATA_ERROR:
+        case SITE_CONSTANTS.RECEIVED_SITE_DETAILS_DATA_ERROR:
             return Object.assign({}, state, {
                 isFetching: false,
                 type: action.type,
-                lookUpData:{},
+                lookUpData: {},
                 error: action.error
             })
 

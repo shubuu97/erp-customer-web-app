@@ -7,6 +7,11 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import AccountInfo from '../AccountInfo';
 import BankingInfo from '../BankingInfo';
+import { postBasicInfoData } from '../../../action/basicInfoActions';
+import {fetchProfileFormData} from '../../../action/profileFormData';
+import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
+import {connect} from 'react-redux';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 
 function TabContainer(props) {
   return (
@@ -31,7 +36,14 @@ class CustomerProfileTab extends React.Component {
   state = {
     value: 0,
   };
+  componentDidMount()
+  {
+      console.log("came");
+      this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
 
+      this.props.dispatch(postBasicInfoData({_id: localStorage.getItem('id')},'',`${APPLICATION_BFF_URL}/customer/basicinfo/search`));
+      this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/customer/bankingdetails?_id=${localStorage.getItem("id")}`));
+  }
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -61,5 +73,6 @@ CustomerProfileTab.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CustomerProfileTab);
+CustomerProfileTab=withStyles(styles)(CustomerProfileTab);
+export default connect()(CustomerProfileTab)
 

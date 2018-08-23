@@ -9,6 +9,14 @@ import AccountInfo from '../AccountInfo';
 import LicenceInfo from '../LicenceInfo';
 import SiteInfo from '../SiteInfo';
 import BankingInfo from '../BankingInfo';
+import {connect} from 'react-redux';
+import {fetchProfileFormData} from '../../../action/profileFormData';
+import {postBasicInfoData} from '../../../action/basicInfoActions';
+import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
+import {fetchLicenseDetailsData} from '../../../action/getLicenseInfo';
+import { fetchSiteDetailsData } from '../../../action/getSiteInfo';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+
 
 function TabContainer(props) {
   return (
@@ -37,7 +45,15 @@ class CompanyProfileTab extends React.Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
-
+  componentDidMount()
+  {
+      console.log("came")
+      this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
+      this.props.dispatch(postBasicInfoData({_id: localStorage.getItem('id')},'',`${APPLICATION_BFF_URL}/businesscustomer/basicinfo/search`))
+      this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
+      this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
+      this.props.dispatch(fetchSiteDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/siteinfo?_id=${localStorage.getItem("id")}`));
+    }
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -66,4 +82,7 @@ CompanyProfileTab.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CompanyProfileTab);
+CompanyProfileTab = withStyles(styles)(CompanyProfileTab);
+
+export default connect()(CompanyProfileTab)
+
