@@ -2584,3 +2584,55 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
+
+
+/******************************PRODUCT DETAILS PAGE CSS START***************************************/
+.productDetails-container{
+
+}
+.detailsContent{
+    display: flex;
+    flex-direction: row;
+}
+.imageContent{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.mainImage{
+    
+}
+.mainImage img{
+    min-width: 350px;
+    width: 40%;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+}
+.subImages{
+    display: flex;
+}
+.subImages img{
+    width: 15%;
+    height: 15%;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    margin: 10px;
+}
+.addToCartButtonDiv{
+
+}
+.descriptionContent{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+.add-cart-button{
+    background-color: #ff9f00 !important;
+    color: #fff !important;
+    margin-right: 10px !important;
+}
+.buy-cart-button{
+    background-color: #fb641b !important;
+    color: #fff !important;
+}
+/******************************PRODUCT DETAILS PAGE CSS END*****************************************/

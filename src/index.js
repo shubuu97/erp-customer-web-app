@@ -27,6 +27,8 @@ import CompanyBankingInfo from './containers/CompanyProfile/BankingInfo';
 import CustomerBankingInfo from './containers/CustomerProfile/BankingInfo';
 import CompanyProfile from './containers/CompanyProfile/CompanyProfileTab';
 import CustomerProfile from './containers/CustomerProfile/CustomerProfileTab';
+import productList from './containers/Products/ProductList';
+import productDetails from './containers/Products/ProductDetails';
 import './assets/stylesheets/main.css';
 import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
