@@ -96,6 +96,9 @@ ReactDOM.render(
 <Route path="/companyProfile" component = {CompanyProfile}/>
 <Route path="/customerProfile" component = {CustomerProfile}/>
 
+<Route path="/productList" component = {productList}/>
+<Route path="/productDetail" component = {productDetails}/>
+
 </div>
 </Switch>
 
