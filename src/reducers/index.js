@@ -11,6 +11,7 @@ import siteData from './siteInfo'
 import {siteDetailsData} from './siteDetails'
 import {licenseDetailsData} from './licenseDetails'
 import zipCodeData from './zipCode'
+import productData from '../containers/Products/reducers/product';
 let rootReducer = combineReducers(
     {
         //reducer code will come here
@@ -25,8 +26,8 @@ let rootReducer = combineReducers(
         siteData,
         siteDetailsData,
         licenseDetailsData,
-        zipCodeData
-
+        zipCodeData,
+        productData
     }
 );
 
