@@ -7,7 +7,6 @@ export const   bankDetailsData = (state = {
     didInvalidate: false,
     lookUpData: {}
 }, action) => {
-    console.log(action)
     switch (action.type) {
 
         case BANKING_CONSTANTS.REQUEST_BANKING_DETAILS_DATA:

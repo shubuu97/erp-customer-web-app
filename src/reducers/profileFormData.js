@@ -9,7 +9,6 @@ export const   profileFormData = (state = {
     didInvalidate: false,
     formSearchData: [],
 }, action) => {
-    console.log(action)
     switch (action.type) {
 
         case FORMDATA_CONSTANTS.REQUEST_FORM_DATA:

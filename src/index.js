@@ -31,6 +31,7 @@ import productList from './containers/Products/ProductList';
 import productDetails from './containers/Products/ProductDetails';
 import './assets/stylesheets/main.css';
 import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
+import MainLayout from './MainLayout/mainLayout'
 import purple from '@material-ui/core/colors/purple';
 
 const theme = createMuiTheme({
@@ -73,6 +74,14 @@ if (process.env.NODE_ENV !== 'production') {
   );
   export const persistor = persistStore(store);
 
+const RouterWithMainLayout=({ layout, component, ...rest })=> {
+  return (
+    <Route {...rest} render={props =>
+      React.createElement(layout, props, React.createElement(component, props))
+    } />
+  );
+}
+
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
 <Provider store={store}>
@@ -93,8 +102,8 @@ ReactDOM.render(
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
-<Route path="/companyProfile" component = {CompanyProfile}/>
-<Route path="/customerProfile" component = {CustomerProfile}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
+<RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
 <Route path="/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>

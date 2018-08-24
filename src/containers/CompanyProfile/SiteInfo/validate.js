@@ -1,19 +1,32 @@
 import  * as yup from 'yup';
-var schema = yup.object().shape({
-    siteLicenceType: yup.string().required(),
-    siteLicenceNo:yup.string().required(),
-    companySiteAddress: yup.string().email().required(),
-    EmailAddress: yup.string().required(),
-    siteContactNo:yup.string().required(),
-    
+import expand from 'keypather/expand'
+var address=yup.object().shape({
+    siteAddress:yup.string().required(),
+    contactNumber:yup.number().required(),
+    email:yup.string().email().required(),
+    city:yup.string().required(),
+    country:yup.string().required(),
+    state:yup.string().required(),
+    zipCode:yup.number().required(),
 
-  });
+    
+})
+var license= yup.object().shape({
+    licenseNumber:yup.string().required()
+})
+var siteInfo= yup.object().shape({
+    licenseType:yup.string().required(),
+    siteLicense:yup.array(license),
+    addressInfo:yup.array(address)
+
+})
+var schema = yup.object().shape({ siteInfo: yup.array(siteInfo)
+});
 const asyncValidate = values => {
 
+    console.log(values,"values is here")
 
     return new Promise((resolve, reject) => {
-
-        console.log(values)
 
         //Validate our form values against our schema! Also dont abort the validate early.
         schema.validate(values, {abortEarly: false})
@@ -22,17 +35,16 @@ const asyncValidate = values => {
                 resolve();
             })
             .catch(errors => {
-
+                console.log(errors,"errors is here")
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
-                let reduxFormErrors = {};
-
+                let expandObj = {}
                 errors.inner.forEach(error => {
-                    reduxFormErrors[error.path] = error.message;
-                })
-
+                     expandObj[error.path] = error.message;
+                    })
+                    console.log(expand(expandObj),"this is return");
                 //redux form will now understand the errors that yup has thrown
-                reject(reduxFormErrors);
+                reject(expand(expandObj));
 
             })
     });

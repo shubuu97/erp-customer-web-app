@@ -4,6 +4,7 @@ import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
 import { generateV1uuid } from '../utills/helper';
+import {setErrorMessage} from '../action/basicInfoActions';
 let authToken = `Bearer ${localStorage.getItem("authToken")}`
 
 //import { onLogout } from '../actions/userRoles';
@@ -33,7 +34,6 @@ const axiosMiddleware = store => next => (action) => {
   if (!action || !action.fetchConfig) {
    if(action.type=="@@redux-form/BLUR")
    {
-    console.log("action middleware")
      if(action.meta.form="CustomerRegistration"&&action.meta.field=="zipCode")
      {
       store.dispatch(fetchZip(`${APPLICATION_BFF_URL}/zipcode/${action.payload}`))
@@ -41,7 +41,6 @@ const axiosMiddleware = store => next => (action) => {
    }
     return next(action);
   }
-console.log(action,"this action is from middleware")
   const { dispatch } = store;
   const { fetchConfig: config, subreddit, id } = action;
   // @todo multiple params
@@ -53,7 +52,6 @@ console.log(action,"this action is from middleware")
   const method = httpVerbs[argMethod.toLowerCase()];
 
   const headers = config.headers && { ...config.headers } || {};
-  console.log(headers,"headers")
   const successHandler = config.success;
   const failureHandler = config.failure || function (subreddit, error, errCode) {
     return {
@@ -71,14 +69,16 @@ requestObject.data=config.body;
 requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'application/json'}
 
 
-console.log(requestObject.headers,"request header")
 
 
 
   axios(
     requestObject
   )
-    .then(responseData => dispatch(successHandler(subreddit, responseData.data, id, action.successCbPassOnParams)))
+    .then(responseData => {
+      console.log("========", responseData.data)
+      dispatch(setErrorMessage('this is error'));
+      dispatch(successHandler(subreddit, responseData.data, id, action.successCbPassOnParams))})
     .catch(error => dispatch(failureHandler(subreddit, error, 500)));
 };
 

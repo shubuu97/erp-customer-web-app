@@ -5,10 +5,8 @@ import ProductDetails from './productDetails';
 
 class ProductDetailsContainer extends React.Component {
   addToCart() {
-    console.log('addToCart');
   }
   buyProduct() {
-    console.log('buyProduct');
   }
 
   render() {

@@ -69,7 +69,6 @@ const productDataList = [{
 }]
 class ProductsContainer extends React.Component {
   productDetails(item) {
-    console.log("item is",item);
   }
   render() {
     return (

@@ -15,6 +15,7 @@ export const   basicInfodata = (state = {
     isFetching: false,
     didInvalidate: false,
     basicInfoSearchData: [],
+    message: ''
 }, action) => {
     switch (action.type) {
 
@@ -37,6 +38,11 @@ export const   basicInfodata = (state = {
                 isFetching: false,
                 type: action.type,
                 error: action.error
+            })
+        case BASICINFO_CONSTANTS.SET_ERROR_MESSAGE:
+            return Object.assign({}, state, {
+                type: action.type,
+                message: action.data
             })
 
         default:

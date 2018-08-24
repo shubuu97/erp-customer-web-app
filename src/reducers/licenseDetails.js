@@ -7,7 +7,6 @@ export const   licenseDetailsData = (state = {
     didInvalidate: false,
     lookUpData: {},
 }, action) => {
-    console.log(action)
     switch (action.type) {
 
         case LICENSE_CONSTANTS.REQUEST_LICENSE_DETAILS_DATA:

@@ -21,9 +21,7 @@ class SiteInfo extends Component
     // }
     updateSubmitHandler=(values)=>
     {
-      console.log(this.props,"props fff")
   
-    console.log(values,"aa");
 
     let requestObj={
         ...values,
@@ -48,14 +46,13 @@ class SiteInfo extends Component
 
 SiteInfo=reduxForm({
     form:'SiteInfo',
-    
+    asyncValidate:asyncValidate
 })(SiteInfo)
 
 const mapStateToProps=(state)=>
 {
     let initialValues = state.siteDetailsData.lookUpData.data;
     let isLoading = state.siteDetailsData.isFetching
-    console.log(state,"state of licenese");
     return {initialValues,isLoading}
 
 }
