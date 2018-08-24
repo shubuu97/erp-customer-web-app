@@ -15,7 +15,7 @@ if(process.env.NODE_ENV=="production")
 if(process.env.NODE_ENV=="development")
 {
  
-  configObject.APPLICATION_BFF_URL = "https://deverp.allonblock.com/admin-bff"
+  configObject.APPLICATION_BFF_URL = "http://13.127.202.129:2005/customer-bff"
   configObject.DEFAULT_COMPANY_ID =  "abc"
   configObject.MEDIA_SERVICE_ADDRESS = "https://deverp.allonblock.com/media-service"
   
@@ -84,7 +84,7 @@ function getClientEnvironment(publicUrl) {
         return env;
       },
       {
-        // Useful for determining whether weâ€™re running in production mode.
+        // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
         NODE_ENV: process.env.NODE_ENV || 'development',
         // Useful for resolving the correct path to static assets in `public`.
@@ -92,7 +92,7 @@ function getClientEnvironment(publicUrl) {
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
-        ...configObject
+        // ...configObject
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin

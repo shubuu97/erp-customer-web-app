@@ -1,6 +1,11 @@
+import {APPLICATION_BFF_URL} from '../constants/urlConstants'
+import {fetchZip} from '../action/fetchFromZip';
+import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
 import { generateV1uuid } from '../utills/helper';
+let authToken = `Bearer ${localStorage.getItem("authToken")}`
+
 //import { onLogout } from '../actions/userRoles';
 
 // pure function
@@ -24,11 +29,19 @@ const httpVerbs = {
   delete: 'DELETE',
 };
 
-const fetchMiddleware = store => next => (action) => {
+const axiosMiddleware = store => next => (action) => {
   if (!action || !action.fetchConfig) {
+   if(action.type=="@@redux-form/BLUR")
+   {
+    console.log("action middleware")
+     if(action.meta.form="CustomerRegistration"&&action.meta.field=="zipCode")
+     {
+      store.dispatch(fetchZip(`${APPLICATION_BFF_URL}/zipcode/${action.payload}`))
+     }
+   }
     return next(action);
   }
-
+console.log(action,"this action is from middleware")
   const { dispatch } = store;
   const { fetchConfig: config, subreddit, id } = action;
   // @todo multiple params
@@ -40,6 +53,7 @@ const fetchMiddleware = store => next => (action) => {
   const method = httpVerbs[argMethod.toLowerCase()];
 
   const headers = config.headers && { ...config.headers } || {};
+  console.log(headers,"headers")
   const successHandler = config.success;
   const failureHandler = config.failure || function (subreddit, error, errCode) {
     return {
@@ -47,57 +61,25 @@ const fetchMiddleware = store => next => (action) => {
     };
   };
 
+const state = store.getState();
 
-  const state = store.getState();
-  const metaHeaders = {
-    CorrelationId: generateV1uuid(),
-    'Content-Type': config.contentType || 'application/json',
-  };
-  if (config.isFormData) {
-    delete metaHeaders['Content-Type'];
-  }
+let requestObject = {};
+requestObject.method = method;
+requestObject.url = path;
+if(config.body)
+requestObject.data=config.body;
+requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'application/json'}
 
-  if (!config.doNotSendAuthHeader) {
-    metaHeaders.Authorization = state.userRolesReducer && state.userRolesReducer.authToken;
-    metaHeaders.checkauth = true;
-  }
 
-  const metaOptions = {
-    method,
-    headers: {
-      ...metaHeaders,
-      ...headers,
-    },
-  };
+console.log(requestObject.headers,"request header")
 
-  let options = addOptionalOptions(config, metaOptions);
 
-  const passOnParams = _pickBy(config.passOnParams, param => param);
-  if (config.passOnParams) {
-    options = {
-      ...options,
-      ...passOnParams,
-    };
-  }
 
-  fetch(
-    path,
-    options,
+  axios(
+    requestObject
   )
-    .then(response => response.json()
-      .then((jsonData) => {
-        if (jsonData.message === 'jwt expired') {
-         // dispatch(onLogout());
-        } else {
-          return Promise.resolve(jsonData);
-        }
-      })
-      .catch((err) => 
-        // @todo temp handling, need to fix bff api response
-         Promise.resolve({})
-      ))
-    .then(json => dispatch(successHandler(subreddit, json, id, action.successCbPassOnParams)))
+    .then(responseData => dispatch(successHandler(subreddit, responseData.data, id, action.successCbPassOnParams)))
     .catch(error => dispatch(failureHandler(subreddit, error, 500)));
 };
 
-export default fetchMiddleware;
+export default axiosMiddleware;

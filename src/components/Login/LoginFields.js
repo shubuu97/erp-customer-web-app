@@ -1,8 +1,9 @@
 let fields = [
-  {name:'LoginId',label:'LoginId'},
-  {name:'Password',label:'Password'}
+  {name:'email',label:'Email'},
+  {name:'password',label:'Password'}
 
 ]
+
 
 
 export default fields;
