@@ -2,76 +2,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ProductList from './products';
+import { fetchInventoryItemData, setSelectedProduct } from '../action/product';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
 
-const productDataList = [{
-  id:"1",
-  itemCode: "ASD",
-  price: 56,
-  description: "This is a hot case",
-  name: "hot1",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"2",
-  itemCode: "PUO",
-  price: 687,
-  description: "This is another one",
-  name: "TOp2",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"3",
-  itemCode: "UOUO",
-  price: 989,
-  description: "This is is kijek theresd",
-  name: "hot cokkoi",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"4",
-  itemCode: "YHK",
-  price: 89,
-  description: "Please use as well this is ",
-  name: "Kooi",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"5",
-  itemCode: "ASD",
-  price: 56,
-  description: "This is a hot case",
-  name: "hot1",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"6",
-  itemCode: "PUO",
-  price: 687,
-  description: "This is another one",
-  name: "TOp2",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"7",
-  itemCode: "UOUO",
-  price: 989,
-  description: "This is is kijek theresd",
-  name: "hot cokkoi",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-},
-{
-  id:"8",
-  itemCode: "YHK",
-  price: 89,
-  description: "Please use as well this is ",
-  name: "Kooi",
-  image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-}]
 class ProductsContainer extends React.Component {
   productDetails(item) {
+    const {dispatch} = this.props;
     console.log("item is",item);
+    dispatch(setSelectedProduct(item));
+    this.props.history.push('/productDetail')
+  }
+  componentDidMount(){
+    const {dispatch} = this.props;
+    dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
   }
   render() {
+    const {products} = this.props;
+    const productDataList = products && products.itemsData;
+    console.log("products ===", productDataList);
     return (
       <div>
         <ProductList productsList={productDataList} onProductClick={(item)=>this.productDetails(item)}/>
@@ -80,8 +28,10 @@ class ProductsContainer extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {};
+const mapStateToProps = state => {
+  let products = state.productData.inventoryItemList.data
+  let isLoading= state.productData.isFetching
+  return {products,isLoading}
 }
 
 export default connect(mapStateToProps)(ProductsContainer)

@@ -14,7 +14,7 @@ export const   basicInfodata = (state = {
     error: '',
     isFetching: false,
     didInvalidate: false,
-    basicInfoSearchData: [],
+    basicInfoData: [],
 }, action) => {
     switch (action.type) {
 
