@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CartProductList from './ProductsInCart';
+import CartTotal from './CartTotal';
 
 class CartContainer extends React.Component {
   productDetails(item) {
@@ -14,6 +15,7 @@ class CartContainer extends React.Component {
       price: 56,
       description: "This is a hot case",
       name: "hot1",
+      quantity: 1,
       image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
     },
     {
@@ -22,6 +24,7 @@ class CartContainer extends React.Component {
       price: 687,
       description: "This is another one",
       name: "TOp2",
+      quantity: 1,
       image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
     },
     {
@@ -30,11 +33,13 @@ class CartContainer extends React.Component {
       price: 989,
       description: "This is is kijek theresd",
       name: "hot cokkoi",
+      quantity: 1,
       image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
     }];
     return (
-      <div>
+      <div className="cart-container">
         <CartProductList productsList={productDataList}/>
+        <CartTotal />
       </div>
     )
   }
