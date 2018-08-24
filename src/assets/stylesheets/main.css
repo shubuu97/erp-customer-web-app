@@ -2636,3 +2636,31 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     color: #fff !important;
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
+/******************************CART PAGE CSS STRT***************************************************/
+.cart-table{
+
+}
+.cart-table-head{
+    display: flex;
+    justify-content: space-between;
+}
+.cart-table-body{
+    display: flex;
+    flex-direction: column;
+}
+.row-container{
+    display: flex;
+    justify-content: space-between;
+}
+.row-name-code{
+    display: flex;
+    flex-direction: column;
+}
+.row-product{
+    display: flex;
+}
+.row-product-img{
+    width: 80px;
+    height: 80px;
+}
+/*******************************CART PAGE CSS END**************************************************/

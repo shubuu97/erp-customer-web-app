@@ -29,6 +29,7 @@ import CompanyProfile from './containers/CompanyProfile/CompanyProfileTab';
 import CustomerProfile from './containers/CustomerProfile/CustomerProfileTab';
 import productList from './containers/Products/ProductList';
 import productDetails from './containers/Products/ProductDetails';
+import Cart from './containers/Products/Cart';
 import './assets/stylesheets/main.css';
 import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
@@ -98,7 +99,7 @@ ReactDOM.render(
 
 <Route path="/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>
-
+<Route path="/cart" component = {Cart} />
 </div>
 </Switch>
 
