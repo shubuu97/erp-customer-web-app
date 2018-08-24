@@ -27,7 +27,6 @@ const withMessage = (WrappedComponent) => {
             return true;
         }
         render() {
-            console.log(this.props.message,"message")
             return (
             <div> 
                  

@@ -25,7 +25,6 @@ let BankDetailComponent = (props)=>
                 <div className="row d-flex">
                 
                 {BankDetailFields.map((info) => {
-                    console.log(prop[info.name], "info")
 
                     if (info.type == 'select') {
 
@@ -55,7 +54,6 @@ class CustomerBankingInfo extends Component {
                 <FormSection name='bankingDetailInfo'> 
                 { CustomerBankDetails.map((info)=>
          {
-             console.log(info.name)
              
              if(info.type=='select')
              {

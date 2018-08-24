@@ -115,8 +115,4 @@ class SiteInfo extends Component {
     }
 }
 
-export default reduxForm(
-    {
-        form:'SiteInfo'
-    }
-)(SiteInfo)
+export default SiteInfo

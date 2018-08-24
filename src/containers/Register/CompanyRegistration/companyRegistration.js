@@ -59,7 +59,6 @@ const mapStateToProps = (state) =>
 {
   let isLoading = state.registerReducer.isFetching;
   let registerReducer = state.registerReducer;
-  console.log(state,"fff")
   let message = state.registerReducer.lookUpData.message;
   return {
     isLoading,

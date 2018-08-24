@@ -12,9 +12,7 @@ class AccountInfo extends Component
 {
     updateSubmitHandler=(values)=>
     {
-      console.log(this.props,"props fff")
   
-    console.log(values,"aa");
 
     let requestObj={
         basicInfo:values,
@@ -31,7 +29,7 @@ class AccountInfo extends Component
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <CompanyRegistration/>
-            <Button variant="contained" color='primary'>Save</Button>
+            <Button variant="contained" type='submit' color='primary'>Save</Button>
             </form>
             </div>
         )

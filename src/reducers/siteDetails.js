@@ -7,7 +7,6 @@ export const   siteDetailsData = (state = {
     didInvalidate: false,
     lookUpData: {},
 }, action) => {
-    console.log(action)
     switch (action.type) {
 
         case SITE_CONSTANTS.REQUEST_SITE_DETAILS_DATA:

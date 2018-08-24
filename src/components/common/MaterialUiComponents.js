@@ -13,14 +13,15 @@ const TextFieldInput = ({
   }) =>
   { 
     return(
+  
     <TextField
       label={label}
       placeholder={label}
-      errorText={touched && error}
-     
+      error = {error?true:false}
       {...input}
       {...custom}
     />
+      
   )
 }
 

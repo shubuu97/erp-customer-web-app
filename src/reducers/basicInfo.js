@@ -38,6 +38,11 @@ export const   basicInfodata = (state = {
                 type: action.type,
                 error: action.error
             })
+        case BASICINFO_CONSTANTS.SET_ERROR_MESSAGE:
+            return Object.assign({}, state, {
+                type: action.type,
+                message: action.data
+            })
 
         default:
             return state

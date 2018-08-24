@@ -5,8 +5,8 @@ import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiCompo
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem'
 let props = {};
-props.licenceType = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
-props.category = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
+props.licenseType = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
+props.category = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
 props.country = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 props.state = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 props.city = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
@@ -68,8 +68,8 @@ class LicenceInfo extends Component {
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
                     <FormSection name="companyInfo">
-                        <Field options={props['licenceType']} placeholder='Licence Type' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type'} />
-                        <Field options={props['category']} placeholder='Category' name={'category'} component={ReactSelectWrapper} label={'Licence Type'} />
+                        <Field options={props['licenseType']} placeholder='License Type' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type'} />
+                        <Field options={props['category']} placeholder='Category' name={'category'} component={ReactSelectWrapper} label={'Company Category'} />
                         <Field name={'licenseNumber'} label={'License Number'} component={TextFieldInput} />
                         <h2>Address Info</h2>
                         <FormSection name="companyAddressInfo">

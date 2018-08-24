@@ -20,14 +20,12 @@ const matLoader = () => (
 
 
 const withLoader = (WrappedComponent) => {
-console.log(this.props,"props of the")
     return class Enhancer extends WrappedComponent {
         render() {
            
             if (this.props.isLoading) {
                 return matLoader();
             }
-            console.log(super.render,'ff')
             
             return <WrappedComponent {...this.props}/>
         }
