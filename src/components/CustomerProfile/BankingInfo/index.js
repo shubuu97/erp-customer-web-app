@@ -35,7 +35,9 @@ let BankDetailComponent = (props)=>
                             </div>
                         )
                     }
-                    return (<div className="col-md-4 col-sm-6 form-d form-input"><Field name={`${bankDetails}.${info.name}`} label={info.label} component={info.component} /></div>)
+                    return (<div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.${info.name}`} label={info.label} component={info.component} />
+                    </div>)
                 })
 
 
