@@ -11,7 +11,6 @@ const asyncValidate = values => {
 
     return new Promise((resolve, reject) => {
 
-        console.log(values)
 
         //Validate our form values against our schema! Also dont abort the validate early.
         schema.validate(values, {abortEarly: false})

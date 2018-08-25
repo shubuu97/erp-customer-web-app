@@ -34,3 +34,10 @@ dispatch(dynamicActionWrapper({
     wrapperActionType: 'FETCH_CUSTOMER_SEARCH_RESULT_WRAPPER',
     redirect: 'follow'
 }));
+
+export const setErrorMessage = (message) => dispatch => {
+    dispatch({
+        type: BASICINFO_CONSTANTS.SET_ERROR_MESSAGE,
+        data: message
+    })
+}

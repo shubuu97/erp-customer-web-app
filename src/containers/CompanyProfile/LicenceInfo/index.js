@@ -23,9 +23,7 @@ class LicenseInfo extends Component
     // }
     updateSubmitHandler=(values)=>
     {
-      console.log(this.props,"props fff")
   
-    console.log(values,"aa");
 
     let requestObj={
         ...values,
@@ -50,6 +48,7 @@ class LicenseInfo extends Component
 
 LicenseInfo = reduxForm({
     form:'LicenseInfo',
+    asyncValidate
 
     
 
@@ -59,7 +58,6 @@ const mapStateToProps=(state)=>
 {
     let initialValues = state.licenseDetailsData.lookUpData.data
     let isLoading = state.licenseDetailsData.isFetching
-    console.log(state,"state of licenese");
     return {initialValues,isLoading}
 
 }

@@ -12,7 +12,6 @@ import {fetchProfileFormData} from '../../../action/profileFormData';
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
-console.log(APPLICATION_BFF_URL,"APPLICATION_BFF_URL")
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -38,7 +37,6 @@ class CustomerProfileTab extends React.Component {
   };
   componentDidMount()
   {
-      console.log("came");
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
 
       this.props.dispatch(postBasicInfoData({_id: localStorage.getItem('id')},'',`${APPLICATION_BFF_URL}/customer/basicinfo/search`));

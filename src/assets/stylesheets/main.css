@@ -2638,11 +2638,20 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
 .cart-table{
-
+    flex: 3;
+    padding-right: 25px;
 }
 .cart-table-head{
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #cacaca;
+    padding-bottom: 15px;
+}
+.cart-table-head-item{
+    font-size: 1.25em;
+    font-weight: bold;
 }
 .cart-table-body{
     display: flex;
@@ -2651,6 +2660,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .row-container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cacaca;
+    margin-bottom: 10px;
 }
 .row-name-code{
     display: flex;
@@ -2658,9 +2671,60 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .row-product{
     display: flex;
+    justify-content: space-between;
+    min-width: 200px;
 }
 .row-product-img{
     width: 80px;
     height: 80px;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+}
+.row-quantity{
+    display: flex;
+    align-items: center;
+}
+.row-quantity button {
+    padding: 0px 10px;
+    font-size: 1.75em !important;
+}
+.first-col{
+    min-width: 200px;
+}
+.row-quantity-item{
+    padding: 10px 15px;
+    border: 1px solid #bbbbbb;
+}
+.cart-container{
+    display: flex;
+}
+.cart-total-container{
+    flex: 1;
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #cacaca;
+}
+.cart-total-title{
+    padding: 10px;
+    font-size: 1.25em;
+    font-weight: bold;
+    border-bottom: 2px solid #cacaca;
+    text-align: center;
+}
+.cart-item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #cacaca;
+    font-size: 1.20em;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+}
+.cart-item span{
+    font-weight: bold;
+}
+.cart-total-total{
+    border-bottom: 2px solid #cacaca;
 }
 /*******************************CART PAGE CSS END**************************************************/

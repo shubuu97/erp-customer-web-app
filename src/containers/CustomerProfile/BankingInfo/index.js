@@ -20,9 +20,7 @@ class CustomerBankingDetails extends Component
     // }
     bankingDataSaveHandler=(values)=>
     {
-      console.log(this.props,"props fff")
   
-    console.log(values,"aa");
 
     let requestObj={
         ...values,
@@ -49,6 +47,7 @@ class CustomerBankingDetails extends Component
 }
 CustomerBankingDetails=reduxForm({
     form:'CustomerBankingInfo',
+    asyncValidate
     
 })(CustomerBankingDetails)
 
@@ -56,7 +55,6 @@ const mapStateToProps=(state)=>
 {
     let initialValues = state.bankDetailsData.lookUpData.data
     let isLoading= state.bankDetailsData.isFetching
-    console.log(state,"state of licenese");
     return {initialValues,isLoading}
 
 }

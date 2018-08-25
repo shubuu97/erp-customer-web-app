@@ -20,9 +20,7 @@ class CustomerInfo extends Component
 {
     updateSubmitHandler=(values)=>
     {
-      console.log(this.props,"props fff")
   
-    console.log(values,"aa");
 
     let requestObj={
         basicInfo:values,
@@ -33,19 +31,20 @@ class CustomerInfo extends Component
     }
     // componentDidMount()
     // {
-    //     console.log("came");
     //     this.props.dispatch(fetchProfileFormData(`${}/customer/register`));
 
     //     this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${}/customer/basicinfo/search`))
     // }
     render()
     {
+        const {handleSubmit} = this.props;
         return(
             
             <div>
-                <form>
+                
+                <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
                <AccountInfo/>
-               <Button type={'submit'} variant="contained" color='primary'   label="Submit">Save </Button>
+               <Button type='submit' variant="contained" color='primary'   label="Submit">Save </Button>
                </form>
             </div>
         )
@@ -53,12 +52,12 @@ class CustomerInfo extends Component
 }
 
 CustomerInfo = reduxForm({
-    form:'CustomerInfo'
+    form:'CustomerInfo',
+    
     
 })(CustomerInfo)
 function mapStateToProps(state)
 {
-console.log(state,"state of the art")
  let initialValues = {};
  initialValues =  state.basicInfodata.basicInfoData
  let isLoading = state.basicInfodata.isFetching

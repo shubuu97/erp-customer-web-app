@@ -22,7 +22,6 @@ let BankDetailComponent = (props)=>
                 <div>
                 
                 {BankDetailFields.map((info) => {
-                    console.log(prop[info.name], "info")
 
                     if (info.type == 'select') {
 

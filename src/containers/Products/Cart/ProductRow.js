@@ -14,10 +14,12 @@ export default (props) => {
         <h4>{props.price}</h4>
       </div>
       <div className="row-quantity">
-        
+        <button onClick={()=>props.updateQuantity(props.id,'add')}>+</button>
+        <div className="row-quantity-item">{props.quantity}</div>
+        <button onClick={()=>props.updateQuantity(props.id,'sub')}>-</button>
       </div>
       <div className="row-total">
-        <h4>678</h4>
+        <h4>{props.total || props.price || '0'}</h4>
       </div>
     </div>
   )

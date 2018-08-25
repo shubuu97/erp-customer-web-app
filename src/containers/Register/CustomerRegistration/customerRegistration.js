@@ -38,7 +38,6 @@ class CustomerRegistration extends PureComponent
  render()
  {
    const {handleSubmit} = this.props;
-   console.log(this.props,"ff")
    return(
     <div className="login-container register">
       <div className="login">
@@ -69,11 +68,9 @@ const mapStateToProps = (state) =>
 {
   let initialValues = {country:'india',state:'india'}
  let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
- console.log(state.zipCodeData.lookUpData,"oooii")
  initialValues.country = country;
  initialValues.state = stateobj;
  initialValues.city = city;
- console.log(initialValues,"oooii")
  return {initialValues:initialValues}
 }
 
