@@ -33,6 +33,7 @@ import Cart from './containers/Products/Cart';
 import './assets/stylesheets/main.css';
 import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
+import CheckOut from './containers/Products/CheckOut/index'
 
 const theme = createMuiTheme({
   palette: {
@@ -100,6 +101,7 @@ ReactDOM.render(
 <Route path="/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>
 <Route path="/cart" component = {Cart} />
+<Route exact path= "/checkout" component={CheckOut}/>
 </div>
 </Switch>
 
