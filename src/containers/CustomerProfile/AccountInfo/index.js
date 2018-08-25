@@ -53,6 +53,7 @@ class CustomerInfo extends Component
 
 CustomerInfo = reduxForm({
     form:'CustomerInfo',
+    asyncValidate
     
     
 })(CustomerInfo)

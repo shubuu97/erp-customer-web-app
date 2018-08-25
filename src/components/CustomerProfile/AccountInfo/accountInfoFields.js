@@ -2,7 +2,7 @@ import { SelectFieldInput,TextFieldInput} from '../../../components/common/Mater
 
 
 let accountInfo=[
-    { name: 'contactNo', label: 'Contact Number', component: TextFieldInput ,type:'text'},
+    { name: 'contactNumber', label: 'Contact Number', component: TextFieldInput ,type:'text'},
     { name: 'licenseNumber', label: 'License Number', component: TextFieldInput ,type:'text'},
 ]
 
