@@ -6,6 +6,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 
 import AddressInfoFields from '../../common/AddressInfo/adddressInfoFields';
 import BasicInfoFields from '../../common/BasicInfo/BasicInfoFields';
+import accountInfoFields from './accountInfoFields'
 import AccountInfo from './accountInfoFields';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
@@ -58,6 +59,14 @@ export default (props) => {
         <div className="row d-flex">
             <header className="box-heading2 col-sm-12">Basic Info</header>
             {BasicInfoFields.map((info) => {
+                return (
+                    <div className="col-md-4 col-sm-6 form-d form-input" >
+                        <Field name={info.name} label={info.label} component={info.component} />
+                    </div>
+                    )
+            }
+            )}
+            {accountInfoFields.map((info) => {
                 return (
                     <div className="col-md-4 col-sm-6 form-d form-input" >
                         <Field name={info.name} label={info.label} component={info.component} />
