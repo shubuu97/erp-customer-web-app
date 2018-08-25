@@ -1,6 +1,6 @@
 import  * as yup from 'yup';
 var schema = yup.object().shape({
-    contactNo: yup.string().required(),
+    contactNumber: yup.string().required(),
     licenseNumber: yup.string().required(),
    
 
