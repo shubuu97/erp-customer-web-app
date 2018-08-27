@@ -12,6 +12,7 @@ import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 import {connect} from 'react-redux';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+import {showMessage} from '../../../action/common';
 
 class BankingInfo extends Component
 {
@@ -29,7 +30,23 @@ class BankingInfo extends Component
         ...values,
         businessCustomerId : localStorage.getItem('id')
     }
-     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails`));
+     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails`)).then((data)=>{
+        console.log("Data for company register", data);
+        if(data.message) {
+          this.props.dispatch(showMessage(data.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      }, (err)=>{
+        console.log("Error in company register", err);
+        if(err.message) {
+          this.props.dispatch(showMessage(err.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      });
   
     }
     render()

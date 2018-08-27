@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 // import "./assets/stylesheets/reset.css";
 //import HeaderLayout from './components/common/HeaderNav.jsx';
 import NavBar from '../containers/NavBar';
+import Snackbar from '@material-ui/core/Snackbar';
 // import "./assets/stylesheets/main.css";
 // import Alert from 'react-s-alert';
 // import SaveButton from './components/common/SaveButton.jsx';
@@ -41,7 +43,12 @@ import NavBar from '../containers/NavBar';
 //     this.setState({ showMenu: false });
 //     this.forceUpdate();
 //   }
+handleOpen=()=>
+        {
+            return true;
+        }
   render() {
+    console.log('this is message', this.props.message);
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
@@ -52,7 +59,19 @@ import NavBar from '../containers/NavBar';
             </div>
 
               <NavBar/>
-
+              {this.props.message && <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.handleOpen()}
+          autoHideDuration={6000}
+          onClose={()=>{}}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.props.message}</span>}
+          />}
           </div>
           <div>
 
@@ -67,4 +86,11 @@ import NavBar from '../containers/NavBar';
     );
   }
 }
-export default MainLayout;
+
+const mapStateToProps = state => {
+  let message = state.commonData.message;
+  let isLoading = state.registerReducer.isFetching;
+  return {message, isLoading}
+}
+
+export default connect(mapStateToProps)(MainLayout)

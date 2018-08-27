@@ -9,21 +9,28 @@ export const requestSiteData = subreddit => ({
     subreddit,
   });
 
-  export const receiveSiteData = (subreddit, json) => ({
+  export const receiveSiteData = (subreddit, json,id,resolve) => {
+    resolve(json);
+  return({
     type: SITE_CONSTANTS.RECEIVED_SITE_INFO,
     subreddit,
     data: json,
     receivedAt: Date.now(),
   });
+};
   
- export  const receiveSiteDataError = (subreddit, err, errCode) => ({
+ export  const receiveSiteDataError = (subreddit, err, errCode,reject) => {
+  reject(err);
+   return({
     type: SITE_CONSTANTS.RECEIVED_SITE_INFO_ERROR,
     subreddit,
     error: err,
     errorCode: errCode,
-  });
+  })
+};
 
-export const postSiteData = (data, subreddit, assignOrgUrl) => dispatch =>
+export const postSiteData = (data, subreddit, assignOrgUrl) => dispatch =>{
+  return new Promise((resolve, reject) => {
   dispatch(dynamicActionWrapper({
     path: assignOrgUrl,
     method: 'Post',
@@ -31,6 +38,10 @@ export const postSiteData = (data, subreddit, assignOrgUrl) => dispatch =>
     initCb: requestSiteData,
     successCb: receiveSiteData,
     failureCb: receiveSiteDataError,
+    resolve: resolve,
+        reject: reject,
     subreddit,
     wrapperActionType: 'POST_ASSING_ORGANIZATIONS_TO_ITEMS_WRAPPER',
   }));
+})
+}

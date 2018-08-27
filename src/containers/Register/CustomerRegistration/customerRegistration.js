@@ -5,6 +5,7 @@ import {reduxForm} from 'redux-form';
 import {postCustomerRegisterData} from '../../../action/registerActions';
 import logologin from '../../../assets/images/logo-main.png';
 import asyncValidate from './validate.js'
+import {showMessage} from '../../../action/common';
 
 import Button from '@material-ui/core/Button'
 
@@ -28,7 +29,23 @@ class CustomerRegistration extends Component
    pushObj.zipCode = formData.zipCode;
    postData.basicInfo.addressInfo.push(pushObj);
  
-   this.props.dispatch(postCustomerRegisterData(postData,'customerRegistr','http://13.127.202.129:2005/customer-bff/customer/register'))
+   this.props.dispatch(postCustomerRegisterData(postData,'customerRegistr','http://13.127.202.129:2005/customer-bff/customer/register')).then((data)=>{
+    console.log("Data for company register", data);
+    if(data.message) {
+      this.props.dispatch(showMessage(data.message));
+      setTimeout(()=>{
+        this.props.dispatch(showMessage(''));
+      },6000);
+    }
+  }, (err)=>{
+    console.log("Error in company register", err);
+    if(err.message) {
+      this.props.dispatch(showMessage(err.message));
+      setTimeout(()=>{
+        this.props.dispatch(showMessage(''));
+      },6000);
+    }
+  })
   
 
 

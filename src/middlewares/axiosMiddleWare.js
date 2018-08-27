@@ -77,7 +77,6 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
   )
     .then(responseData => {
       console.log("========", responseData.data)
-      dispatch(setErrorMessage('this is error'));
       dispatch(successHandler(subreddit, responseData.data, id, resolve))})
     .catch(error => dispatch(failureHandler(subreddit, error, 500, reject)));
 };

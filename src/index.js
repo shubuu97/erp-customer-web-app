@@ -36,6 +36,8 @@ import MainLayout from './MainLayout/mainLayout'
 import purple from '@material-ui/core/colors/purple';
 import CheckOut from './containers/Products/CheckOut/index';
 import SignUp from './containers/Register/SignUpTabs'
+import AfterRegister from './containers/AfterRegistration/afterRegistration';
+import AfterApproval from './containers/AfterApproval/afterApproval';
 
 const theme = createMuiTheme({
   palette: {
@@ -61,17 +63,17 @@ const middleware = [thunk, fetchMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
   }
-//   // const persistConfig = {
-//   //   key: 'root',
-//   //   storage,
-//   //   stateReconciler: hardSet,
-//   //   blacklist: ['batchReducer.plantsDetails.plants'],
-//   };
-//  const persistedReducer = persistReducer(persistConfig, reducer);
+  const persistConfig = {
+    key: 'root',
+    storage,
+    stateReconciler: hardSet,
+    blacklist: ['bankDetailsData']
+  };
+ const persistedReducer = persistReducer(persistConfig, reducer);
 
   export const store = createStore(
     // reducer,
-    reducer,
+    persistedReducer,
     applyMiddleware(...middleware),
   
   );
@@ -88,12 +90,13 @@ const RouterWithMainLayout=({ layout, component, ...rest })=> {
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
 <Provider store={store}>
+<PersistGate loading={null} persistor={persistor}>
 <BrowserRouter>
 <Switch>
 
-<Route exact path="/" component={Login}/>
-<Route exact path="/companyRegister" component={CompanyRegister}/>
-<Route exact path="/customerRegister" component={CustomerRegister}/>
+<Route exact path="/customer" component={Login}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyRegister" component={CompanyRegister}/>
+<Route exact path="/customer/customerRegister" component={CustomerRegister}/>
 
 <div className="right-content">
 <Route exact path="/app" component={App} />
@@ -105,18 +108,20 @@ ReactDOM.render(
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
-<RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
-<RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
+<Route exact path='/approval' component={AfterApproval}/>
+<Route exact path='/register' component={AfterRegister}/>
+
+<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyProfile" component = {CompanyProfile}/>
+<RouterWithMainLayout layout={MainLayout} path="/customer/customerProfile" component = {CustomerProfile}/>
 
 <Route path="/customer/productList" component = {productList}/>
-<Route path="/productDetail" component = {productDetails}/>
-<Route path="/cart" component = {Cart} />
-<Route path="/signup" component={SignUp}/>
-<Route exact path= "/checkout" component={CheckOut}/>
+<Route path="/customer/productDetail" component = {productDetails}/>
+<Route path="/customer/cart" component = {Cart} />
 </div>
 </Switch>
 
 </BrowserRouter>
+</PersistGate>
 </Provider>
 </MuiThemeProvider>
 , document.getElementById('root'));
