@@ -54,8 +54,12 @@ class LicenseInfo extends Component
         return(
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
-            <LicenseInfoComponent {...this.props}/>
-            <Button variant="contained" type='submit' color='primary'>Save</Button>
+            <LicenseInfoComponent/>
+            <div className="row d-flex">
+                <div className="col-sm-12">
+                    <Button variant="contained" type='submit' color='primary'>Save</Button>
+                </div>
+            </div>
             </form>
             </div>
         )

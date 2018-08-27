@@ -98,7 +98,7 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} exact path="/customer/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customer/customerRegister" component={CustomerRegister}/>
 
-<div className="right-content">
+
 <Route exact path="/app" component={App} />
 <Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/AccountInfo" component={AccountInfo}/>
@@ -117,7 +117,6 @@ ReactDOM.render(
 <Route path="/customer/productList" component = {productList}/>
 <Route path="/customer/productDetail" component = {productDetails}/>
 <Route path="/customer/cart" component = {Cart} />
-</div>
 </Switch>
 
 </BrowserRouter>
