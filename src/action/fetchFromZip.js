@@ -7,29 +7,39 @@ export const requestZip = subreddit => ({
     type: ZIP_CONSTANTS.REQUEST_ZIP,
     subreddit
 })
+export const receiveZip = (subreddit, json, id, resolve) => {
+    resolve(json);
+    return({
+        type: ZIP_CONSTANTS.RECEIVED_ZIP,
+        subreddit,
+        data: json,
+        receivedAt: Date.now()
+    });
+};
 
-export const receiveZip = (subreddit, json) => ({
-    type: ZIP_CONSTANTS.RECEIVED_ZIP,
-    subreddit,
-    data: json,
-    receivedAt: Date.now()
-});
+export  const receiveZipError = (subreddit, err, errCode, reject) => {
+    reject(err);
+    return({
+        type:ZIP_CONSTANTS.RECEIVED_ZIP_ERROR,
+        subreddit,
+        error: err,
+        errorCode: errCode
+    })
+  };
 
-const receiveZipError = (subreddit,err,errCode) => ({
-    type:ZIP_CONSTANTS.RECEIVED_ZIP_ERROR,
-    subreddit,
-    error: err,
-    errorCode: errCode
-})
-
-export const fetchZip = (url,subreddit) => dispatch => 
-dispatch(dynamicActionWrapper({
-    path: url,
-    method: 'GET',
-    initCb: requestZip,
-    successCb: receiveZip,
-    failureCb: receiveZipError,
-    subreddit,
-    wrapperActionType: 'FETCH_ZIP',
-    redirect: 'follow'
-}));
+export const fetchZip = (url,subreddit) => dispatch => {
+    return new Promise((resolve, reject) => {
+    dispatch(dynamicActionWrapper({
+        path: url,
+        method: 'GET',
+        initCb: requestZip,
+        successCb: receiveZip,
+        failureCb: receiveZipError,
+        resolve: resolve,
+        reject: reject,
+        subreddit,
+        wrapperActionType: 'FETCH_ZIP',
+        redirect: 'follow'
+    }));
+    })
+}
