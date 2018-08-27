@@ -53,7 +53,6 @@
     "redux-form": "^7.4.2",
     "redux-form-yup": "0.0.5",
     "redux-logger": "^3.0.6",
-    "redux-pack": "^0.1.5",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
