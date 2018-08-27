@@ -59,17 +59,17 @@ const middleware = [thunk, fetchMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
   }
-//   // const persistConfig = {
-//   //   key: 'root',
-//   //   storage,
-//   //   stateReconciler: hardSet,
-//   //   blacklist: ['batchReducer.plantsDetails.plants'],
-//   };
-//  const persistedReducer = persistReducer(persistConfig, reducer);
+  const persistConfig = {
+    key: 'root',
+    storage,
+    stateReconciler: hardSet,
+    blacklist: ['bankDetailsData']
+  };
+ const persistedReducer = persistReducer(persistConfig, reducer);
 
   export const store = createStore(
     // reducer,
-    reducer,
+    persistedReducer,
     applyMiddleware(...middleware),
   
   );
@@ -86,6 +86,7 @@ const RouterWithMainLayout=({ layout, component, ...rest })=> {
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
 <Provider store={store}>
+<PersistGate loading={null} persistor={persistor}>
 <BrowserRouter>
 <Switch>
 
@@ -113,6 +114,7 @@ ReactDOM.render(
 </Switch>
 
 </BrowserRouter>
+</PersistGate>
 </Provider>
 </MuiThemeProvider>
 , document.getElementById('root'));
