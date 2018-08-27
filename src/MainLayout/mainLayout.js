@@ -58,7 +58,7 @@ handleOpen=()=>
             
             </div>
 
-              <NavBar/>
+              {/* <NavBar/> */}
               {this.props.message && <Snackbar
           anchorOrigin={{
             vertical: 'bottom',

@@ -49,9 +49,9 @@ class Login extends Component
       {
         localStorage.setItem('id',data.data.content._id)
          if(menulength>0)
-         this.props.history.push('/companyProfile')
+         this.props.history.push('/customer/companyProfile')
          else
-         this.props.history.push('/customerProfile')
+         this.props.history.push('/customer/customerProfile')
  
       })
      

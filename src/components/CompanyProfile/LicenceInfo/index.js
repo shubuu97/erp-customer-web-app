@@ -4,12 +4,12 @@ import React, { Component } from 'react';
 import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem'
-let prop = {};
-prop.licenseType = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
-prop.category = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
-prop.country = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
-prop.state = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
-prop.city = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
+let props = {};
+props.licenseType = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
+props.category = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
+props.country = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
+props.state = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
+props.city = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 
 
 let emailField = (props) => {
