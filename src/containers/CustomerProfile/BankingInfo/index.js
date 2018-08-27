@@ -11,6 +11,7 @@ import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 import withLoader from '../../../components/LoaderHoc';
 import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+import {showMessage} from '../../../action/common';
 class CustomerBankingDetails extends Component
 {
     // componentDidMount()
@@ -26,7 +27,23 @@ class CustomerBankingDetails extends Component
         ...values,
         customerId:"5b7530f8a3b7320018ee14b7"
     }
-     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/customer/bankingdetails`));
+     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/customer/bankingdetails`)).then((data)=>{
+        console.log("Data for company register", data);
+        if(data.message) {
+          this.props.dispatch(showMessage(data.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      }, (err)=>{
+        console.log("Error in company register", err);
+        if(err.message) {
+          this.props.dispatch(showMessage(err.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      });
   
     }
     render()

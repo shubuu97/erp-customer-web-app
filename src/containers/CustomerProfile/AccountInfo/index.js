@@ -13,6 +13,7 @@ import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
 import Button  from '@material-ui/core/Button';
 import withLoader from '../../../components/LoaderHoc';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+import {showMessage} from '../../../action/common';
 
 
 class CustomerInfo extends Component
@@ -26,7 +27,23 @@ class CustomerInfo extends Component
         basicInfo:values,
         _id:localStorage.getItem('id')
     }
-     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`));
+     this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`)).then((data)=>{
+        console.log("Data for company register", data);
+        if(data.message) {
+          this.props.dispatch(showMessage(data.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      }, (err)=>{
+        console.log("Error in company register", err);
+        if(err.message) {
+          this.props.dispatch(showMessage(err.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      });
   
     }
     // componentDidMount()

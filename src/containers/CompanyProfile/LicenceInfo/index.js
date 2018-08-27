@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
-
+import {showMessage} from '../../../action/common';
 
 
 class LicenseInfo extends Component
@@ -29,7 +29,23 @@ class LicenseInfo extends Component
         ...values,
         businessCustomerId:localStorage.getItem('id')
     }
-     this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`));
+     this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`)).then((data)=>{
+        console.log("Data for company register", data);
+        if(data.message) {
+          this.props.dispatch(showMessage(data.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      }, (err)=>{
+        console.log("Error in company register", err);
+        if(err.message) {
+          this.props.dispatch(showMessage(err.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      });
   
     }
     render()
