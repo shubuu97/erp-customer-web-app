@@ -9,8 +9,10 @@ import asyncValidate from './validate.js';
 import logologin from '../../../assets/images/logo-main.png';
 import withMessage from '../../../components/messageHoc/index';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+import {showMessage} from '../../../action/common';
 
 class CompanyRegistration extends PureComponent {
+
   submit = (formData) => {
     let postData = {};
     postData.basicInfo = {};
@@ -22,7 +24,23 @@ class CompanyRegistration extends PureComponent {
     postData.basicInfo.companyName = formData.companyName;
 
 
-    this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`))
+    this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`)).then((data)=>{
+      console.log("Data for company register", data);
+      if(data.message) {
+        this.props.dispatch(showMessage(data.message));
+        setTimeout(()=>{
+          this.props.dispatch(showMessage(''));
+        },6000);
+      }
+    }, (err)=>{
+      console.log("Error in company register", err);
+      if(err.message) {
+        this.props.dispatch(showMessage(err.message));
+        setTimeout(()=>{
+          this.props.dispatch(showMessage(''));
+        },6000);
+      }
+    })
 
 
 

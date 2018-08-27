@@ -4,7 +4,6 @@ import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
 import { generateV1uuid } from '../utills/helper';
-import {setErrorMessage} from '../action/basicInfoActions';
 let authToken = `Bearer ${localStorage.getItem("authToken")}`
 
 //import { onLogout } from '../actions/userRoles';
@@ -79,7 +78,6 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
   )
     .then(responseData => {
       console.log("========", responseData.data)
-      dispatch(setErrorMessage('this is error'));
       dispatch(successHandler(subreddit, responseData.data, id, resolve))})
     .catch(error => dispatch(failureHandler(subreddit, error, 500, reject)));
 };
