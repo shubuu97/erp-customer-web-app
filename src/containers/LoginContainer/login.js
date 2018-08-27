@@ -31,9 +31,13 @@ class Login extends Component
 {
   loginSubmitHandler=(values)=>
   {
-
-   this.props.dispatch(postLogin(values,'',`${APPLICATION_BFF_URL}/iam/user/login`))
-
+    // var temp = postLogin(values,'',`${APPLICATION_BFF_URL}/iam/user/login`);
+    // console.log("temp test", temp);
+   var temp2 = this.props.dispatch(postLogin(values,'',`${APPLICATION_BFF_URL}/iam/user/login`)).then((data)=>{
+     console.log("deeeeee", data);
+   }, (err)=>{
+    console.log(err);
+   })
   }
   componentDidUpdate(prevProps)
     {

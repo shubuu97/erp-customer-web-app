@@ -53,6 +53,8 @@ const axiosMiddleware = store => next => (action) => {
 
   const headers = config.headers && { ...config.headers } || {};
   const successHandler = config.success;
+  const resolve = config.resolve;
+  const reject = config.reject;
   const failureHandler = config.failure || function (subreddit, error, errCode) {
     return {
       type: 'DUMMY_ERROR', subreddit, error, errCode,
@@ -78,8 +80,8 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
     .then(responseData => {
       console.log("========", responseData.data)
       dispatch(setErrorMessage('this is error'));
-      dispatch(successHandler(subreddit, responseData.data, id, action.successCbPassOnParams))})
-    .catch(error => dispatch(failureHandler(subreddit, error, 500)));
+      dispatch(successHandler(subreddit, responseData.data, id, resolve))})
+    .catch(error => dispatch(failureHandler(subreddit, error, 500, reject)));
 };
 
 export default axiosMiddleware;

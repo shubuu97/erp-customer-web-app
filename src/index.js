@@ -61,17 +61,17 @@ const middleware = [thunk, fetchMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
   }
-//   // const persistConfig = {
-//   //   key: 'root',
-//   //   storage,
-//   //   stateReconciler: hardSet,
-//   //   blacklist: ['batchReducer.plantsDetails.plants'],
-//   };
-//  const persistedReducer = persistReducer(persistConfig, reducer);
+  const persistConfig = {
+    key: 'root',
+    storage,
+    stateReconciler: hardSet,
+    blacklist: ['bankDetailsData']
+  };
+ const persistedReducer = persistReducer(persistConfig, reducer);
 
   export const store = createStore(
     // reducer,
-    reducer,
+    persistedReducer,
     applyMiddleware(...middleware),
   
   );
@@ -88,6 +88,7 @@ const RouterWithMainLayout=({ layout, component, ...rest })=> {
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
 <Provider store={store}>
+<PersistGate loading={null} persistor={persistor}>
 <BrowserRouter>
 <Switch>
 
@@ -111,13 +112,14 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
-<Route path="/productList" component = {productList}/>
+<Route path="/customer/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>
 <Route path="/cart" component = {Cart} />
 </div>
 </Switch>
 
 </BrowserRouter>
+</PersistGate>
 </Provider>
 </MuiThemeProvider>
 , document.getElementById('root'));
