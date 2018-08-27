@@ -5,7 +5,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
 import { generateV1uuid } from '../utills/helper';
 import {setErrorMessage} from '../action/basicInfoActions';
-let authToken = `Bearer ${localStorage.getItem("authToken")}`
+//import actionInterception from './actionInterception';
 
 //import { onLogout } from '../actions/userRoles';
 
@@ -31,16 +31,14 @@ const httpVerbs = {
 };
 
 const axiosMiddleware = store => next => (action) => {
+  let authToken = `Bearer ${localStorage.getItem("authToken")}`;
   if (!action || !action.fetchConfig) {
-   if(action.type=="@@redux-form/BLUR")
-   {
-     if(action.meta.form="CustomerRegistration"&&action.meta.field=="zipCode")
-     {
-      store.dispatch(fetchZip(`${APPLICATION_BFF_URL}/zipcode/${action.payload}`))
-     }
+  //actionInterception(next,action,store)
+  return next(action)
    }
-    return next(action);
-  }
+   
+  
+  
   const { dispatch } = store;
   const { fetchConfig: config, subreddit, id } = action;
   // @todo multiple params

@@ -8,21 +8,30 @@ export const requestBasicInfoData = subreddit => ({
     subreddit
 })
 
-export const receiveBasicInfoData = (subreddit, json) => ({
+export const receiveBasicInfoData = (subreddit, json,id,resolve) => 
+{
+resolve(json)
+return{
     type: BASICINFO_CONSTANTS.RECEIVED_BASICINFO_DATA,
     subreddit,
     data: json,
     receivedAt: Date.now()
-});
-
-const receiveBasicInfoDataError = (subreddit,err,errCode) => ({
+};
+}
+const receiveBasicInfoDataError = (subreddit,err,errCode,reject) =>
+{
+reject(err)
+return{
     type:BASICINFO_CONSTANTS.RECEIVED_BASICINFO_DATA_ERROR,
     subreddit,
     error: err,
     errorCode: errCode
-})
-
-export const postBasicInfoData = (data,subreddit,url) => dispatch => 
+}
+}
+export const postBasicInfoData = (data,subreddit,url) => dispatch =>
+{
+return new Promise((resolve,reject)=>
+{
 dispatch(dynamicActionWrapper({
     path: url,
     method: 'post',
@@ -32,8 +41,12 @@ dispatch(dynamicActionWrapper({
     failureCb: receiveBasicInfoDataError,
     subreddit,
     wrapperActionType: 'FETCH_CUSTOMER_SEARCH_RESULT_WRAPPER',
-    redirect: 'follow'
-}));
+    redirect: 'follow',
+    resolve,
+    reject
+}))
+});
+}
 
 export const setErrorMessage = (message) => dispatch => {
     dispatch({

@@ -5,19 +5,18 @@ import TextField from '@material-ui/core/TextField';
 import SelectField from '@material-ui/core/Select';
 
 
-const TextFieldInput = ({
-    input,
-    label,
-    meta: { touched, error },
-    ...custom
-  }) =>
+const TextFieldInput = (props) =>
+   
   { 
+    console.log(props,"prop of input")
+    
+    let  {input,label,meta:{touched,error,pristine},...custom} = props;
     return(
   
     <TextField
       label={label}
       placeholder={label}
-      error = {error?true:false}
+      error = {touched&&error?true:false}
       {...input}
       {...custom}
     />

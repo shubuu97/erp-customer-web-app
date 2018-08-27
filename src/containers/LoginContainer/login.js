@@ -13,7 +13,8 @@ import logologin from '../../assets/images/logo-main.png';
 import companyIcon from '../../assets/images/company-icon.png';
 import customerIcon from '../../assets/images/customer-icon.png';
 import {connect} from 'react-redux';
-import {APPLICATION_BFF_URL} from '../../constants/urlConstants'
+import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
+import {postBasicInfoData} from '../../action/basicInfoActions'
 
 
 const styles = theme => ({
@@ -29,12 +30,31 @@ const styles = theme => ({
 
 class Login extends Component
 {
-  loginSubmitHandler=(values)=>
+ 
+  componentWillMount()
+  {
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('id')
+  }
+  loginSubmitHandler=  (values)=>
   {
     // var temp = postLogin(values,'',`${APPLICATION_BFF_URL}/iam/user/login`);
     // console.log("temp test", temp);
    var temp2 = this.props.dispatch(postLogin(values,'',`${APPLICATION_BFF_URL}/iam/user/login`)).then((data)=>{
-     localStorage.setItem('authToken',data.authToken);
+    console.log(data,"data is here")
+    let menulength = data.data.menu.length;
+     localStorage.setItem('authToken',data.data.authToken);
+      this.props.dispatch(postBasicInfoData({email: values.email},'',`${APPLICATION_BFF_URL}/user/logindata`))
+      .then((data)=>
+      {
+        localStorage.setItem('id',data.data.content._id)
+         if(menulength>0)
+         this.props.history.push('/companyProfile')
+         else
+         this.props.history.push('/customerProfile')
+ 
+      })
+     
      
    }, (err)=>{
     console.log(err);

@@ -34,7 +34,8 @@ import './assets/stylesheets/main.css';
 import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
 import MainLayout from './MainLayout/mainLayout'
 import purple from '@material-ui/core/colors/purple';
-import CheckOut from './containers/Products/CheckOut/index'
+import CheckOut from './containers/Products/CheckOut/index';
+import SignUp from './containers/Register/SignUpTabs'
 
 const theme = createMuiTheme({
   palette: {
@@ -90,7 +91,7 @@ ReactDOM.render(
 <BrowserRouter>
 <Switch>
 
-<Route exact path="/customer" component={Login}/>
+<Route exact path="/" component={Login}/>
 <Route exact path="/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customerRegister" component={CustomerRegister}/>
 
@@ -104,12 +105,13 @@ ReactDOM.render(
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
-<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyProfile" component = {CompanyProfile}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
 <Route path="/customer/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>
 <Route path="/cart" component = {Cart} />
+<Route path="/signup" component={SignUp}/>
 <Route exact path= "/checkout" component={CheckOut}/>
 </div>
 </Switch>

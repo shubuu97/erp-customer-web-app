@@ -66,19 +66,19 @@ class BankingInfo  extends Component {
             
              return (
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                 <Field options={prop[info.name]}  name={info.name} placeholder={info.label} component={info.component}>
+                 <Field {...this.props} options={prop[info.name]}  name={info.name} placeholder={info.label} component={info.component}>
 
                  </Field>
                 </div>
              )
             }
             return (<div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name={info.name} label={info.label} component={info.component} />
+                        <Field {...this.props} name={info.name} label={info.label} component={info.component} />
                     </div>)
          })
          }
             <header className="box-heading2 col-sm-12">Bank Details</header>
-            <FieldArray name='bankDetails' component={BankDetailComponent}/>
+            <FieldArray {...this.props} name='bankDetails' component={BankDetailComponent}/>
                 {/* {BankDetailFields.map((info) => {
                     return (
                         <div className="form-d col-md-4 col-sm-6 form-input">
