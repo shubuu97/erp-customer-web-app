@@ -93,8 +93,8 @@ ReactDOM.render(
 <Switch>
 
 <Route exact path="/customer" component={Login}/>
-<Route exact path="/companyRegister" component={CompanyRegister}/>
-<Route exact path="/customerRegister" component={CustomerRegister}/>
+<Route exact path="/customer/companyRegister" component={CompanyRegister}/>
+<Route exact path="/customer/customerRegister" component={CustomerRegister}/>
 
 <div className="right-content">
 <Route exact path="/app" component={App} />
@@ -109,12 +109,12 @@ ReactDOM.render(
 <Route exact path='/approval' component={AfterApproval}/>
 <Route exact path='/register' component={AfterRegister}/>
 
-<RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
-<RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyProfile" component = {CompanyProfile}/>
+<RouterWithMainLayout layout={MainLayout} path="/customer/customerProfile" component = {CustomerProfile}/>
 
 <Route path="/customer/productList" component = {productList}/>
-<Route path="/productDetail" component = {productDetails}/>
-<Route path="/cart" component = {Cart} />
+<Route path="/customer/productDetail" component = {productDetails}/>
+<Route path="/customer/cart" component = {Cart} />
 </div>
 </Switch>
 
