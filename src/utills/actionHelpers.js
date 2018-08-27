@@ -21,6 +21,8 @@ const dynamicActionWrapper = ({
     keepalive,
     signal,
     successCbPassOnParams,
+    resolve,
+    reject,
   }) => ({
     type: wrapperActionType,
     subreddit,
@@ -36,6 +38,8 @@ const dynamicActionWrapper = ({
       initHandler: initCb,
       success: successCb,
       failure: failureCb,
+      resolve,
+      reject,
       passOnParams: {
         mode,
         redirect,
