@@ -93,7 +93,7 @@ ReactDOM.render(
 <Switch>
 
 <Route exact path="/customer" component={Login}/>
-<Route exact path="/customer/companyRegister" component={CompanyRegister}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customer/customerRegister" component={CustomerRegister}/>
 
 <div className="right-content">

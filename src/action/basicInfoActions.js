@@ -46,10 +46,3 @@ export const postBasicInfoData = (data,subreddit,url) => dispatch => {
     }));
     })
 }
-
-export const setErrorMessage = (message) => dispatch => {
-    dispatch({
-        type: BASICINFO_CONSTANTS.SET_ERROR_MESSAGE,
-        data: message
-    })
-}
