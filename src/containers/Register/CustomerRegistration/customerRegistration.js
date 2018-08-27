@@ -1,4 +1,4 @@
-import React,{PureComponent} from 'react';
+import React,{Component} from 'react';
 import CustomerRegister from '../../../components/Register/CustomerRegistration/customerRegistration.js';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
@@ -9,7 +9,7 @@ import {showMessage} from '../../../action/common';
 
 import Button from '@material-ui/core/Button'
 
-class CustomerRegistration extends PureComponent
+class CustomerRegistration extends Component
 {
   submit=(formData)=>
   {
@@ -62,7 +62,7 @@ class CustomerRegistration extends PureComponent
           <img src={logologin} />
         </div>
          <form onSubmit={handleSubmit(this.submit)}>
-           <CustomerRegister />
+           <CustomerRegister {...this.props} />
            <div className="btn-parent-full">
               <Button variant="contained" color='primary' type='submit'>Register</Button>
            </div>
@@ -75,7 +75,8 @@ class CustomerRegistration extends PureComponent
 
 
 CustomerRegistration = reduxForm(
- {form:'CustomerRegistration',
+ {
+  form:'CustomerRegistration',
  enableReinitialize:true,
  keepDirtyOnReinitialize:true
 }

@@ -8,7 +8,7 @@ class ProductDetailsContainer extends React.Component {
     const {selectedProduct} = this.props;
     console.log(selectedProduct);
     if(Object.keys(selectedProduct).length === 0) {
-      this.props.history.push('/productList')
+      this.props.history.push('/customer/productList')
     }
   }
   addToCart() {

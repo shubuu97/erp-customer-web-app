@@ -8,14 +8,15 @@ export const requestBasicInfoData = subreddit => ({
     subreddit
 })
 
-export const receiveBasicInfoData = (subreddit, json, id, resolve) => {
-    resolve(json);
-  return({
+export const receiveBasicInfoData = (subreddit, json,id,resolve) => 
+{
+resolve(json)
+return{
     type: BASICINFO_CONSTANTS.RECEIVED_BASICINFO_DATA,
     subreddit,
     data: json,
     receivedAt: Date.now()
-  });
+  }
 };
 
 export  const receiveBasicInfoDataError = (subreddit, err, errCode, reject) => {

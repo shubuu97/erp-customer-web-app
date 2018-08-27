@@ -58,7 +58,7 @@ handleOpen=()=>
             
             </div>
 
-              <NavBar/>
+              {/* <NavBar/> */}
               {this.props.message && <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -73,7 +73,7 @@ handleOpen=()=>
           message={<span id="message-id">{this.props.message}</span>}
           />}
           </div>
-          <div>
+          <div className="right-content">
 
             {this.props.children}
           </div>

@@ -4,7 +4,7 @@ html{
     font-size:62.5%;}
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: #f3f9fe;
+    background-color: #f7ffe4;
     margin:0;}
 
 .json-pretty{
@@ -429,6 +429,9 @@ textarea.form-control {
 }
 .form-btn-group {
 	text-align: right;
+	margin-bottom: 10px;
+}
+.form-btn-group-left {
 	margin-bottom: 10px;
 }
 .form-btn-group .btn {
@@ -1843,7 +1846,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 [class^="css-1aya2g8"], [class^="css-2o5izw"] {
     border: none !important;
     border-bottom: solid 1px #999 !important;
-    background: #FFF !important;
+    background: transparent !important;
     padding: 4px 0px !important;
     border-radius:0 !important;
     box-shadow:none !important;
@@ -1868,6 +1871,27 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .p-8 {
     padding-left: 8px;
     padding-right: 8px;
+}
+.form-box {
+	padding: 20px;
+	border: solid 1px #EEE;
+	background: #f7ffe4;
+	margin-bottom: 20px;
+}
+.form-box2 {
+	padding: 0 20px 20px;
+	border: solid 1px #EEE;
+	background: #FFF;
+	margin-bottom: 20px;
+}
+.box-title {
+	font-size: 20px;
+	margin-top: 0;
+	color: #0e8c4d;
+}
+.top-btn-gutter {
+	text-align: right;
+	margin-top: 10px;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
@@ -2727,4 +2751,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .cart-total-total{
     border-bottom: 2px solid #cacaca;
 }
+.MuiTab-label-477
+{font-size: 1.4em;}
 /*******************************CART PAGE CSS END**************************************************/
