@@ -54,7 +54,7 @@ import NavBar from '../containers/NavBar';
               <NavBar/>
 
           </div>
-          <div>
+          <div className="right-content">
 
             {this.props.children}
           </div>

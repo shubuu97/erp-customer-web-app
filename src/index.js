@@ -89,11 +89,11 @@ ReactDOM.render(
 <BrowserRouter>
 <Switch>
 
-<Route exact path="/customer" component={Login}/>
+<Route exact path="/" component={Login}/>
 <Route exact path="/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customerRegister" component={CustomerRegister}/>
 
-<div className="right-content">
+
 <Route exact path="/app" component={App} />
 <Route exact path ="/basicinfo" component={BasicInfoForm}/>
 <Route exact path="/AccountInfo" component={AccountInfo}/>
@@ -103,13 +103,13 @@ ReactDOM.render(
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
-<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyProfile" component = {CompanyProfile}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
-<Route path="/customer/productList" component = {productList}/>
+<Route path="/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>
 <Route path="/cart" component = {Cart} />
-</div>
+
 </Switch>
 
 </BrowserRouter>
