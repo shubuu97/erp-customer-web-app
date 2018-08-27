@@ -34,6 +34,8 @@ import './assets/stylesheets/main.css';
 import { createMuiTheme,MuiThemeProvider } from '@material-ui/core/styles';
 import MainLayout from './MainLayout/mainLayout'
 import purple from '@material-ui/core/colors/purple';
+import AfterRegister from './containers/AfterRegistration/afterRegistration';
+import AfterApproval from './containers/AfterApproval/afterApproval';
 
 const theme = createMuiTheme({
   palette: {
@@ -89,7 +91,7 @@ ReactDOM.render(
 <BrowserRouter>
 <Switch>
 
-<Route exact path="/" component={Login}/>
+<Route exact path="/customer" component={Login}/>
 <Route exact path="/companyRegister" component={CompanyRegister}/>
 <Route exact path="/customerRegister" component={CustomerRegister}/>
 
@@ -103,6 +105,9 @@ ReactDOM.render(
 <Route exact path="/CustomerInfo" component={CustomerInfo}/>
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
+<Route exact path='/approval' component={AfterApproval}/>
+<Route exact path='/register' component={AfterRegister}/>
+
 <RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
