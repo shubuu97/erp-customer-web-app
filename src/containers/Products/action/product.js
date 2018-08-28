@@ -32,8 +32,13 @@ export const fetchInventoryItemData = (url, subreddit) => dispatch =>
     redirect: 'follow'
   }));
 
-  export const setSelectedProduct = (data) => ({
+export const setSelectedProduct = (data) => ({
     type: INVENTORY_CONSTANTS.SET_SELECTED_PRODUCT,
     data: data,
+});
+
+export const addToCart = (data) => ({
+  type: INVENTORY_CONSTANTS.ADD_TO_CART,
+  data: data,
 });
 

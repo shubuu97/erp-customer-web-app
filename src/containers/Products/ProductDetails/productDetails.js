@@ -19,6 +19,7 @@ export default (props) => {
           <div className="namePriceDiv">
             <h3>{props.detail.itemInfo.itemName}</h3>
             <h4>Item Code: {props.detail.itemInfo.itemNo}</h4>
+            <h4>Unit Count: {props.detail.itemInfo.unitCount}</h4>
             <h3>{props.detail.itemInfo.currency.code} {props.detail.itemInfo.price}</h3>
             <p>{props.detail.itemInfo.itemDesc}
             </p>
