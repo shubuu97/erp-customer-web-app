@@ -5,10 +5,49 @@ import CartProductList from './ProductsInCart';
 import CartTotal from './CartTotal';
 
 class CartContainer extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      cartProducts: []
+    }
+  }
+  componentDidMount() {
+    this.productDataList = [{
+      id: "1",
+      itemCode: "ASD",
+      price: 56,
+      description: "This is a hot case",
+      name: "hot1",
+      quantity: 1,
+      image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
+    },
+    {
+      id: "2",
+      itemCode: "PUO",
+      price: 687,
+      description: "This is another one",
+      name: "TOp2",
+      quantity: 1,
+      image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
+    },
+    {
+      id: "3",
+      itemCode: "UOUO",
+      price: 989,
+      description: "This is is kijek theresd",
+      name: "hot cokkoi",
+      quantity: 1,
+      image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
+    }];
+    this.setState({cartProducts: this.productDataList},()=>{
+      
+    });
+  }
   productDetails(item) {
     console.log("item is", item);
   }
   render() {
+    const {cartProducts} = this.state;
     const productDataList = [{
       id: "1",
       itemCode: "ASD",

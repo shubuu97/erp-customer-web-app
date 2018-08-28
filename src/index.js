@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import {BrowserRouter,Route,Switch,Link} from 'react-router-dom';
+import {HashRouter,Route,Switch,Link} from 'react-router-dom';
 import {createLogger} from 'redux-logger';
 import {createStore,applyMiddleware} from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -91,12 +91,12 @@ ReactDOM.render(
   <MuiThemeProvider theme={theme}>
 <Provider store={store}>
 <PersistGate loading={null} persistor={persistor}>
-<BrowserRouter>
+<HashRouter>
 <Switch>
 
-<Route exact path="/customer" component={Login}/>
-<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyRegister" component={CompanyRegister}/>
-<Route exact path="/customer/customerRegister" component={CustomerRegister}/>
+<Route exact path="/" component={Login}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/companyRegister" component={CompanyRegister}/>
+<Route exact path="/customerRegister" component={CustomerRegister}/>
 
 
 <Route exact path="/app" component={App} />
@@ -111,15 +111,15 @@ ReactDOM.render(
 <Route exact path='/approval' component={AfterApproval}/>
 <Route exact path='/register' component={AfterRegister}/>
 
-<RouterWithMainLayout layout={MainLayout} exact path="/customer/companyProfile" component = {CompanyProfile}/>
-<RouterWithMainLayout layout={MainLayout} path="/customer/customerProfile" component = {CustomerProfile}/>
+<RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
+<RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
-<Route path="/customer/productList" component = {productList}/>
-<Route path="/customer/productDetail" component = {productDetails}/>
-<Route path="/customer/cart" component = {Cart} />
+<RouterWithMainLayout layout={MainLayout} path="/productList" component = {productList}/>
+<Route path="/productDetail" component = {productDetails}/>
+<Route path="/cart" component = {Cart} />
 </Switch>
 
-</BrowserRouter>
+</HashRouter>
 </PersistGate>
 </Provider>
 </MuiThemeProvider>
