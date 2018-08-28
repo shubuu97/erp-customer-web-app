@@ -10,7 +10,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 // import 'react-s-alert/dist/s-alert-default.css';
 // import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 // import Link from 'react-router-dom/Link';
-// import logo from './assets/images/aobLogo.png';
+ import logo from './../assets/images/logo-main.png';
 
 
  class MainLayout extends Component {
@@ -46,19 +46,20 @@ import Snackbar from '@material-ui/core/Snackbar';
 handleOpen=()=>
         {
             return true;
-        }
+        };
+      
   render() {
-    console.log('this is message', this.props.message);
+    console.log('this is props', this.props);
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
         <div className="content">
-          <div className="col-sm-3 col-md-2">
-            <div className="row visible-xs">
-            
+          <div className="col-sm-12 app-header">
+            <div className="header-top">
+              <img className="main-logo" src={logo} />
             </div>
 
-              {/* <NavBar/> */}
+              <NavBar/>
               {this.props.message && <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -91,8 +92,8 @@ const mapStateToProps = state => {
   console.log(state,"state is hre")
   let message = state.commonData.message;
   let isLoading = state.registerReducer.isFetching;
-  let basicInfo  = state.basicInfo&& state.basicInfoData.basicInfoData
-  return {message, isLoading}
+  let customerStatus  = state.basicInfodata&& state.basicInfodata.customerStatus
+  return {message, isLoading,customerStatus}
 }
 
 export default connect(mapStateToProps)(MainLayout)

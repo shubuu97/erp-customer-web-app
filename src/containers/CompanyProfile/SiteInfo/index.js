@@ -54,7 +54,9 @@ class SiteInfo extends Component
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <SiteInfoComponent/>
-            <Button variant="contained" type='submit' color='primary'>Save</Button>
+                <div className="form-btn-group 2"> 
+                    <Button variant="contained" type='submit' color='primary'>Save</Button>
+                </div>
             </form>
             </div>
         )
