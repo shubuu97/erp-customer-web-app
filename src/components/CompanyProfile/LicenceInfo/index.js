@@ -93,7 +93,6 @@ class LicenceInfo extends Component {
                                 <Field name={'licenseNumber'} label={'License Number'} component={TextFieldInput} />
                             </div>
                         </div>
-                    </FormSection>
                     
                     <FormSection name="companyAddressInfo">
                         <div className="row">
@@ -160,7 +159,7 @@ class LicenceInfo extends Component {
                 
                     <FieldArray name="emailAddresses" component={emailField} />
                       
-                    
+                    </FormSection>
 
 
                 </div>

@@ -68,7 +68,7 @@ class LicenseInfo extends Component
 
 LicenseInfo = reduxForm({
     form:'LicenseInfo',
-    asyncValidate
+    asyncValidate:asyncValidate
 
     
 
