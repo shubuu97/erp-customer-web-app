@@ -10,7 +10,7 @@ class AfterApproval extends Component {
             <div>{line1}</div>
             <div>{line2}</div>
             <div>{line3}</div>
-            <Button variant="contained" color='primary'>Back</Button>
+            <Button variant="contained" color='primary'>Go Back to Profile</Button>
         </div>
         )
     }
