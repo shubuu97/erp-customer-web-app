@@ -1989,7 +1989,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	height: 40px;
 }
 [class^="CompanyProfileTab-root-"], [class^="MuiTypography-body1-"] {
-	background-color: #f7ffe4 !important;
+	/* background-color: #f7ffe4 !important; */
 }
 [class^="MuiTab-root-"], [class^="MuiTab-label-"]{
     font-size:1.4rem !important;
