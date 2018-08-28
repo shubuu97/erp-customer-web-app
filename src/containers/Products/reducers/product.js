@@ -7,6 +7,7 @@ const inventoryItemData = (state = {
   didInvalidate: false,
   inventoryItemList: [],
   selectedProduct: {},
+  cartProductList: []
 }, action) => {
   console.log(action)
   switch (action.type) {
@@ -37,7 +38,11 @@ const inventoryItemData = (state = {
         type: action.type,
         selectedProduct: action.data
       })
-
+    case INVENTORY_CONSTANTS.ADD_TO_CART:
+      return Object.assign({}, state, {
+        type: action.type,
+        cartProductList: action.data
+      })
     default:
       return state
   }

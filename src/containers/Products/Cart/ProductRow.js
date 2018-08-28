@@ -4,7 +4,7 @@ export default (props) => {
   return (
     <div className="row-container">
       <div className="row-product">
-        <i class="fa fa-times-circle"></i>
+        <i className="fa fa-times-circle" onClick={()=>props.remove(props.id)}></i>
         <img className="row-product-img" src={props.image} alt={props.name} />
         <div className="row-name-code">
           <h4>{props.name}</h4>

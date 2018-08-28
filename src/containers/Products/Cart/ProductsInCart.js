@@ -19,36 +19,38 @@ class ProductsInCart extends React.Component {
   }
   updateQuantity(productId, type) {
     const {productsData} = this.state;
-    let productIndex = findIndex(productsData, {id:productId});
+    let productIndex = findIndex(productsData, {itemId:productId});
     console.log(productIndex);
     let productList = productsData;
     let productLocal = productList[productIndex];
     if(type === 'add') {
-      productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 1;
+      productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
     } else if(type === 'sub') {
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
     }
-    productLocal.total = productLocal.quantity * productLocal.price;
+    productLocal.total = productLocal.quantity * productLocal.itemInfo.price;
     productList[productIndex] = productLocal;
     this.setState({productsData: productList});
+    this.props.updateProductList(productList);
   }
   render() {
-    const {productsList, onProductClick} = this.props;
+    const {productsList, removeProduct} = this.props;
     const {productsData} = this.state;
     const products = Array.isArray(productsData) && productsData.length &&
     productsData.map(product =>
       <ProductRow
-        key={product.id}
-        code={product.itemCode}
-        price={product.price}
+        key={product.itemId}
+        code={product.itemInfo.itemNo}
+        price={product.itemInfo.price}
         total={product.total}
-        description={product.description}
-        quantity={product.quantity}
-        name={product.name}
-        image={product.image}
-        id={product.id}
+        description={product.itemInfo.itemShortDesc}
+        quantity={product.quantity || 1}
+        name={product.itemInfo.itemName}
+        image={(product.itemInfo.images && product.itemInfo.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
+        id={product.itemId}
         updateQuantity={this.updateQuantity}
         detail={product}
+        remove={removeProduct}
       />);
   return (
     <div className="cart-table">

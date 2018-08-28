@@ -7,16 +7,16 @@ export default (props) => {
         CART TOTALS
     </div>
     <div className="cart-total-subtotal cart-item">
-        SUBTOTAL  <span>USD 56</span>
+        SUBTOTAL  <span>USD {props.details.subTotal}</span>
     </div>
     <div className="cart-total-shipping cart-item">
-        SHIPPING <span>USD 7</span>
+        SHIPPING <span>USD {props.details.shipping}</span>
     </div>
     <div className="cart-total-tax cart-item">
-        TAX <span>USD 9</span>
+        TAX <span>USD {props.details.tax}</span>
     </div>
     <div className="cart-total-total cart-item">
-        TOTAL <span>USD 80</span>
+        TOTAL <span>USD {props.details.total}</span>
     </div>
    </div>
   )
