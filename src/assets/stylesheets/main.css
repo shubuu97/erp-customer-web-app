@@ -2697,6 +2697,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     display: flex;
     justify-content: space-between;
     min-width: 200px;
+    align-items: center;
+}
+.row-product i {
+    font-size: 2em;
 }
 .row-product-img{
     width: 80px;

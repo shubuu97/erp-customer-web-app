@@ -5,11 +5,14 @@ import CartProductList from './ProductsInCart';
 import CartTotal from './CartTotal';
 
 class CartContainer extends React.Component {
-  productDetails(item) {
-    console.log("item is", item);
+  constructor (props) {
+    super(props);
+    this.state = {
+      cartProducts: []
+    }
   }
-  render() {
-    const productDataList = [{
+  componentDidMount() {
+    this.productDataList = [{
       id: "1",
       itemCode: "ASD",
       price: 56,
@@ -36,9 +39,18 @@ class CartContainer extends React.Component {
       quantity: 1,
       image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
     }];
+    this.setState({cartProducts: this.productDataList},()=>{
+      
+    });
+  }
+  productDetails(item) {
+    console.log("item is", item);
+  }
+  render() {
+    const {cartProducts} = this.state;
     return (
       <div className="cart-container">
-        <CartProductList productsList={productDataList}/>
+        <CartProductList productsList={cartProducts}/>
         <CartTotal />
       </div>
     )
