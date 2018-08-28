@@ -6,7 +6,7 @@ const routerDeciderHoc = (WrappedComponent) => {
     return class Enhancer extends WrappedComponent {
       
         render() {
-        
+        debugger;
             console.log(this.props,'props is here')
             localStorage.setItem('id',this.props.id)
 
