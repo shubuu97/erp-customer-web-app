@@ -46,7 +46,9 @@ class AccountInfo extends Component
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <CompanyRegistration/>
-            <Button variant="contained" type='submit' color='primary'>Save</Button>
+            <div className="form-btn-group">
+              <Button variant="contained" type='submit' color='primary'>Save</Button>
+            </div>
             </form>
             </div>
         )
