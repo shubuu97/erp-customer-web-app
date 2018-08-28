@@ -14,7 +14,8 @@ import companyIcon from '../../assets/images/company-icon.png';
 import customerIcon from '../../assets/images/customer-icon.png';
 import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
-import {postBasicInfoData} from '../../action/basicInfoActions'
+import {postBasicInfoData} from '../../action/basicInfoActions';
+import {postRegisterTokenData} from '../../action/registerSignUpToken';
 
 
 const styles = theme => ({
@@ -60,6 +61,8 @@ class Login extends Component
     console.log(err);
    })
   }
+
+  
   // componentDidUpdate(prevProps)
   //   {
   //   if(this.props.lookUpData&& this.props.lookUpData.data&&this.props.lookUpData.data.authToken)
@@ -82,6 +85,18 @@ class Login extends Component
   //   }
   //   }
   //   }
+  getSignUpToken(type) {
+    var temp2 = this.props.dispatch(postRegisterTokenData({roleName: type},'',`${APPLICATION_BFF_URL}/iam/signup/token`)).then((data)=>{
+      localStorage.setItem('authToken', data.data.authToken);
+      if(type === 'customer') {
+        this.props.history.push('/customerRegister')
+      } else {
+        this.props.history.push('/companyRegister');
+      }
+    }, (err)=>{
+      console.log(err);
+    });
+  }
  render()
  {
    const {classes,theme} = this.props;
@@ -100,8 +115,8 @@ class Login extends Component
             </div>
           </form>      
           <div className="login-btn"> 
-              <Button className={classes.button} type={'submit'} onClick={()=>{this.props.history.push('/companyRegister')}}><img src={companyIcon} />Company Sign Up</Button>
-              <Button className={classes.button}  type={'submit'} onClick={()=>{this.props.history.push('/customerRegister')}}><img src={customerIcon} />Customer Sign Up</Button>
+              <Button className={classes.button} type={'submit'} onClick={()=>{this.getSignUpToken('Business Customer')}}><img src={companyIcon} />Company Sign Up</Button>
+              <Button className={classes.button}  type={'submit'} onClick={()=>{this.getSignUpToken('Customer')}}><img src={customerIcon} />Customer Sign Up</Button>
           </div>
         </div>
       </div>
