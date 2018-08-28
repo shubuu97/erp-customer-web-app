@@ -24,7 +24,7 @@ const AddressInfo = (props) => {
         <div className="col-sm-12">
             
             {fields.map((Address, index) => (
-            
+                <div className="form-box2">
                 <div className="row d-flex">
                 {AddressInfoFields.map((info) => {
 
@@ -46,7 +46,7 @@ const AddressInfo = (props) => {
 
                 }
               {fields.length!=1&&<div className="col-md-4 col-sm-6"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
-                </div>))}
+                </div></div>))}
                 <div className="form-btn-group">
                     <Button onClick={() => fields.push()} variant="contained" color='primary'>Add New</Button>
                 </div>
@@ -56,8 +56,11 @@ const AddressInfo = (props) => {
 export default (props) => {
 
     return (
+        <div className="row">
+        <div className="col-sm-12">
+        <div className="form-box">
         <div className="row d-flex">
-            <header className="box-heading2 col-sm-12">Basic Info</header>
+            <h2 className="box-title col-sm-12">Basic Info</h2>
             {BasicInfoFields.map((info) => {
                 return (
                     <div className="col-md-4 col-sm-6 form-d form-input" >
@@ -75,10 +78,17 @@ export default (props) => {
             }
             )}
             
-            <header className="box-heading2 col-sm-12">Address Details</header>
+                        
+            <h2 className="box-title col-sm-12">Address Details</h2>
             
                 <FieldArray name="addressInfo" component={AddressInfo} />
             
+            
+            
+
+        </div>
+        </div>
+        </div>
         </div>
     )
 }

@@ -61,7 +61,9 @@ class CustomerInfo extends Component
                 
                 <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
                <AccountInfo/>
-               <Button type='submit' variant="contained" color='primary'   label="Submit">Save </Button>
+                <div className="form-btn-group">
+                  <Button type='submit' variant="contained" color='primary'   label="Submit">Save </Button>
+                </div>
                </form>
             </div>
         )

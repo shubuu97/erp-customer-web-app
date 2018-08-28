@@ -21,7 +21,7 @@ let BankDetailComponent = (props)=>
         <div className="col-sm-12">
             
             {fields.map((bankDetails, index) => (
-            
+            <div className="form-box2">
                 <div className="row d-flex">
                 
                 {BankDetailFields.map((info) => {
@@ -43,7 +43,7 @@ let BankDetailComponent = (props)=>
 
                 }
               {fields.length!=1&&<div className="col-md-4 col-sm-6"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
-                </div>))}
+                </div></div>))}
                 <div className="form-btn-group"><Button variant="contained" color='primary' primary={true} onClick={() => fields.push()}>Add New</Button></div>
         </div>
     )
@@ -51,9 +51,12 @@ let BankDetailComponent = (props)=>
 
 class CustomerBankingInfo extends Component {
         render() {
-            return (<div className="row d-flex">
-                <header className="col-sm-12 box-heading2">Customer Banking Details</header>
+            return (
+            <div className="row d-flex">
+                <h2 className="col-sm-12 box-title">Customer Banking Details</h2>
                 <FormSection name='bankingDetailInfo'> 
+                <div className="col-sm-12">
+                <div className="row d-flex">
                 { CustomerBankDetails.map((info)=>
          {
              
@@ -73,7 +76,11 @@ class CustomerBankingInfo extends Component {
             )
          })
          }
-                <header className="box-heading2 col-sm-12">Bank Details</header>
+         </div>
+         </div>
+            <div className="col-sm-12">
+                <h2 className="box-title ">Bank Details</h2>
+            </div>
                 <FieldArray name='bankDetails' component={BankDetailComponent}/>
                </FormSection>
             </div>
