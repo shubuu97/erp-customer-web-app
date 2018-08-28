@@ -54,8 +54,8 @@ class Login extends Component {
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
           localStorage.setItem('id', data.data.content._id)
-          if (data.message) {
-            this.setState({ message: data.message });
+          if (data.data.message) {
+            this.setState({ message: "Successful Operation" });
             setTimeout(() => {
               this.setState({ message: '' });
             }, 6000);
@@ -75,7 +75,7 @@ class Login extends Component {
   getSignUpToken(type) {
     var temp2 = this.props.dispatch(postRegisterTokenData({ roleName: type }, '', `${APPLICATION_BFF_URL}/iam/signup/token`)).then((data) => {
       localStorage.setItem('authToken', data.data.authToken);
-      if (type === 'customer') {
+      if (type === 'Customer') {
         this.props.history.push('/customerRegister')
       } else {
         this.props.history.push('/companyRegister');

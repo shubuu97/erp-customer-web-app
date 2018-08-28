@@ -31,8 +31,8 @@ class LicenseInfo extends Component
     }
      this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`)).then((data)=>{
         console.log("Data for company register", data);
-        if(data.message) {
-          this.props.dispatch(showMessage(data.message));
+        if(data.data.message) {
+          this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
