@@ -45,3 +45,7 @@ export const postLogin = (data,subreddit,url) => dispatch => {
     }));
     })
 }
+
+export const logout = (data,subreddit,url) => dispatch => {
+  dispatch({type:LOGIN_CONSTANTS.LOGOUT,payload:''})
+}
