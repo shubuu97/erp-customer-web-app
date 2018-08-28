@@ -46,9 +46,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 handleOpen=()=>
         {
             return true;
-        }
+        };
+      
   render() {
-    console.log('this is message', this.props.message);
+    console.log('this is props', this.props);
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
@@ -91,8 +92,8 @@ const mapStateToProps = state => {
   console.log(state,"state is hre")
   let message = state.commonData.message;
   let isLoading = state.registerReducer.isFetching;
-  let basicInfo  = state.basicInfo&& state.basicInfoData.basicInfoData
-  return {message, isLoading}
+  let customerStatus  = state.basicInfodata&& state.basicInfodata.customerStatus
+  return {message, isLoading,customerStatus}
 }
 
 export default connect(mapStateToProps)(MainLayout)

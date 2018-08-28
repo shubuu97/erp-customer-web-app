@@ -14,7 +14,11 @@ import companyIcon from '../../assets/images/company-icon.png';
 import customerIcon from '../../assets/images/customer-icon.png';
 import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
-import {postBasicInfoData} from '../../action/basicInfoActions'
+import {postBasicInfoData} from '../../action/basicInfoActions';
+import routeDeciderHoc from '../../components/Login/routerDecider';
+import {showMessage} from '../../action/common';
+
+
 
 
 const styles = theme => ({
@@ -48,16 +52,28 @@ class Login extends Component
       .then((data)=>
       {
         localStorage.setItem('id',data.data.content._id)
-         if(menulength>0)
-         this.props.history.push('/companyProfile')
-         else
-         this.props.history.push('/customerProfile')
+        if(data.message) {
+          this.props.dispatch(showMessage(data.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+        //  if(menulength>0)
+        //  this.props.history.push('/companyProfile')
+        //  else
+        //  this.props.history.push('/customerProfile')
  
       })
      
      
    }, (err)=>{
     console.log(err);
+    if(err.message) {
+      this.props.dispatch(showMessage(err.message));
+      setTimeout(()=>{
+        this.props.dispatch(showMessage(''));
+      },6000);
+    }
    })
   }
   // componentDidUpdate(prevProps)
@@ -121,8 +137,12 @@ function mapStateToProps(state)
 { 
   let isLoading = state.loginReducer.isFetching
   let loginData = state.loginReducer;
-  let lookUpData = state.loginReducer.lookUpData
-  return {isLoading,loginData,lookUpData}
+  let lookUpData = state.loginReducer.lookUpData;
+  let customerStatus  = state.basicInfodata&& state.basicInfodata.customerStatus
+  let role = state.basicInfodata.role;
+  let id  = state.basicInfodata.id;
+
+  return {isLoading,loginData,lookUpData,customerStatus,role,id}
 }
 
-export default connect(mapStateToProps)(withTheme()(withStyles(styles)(Login)))
+export default connect(mapStateToProps)(withTheme()(withStyles(styles)(routeDeciderHoc(Login))))

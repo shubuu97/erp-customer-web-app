@@ -13,6 +13,7 @@ export const   basicInfodata = (state = {
     type: '',
     error: '',
     isFetching: false,
+    customerStatus:'',
     didInvalidate: false,
     basicInfoData: [],
 }, action) => {
@@ -30,8 +31,11 @@ export const   basicInfodata = (state = {
                 isFetching: false,
                 type: action.type,
                 didInvalidate: false,
+                customerStatus:action.data.data.content.customerStatus||action.data.data.content.businessCustomerStatus,
                 basicInfoData: action.data &&action.data.data  &&action.data.data.content&&action.data.data.content.basicInfo,
-                lastUpdated: action.receivedAt
+                role:action.data.data.content.customerStatus?'customer':'businessCustomer',
+                lastUpdated: action.receivedAt,
+                id:action.data.data.content._id
             });
         case BASICINFO_CONSTANTS.RECEIVED_BASICINFO_DATA_ERROR:
             return Object.assign({}, state, {
