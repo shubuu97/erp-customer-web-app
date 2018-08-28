@@ -16,34 +16,34 @@ let BankDetailComponent = (props)=>
     fields.push();
     return (
         
-           <div> {fields.map((field,index)=>
+           <div> {fields.map((bank,index)=>
 
             (<div className="form-box">
             <div className="row d-flex">
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.accountName`} label='Account Name' component={TextFieldInput} />
+                <Field name={`${bank}.accountName`} label='Account Name' component={TextFieldInput} />
             </div>  
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.bankName`} label='Bank Name' component={TextFieldInput} />
+                <Field name={`${bank}.bankName`} label='Bank Name' component={TextFieldInput} />
             </div>   
            
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.branchName`} label='Bank Branch' component={TextFieldInput} />
+                <Field name={`${bank}.branchName`} label='Bank Branch' component={TextFieldInput} />
             </div>   
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.bankRoutingNumber`} label='Bank Routing No.' component={TextFieldInput} />
+                <Field name={`${bank}.bankRoutingNumber`} label='Bank Routing No.' component={TextFieldInput} />
             </div>   
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.bankAccountNumber`} label='Bank Account No.' component={TextFieldInput} />
+                <Field name={`${bank}.bankAccountNumber`} label='Bank Account No.' component={TextFieldInput} />
             </div>   
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.bankBranch`} label='Bank Branch' component={TextFieldInput} />
+                <Field name={`${bank}.bankBranch`} label='Bank Branch' component={TextFieldInput} />
             </div>   
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.bankNumber`} label='Bank Number' component={TextFieldInput} />
+                <Field name={`${bank}.bankNumber`} label='Bank Number' component={TextFieldInput} />
             </div>
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${field}.accountStatus`} label='Account Status' component={TextFieldInput} />
+                <Field name={`${bank}.accountStatus`} label='Account Status' component={TextFieldInput} />
             </div>
         
                 <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
@@ -91,7 +91,7 @@ class BankingInfo  extends Component {
                     </div>
                 </div> 
             </div>
-            </FormSection>
+            
 
             <h2 className="box-title">Bank Details</h2>    
             <div className="row">
@@ -109,7 +109,7 @@ class BankingInfo  extends Component {
                         
                 </div>
             </div>
-            
+            </FormSection>
         </div>
         )
     }

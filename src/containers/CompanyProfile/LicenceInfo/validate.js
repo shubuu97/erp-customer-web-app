@@ -29,11 +29,11 @@ var schema = yup.object().shape(
     });
 const asyncValidate = values => {
 
-
+    
     return new Promise((resolve, reject) => {
 
 
-
+        
         //Validate our form values against our schema! Also dont abort the validate early.
         schema.validate(values, { abortEarly: false })
             .then(() => {
@@ -49,10 +49,12 @@ const asyncValidate = values => {
                     })
 
                 //redux form will now understand the errors that yup has thrown
+                console.log(expand(expandObj),"errors are here")
                 reject(expand(expandObj));
             })
     });
 
 };
+
 
 export default asyncValidate;

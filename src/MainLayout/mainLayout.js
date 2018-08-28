@@ -88,8 +88,10 @@ handleOpen=()=>
 }
 
 const mapStateToProps = state => {
+  console.log(state,"state is hre")
   let message = state.commonData.message;
   let isLoading = state.registerReducer.isFetching;
+  let basicInfo  = state.basicInfo&& state.basicInfoData.basicInfoData
   return {message, isLoading}
 }
 

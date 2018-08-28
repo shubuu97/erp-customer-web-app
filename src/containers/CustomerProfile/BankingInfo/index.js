@@ -12,6 +12,7 @@ import withLoader from '../../../components/LoaderHoc';
 import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
+import {getApprovalStatus} from '../../../action/submitForApproval';
 class CustomerBankingDetails extends Component
 {
     // componentDidMount()
@@ -46,6 +47,26 @@ class CustomerBankingDetails extends Component
       });
   
     }
+    submitForApproval=()=>
+    {
+     this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
+        console.log("Data for company register", data);
+        if(true) {
+          this.props.dispatch(showMessage('Requested Sent Successfully'));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      }, (err)=>{
+        console.log("Error in company register", err);
+        if(err.message) {
+          this.props.dispatch(showMessage(err.message));
+          setTimeout(()=>{
+            this.props.dispatch(showMessage(''));
+          },6000);
+        }
+      });
+    }
     render()
     {
         const {handleSubmit} = this.props;
@@ -55,7 +76,7 @@ class CustomerBankingDetails extends Component
             <BankingInfoComponent/>
             <div className="form-btn-group">
                 <Button variant="contained" type='submit' color='primary'>Save</Button> 
-                <Button variant="contained"  color='primary' >Submit for approval</Button>
+                <Button variant="contained" onClick={this.submitForApproval}  color='primary' >Submit for approval</Button>
             </div>
             </form>
             </div>
