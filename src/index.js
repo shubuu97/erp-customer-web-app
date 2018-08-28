@@ -114,7 +114,7 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
 
-<Route path="/productList" component = {productList}/>
+<RouterWithMainLayout layout={MainLayout} path="/productList" component = {productList}/>
 <Route path="/productDetail" component = {productDetails}/>
 <Route path="/cart" component = {Cart} />
 </Switch>

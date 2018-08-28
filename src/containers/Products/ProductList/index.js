@@ -10,7 +10,7 @@ class ProductsContainer extends React.Component {
     const {dispatch} = this.props;
     console.log("item is",item);
     dispatch(setSelectedProduct(item));
-    this.props.history.push('/customer/productDetail')
+    this.props.history.push('/productDetail')
   }
   componentDidMount(){
     const {dispatch} = this.props;
