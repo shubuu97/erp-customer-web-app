@@ -30,7 +30,7 @@ export const   basicInfodata = (state = {
                 isFetching: false,
                 type: action.type,
                 didInvalidate: false,
-                basicInfoData: action.data.data.content.basicInfo,
+                basicInfoData: action.data &&action.data.data  &&action.data.data.content&&action.data.data.content.basicInfo,
                 lastUpdated: action.receivedAt
             });
         case BASICINFO_CONSTANTS.RECEIVED_BASICINFO_DATA_ERROR:
