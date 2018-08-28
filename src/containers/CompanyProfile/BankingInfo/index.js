@@ -32,8 +32,8 @@ class BankingInfo extends Component
     }
      this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails`)).then((data)=>{
         console.log("Data for company register", data);
-        if(data.message) {
-          this.props.dispatch(showMessage(data.message));
+        if(data.data.message) {
+          this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);

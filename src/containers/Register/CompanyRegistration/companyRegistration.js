@@ -25,8 +25,8 @@ class CompanyRegistration extends PureComponent {
 
     this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`)).then((data)=>{
       console.log("Data for company register", data);
-      if(data.message) {
-        this.props.dispatch(showMessage(data.message));
+      if(data.data.message) {
+        this.props.dispatch(showMessage("Successful Operation"));
         this.props.history.push('/register');
         setTimeout(()=>{
           this.props.dispatch(showMessage(''));
