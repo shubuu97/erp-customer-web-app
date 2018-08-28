@@ -11,7 +11,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 // import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 // import Link from 'react-router-dom/Link';
  import logo from './../assets/images/logo-main.png';
-
+ import {Redirect} from 'react-router-dom';
+ import {logout} from '../action/loginAction'
 
  class MainLayout extends Component {
   constructor(props) {
@@ -47,7 +48,12 @@ handleOpen=()=>
         {
             return true;
         };
-      
+        handleLogOut=()=>
+        {
+          this.props.dispatch(logout());
+          localStorage.clear();
+          this.props.history.push('/')
+        }
   render() {
     console.log('this is props', this.props);
     return (
@@ -57,6 +63,11 @@ handleOpen=()=>
           <div className="col-sm-12 app-header">
             <div className="header-top">
               <img className="main-logo" src={logo} />
+              
+              <span className="pull-right" style={{cursor:'pointer'}} onClick={this.handleLogOut}>Logout</span>
+           <div onClick={()=>this.props.history.push('/cart')} className="pull-right" style={{marginRight:'20px',cursor:'pointer'}}>
+           <i className="fa fa-cart-plus" style={{fontSize:'2em',color:'green'}}></i>
+           </div>
             </div>
 
               <NavBar/>

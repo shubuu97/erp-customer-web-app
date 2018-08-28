@@ -117,6 +117,8 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/productList" component = {productList}/>
 <RouterWithMainLayout layout={MainLayout} path="/productDetail" component = {productDetails}/>
 <RouterWithMainLayout layout={MainLayout} path="/cart" component = {Cart} />
+<RouterWithMainLayout layout={MainLayout} path="/checkout" component = {CheckOut} />
+
 </Switch>
 
 </HashRouter>

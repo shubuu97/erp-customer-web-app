@@ -13,8 +13,9 @@ import {licenseDetailsData} from './licenseDetails'
 import zipCodeData from './zipCode'
 import productData from '../containers/Products/reducers/product';
 import commonData from './common';
-import approvaldata from './approval'
-let rootReducer = combineReducers(
+import approvaldata from './approval';
+import * as Log from '../constants/login'
+let appReducer = combineReducers(
     {
         //reducer code will come here
         form:formReducer,
@@ -34,5 +35,11 @@ let rootReducer = combineReducers(
         approvaldata
     }
 );
-
+const rootReducer = (state, action) => {
+    if (action.type === Log.LOGOUT) {
+      state = undefined
+    }
+  
+    return appReducer(state, action)
+  }
 export default rootReducer;

@@ -6,7 +6,7 @@ const routerDeciderHoc = (WrappedComponent) => {
     return class Enhancer extends WrappedComponent {
       
         render() {
-            debugger;
+        debugger;
             console.log(this.props,'props is here')
             localStorage.setItem('id',this.props.id)
 
@@ -17,11 +17,13 @@ const routerDeciderHoc = (WrappedComponent) => {
                 return null
                     break;
                 case 'New':
-                if(this.props.role=='customer')
+                if(this.props.role=='customer'){
                 this.props.history.push('/customerProfile')
-                else
+                return null}
+                else{
                 this.props.history.push('/companyProfile')
                 return null
+                }
                 break;
                 case 'Approved':
                 this.props.history.push('/productList')
