@@ -7,12 +7,10 @@ const routerDeciderHoc = (WrappedComponent) => {
       
         render() {
         
-            console.log(this.props,'props is here')
             localStorage.setItem('id',this.props.id)
 
             switch (this.props.customerStatus) {
                 case 'In Approval':
-                console.log("i came in approval")
                this.props.history.push('/approval')
                 return null
                     break;
@@ -35,7 +33,6 @@ const routerDeciderHoc = (WrappedComponent) => {
                 break;
 
                 default:
-                console.log("i came in default")
                 return <WrappedComponent {...this.props}/>
                     break;
             }

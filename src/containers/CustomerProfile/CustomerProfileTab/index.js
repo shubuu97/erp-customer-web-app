@@ -46,7 +46,6 @@ class CustomerProfileTab extends React.Component {
   componentDidMount()
   {
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
-     // this.props.dispatch(postBasicInfoData({email: 'ts@aob.com'},'',`${APPLICATION_BFF_URL}/user/logindata`))
 
 
       this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/customer/bankingdetails?_id=${localStorage.getItem("id")}`));
@@ -63,8 +62,8 @@ class CustomerProfileTab extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
-            <Tab className={classes.tabActive} label="Account" />
-            <Tab label="Banking"/>
+            <Tab className={value==0?classes.tabActive:null} label="Account" />
+            <Tab className={value==1?classes.tabActive:null} label="Banking"/>
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><AccountInfo/></TabContainer>}

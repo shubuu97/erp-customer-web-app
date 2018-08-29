@@ -40,6 +40,7 @@ import AfterRegister from './containers/AfterRegistration/afterRegistration';
 import AfterApproval from './containers/AfterApproval/afterApproval';
 
 const theme = createMuiTheme({
+  
   palette: {
     primary: {
       main: '#0e8c4d',

@@ -6,7 +6,8 @@ import {postCustomerRegisterData} from '../../../action/registerActions';
 import logologin from '../../../assets/images/logo-main.png';
 import asyncValidate from './validate.js'
 import {showMessage} from '../../../action/common';
-import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+import expand from 'keypather/expand';
 
 import Button from '@material-ui/core/Button'
 
@@ -31,7 +32,6 @@ class CustomerRegistration extends Component
    postData.basicInfo.addressInfo.push(pushObj);
    
    this.props.dispatch(postCustomerRegisterData(postData,'customerRegistr',`${APPLICATION_BFF_URL}/customer/register`)).then((data)=>{
-    console.log("Data for company register", data);
     if(data.data.message) {
       this.props.dispatch(showMessage("Successful Operation"));
       this.props.history.push('/register');
@@ -40,7 +40,6 @@ class CustomerRegistration extends Component
       },6000);
     }
   }, (err)=>{
-    console.log("Error in company register", err);
     if(err.message) {
       this.props.dispatch(showMessage(err.message));
       setTimeout(()=>{
@@ -86,11 +85,29 @@ CustomerRegistration = reduxForm(
 
 const mapStateToProps = (state) =>
 {
-  let initialValues = {country:'india',state:'india'}
- let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
- initialValues.country = country;
- initialValues.state = stateobj;
- initialValues.city = city;
+  let initialValues = {}
+
+  if(state.zipCodeData.meta)
+  {
+   let meta = state.zipCodeData.meta;
+   if(meta.form=="CustomerRegistration")
+   {
+    let fieldValue = meta.field.split('.')[0];
+    if(fieldValue != 'zipCode') {
+      let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+      let expandObj = {};
+      expandObj[`${fieldValue}.country`] = country;
+      expandObj[`${fieldValue}.state`] = stateobj;
+      expandObj[`${fieldValue}.city`] = city;
+
+    } else {
+      let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+      initialValues.country = country;
+      initialValues.state = stateobj;
+      initialValues.city = city;
+    }
+   }
+  }
  return {initialValues:initialValues}
 }
 

@@ -13,6 +13,7 @@ export const receiveZip = (subreddit, json, id, resolve) => {
         type: ZIP_CONSTANTS.RECEIVED_ZIP,
         subreddit,
         data: json,
+        
         receivedAt: Date.now()
     });
 };

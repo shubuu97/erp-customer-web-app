@@ -31,6 +31,7 @@ const loginReducer = (state = {
           lookUpData:[],
           lastUpdated:action.receivedAt
         });
+        
     }
     return state;
   }

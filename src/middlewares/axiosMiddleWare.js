@@ -1,3 +1,5 @@
+import actionInterception from './actionInterception';
+
 import {APPLICATION_BFF_URL} from '../constants/urlConstants'
 import {fetchZip} from '../action/fetchFromZip';
 import axios from 'axios';
@@ -5,7 +7,6 @@ import _isEmpty from 'lodash/isEmpty';
 import _pickBy from 'lodash/pickBy';
 import { generateV1uuid } from '../utills/helper';
 import {setErrorMessage} from '../action/basicInfoActions';
-//import actionInterception from './actionInterception';
 
 //import { onLogout } from '../actions/userRoles';
 
@@ -33,7 +34,8 @@ const httpVerbs = {
 const axiosMiddleware = store => next => (action) => {
   let authToken = `Bearer ${localStorage.getItem("authToken")}`;
   if (!action || !action.fetchConfig) {
-  //actionInterception(next,action,store)
+    actionInterception(next,action,store)
+
   return next(action)
    }
    
@@ -76,7 +78,6 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
     requestObject
   )
     .then(responseData => {
-      console.log("========", responseData.data)
       dispatch(successHandler(subreddit, responseData.data, id, resolve))})
     .catch(error => dispatch(failureHandler(subreddit, error, 500, reject)));
 };

@@ -32,9 +32,13 @@ const styles = theme => ({
     fontSize: '1.4rem',
     color: '#FFF',
   },
-  root: {
+  failure: {
     background: 'red',
     fontSize: '1.4rem'
+},
+success: {
+  background: 'green',
+  fontSize: '1.4rem'
 }
 });
 
@@ -42,7 +46,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: '',
+      isSuccess: false
     }
   }
 
@@ -52,23 +57,19 @@ class Login extends Component {
   }
   loginSubmitHandler = (values) => {
     var temp2 = this.props.dispatch(postLogin(values, '', `${APPLICATION_BFF_URL}/iam/user/login`)).then((data) => {
-      console.log(data, "data is here")
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
           localStorage.setItem('id', data.data.content._id)
-          if (data.data.message) {
-            this.setState({ message: "Successful Operation" });
+            this.setState({ message: "Successful Operation", isSuccess: true });
             setTimeout(() => {
               this.setState({ message: '' });
             }, 6000);
-          }
         })
     }, (err) => {
-      console.log(err);
       if (err.message) {
-        this.setState({ message: err.message });
+        this.setState({ message: err.message, isSuccess: false });
         setTimeout(() => {
           // this.setState({ message: '' });
         }, 6000);
@@ -85,7 +86,6 @@ class Login extends Component {
         this.props.history.push('/companyRegister');
       }
     }, (err) => {
-      console.log(err);
     });
   }
   handleOpen = () => {
@@ -122,7 +122,7 @@ class Login extends Component {
             ContentProps={{
               'aria-describedby': 'message-id',
               classes: {
-                root: classes.root
+                root: this.state.isSuccess ? classes.success : classes.failure
             }
             }}
             message={<span id="message-id">{this.state.message}</span>}

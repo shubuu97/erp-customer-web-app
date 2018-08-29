@@ -29,19 +29,17 @@ class CustomerBankingDetails extends Component
         customerId:localStorage.getItem('id')
     }
      this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/customer/bankingdetails`)).then((data)=>{
-        console.log("Data for company register", data);
         if(data.data.message) {
-          this.props.dispatch(showMessage("Successful Operation"));
+          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
-          this.props.dispatch(showMessage("Operation Failed"));
+          this.props.dispatch(showMessage({text: "Operation Failed", isSuccess: false}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: false}));
           },6000);
         }
       });
@@ -50,7 +48,6 @@ class CustomerBankingDetails extends Component
     submitForApproval=()=>
     {
      this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
-        console.log("Data for company register", data);
         if(true) {
           this.props.history.push("./approval")
           this.props.dispatch(showMessage('Requested Sent Successfully'));
@@ -59,7 +56,6 @@ class CustomerBankingDetails extends Component
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
           this.props.dispatch(showMessage(err.message));
           setTimeout(()=>{

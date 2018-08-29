@@ -14,6 +14,8 @@ import Button  from '@material-ui/core/Button';
 import withLoader from '../../../components/LoaderHoc';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
+import expand from 'keypather/expand';
+import flatten from 'keypather/flatten'
 
 
 class CustomerInfo extends Component
@@ -28,19 +30,17 @@ class CustomerInfo extends Component
         _id:localStorage.getItem('id')
     }
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`)).then((data)=>{
-        console.log("Data for company register", data);
         if(data.data.message) {
-          this.props.dispatch(showMessage("Successful Operation"));
+          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
-          this.props.dispatch(showMessage("Operation Failed"));
+          this.props.dispatch(showMessage({text: "Operation Failed", isSuccess: false}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: false}));
           },6000);
         }
       });
@@ -72,15 +72,43 @@ class CustomerInfo extends Component
 
 CustomerInfo = reduxForm({
     form:'CustomerInfo',
-    asyncValidate
-    
+    asyncValidate,
+  enableReinitialize:true,
+  keepDirtyOnReinitialize:true
     
 })(CustomerInfo)
 function mapStateToProps(state)
 {
- let initialValues = {};
- initialValues =  state.basicInfodata.basicInfoData
- let isLoading = state.basicInfodata.isFetching
+  let initialValues = {};
+  initialValues =  state.basicInfodata.basicInfoData
+  let isLoading = state.basicInfodata.isFetching;
+ if(state.zipCodeData.meta)
+  {
+   let meta = state.zipCodeData.meta;
+   if(meta.form=="CustomerInfo" &&state.form&&state.form.CustomerInfo &&state.form.CustomerInfo.values)
+   {
+    let fieldValue = meta.field !== 'zipCode' ? meta.field.split('.zipCode')[0] : 'zipCode';
+    if(fieldValue != 'zipCode') {
+
+      let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+      let expandObj = {};
+      expandObj = flatten(state.form.CustomerInfo.values)
+      expandObj[`${fieldValue}.country`] = country;
+      expandObj[`${fieldValue}.state`] = stateobj;
+      expandObj[`${fieldValue}.city`] = city;
+
+       initialValues = expand(expandObj);
+  
+  
+
+    } else {
+      let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+      initialValues.country = country;
+      initialValues.state = stateobj;
+      initialValues.city = city;
+    }
+   }
+  }
  return {initialValues, isLoading}
 }
 

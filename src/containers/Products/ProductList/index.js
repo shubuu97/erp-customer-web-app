@@ -8,14 +8,13 @@ import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
 class ProductsContainer extends React.Component {
   productDetails(item) {
     const {dispatch} = this.props;
-    console.log("item is",item);
     dispatch(setSelectedProduct(item));
     this.props.history.push('/productDetail');
   }
   componentDidMount(){
     const {dispatch} = this.props;
     dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
-    document.body.classList.add('product-list')
+    document.body.classList.add('product-list');
   }
   componentWillUnmount(){
     document.body.classList.remove('product-list');
@@ -23,10 +22,9 @@ class ProductsContainer extends React.Component {
   render() {
     const {products} = this.props;
     const productDataList = products && products.itemsData;
-    console.log("products ===", productDataList);
     return (
       <div>
-        <ProductList productsList={productDataList} onProductClick={(item)=>this.productDetails(item)}/>
+        <ProductList productsList={productDataList} isLoading={this.props.isLoading} onProductClick={(item)=>this.productDetails(item)}/>
       </div>
     )
   }

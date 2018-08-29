@@ -61,6 +61,11 @@ class CompanyProfileTab extends React.Component {
       this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
       this.props.dispatch(fetchSiteDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/siteinfo?_id=${localStorage.getItem("id")}`));
     }
+
+  handleTabSwitch=(tabNumber)=>
+  {
+
+  }
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -69,16 +74,16 @@ class CompanyProfileTab extends React.Component {
       <div className="c-tabs">
         <div className={classes.root}>
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD'}} TabIndicatorProps={{color:'transparent'}}>
-              <Tab className={classes.tabActive} labelContainer={{fontSize:"1.4rem"}} label="Account" />
-              <Tab label="Licence" />
-              <Tab label="Site"  />
-              <Tab label="Banking"/>
+              <Tab className={value==0?classes.tabActive:null} label="Account" />
+              <Tab className={value==1?classes.tabActive:null} label="Licence" />
+              <Tab className={value==2?classes.tabActive:null} label="Site"  />
+              <Tab className={value==3?classes.tabActive:null} label="Banking"/>
             </Tabs>
         
-          {value === 0 && <TabContainer><AccountInfo/></TabContainer>}
-          {value === 1 && <TabContainer><LicenceInfo/></TabContainer>}
-          {value === 2 && <TabContainer><SiteInfo/></TabContainer>}
-          {value === 3 && <TabContainer><BankingInfo{...this.props}/></TabContainer>}
+          {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
+          {value === 1 && <TabContainer><LicenceInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
+          {value === 2 && <TabContainer><SiteInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
+          {value === 3 && <TabContainer><BankingInfo {...this.props}/></TabContainer>}
         </div>
       </div>
     );

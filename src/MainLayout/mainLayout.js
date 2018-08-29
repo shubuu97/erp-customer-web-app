@@ -11,13 +11,24 @@ import { Redirect } from 'react-router-dom';
 import { logout } from '../action/loginAction';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 
+const styles = theme => ({
+  failure: {
+    background: 'red',
+    fontSize: '1.4rem'
+  },
+  success: {
+    background: 'green',
+    fontSize: '1.4rem'
+  }
+});
 class MainLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showMenu: false,
-      anchorEl:null
+      anchorEl: null
     };
   }
   handleOpen = () => {
@@ -36,7 +47,7 @@ class MainLayout extends Component {
     this.setState({ anchorEl: null });
   };
   handleProfile = () => {
-   this.props.role == 'customer' ? this.props.history.push('/customerProfile') : this.props.history.push('/companyProfile');
+    this.props.role == 'customer' ? this.props.history.push('/customerProfile') : this.props.history.push('/companyProfile');
     this.handleMenuClose();
   }
   goToProductList = () => {
@@ -44,6 +55,7 @@ class MainLayout extends Component {
   }
   render() {
     console.log('this is props', this.props);
+    const { classes, theme } = this.props;
     const { anchorEl } = this.state;
     return (
       <div className="main-container">
@@ -51,11 +63,6 @@ class MainLayout extends Component {
         <div className="content">
           <div className="col-sm-12 app-header">
             <div className="header-top">
-
-              {/* <span className="pull-right" style={{ cursor: 'pointer' }} onClick={this.handleLogOut}>Logout</span>
-              <div onClick={() => this.props.history.push('/cart')} className="pull-right" style={{ marginRight: '20px', cursor: 'pointer' }}>
-                <i className="fa fa-cart-plus" style={{ fontSize: '2em', color: 'green' }}></i>
-              </div> */}
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, Jack</span>
@@ -68,22 +75,22 @@ class MainLayout extends Component {
                 onClose={this.handleMenuClose}
                 className={'user-menu'}
               >
-                <MenuItem onClick={this.handleProfile} style={{fontSize:"1.4rem"}}>Profile</MenuItem>
-                <MenuItem onClick={this.handleLogOut} style={{fontSize:"1.4rem"}}>Logout</MenuItem>
+                <MenuItem onClick={this.handleProfile} style={{ fontSize: "1.4rem" }}>Profile</MenuItem>
+                <MenuItem onClick={this.handleLogOut} style={{ fontSize: "1.4rem" }}>Logout</MenuItem>
               </Menu>
             </div>
             <div className="header-nav">
               <div className="main-logo">
                 <img src={logo} />
               </div>
-              <NavBar handleClick={this.goToProductList}/>
+              <NavBar handleClick={this.goToProductList} />
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li><span className="rel"><img src={cart} /><span className="cart-round">2</span></span></li>
+                <li onClick={() => this.props.history.push('/cart')}><span className="rel"><img src={cart} /><span className="cart-round">2</span></span></li>
               </ul>
             </div>
-            {this.props.message && <Snackbar
+            {this.props.message.text && <Snackbar
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -93,8 +100,11 @@ class MainLayout extends Component {
               onClose={() => { }}
               ContentProps={{
                 'aria-describedby': 'message-id',
+                classes: {
+                  root: this.props.message.isSuccess ? classes.success : classes.failure
+                }
               }}
-              message={<span id="message-id">{this.props.message}</span>}
+              message={<span id="message-id">{this.props.message.text}</span>}
             />}
           </div>
           <div className="right-content">
@@ -112,7 +122,6 @@ class MainLayout extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state, "state is hre")
   let message = state.commonData.message;
   let isLoading = state.registerReducer.isFetching;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus
@@ -120,4 +129,4 @@ const mapStateToProps = state => {
   return { message, isLoading, customerStatus, role }
 }
 
-export default connect(mapStateToProps)(MainLayout)
+export default connect(mapStateToProps)((withStyles(styles)(MainLayout)))

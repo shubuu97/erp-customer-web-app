@@ -9,7 +9,6 @@ import {showMessage} from '../../../action/common';
 class ProductDetailsContainer extends React.Component {
   componentDidMount(){
     const {selectedProduct} = this.props;
-    console.log(selectedProduct);
     if(Object.keys(selectedProduct).length === 0) {
       this.props.history.push('/productList')
     }
@@ -35,7 +34,6 @@ class ProductDetailsContainer extends React.Component {
 
   render() {
     const {selectedProduct} = this.props;
-    console.log(selectedProduct);
     return (
       <div>
         {selectedProduct.itemInfo && <ProductDetails detail={selectedProduct} addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()} />}

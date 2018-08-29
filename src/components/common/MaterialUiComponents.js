@@ -8,7 +8,6 @@ import SelectField from '@material-ui/core/Select';
 const TextFieldInput = (props) =>
    
   { 
-    console.log(props,"prop of input")
     
     let  {input,label,meta:{touched,error,pristine},...custom} = props;
     return(

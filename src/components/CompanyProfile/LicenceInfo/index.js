@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem'
 let props = {};
 props.licenseType = [{ label: 'Type1: Small Cultivation', value: 'Small Cultivation' }, { label: 'Type2: Medium Cultivation', value: 'Medium Cultivation' },{ label: 'Type3: Nursery Cultivation', value: 'Nursery Cultivation' }];
-props.category = [{ label: 'Sativa', value: 'Sativa' }, { label: 'Indica', value: 'Indica' }];
+props.category = [{ label: 'Retailer', value: 'Retailer' }, { label: 'Distributer', value: 'Distributer' }];
 props.country = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 props.state = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 props.city = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
@@ -75,7 +75,6 @@ let contactField = (props) => {
 class LicenceInfo extends Component {
    
     render() {
-        console.log(this.props,"props is here")
         return (
             <div className="row">
 
@@ -87,7 +86,7 @@ class LicenceInfo extends Component {
                                 <Field options={props['licenseType']} placeholder='License Type' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['category']} placeholder='Category' name={'category'} component={ReactSelectWrapper} label={'Company Category'} />
+                                <Field options={props['category']} placeholder='Company Category' name={'category'} component={ReactSelectWrapper} label={'Company Category'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field name={'licenseNumber'} label={'License Number'} component={TextFieldInput} />
