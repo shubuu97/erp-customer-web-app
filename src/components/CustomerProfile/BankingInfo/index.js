@@ -9,8 +9,8 @@ import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
 let prop={};
-prop.paymentTerms = [{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}];
-prop.invoiceCurrencyCode=[{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}]
+prop.paymentTerms = [{label:'current',value:'current'},{label:'Net 30',value:'Net 30'},{label:'Net 45',value:'Net 45'}];
+prop.invoiceCurrencyCode=[{label:'INR',value:'INR'},{label:'USD',value:'USD'}]
 
 
 let BankDetailComponent = (props)=>
@@ -78,7 +78,7 @@ class CustomerBankingInfo extends Component {
              {
                          return (
                 <div className="col-md-4 col-sm-6 form-d form-input">
-                 <Field name={info.name} component={info.component} options={prop[info.name]} label={info.label}>
+                 <Field name={info.name} placeholder={info.label} component={info.component} options={prop[info.name]} label={info.label}>
                  </Field>
                  </div>
              )

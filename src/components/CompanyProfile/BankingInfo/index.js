@@ -75,7 +75,7 @@ class BankingInfo  extends Component {
                         <Field name='paymentTerms' placeholder='Payment Terms' component={ReactSelectWrapper} options={prop.paymentTerms}></Field>
                     </div>
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='invoiceCurrencyCode' label='Invoice Currency' placeholder='Currency Code' component={ReactSelectWrapper} option={prop.invoiceCurrencyCode} />
+                        <Field name='invoiceCurrencyCode' label='Invoice Currency' placeholder='Currency Code' options={prop.invoiceCurrencyCode} component={ReactSelectWrapper} option={prop.invoiceCurrencyCode} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='nameOnCheque' label='Print Name On Check As' component={TextFieldInput} />
