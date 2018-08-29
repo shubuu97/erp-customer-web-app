@@ -49,7 +49,6 @@ const asyncValidate = values => {
                     })
 
                 //redux form will now understand the errors that yup has thrown
-                console.log(expand(expandObj),"errors are here")
                 reject(expand(expandObj));
             })
     });

@@ -9,7 +9,6 @@ const inventoryItemData = (state = {
   selectedProduct: {},
   cartProductList: []
 }, action) => {
-  console.log(action)
   switch (action.type) {
 
     case INVENTORY_CONSTANTS.REQUEST_INVENTORY_ITEM:

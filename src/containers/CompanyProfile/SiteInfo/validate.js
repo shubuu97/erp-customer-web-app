@@ -24,7 +24,6 @@ var schema = yup.object().shape({ siteInfo: yup.array(siteInfo)
 });
 const asyncValidate = values => {
 
-    console.log(values,"values is here")
     return new Promise((resolve, reject) => {
 
         //Validate our form values against our schema! Also dont abort the validate early.
@@ -34,14 +33,12 @@ const asyncValidate = values => {
                 resolve();
             })
             .catch(errors => {
-                console.log(errors,"errors is here")
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
                 let expandObj = {}
                 errors.inner.forEach(error => {
                      expandObj[error.path] = error.message;
                     })
-                    console.log(expand(expandObj),"this is return");
                 //redux form will now understand the errors that yup has thrown
                 reject(expand(expandObj));
 

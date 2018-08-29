@@ -12,7 +12,8 @@ import {connect} from 'react-redux';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
-
+import expand from 'keypather/expand';
+import flatten from 'keypather/flatten'
 
 class LicenseInfo extends Component
 {
@@ -30,15 +31,14 @@ class LicenseInfo extends Component
         businessCustomerId:localStorage.getItem('id')
     }
      this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`)).then((data)=>{
-        console.log("Data for company register", data);
         if(data.data.message) {
+         this.props.handleTabSwitch(3)
           this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
           this.props.dispatch(showMessage("Operation Failed"));
           setTimeout(()=>{
@@ -68,16 +68,43 @@ class LicenseInfo extends Component
 
 LicenseInfo = reduxForm({
     form:'LicenseInfo',
-    asyncValidate:asyncValidate
-
-    
+    asyncValidate:asyncValidate,
+    enableReinitialize:true,
+ keepDirtyOnReinitialize:true
 
 })(LicenseInfo)
 
 const mapStateToProps=(state)=>
 {
-    let initialValues = state.licenseDetailsData.lookUpData.data
-    let isLoading = state.licenseDetailsData.isFetching
+    let initialValues = state.licenseDetailsData.lookUpData.data;
+    let isLoading = state.licenseDetailsData.isFetching;
+    if(state.zipCodeData.meta)
+    {
+     let meta = state.zipCodeData.meta;
+     if(meta.form=="LicenseInfo"&&state.form&&state.form.LicenseInfo &&state.form.LicenseInfo.values)
+     {
+      let fieldValue = meta.field !== 'zipCode' ? meta.field.split('.zipCode')[0] : 'zipCode';
+      if(fieldValue != 'zipCode') {
+  
+        let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+        let expandObj = {};
+        expandObj = flatten(state.form.LicenseInfo.values)
+        expandObj[`${fieldValue}.country`] = country;
+        expandObj[`${fieldValue}.state`] = stateobj;
+        expandObj[`${fieldValue}.city`] = city;
+  
+         initialValues = expand(expandObj);
+    
+    
+  
+      } else {
+        let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+        initialValues.country = country;
+        initialValues.state = stateobj;
+        initialValues.city = city;
+      }
+     }
+    }
     return {initialValues,isLoading}
 
 }

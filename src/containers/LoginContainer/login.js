@@ -48,7 +48,6 @@ class Login extends Component {
   }
   loginSubmitHandler = (values) => {
     var temp2 = this.props.dispatch(postLogin(values, '', `${APPLICATION_BFF_URL}/iam/user/login`)).then((data) => {
-      console.log(data, "data is here")
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
@@ -62,7 +61,6 @@ class Login extends Component {
           }
         })
     }, (err) => {
-      console.log(err);
       if (err.message) {
         this.setState({ message: err.message });
         setTimeout(() => {
@@ -81,7 +79,6 @@ class Login extends Component {
         this.props.history.push('/companyRegister');
       }
     }, (err) => {
-      console.log(err);
     });
   }
   handleOpen = () => {

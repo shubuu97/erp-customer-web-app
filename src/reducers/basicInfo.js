@@ -26,7 +26,6 @@ export const   basicInfodata = (state = {
                 lastUpdated: action.receivedAt
             });
         case BASICINFO_CONSTANTS.RECEIVED_BASICINFO_DATA:
-        console.log(action, "mayank")
             return Object.assign({}, state, {
                 isFetching: false,
                 type: action.type,

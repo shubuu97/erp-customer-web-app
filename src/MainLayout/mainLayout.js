@@ -39,8 +39,11 @@ class MainLayout extends Component {
     this.props.history.push('/productList');
   }
   render() {
+<<<<<<< HEAD
+=======
     console.log('this is props', this.props);
     const { anchorEl } = this.state;
+>>>>>>> 4bb626d64fedf76234d55217aab130dd9cad8807
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
@@ -100,7 +103,6 @@ class MainLayout extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state, "state is hre")
   let message = state.commonData.message;
   let isLoading = state.registerReducer.isFetching;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus

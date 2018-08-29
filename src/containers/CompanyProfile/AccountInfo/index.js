@@ -21,7 +21,6 @@ class AccountInfo extends Component
         _id:localStorage.getItem('id')
     }
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/basicinfo`)).then((data)=>{
-        console.log("Data for company register", data);
         if(data.data.message) {
           this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
@@ -29,7 +28,6 @@ class AccountInfo extends Component
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
           this.props.dispatch(showMessage("Operation Failed"));
           setTimeout(()=>{
