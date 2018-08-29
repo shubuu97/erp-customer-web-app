@@ -29,6 +29,14 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  tabStyle: {
+    backgroundColor: 'white',
+    color: '#000'
+  },
+  tabActive: {
+    backgroundColor: '#0e8c4f',
+    color: '#FFF'
+  }
 });
 
 class CustomerProfileTab extends React.Component {
@@ -54,8 +62,8 @@ class CustomerProfileTab extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="static">
-          <Tabs value={value} onChange={this.handleChange}>
-            <Tab label="Account" />
+          <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange}>
+            <Tab className={classes.tabActive} label="Account" />
             <Tab label="Banking"/>
           </Tabs>
         </AppBar>

@@ -62,7 +62,7 @@ handleOpen=()=>
         <div className="content">
           <div className="col-sm-12 app-header">
             <div className="header-top">
-              <img className="main-logo" src={logo} />
+              
               
               <span className="pull-right" style={{cursor:'pointer'}} onClick={this.handleLogOut}>Logout</span>
            <div onClick={()=>this.props.history.push('/cart')} className="pull-right" style={{marginRight:'20px',cursor:'pointer'}}>
@@ -70,7 +70,7 @@ handleOpen=()=>
            </div>
             </div>
 
-              <NavBar/>
+              <div className="header-nav"><div className="main-logo"><img src={logo} /></div><NavBar/></div>
               {this.props.message && <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
