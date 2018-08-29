@@ -39,11 +39,8 @@ class MainLayout extends Component {
     this.props.history.push('/productList');
   }
   render() {
-<<<<<<< HEAD
-=======
     console.log('this is props', this.props);
     const { anchorEl } = this.state;
->>>>>>> 4bb626d64fedf76234d55217aab130dd9cad8807
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
