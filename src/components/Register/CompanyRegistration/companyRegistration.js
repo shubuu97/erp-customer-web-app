@@ -21,7 +21,7 @@ export default class CompanyRegistration extends Component {
                                 <Field name='middleName' label={'Middle Name'} component={TextFieldInput} />
                             </div>
                             <div className="form-d form-input p-8 col-sm-4">
-                                <Field name={'lastName'} label='Last Name' component={TextFieldInput} />
+                                <Field name='lastName' label='Last Name' component={TextFieldInput} />
                             </div>
                         </div>
                         <div className="row">

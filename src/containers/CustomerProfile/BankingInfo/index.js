@@ -37,7 +37,7 @@ class CustomerBankingDetails extends Component
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage(err.message));
+          this.props.dispatch(showMessage("Operation Failed"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
@@ -49,6 +49,7 @@ class CustomerBankingDetails extends Component
     {
      this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
         if(true) {
+          this.props.history.push("./approval")
           this.props.dispatch(showMessage('Requested Sent Successfully'));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));

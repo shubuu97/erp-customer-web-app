@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
+import asyncValidate from './validate'
 
 
 class AccountInfo extends Component
@@ -28,7 +29,7 @@ class AccountInfo extends Component
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage(err.message));
+          this.props.dispatch(showMessage("Operation Failed"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
@@ -54,7 +55,8 @@ class AccountInfo extends Component
 }
 
 AccountInfo = reduxForm({
-    form:'AccountInfo'}
+    form:'AccountInfo',
+  asyncValidate}
 )(AccountInfo);
 
 function mapStateToProps(state)

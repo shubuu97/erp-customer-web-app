@@ -75,7 +75,7 @@ class CompanyProfileTab extends React.Component {
           {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
           {value === 1 && <TabContainer><LicenceInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
           {value === 2 && <TabContainer><SiteInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
-          {value === 3 && <TabContainer><BankingInfo/></TabContainer>}
+          {value === 3 && <TabContainer><BankingInfo {...this.props}/></TabContainer>}
         </div>
       </div>
     );
