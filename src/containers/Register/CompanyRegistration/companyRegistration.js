@@ -25,21 +25,20 @@ class CompanyRegistration extends PureComponent {
 
     this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`)).then((data)=>{
       console.log("Data for company register", data);
-      if(data.data.message) {
         this.props.dispatch(showMessage("Successful Operation"));
         this.props.history.push('/register');
         setTimeout(()=>{
           this.props.dispatch(showMessage(''));
         },6000);
       }
-    }, (err)=>{
+    , (err)=>{
       console.log("Error in company register", err);
-      if(err.message) {
-        this.props.dispatch(showMessage(err.message));
+      
+        this.props.dispatch(showMessage("Operation failed"));
         setTimeout(()=>{
           this.props.dispatch(showMessage(''));
         },6000);
-      }
+      
     })
 
 
@@ -85,4 +84,4 @@ const mapStateToProps = (state) =>
   }
 }
 
-export default connect(mapStateToProps)(withLoader(CompanyRegistration))
+export default connect(mapStateToProps)((CompanyRegistration))

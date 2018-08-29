@@ -11,7 +11,7 @@ class AfterRegister extends Component
         <img src={logo} />
             <div>{string}</div>
             <div>{string1}</div>
-            <Button variant="contained" color='primary'>Go Back to Profile</Button>
+            <Button variant="contained" color='primary'>Go Back to Login</Button>
             </div>
         )
     }
