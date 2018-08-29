@@ -32,9 +32,13 @@ const styles = theme => ({
     fontSize: '1.4rem',
     color: '#FFF',
   },
-  root: {
+  failure: {
     background: 'red',
     fontSize: '1.4rem'
+},
+success: {
+  background: 'green',
+  fontSize: '1.4rem'
 }
 });
 
@@ -42,7 +46,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: '',
+      isSuccess: false
     }
   }
 
@@ -57,16 +62,14 @@ class Login extends Component {
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
           localStorage.setItem('id', data.data.content._id)
-          if (data.data.message) {
-            this.setState({ message: "Successful Operation" });
+            this.setState({ message: "Successful Operation", isSuccess: true });
             setTimeout(() => {
               this.setState({ message: '' });
             }, 6000);
-          }
         })
     }, (err) => {
       if (err.message) {
-        this.setState({ message: err.message });
+        this.setState({ message: err.message, isSuccess: false });
         setTimeout(() => {
           // this.setState({ message: '' });
         }, 6000);
@@ -119,7 +122,7 @@ class Login extends Component {
             ContentProps={{
               'aria-describedby': 'message-id',
               classes: {
-                root: classes.root
+                root: this.state.isSuccess ? classes.success : classes.failure
             }
             }}
             message={<span id="message-id">{this.state.message}</span>}

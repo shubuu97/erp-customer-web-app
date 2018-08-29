@@ -1,6 +1,6 @@
 import * as COMMON_CONSTANTS from '../../src/constants/common';
 const commonData = (state = {
-    message: ''
+    message: {},
   }, action) => {
     switch (action.type) {
       case COMMON_CONSTANTS.SHOW_TOAST_MESSAGE:
