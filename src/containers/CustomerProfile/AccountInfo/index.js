@@ -31,16 +31,16 @@ class CustomerInfo extends Component
     }
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`)).then((data)=>{
         if(data.data.message) {
-          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
+          this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
-            this.props.dispatch(showMessage({text: "", isSuccess: true}));
+            this.props.dispatch(showMessage(''));
           },6000);
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage({text: "Operation Failed", isSuccess: false}));
+          this.props.dispatch(showMessage("Operation Failed"));
           setTimeout(()=>{
-            this.props.dispatch(showMessage({text: "", isSuccess: false}));
+            this.props.dispatch(showMessage(''));
           },6000);
         }
       });
