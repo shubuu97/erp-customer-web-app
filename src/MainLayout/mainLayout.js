@@ -55,7 +55,6 @@ handleOpen=()=>
           this.props.history.push('/')
         }
   render() {
-    console.log('this is props', this.props);
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
@@ -100,7 +99,6 @@ handleOpen=()=>
 }
 
 const mapStateToProps = state => {
-  console.log(state,"state is hre")
   let message = state.commonData.message;
   let isLoading = state.registerReducer.isFetching;
   let customerStatus  = state.basicInfodata&& state.basicInfodata.customerStatus

@@ -14,13 +14,11 @@ class ProductsInCart extends React.Component {
   componentDidMount() {
     const {productsList} = this.props;    
     this.setState({productsData:productsList}, ()=>{
-      console.log('state data', this.state);
     });
   }
   updateQuantity(productId, type) {
     const {productsData} = this.state;
     let productIndex = findIndex(productsData, {itemId:productId});
-    console.log(productIndex);
     let productList = productsData;
     let productLocal = productList[productIndex];
     if(type === 'add') {

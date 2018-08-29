@@ -75,7 +75,6 @@ let contactField = (props) => {
 class LicenceInfo extends Component {
    
     render() {
-        console.log(this.props,"props is here")
         return (
             <div className="row">
 

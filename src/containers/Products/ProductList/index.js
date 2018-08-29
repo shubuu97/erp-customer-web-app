@@ -8,7 +8,6 @@ import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
 class ProductsContainer extends React.Component {
   productDetails(item) {
     const {dispatch} = this.props;
-    console.log("item is",item);
     dispatch(setSelectedProduct(item));
     this.props.history.push('/productDetail');
   }
@@ -19,7 +18,6 @@ class ProductsContainer extends React.Component {
   render() {
     const {products} = this.props;
     const productDataList = products && products.itemsData;
-    console.log("products ===", productDataList);
     return (
       <div>
         <ProductList productsList={productDataList} onProductClick={(item)=>this.productDetails(item)}/>

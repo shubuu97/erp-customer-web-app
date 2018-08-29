@@ -24,7 +24,6 @@ class CompanyRegistration extends PureComponent {
     postData.basicInfo.companyName = formData.companyName;
 
     this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`)).then((data)=>{
-      console.log("Data for company register", data);
       if(data.data.message) {
         this.props.dispatch(showMessage("Successful Operation"));
         this.props.history.push('/register');
@@ -33,7 +32,6 @@ class CompanyRegistration extends PureComponent {
         },6000);
       }
     }, (err)=>{
-      console.log("Error in company register", err);
       if(err.message) {
         this.props.dispatch(showMessage(err.message));
         setTimeout(()=>{

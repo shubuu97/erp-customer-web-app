@@ -21,7 +21,6 @@ class CartContainer extends React.Component {
     this.goToCheckout = this.goToCheckout.bind(this);
   }
   componentDidMount() {
-    console.log("In Cart ", this.props.cartProductList);
     this.productDataList = [{
       id: "1",
       itemCode: "ASD",
@@ -54,7 +53,6 @@ class CartContainer extends React.Component {
   removeProductFromCart(productId) {
     const {cartProducts} = this.state;
     let productsTemp = cartProducts;
-    console.log("item is", productId);
     let productIndex = findIndex(productsTemp, {itemId:productId});
     productsTemp.splice(productIndex, 1);
     this.setState({cartProducts: productsTemp});

@@ -11,6 +11,8 @@ import {connect} from 'react-redux';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
+import expand from 'keypather/expand';
+import flatten from 'keypather/flatten'
 
 class SiteInfo extends Component
 {
@@ -29,15 +31,14 @@ class SiteInfo extends Component
         businessCustomerId:localStorage.getItem('id')
     }
      this.props.dispatch(postSiteData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/siteinfo`)).then((data)=>{
-        console.log("Data for company register", data);
-        if(data.message) {
-          this.props.dispatch(showMessage(data.message));
+        if(data.data.message) {
+            this.props.handleTabSwitch(4);
+          this.props.dispatch(showMessage(data.data.message));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
           this.props.dispatch(showMessage(err.message));
           setTimeout(()=>{
@@ -65,13 +66,42 @@ class SiteInfo extends Component
 
 SiteInfo=reduxForm({
     form:'SiteInfo',
-    asyncValidate:asyncValidate
+    asyncValidate:asyncValidate,
+    enableReinitialize:true,
+  keepDirtyOnReinitialize:true
 })(SiteInfo)
 
 const mapStateToProps=(state)=>
 {
     let initialValues = state.siteDetailsData.lookUpData.data;
-    let isLoading = state.siteDetailsData.isFetching
+    let isLoading = state.siteDetailsData.isFetching;
+    if(state.zipCodeData.meta)
+  {
+   let meta = state.zipCodeData.meta;
+   if(meta.form=="SiteInfo" &&state.form&&state.form.SiteInfo &&state.form.SiteInfo.values)
+   {
+    let fieldValue = meta.field !== 'zipCode' ? meta.field.split('.zipCode')[0] : 'zipCode';
+    if(fieldValue != 'zipCode') {
+
+      let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+      let expandObj = {};
+      expandObj = flatten(state.form.SiteInfo.values)
+      expandObj[`${fieldValue}.country`] = country;
+      expandObj[`${fieldValue}.state`] = stateobj;
+      expandObj[`${fieldValue}.city`] = city;
+
+       initialValues = expand(expandObj);
+  
+  
+
+    } else {
+      let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
+      initialValues.country = country;
+      initialValues.state = stateobj;
+      initialValues.city = city;
+    }
+   }
+  }
     return {initialValues,isLoading}
 
 }

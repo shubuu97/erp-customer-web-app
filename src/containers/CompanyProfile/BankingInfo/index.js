@@ -31,7 +31,6 @@ class BankingInfo extends Component
         businessCustomerId : localStorage.getItem('id')
     }
      this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails`)).then((data)=>{
-        console.log("Data for company register", data);
         if(data.data.message) {
           this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
@@ -39,7 +38,6 @@ class BankingInfo extends Component
           },6000);
         }
       }, (err)=>{
-        console.log("Error in company register", err);
         if(err.message) {
           this.props.dispatch(showMessage(err.message));
           setTimeout(()=>{

@@ -5,7 +5,8 @@ const zipCodeInfo = (state = {
     error: '',
     isFetching: false,
     //didInvalidate: false,
-    lookUpData: {}
+    lookUpData: {},
+    meta:{}
   }, action) => {
     switch (action.type) {
       case ZIPCODE_CONSTANTS.REQUEST_ZIP:
@@ -21,6 +22,7 @@ const zipCodeInfo = (state = {
           type: action.type,
           //didInvalidate: false,
           lookUpData: action.data.data,
+          meta:action.subreddit,
           lastUpdated: action.receivedAt,
         });
       case ZIPCODE_CONSTANTS.RECEIVED_ZIP_ERROR:
