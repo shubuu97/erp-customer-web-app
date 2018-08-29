@@ -40,7 +40,7 @@ class LicenseInfo extends Component
       }, (err)=>{
         console.log("Error in company register", err);
         if(err.message) {
-          this.props.dispatch(showMessage(err.message));
+          this.props.dispatch(showMessage("Operation Failed"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
