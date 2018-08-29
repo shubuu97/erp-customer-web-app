@@ -6,7 +6,9 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: #F9F9F9;
     margin:0;}
-
+body.product-list, body.product-details, body.cart-page {
+    background: #FFF;
+}
 .json-pretty{
     line-height:1.3;
     color: #000;
@@ -1374,9 +1376,17 @@ ul.breadcrumb {
 }
 ul.breadcrumb li {
     display: inline-block;
-    font-size:1.8rem;
+    font-size:1.5rem;
     font-weight: bold;
     padding-top: 4px;
+    cursor: pointer;
+}
+ul.breadcrumb li + li {
+	color: #0e8c4f;
+	font-weight: 500;
+}
+ul.breadcrumb li:last-child {
+	font-weight: 300;
 }
 ul.breadcrumb li+li:before {
     padding: 8px;
@@ -1896,7 +1906,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .header-nav {
 	display: -ms-flexbox;
 	display: flex;
-	padding: 0 50px 20px;
+	padding: 0 50px 10px;
 	max-width: 100%;
 	-ms-flex: 0 0 100%;
 	flex: 0 0 100%;
@@ -1906,11 +1916,11 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	align-items: center;
 }
 .main-logo {
-	width: 110px;
+	width: 100px;
 }
 .main-logo img {
 	width: auto;
-	max-width: 110px;
+	max-width: 100%;
 }
 .app-header {
 	padding: 0;
@@ -1918,8 +1928,8 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	border-bottom: solid 1px rgba(6, 57, 32, 0.4);
 }
 .header-top {
-	padding: 10px 50px;
-	border-top: solid 10px #0e8c4f;
+	padding: 6px 50px;
+	border-top: solid 8px #0e8c4f;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -1929,7 +1939,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	padding: 0 50px;
 	margin: 0;
 	text-transform: uppercase;
-	font-size: 16px;
+	font-size: 1.4rem;
 	-ms-flex-pack: center;
 	justify-content: center;
 	-ms-flex-align: center;
@@ -1960,10 +1970,50 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	align-items: center;
 }
 .navRight li {
+	display: -ms-inline-flexbox;
 	display: inline-flex;
 	border-right: solid 1px rgba(0, 0, 0, 0.55);
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.navRight li:last-child {
+	border-right: none;
+	padding-right: none;
+}
+.rel {
+    position: relative;
+    cursor: pointer;
+}
+.rel img {
+	width: 22px;
+}
+.bell-round {
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	background: #ff4e00;
+	text-align: center;
+	border-radius: 20px;
+	color: #FFF;
+	font-size: 11px;
+	line-height: 17px;
+	position: absolute;
+	right: -7px;
+	top: -1px;
+}
+.cart-round {
+	background: #10824a;
+	color: #FFF;
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	border-radius: 20px;
+	text-align: center;
+	line-height: 22px;
+	position: absolute;
+	top: -10px;
+	right: -20px;
+	font-size: 13px;
 }
 .product-parent {
 	display: flex;
@@ -2043,12 +2093,15 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     display: flex;
     cursor: pointer;
 }
+.user-avatar img {
+	width: 26px;
+}
 .user-avatar i {
 	color: #d1d1d1;
 }
 .user-menu div:nth-child(2) {
-	width: 140px;
-	top: 65px !important;
+	width: 120px;
+	top: 45px !important;
 }
 .user-menu ul li {
     padding-top:8px;
@@ -2056,6 +2109,13 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .sp{
     margin-top:10px;
+}
+.table-product-detail tbody td, .table-product-detail th {
+	border-top: none !important;
+	padding: 8px 0 !important;
+}
+.table-product-detail tbody tr:first-child td {
+	padding-top: 20px !important;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
@@ -2775,26 +2835,37 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 
 
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
-.productDetails-container{
 
-}
 .detailsContent{
     display: flex;
     flex-direction: row;
 }
-.imageContent{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+.imageContent {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	padding-right: 20px;
+	justify-content: center;
+	align-items: center;
 }
-.mainImage{
-    
+.p-name {
+	font-size: 40px;
+	font-weight: 200;
+	margin-top: 0;
 }
-.mainImage img{
-    min-width: 350px;
-    width: 40%;
-    border: 1px solid #d0d0d0;
-    border-radius: 5px;
+.ic {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+.ic span {
+	font-weight: 300;
+}
+.mainImage img {
+	width: 100%;
 }
 .subImages{
     display: flex;
@@ -2811,17 +2882,40 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .descriptionContent{
     display: flex;
-    flex: 1;
+    flex: 0 0 50%;
     flex-direction: column;
+    padding-left:20px
 }
-.add-cart-button{
-    background-color: #ff9f00 !important;
-    color: #fff !important;
-    margin-right: 10px !important;
+.add-cart-button {
+	font-size: 18px !important;
+	padding: 15px 40px !important;
 }
 .buy-cart-button{
     background-color: #fb641b !important;
     color: #fff !important;
+}
+.p-price {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	color: #0e8c4f;
+	font-size: 26px;
+}
+.wq-bar label {
+	margin-bottom: 0;
+	font-size: 15px;
+	padding-right: 20px;
+	width: 100px;
+}
+.wq-bar {
+	margin-bottom: 25px;
+}
+.p-desc {
+	margin-top: 50px;
+	line-height: 26px;
+}
+.p-desc b {
+	display: block;
+	margin-bottom: 8px;
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/

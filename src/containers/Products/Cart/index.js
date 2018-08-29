@@ -49,7 +49,12 @@ class CartContainer extends React.Component {
       image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
     }];
     this.updateProductList(this.props.cartProductList);
+    document.body.classList.add('cart-page')
   }
+  componentWillUnmount(){
+    document.body.classList.remove('cart-page');
+  }
+  
   removeProductFromCart(productId) {
     const {cartProducts} = this.state;
     let productsTemp = cartProducts;

@@ -12,6 +12,10 @@ class ProductDetailsContainer extends React.Component {
     if(Object.keys(selectedProduct).length === 0) {
       this.props.history.push('/productList')
     }
+    document.body.classList.add('product-details')
+  }
+  componentWillUnmount(){
+    document.body.classList.remove('product-details');
   }
   addToCart() {
     const {selectedProduct, cartProductList, dispatch} = this.props;
