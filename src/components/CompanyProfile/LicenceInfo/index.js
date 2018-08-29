@@ -82,6 +82,9 @@ class LicenceInfo extends Component {
                 <div className="col-sm-12">
                     <FormSection name="companyInfo">
                         <div className="row d-flex">
+                        <div className="form-d col-md-4 col-sm-6 form-input">
+                            <span>Comapny name will come here</span>
+                            </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field options={props['licenseType']} placeholder='License Type' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type'} />
                             </div>
@@ -128,7 +131,7 @@ class LicenceInfo extends Component {
                                 <div className="form-box">
                                     <div className="row d-flex">
                                         <div className="col-sm-12">
-                                            <h2 className="box-title">Organization Info</h2>
+                                            <h2 className="box-title">Parent Organization Info</h2>
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
                                             <Field name={'name'} label={'Name'} component={TextFieldInput} />

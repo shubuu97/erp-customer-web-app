@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
 let prop={};
-prop.paymentTerms = [{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}];
-prop.invoiceCurrencyCode=['INR','USD']
+prop.paymentTerms = [{label:'current',value:'current'},{label:'Net 30',value:'Net 30'},{label:'Net 45',value:'Net 45'}];
+prop.invoiceCurrencyCode=[{label:'INR',value:'INR'},{label:'USD',value:'USD'}]
 
 let BankDetailComponent = (props)=>
 {
@@ -75,7 +75,7 @@ class BankingInfo  extends Component {
                         <Field name='paymentTerms' placeholder='Payment Terms' component={ReactSelectWrapper} options={prop.paymentTerms}></Field>
                     </div>
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='invoiceCurrencyCode' label='Invoice Currency' component={TextFieldInput} />
+                        <Field name='invoiceCurrencyCode' label='Invoice Currency' placeholder='Currency Code' component={ReactSelectWrapper} option={prop.invoiceCurrencyCode} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='nameOnCheque' label='Print Name On Check As' component={TextFieldInput} />
