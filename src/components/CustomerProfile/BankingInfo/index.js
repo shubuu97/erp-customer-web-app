@@ -22,7 +22,7 @@ let BankDetailComponent = (props)=>
         <div className="col-sm-12">
             
             {fields.map((bankDetails, index) => (
-            <div className="form-box2">
+            <div className="form-box">
                 <div className="row d-flex">
                 
     
@@ -55,11 +55,7 @@ let BankDetailComponent = (props)=>
                     <Field name={`${bankDetails}.effectiveFrom`} label={'Effective From'} component={TextFieldInput} />
                     </div>
                     
-                    )
-                
-
-
-                }
+                    
               {fields.length!=1&&<div className="col-md-4 col-sm-6"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div></div>))}
                 <div className="form-btn-group"><Button variant="contained" color='primary' primary={true} onClick={() => fields.push()}>Add New</Button></div>
