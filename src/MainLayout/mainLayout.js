@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import NavBar from '../containers/NavBar';
 import Snackbar from '@material-ui/core/Snackbar';
 import logo from './../assets/images/logo-main.png';
+import userAvatar from './../assets/images/usericon2.png';
+import search from './../assets/images/search.png';
+import bell from './../assets/images/bell-icon.png';
+import cart from './../assets/images/cart-icon.png';
 import { Redirect } from 'react-router-dom';
 import { logout } from '../action/loginAction';
 import Menu from '@material-ui/core/Menu';
@@ -52,10 +56,10 @@ class MainLayout extends Component {
               <div onClick={() => this.props.history.push('/cart')} className="pull-right" style={{ marginRight: '20px', cursor: 'pointer' }}>
                 <i className="fa fa-cart-plus" style={{ fontSize: '2em', color: 'green' }}></i>
               </div> */}
-              <div className="pull-right user-avatar" style={{ cursor: 'pointer' }} onClick={this.handleMenu}>
-                <i className="fa fa-user-circle" style={{ fontSize: '2em' }}></i>
+              <div className="user-avatar" onClick={this.handleMenu}>
+                <img src={userAvatar} />
                 <span className="user-name">Hey, Jack</span>
-                <i class="fa fa-caret-down" style={{ fontSize: '1.2em' }}></i>
+                <i class="fa fa-caret-down"></i>
               </div>
               <Menu
                 id="simple-menu"
@@ -64,11 +68,21 @@ class MainLayout extends Component {
                 onClose={this.handleMenuClose}
                 className={'user-menu'}
               >
-                <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
-                <MenuItem onClick={this.handleLogOut}>Logout</MenuItem>
+                <MenuItem onClick={this.handleProfile} style={{fontSize:"1.4rem"}}>Profile</MenuItem>
+                <MenuItem onClick={this.handleLogOut} style={{fontSize:"1.4rem"}}>Logout</MenuItem>
               </Menu>
             </div>
-            <div className="header-nav"><div className="main-logo"><img src={logo} /></div><NavBar handleClick={this.goToProductList}/></div>
+            <div className="header-nav">
+              <div className="main-logo">
+                <img src={logo} />
+              </div>
+              <NavBar handleClick={this.goToProductList}/>
+              <ul className="navRight">
+                <li><span className="rel"><img src={search} /></span></li>
+                <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
+                <li><span className="rel"><img src={cart} /><span className="cart-round">2</span></span></li>
+              </ul>
+            </div>
             {this.props.message && <Snackbar
               anchorOrigin={{
                 vertical: 'bottom',

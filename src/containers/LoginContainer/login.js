@@ -31,7 +31,11 @@ const styles = theme => ({
   buttonLogin: {
     fontSize: '1.4rem',
     color: '#FFF',
-  }
+  },
+  root: {
+    background: 'red',
+    fontSize: '1.4rem'
+}
 });
 
 class Login extends Component {
@@ -66,7 +70,7 @@ class Login extends Component {
       if (err.message) {
         this.setState({ message: err.message });
         setTimeout(() => {
-          this.setState({ message: '' });
+          // this.setState({ message: '' });
         }, 6000);
       }
     })
@@ -117,6 +121,9 @@ class Login extends Component {
             onClose={() => { }}
             ContentProps={{
               'aria-describedby': 'message-id',
+              classes: {
+                root: classes.root
+            }
             }}
             message={<span id="message-id">{this.state.message}</span>}
           />}
