@@ -43,22 +43,14 @@ class MainLayout extends Component {
     this.props.history.push('/productList');
   }
   render() {
-<<<<<<< HEAD
-=======
     console.log('this is props', this.props);
     const { anchorEl } = this.state;
->>>>>>> 4bb626d64fedf76234d55217aab130dd9cad8807
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
         <div className="content">
           <div className="col-sm-12 app-header">
             <div className="header-top">
-
-              {/* <span className="pull-right" style={{ cursor: 'pointer' }} onClick={this.handleLogOut}>Logout</span>
-              <div onClick={() => this.props.history.push('/cart')} className="pull-right" style={{ marginRight: '20px', cursor: 'pointer' }}>
-                <i className="fa fa-cart-plus" style={{ fontSize: '2em', color: 'green' }}></i>
-              </div> */}
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, Jack</span>
@@ -83,7 +75,7 @@ class MainLayout extends Component {
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li><span className="rel"><img src={cart} /><span className="cart-round">2</span></span></li>
+                <li onClick={() => this.props.history.push('/cart')}><span className="rel"><img src={cart} /><span className="cart-round">2</span></span></li>
               </ul>
             </div>
             {this.props.message && <Snackbar
