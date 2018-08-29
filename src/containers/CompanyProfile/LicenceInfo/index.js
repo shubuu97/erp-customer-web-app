@@ -33,16 +33,16 @@ class LicenseInfo extends Component
      this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`)).then((data)=>{
         if(data.data.message) {
          this.props.handleTabSwitch(3)
-          this.props.dispatch(showMessage("Successful Operation"));
+          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage("Operation Failed"));
+          this.props.dispatch(showMessage({text: "Operation Failed", isSuccess: false}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: false}));
           },6000);
         }
       });
