@@ -82,7 +82,7 @@ class BankingInfo extends Component
 
                 <div className="form-btn-group">
                     <Button variant="contained" type='submit' color='primary'>Save</Button>
-                    <Button variant="contained" onClick={this.submitForApproval} color='primary'>Submit for approval</Button>
+                    <Button variant="contained"  disabled={this.props.invalid||!this.props.anyTouched} onClick={this.submitForApproval} color='primary'>Submit for approval</Button>
                 </div>
                 </form>
             </div>

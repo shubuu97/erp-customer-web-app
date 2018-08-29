@@ -13,9 +13,7 @@ class AfterApproval extends Component {
         else
         this.props.history.push('/companyProfile');
     }
-    render() {;;
-        localStorage.clear();
-        localStorage.clear();
+    render() {
         return (<div className="message-alert">
         <img src={logo} />
             <div>{line1}</div>
