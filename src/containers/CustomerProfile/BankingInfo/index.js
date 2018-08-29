@@ -26,12 +26,12 @@ class CustomerBankingDetails extends Component
 
     let requestObj={
         ...values,
-        customerId:"5b7530f8a3b7320018ee14b7"
+        customerId:localStorage.getItem('id')
     }
      this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/customer/bankingdetails`)).then((data)=>{
         console.log("Data for company register", data);
-        if(data.message) {
-          this.props.dispatch(showMessage(data.message));
+        if(data.data.message) {
+          this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);

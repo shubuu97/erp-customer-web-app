@@ -7,6 +7,7 @@ import BankDetailFields from '../../../components/common/BankDetails/bankDetails
 import Button from '@material-ui/core/Button';
 
 import MenuItem from 'material-ui/MenuItem';
+import { TextFieldInput } from '../../common/MaterialUiComponents';
 let prop={};
 prop.paymentTerms = [{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}];
 prop.invoiceCurrencyCode=[{label:'FFF',value:'FFF'},{label:'AAA',value:'AAA'}]
@@ -24,21 +25,38 @@ let BankDetailComponent = (props)=>
             <div className="form-box2">
                 <div className="row d-flex">
                 
-                {BankDetailFields.map((info) => {
+    
 
-                    if (info.type == 'select') {
-
-                        return (
-                            <div className="col-md-4 col-sm-6 form-d form-input">
-                            <Field name={`${bankDetails}.${info.name}`} options={prop[info.name]} component={info.component} label={info.label}>
-                            </Field>
-                            </div>
-                        )
-                    }
-                    return (<div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.${info.name}`} label={info.label} component={info.component} />
-                    </div>)
-                })
+                  <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.accountName`} label={'Account Name'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.bankName`} label={'Bank Name'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.branchName`} label={'Bank Branch'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.bankRoutingNumber`} label={'Bank Routing No.'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.bankAccountNumber`} label={'Bank Account No.'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.bankBranch`} label={'Bank Branch'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.bankNumber`} label={'Bank Number'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.accountStatus`} label={'Account Status'} component={TextFieldInput} />
+                    </div>
+                    <div className="col-md-4 col-sm-6 form-d form-input">
+                    <Field name={`${bankDetails}.effectiveFrom`} label={'Effective From'} component={TextFieldInput} />
+                    </div>
+                    
+                    )
+                
 
 
                 }

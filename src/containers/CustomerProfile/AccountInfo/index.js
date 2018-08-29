@@ -29,8 +29,8 @@ class CustomerInfo extends Component
     }
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`)).then((data)=>{
         console.log("Data for company register", data);
-        if(data.message) {
-          this.props.dispatch(showMessage(data.message));
+        if(data.data.message) {
+          this.props.dispatch(showMessage("Successful Operation"));
           setTimeout(()=>{
             this.props.dispatch(showMessage(''));
           },6000);
