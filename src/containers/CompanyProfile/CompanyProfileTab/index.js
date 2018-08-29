@@ -35,6 +35,14 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  tabStyle: {
+    backgroundColor: 'white',
+    color: '#000'
+  },
+  tabActive: {
+    backgroundColor: '#0e8c4f',
+    color: '#FFF'
+  }
 });
 
 class CompanyProfileTab extends React.Component {
@@ -63,10 +71,10 @@ class CompanyProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div>
+      <div className="c-tabs">
         <div className={classes.root}>
-            <Tabs value={value} onChange={this.handleChange}>
-              <Tab label="Account" />
+            <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} TabIndicatorProps={{color:'transparent'}}>
+              <Tab className={classes.tabActive} label="Account" />
               <Tab label="Licence" />
               <Tab label="Site"  />
               <Tab label="Banking"/>
