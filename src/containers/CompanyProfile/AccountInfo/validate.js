@@ -2,10 +2,9 @@ import  * as yup from 'yup';
 var schema = yup.object().shape({
     companyName: yup.string().required(),
     firstName: yup.string().required(),
-    middleName: yup.string().required(),
     lastName: yup.string().required(),
-    email: yup.string().required(),
-    designation: yup.string().email().required(),
+    email: yup.string().email().required(),
+    designation: yup.string().required(),
    
 
 
