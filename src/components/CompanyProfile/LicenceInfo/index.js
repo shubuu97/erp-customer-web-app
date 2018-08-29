@@ -5,8 +5,8 @@ import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiCompo
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem'
 let props = {};
-props.licenseType = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
-props.category = [{ label: 'India', value: 'India' }, { label: 'China', value: 'China' }];
+props.licenseType = [{ label: 'Type1: Small Cultivation', value: 'Small Cultivation' }, { label: 'Type2: Medium Cultivation', value: 'Medium Cultivation' },{ label: 'Type3: Nursery Cultivation', value: 'Nursery Cultivation' }];
+props.category = [{ label: 'Sativa', value: 'Sativa' }, { label: 'Indica', value: 'Indica' }];
 props.country = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 props.state = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 props.city = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
