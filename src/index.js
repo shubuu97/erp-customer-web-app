@@ -68,7 +68,7 @@ if (process.env.NODE_ENV !== 'production') {
     key: 'root',
     storage,
     stateReconciler: hardSet,
-    blacklist: ['bankDetailsData']
+    blacklist: ['bankDetailsData', 'form']
   };
  const persistedReducer = persistReducer(persistConfig, reducer);
 
@@ -97,7 +97,7 @@ ReactDOM.render(
 
 <Route exact path="/" component={Login}/>
 <RouterWithMainLayout layout={MainLayout} exact path="/companyRegister" component={CompanyRegister}/>
-<Route exact path="/customerRegister" component={CustomerRegister}/>
+<RouterWithMainLayout  layout={MainLayout} exact path="/customerRegister" component={CustomerRegister}/>
 
 
 <Route exact path="/app" component={App} />

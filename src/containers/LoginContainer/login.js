@@ -109,7 +109,7 @@ class Login extends Component {
           </form>
           <div className="login-btn">
             <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Business Customer') }}><img src={companyIcon} />Company Sign Up</Button>
-            <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Customer') }}><img src={customerIcon} />Customer Sign Up</Button>
+            <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Customer') }}><img src={customerIcon} />Individual Sign Up</Button>
           </div>
           {this.state.message && <Snackbar
             anchorOrigin={{

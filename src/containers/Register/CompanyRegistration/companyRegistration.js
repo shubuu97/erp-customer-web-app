@@ -10,7 +10,7 @@ import logologin from '../../../assets/images/logo-main.png';
 import withMessage from '../../../components/messageHoc/index';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
-
+import {Link} from 'react-router-dom'
 class CompanyRegistration extends PureComponent {
 
   submit = (formData) => {
@@ -59,6 +59,8 @@ class CompanyRegistration extends PureComponent {
             <CompanyRegister />
             <div className="btn-parent-full">
               <Button variant="contained" color='primary' type='submit' label="Register">Register</Button>
+            </div>
+            <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link>
             </div>
           </form>
         </div>
