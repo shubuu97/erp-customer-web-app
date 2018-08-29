@@ -122,7 +122,7 @@ class MainLayout extends Component {
 }
 
 const mapStateToProps = state => {
-  let message = state.commonData.message;
+  let message = state.commonData && state.commonData.message ? state.commonData.message : {};
   let isLoading = state.registerReducer.isFetching;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus
   let role = state.basicInfodata && state.basicInfodata.role

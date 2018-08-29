@@ -50,16 +50,16 @@ class CustomerBankingDetails extends Component
      this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
         if(true) {
           this.props.history.push("./approval")
-          this.props.dispatch(showMessage('Requested Sent Successfully'));
+          this.props.dispatch(showMessage({text: "Requested Sent Successfully", isSuccess: true}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage(err.message));
+          this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: false}));
           },6000);
         }
       });
