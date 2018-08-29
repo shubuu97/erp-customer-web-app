@@ -4,13 +4,13 @@ export default class extends Component {
     render() {
         return (
             <ul className="app-navbar">
-                <li>Indica</li>
-                <li>Sativa </li>
-                <li>Hybrid</li>
-                <li>Extract</li>
-                <li>Gear</li>
-                <li>Prerolls</li>
-                <li>Tropicals</li>
+                <li onClick={this.props.handleClick}>Indica</li>
+                <li onClick={this.props.handleClick}>Sativa </li>
+                <li onClick={this.props.handleClick}>Hybrid</li>
+                <li onClick={this.props.handleClick}>Extract</li>
+                <li onClick={this.props.handleClick}>Gear</li>
+                <li onClick={this.props.handleClick}>Prerolls</li>
+                <li onClick={this.props.handleClick}>Tropicals</li>
             </ul>
         )
     }
