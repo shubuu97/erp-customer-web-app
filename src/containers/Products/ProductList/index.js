@@ -15,6 +15,10 @@ class ProductsContainer extends React.Component {
   componentDidMount(){
     const {dispatch} = this.props;
     dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
+    document.body.classList.add('product-list')
+  }
+  componentWillUnmount(){
+    document.body.classList.remove('product-list');
   }
   render() {
     const {products} = this.props;
