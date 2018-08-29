@@ -1898,7 +1898,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .header-top {
 	padding: 10px 50px;
-	border-bottom: solid 1px #0e8c4f;
+    border-bottom: solid 1px #0e8c4f;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 .main-logo {
 	width: auto;
@@ -2867,4 +2870,14 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .MuiTab-label-477
 {font-size: 1.4em;}
+.user-name{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: green;
+}
+.user-avatar{
+    align-items: center;
+    display: flex;
+}
 /*******************************CART PAGE CSS END**************************************************/
