@@ -49,7 +49,12 @@ class CartContainer extends React.Component {
       image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
     }];
     this.updateProductList(this.props.cartProductList);
+    document.body.classList.add('cart-page')
   }
+  componentWillUnmount(){
+    document.body.classList.remove('cart-page');
+  }
+  
   removeProductFromCart(productId) {
     const {cartProducts} = this.state;
     let productsTemp = cartProducts;
@@ -57,9 +62,9 @@ class CartContainer extends React.Component {
     productsTemp.splice(productIndex, 1);
     this.setState({cartProducts: productsTemp});
     this.props.dispatch(addToCart(productsTemp));
-    this.props.dispatch(showMessage("Product removed from cart"));
+    this.props.dispatch(showMessage({text: "Product removed from cart", isSuccess: true}));
     setTimeout(()=>{
-      this.props.dispatch(showMessage(''));
+      this.props.dispatch(showMessage({text: "", isSuccess: true}));
     },6000);
     this.updateProductList(productsTemp);
   }

@@ -34,17 +34,17 @@ class CustomerRegistration extends Component
    
    this.props.dispatch(postCustomerRegisterData(postData,'customerRegistr',`${APPLICATION_BFF_URL}/customer/register`)).then((data)=>{
 {
-      this.props.dispatch(showMessage("Successful Operation"));
+      this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
       this.props.history.push('/register');
       setTimeout(()=>{
-        this.props.dispatch(showMessage(''));
+        this.props.dispatch(showMessage({text: "", isSuccess: true}));
       },6000);
     }
   }, (err)=>{
      {
-      this.props.dispatch(showMessage(err.message));
+      this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
       setTimeout(()=>{
-        this.props.dispatch(showMessage(''));
+        this.props.dispatch(showMessage({text: "", isSuccess: false}));
       },6000);
     }
   })

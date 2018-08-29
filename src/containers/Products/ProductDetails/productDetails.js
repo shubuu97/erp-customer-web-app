@@ -4,6 +4,11 @@ import Button from '@material-ui/core/Button';
 export default (props) => {
   return (
     <div className="productDetails-container">
+      <ul className="breadcrumb">
+        <li>Home</li>
+        <li>Indica</li>
+        <li>Mota Indica THC Tincture </li>
+      </ul>
       <div className="detailsContent">
         <div className="imageContent">
           <div className="mainImage">
@@ -17,18 +22,44 @@ export default (props) => {
         </div>
         <div className="descriptionContent">
           <div className="namePriceDiv">
-            <h3>{props.detail.itemInfo.itemName}</h3>
-            <h4>Item Code: {props.detail.itemInfo.itemNo}</h4>
-            <h4>Unit Count: {props.detail.itemInfo.unitCount}</h4>
-            <h3>{props.detail.itemInfo.currency.code} {props.detail.itemInfo.price}</h3>
-            <p>{props.detail.itemInfo.itemDesc}
-            </p>
+            <h2 className="p-name">{props.detail.itemInfo.itemName}</h2>
+            <p className="ic text-uppercase">Item Code: <span>{props.detail.itemInfo.itemNo}</span></p>
+            {/* <p className="ic">Unit Count: <span>{props.detail.itemInfo.unitCount}</span></p> */}
+            <h3 className="p-price">{props.detail.itemInfo.currency.code} {props.detail.itemInfo.price}</h3>
+            <div className="d-flex wq-bar">
+              <label>Weight</label>
+              <span>{props.detail.itemInfo.unitCount}</span>
+            </div>
+            <div className="d-flex wq-bar">
+              <label>Quantity</label>
+              <span></span>
+            </div>
           </div>
           <div className="addToCartButtonDiv">
-            <Button variant="contained" size='large' color="inherit" classes={{ root: 'add-cart-button' }} onClick={() => props.addToCart()}>ADD TO CART</Button>
-            <Button variant="contained" size='large' color="inherit" classes={{ root: 'buy-cart-button' }} onClick={() => props.buyProduct()}>BUY NOW</Button>
+            <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={() => props.addToCart()}>ADD TO CART</Button>
+            {/* <Button variant="contained" size='large' color="inherit" classes={{ root: 'buy-cart-button' }} onClick={() => props.buyProduct()}>BUY NOW</Button> */}
+            <p className="p-desc"><b>Description</b>{/*{props.detail.itemInfo.itemDesc}*/} This mostly indica strain is a mix of Afghani and Blackberry strains and has beautiful dark purple buds with orange hairs. Plants will flower at 7-8 weeks and are not particularly high yielders, but the dense, hard nugs have crystals throughout. Blackberry Kush tends to have a hashy, jet fuel smell and taste that is balanced by sweet berries. Blackberry Kush is often recommended for the treatment of pain thanks to its strong indica body effects, </p>
           </div>
         </div>
+      </div>
+      <div className="table-responsive table-product-detail">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th colSpan="2">Additional Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width="10%"><b>Dimensions </b></td>
+                  <td>40 MM X 30MM</td>
+                </tr>
+                <tr>
+                  <td><b>Weight</b></td>
+                  <td>1 Gram, 3.5 Grams, 7 Grams, 14 Grams, 28 Grams</td>
+                </tr>
+              </tbody>
+            </table>
       </div>
     </div>
   )
