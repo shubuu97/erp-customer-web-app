@@ -24,9 +24,9 @@ class ProductDetailsContainer extends React.Component {
       cartList.push(selectedProduct);
       dispatch(addToCart(cartList));
     }
-    this.props.dispatch(showMessage("Product successfully added to cart"));
+    this.props.dispatch(showMessage({text: "Product successfully added to cart", isSuccess: true}));
     setTimeout(()=>{
-      this.props.dispatch(showMessage(''));
+      this.props.dispatch(showMessage({text: "", isSuccess: true}));
     },6000);
   }
   buyProduct() {
