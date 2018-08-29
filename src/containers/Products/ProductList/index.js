@@ -14,13 +14,14 @@ class ProductsContainer extends React.Component {
   componentDidMount(){
     const {dispatch} = this.props;
     dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
+    document.body.classList.add('product-list');
   }
   render() {
     const {products} = this.props;
     const productDataList = products && products.itemsData;
     return (
       <div>
-        <ProductList productsList={productDataList} onProductClick={(item)=>this.productDetails(item)}/>
+        <ProductList productsList={productDataList} isLoading={this.props.isLoading} onProductClick={(item)=>this.productDetails(item)}/>
       </div>
     )
   }
