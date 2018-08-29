@@ -146,8 +146,8 @@ function mapStateToProps(state) {
   let loginData = state.loginReducer;
   let lookUpData = state.loginReducer.lookUpData;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus
-  let role = state.basicInfodata.role;
-  let id = state.basicInfodata.id;
+  let role = state.basicInfodata && state.basicInfodata.role;
+  let id = state.basicInfodata && state.basicInfodata.id;
 
   return { isLoading, loginData, lookUpData, customerStatus, role, id }
 }
