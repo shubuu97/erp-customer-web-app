@@ -45,7 +45,7 @@ class CustomerProfileTab extends React.Component {
   };
   componentDidMount()
   {
-    this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+    this.props.dispatch(postBasicInfoData({ email: localStorage.getItem('email') }, '', `${APPLICATION_BFF_URL}/user/logindata`))
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
 
 
@@ -80,5 +80,6 @@ CustomerProfileTab.propTypes = {
 };
 
 CustomerProfileTab=withStyles(styles)(CustomerProfileTab);
+
 export default connect()(CustomerProfileTab)
 
