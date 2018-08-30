@@ -19,6 +19,7 @@ import { postRegisterTokenData } from '../../action/registerSignUpToken';
 import routeDeciderHoc from '../../components/Login/routerDecider';
 import { showMessage } from '../../action/common';
 import Snackbar from '@material-ui/core/Snackbar';
+import asyncValidate from './validate.js';
 
 
 
@@ -104,7 +105,7 @@ class Login extends Component {
           <form onSubmit={handleSubmit(this.loginSubmitHandler)}>
             <LoginView />
             <div className="btn-parent-full">
-              <Button className={classes.buttonLogin} type={'submit'} variant="contained" color='primary'>Sign In</Button>
+              <Button className={classes.buttonLogin} type='submit' variant="contained" color='primary'>Sign In</Button>
             </div>
           </form>
           <div className="login-btn">
@@ -137,7 +138,7 @@ class Login extends Component {
 Login = reduxForm(
   {
     form: 'LoginForm',
-
+    asyncValidate
   }
 )(Login)
 
