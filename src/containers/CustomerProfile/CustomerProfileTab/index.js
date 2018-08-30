@@ -59,6 +59,7 @@ class CustomerProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
+      <div className="container">
       <div className={classes.root + ' c-tabs'}>
         <AppBar position="static">
           <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
@@ -69,6 +70,7 @@ class CustomerProfileTab extends React.Component {
         {value === 0 && <TabContainer><AccountInfo/></TabContainer>}
         
         {value === 1 && <TabContainer><BankingInfo{...this.props}/></TabContainer>}
+      </div>
       </div>
     );
   }

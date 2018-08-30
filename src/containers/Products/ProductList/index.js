@@ -23,7 +23,7 @@ class ProductsContainer extends React.Component {
     const {products} = this.props;
     const productDataList = products && products.itemsData;
     return (
-      <div>
+      <div className="container">
         <ProductList productsList={productDataList} isLoading={this.props.isLoading} onProductClick={(item)=>this.productDetails(item)}/>
       </div>
     )

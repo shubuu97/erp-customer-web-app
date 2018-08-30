@@ -68,7 +68,7 @@ class CartContainer extends React.Component {
   render() {
     const {cartProducts, details} = this.state;
     return (
-      <div >
+      <div className="container">
       {cartProducts.length ? 
       <div>
         <h2 className="cart-heading">Shopping Cart</h2>
