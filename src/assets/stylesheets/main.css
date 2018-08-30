@@ -1871,7 +1871,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     width: 0px !important;
 }
 .login-container.register .login {
-    height: 530px;
+    height: 560px;
     width: 450px;
 }
 .row.m-8 {
@@ -2106,6 +2106,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .user-menu ul li {
     padding-top:8px;
     padding-bottom:8px;
+}
+.sp{
+    margin-top:10px;
 }
 .table-product-detail tbody td, .table-product-detail th {
 	border-top: none !important;

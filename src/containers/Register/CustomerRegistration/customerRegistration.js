@@ -8,6 +8,7 @@ import asyncValidate from './validate.js'
 import {showMessage} from '../../../action/common';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
 import expand from 'keypather/expand';
+import {Link} from 'react-router-dom';
 
 import Button from '@material-ui/core/Button'
 
@@ -32,18 +33,18 @@ class CustomerRegistration extends Component
    postData.basicInfo.addressInfo.push(pushObj);
    
    this.props.dispatch(postCustomerRegisterData(postData,'customerRegistr',`${APPLICATION_BFF_URL}/customer/register`)).then((data)=>{
-    if(data.data.message) {
-      this.props.dispatch(showMessage("Successful Operation"));
+{
+      this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
       this.props.history.push('/register');
       setTimeout(()=>{
-        this.props.dispatch(showMessage(''));
+        this.props.dispatch(showMessage({text: "", isSuccess: true}));
       },6000);
     }
   }, (err)=>{
-    if(err.message) {
-      this.props.dispatch(showMessage(err.message));
+     {
+      this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
       setTimeout(()=>{
-        this.props.dispatch(showMessage(''));
+        this.props.dispatch(showMessage({text: "", isSuccess: false}));
       },6000);
     }
   })
@@ -66,6 +67,8 @@ class CustomerRegistration extends Component
            <CustomerRegister {...this.props} />
            <div className="btn-parent-full">
               <Button variant="contained" color='primary' type='submit'>Register</Button>
+              <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link>
+              </div>
            </div>
            </form>
         </div>

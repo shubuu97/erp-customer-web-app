@@ -8,9 +8,10 @@ import { logout } from '../../action/loginAction';
 class AfterApproval extends Component {
     handleSwitch=()=>
     {
-        this.props.dispatch(logout());
-        localStorage.clear();
-        this.props.history.push('/');
+        if (this.props.role=="customer")
+        this.props.history.push('/customerProfile');
+        else
+        this.props.history.push('/companyProfile');
     }
     render() {
         return (<div className="message-alert">
@@ -18,7 +19,7 @@ class AfterApproval extends Component {
             <div>{line1}</div>
             <div>{line2}</div>
             <div>{line3}</div>
-            <Button onClick={this.handleSwitch} variant="contained" color='primary'>OK</Button>
+            <Button onClick={this.handleSwitch} variant="contained" color='primary'>Back to Profile</Button>
         </div>
         )
     }

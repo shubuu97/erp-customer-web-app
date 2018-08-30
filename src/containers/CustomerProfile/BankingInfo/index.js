@@ -50,16 +50,16 @@ class CustomerBankingDetails extends Component
      this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
         if(true) {
           this.props.history.push("./approval")
-          this.props.dispatch(showMessage('Requested Sent Successfully'));
+          this.props.dispatch(showMessage({text: "Requested Sent Successfully", isSuccess: true}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage(err.message));
+          this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: "", isSuccess: false}));
           },6000);
         }
       });
@@ -67,13 +67,14 @@ class CustomerBankingDetails extends Component
     render()
     {
         const {handleSubmit} = this.props;
+        console.log(this.props,"props is here")
         return(
             <div>
                  <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}>
             <BankingInfoComponent/>
             <div className="form-btn-group">
                 <Button variant="contained" type='submit' color='primary'>Save</Button> 
-                <Button variant="contained" onClick={this.submitForApproval}  color='primary' >Submit for approval</Button>
+                <Button  variant="contained" disabled={this.props.invalid||!this.props.anyTouched} onClick={this.submitForApproval}  color='primary' >Submit for approval</Button>
             </div>
             </form>
             </div>

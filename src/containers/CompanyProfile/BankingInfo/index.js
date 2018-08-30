@@ -55,17 +55,17 @@ class BankingInfo extends Component
         console.log("Data for company register", data);
         if(true) {
           this.props.history.push("./approval")
-          this.props.dispatch(showMessage('Requested Sent Successfully'));
+          this.props.dispatch(showMessage({text: 'Requested Sent Successfully', isSuccess: true}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: '', isSuccess: true}));
           },6000);
         }
       }, (err)=>{
         console.log("Error in company register", err);
         if(err.message) {
-          this.props.dispatch(showMessage(err.message));
+          this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
           setTimeout(()=>{
-            this.props.dispatch(showMessage(''));
+            this.props.dispatch(showMessage({text: '', isSuccess: false}));
           },6000);
         }
       });
@@ -82,7 +82,7 @@ class BankingInfo extends Component
 
                 <div className="form-btn-group">
                     <Button variant="contained" type='submit' color='primary'>Save</Button>
-                    <Button variant="contained" onClick={this.submitForApproval} color='primary'>Submit for approval</Button>
+                    <Button variant="contained"  disabled={this.props.invalid||!this.props.anyTouched} onClick={this.submitForApproval} color='primary'>Submit for approval</Button>
                 </div>
                 </form>
             </div>

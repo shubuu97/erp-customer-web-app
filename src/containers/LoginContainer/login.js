@@ -109,7 +109,7 @@ class Login extends Component {
           </form>
           <div className="login-btn">
             <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Business Customer') }}><img src={companyIcon} />Company Sign Up</Button>
-            <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Customer') }}><img src={customerIcon} />Customer Sign Up</Button>
+            <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Customer') }}><img src={customerIcon} />Individual Sign Up</Button>
           </div>
           {this.state.message && <Snackbar
             anchorOrigin={{
@@ -146,8 +146,8 @@ function mapStateToProps(state) {
   let loginData = state.loginReducer;
   let lookUpData = state.loginReducer.lookUpData;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus
-  let role = state.basicInfodata.role;
-  let id = state.basicInfodata.id;
+  let role = state.basicInfodata && state.basicInfodata.role;
+  let id = state.basicInfodata && state.basicInfodata.id;
 
   return { isLoading, loginData, lookUpData, customerStatus, role, id }
 }

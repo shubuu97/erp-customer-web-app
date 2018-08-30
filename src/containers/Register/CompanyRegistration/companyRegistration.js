@@ -10,7 +10,7 @@ import logologin from '../../../assets/images/logo-main.png';
 import withMessage from '../../../components/messageHoc/index';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
-
+import {Link} from 'react-router-dom'
 class CompanyRegistration extends PureComponent {
 
   submit = (formData) => {
@@ -25,18 +25,18 @@ class CompanyRegistration extends PureComponent {
 
     this.props.dispatch(postCustomerRegisterData(postData, 'companyRegister', `${APPLICATION_BFF_URL}/businesscustomer/register`)).then((data)=>{
       console.log("Data for company register", data);
-        this.props.dispatch(showMessage("Successful Operation"));
+        this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
         this.props.history.push('/register');
         setTimeout(()=>{
-          this.props.dispatch(showMessage(''));
+          this.props.dispatch(showMessage({text: "", isSuccess: true}));
         },6000);
       }
     , (err)=>{
       console.log("Error in company register", err);
       
-        this.props.dispatch(showMessage("Operation failed"));
+        this.props.dispatch(showMessage({text: "Operation failed", isSuccess: false}));
         setTimeout(()=>{
-          this.props.dispatch(showMessage(''));
+          this.props.dispatch(showMessage({text: "", isSuccess: false}));
         },6000);
       
     })
@@ -59,6 +59,8 @@ class CompanyRegistration extends PureComponent {
             <CompanyRegister />
             <div className="btn-parent-full">
               <Button variant="contained" color='primary' type='submit' label="Register">Register</Button>
+            </div>
+            <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link>
             </div>
           </form>
         </div>
