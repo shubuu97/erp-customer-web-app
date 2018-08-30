@@ -51,16 +51,18 @@ class ProductsInCart extends React.Component {
         remove={removeProduct}
       />);
   return (
-    <div className="cart-table">
+    
+    <div className="cart-table col-sm-9">
     <div className="cart-table-head">
-      <div className="cart-table-head-item first-col">PRODUCT</div>
-      <div className="cart-table-head-item">PRICE</div>
-      <div className="cart-table-head-item">QUANTITY</div>
-      <div className="cart-table-head-item">TOTAL</div>
+      <div className="cart-table-head-item first-col">Product Name</div>
+      <div className="cart-table-head-item">Price</div>
+      <div className="cart-table-head-item">Qty</div>
+      <div className="cart-table-head-item">Sub Total</div>
+      <div className="cart-table-head-item">Action</div>
     </div>
-      <div className="cart-table-body">
+      
         {products}
-      </div >
+      
     </div>
   );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (props) => {
   return (
-   <div className="cart-total-container">
+   <div className="cart-total-container col-sm-3">
     <div className="cart-total-title">
         CART TOTALS
     </div>

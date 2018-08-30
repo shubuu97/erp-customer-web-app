@@ -59,7 +59,7 @@ class CustomerProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root + ' c-tabs'}>
         <AppBar position="static">
           <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
             <Tab className={value==0?classes.tabActive:null} label="Account" />

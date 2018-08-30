@@ -90,7 +90,9 @@ class CartContainer extends React.Component {
       <div >
       {cartProducts.length ? 
       <div>
+        <h2 className="cart-heading">Shopping Cart</h2>
       <div className="cart-container">
+      
         <CartProductList updateProductList={this.updateProductList} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
         <CartTotal details={details}/>
         </div>

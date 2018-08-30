@@ -2079,7 +2079,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	/* background-color: #f7ffe4 !important; */
 }
 [class^="MuiTab-root-"], [class^="MuiTab-label-"]{
-    font-size:1.4rem !important;
+    /* font-size:1.4rem !important; */
 }
 .user-name {
 	margin-left: 10px;
@@ -2114,6 +2114,17 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .table-product-detail tbody tr:first-child td {
 	padding-top: 20px !important;
 }
+.c-tabs header {
+	box-shadow: none;
+}
+.c-tabs button span {
+	font-size:1.4rem;
+}
+.cart-heading {
+	margin-top: 0;
+	font-weight: 300;
+}
+
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -2916,56 +2927,66 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
-.cart-table{
-    flex: 3;
-    padding-right: 25px;
+.cart-table {
+	border-top: solid 1px #DDD;
+	border-left: solid 1px #DDDD;
+	width: 72%;
+	display: table;
+	padding: 0;
 }
-.cart-table-head{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #cacaca;
-    padding-bottom: 15px;
+.cart-table-head {
+	display: table-row;
+	border-bottom: solid 1px #DDD;
 }
-.cart-table-head-item{
-    font-size: 1.25em;
-    font-weight: bold;
+.cart-table-head-item {
+	font-size: 1.25em;
+	padding: 10px;
+	border-right: solid 1px #DDD;
+	display: table-cell;
+	border-bottom: solid 1px #DDD;
 }
-.cart-table-body{
-    display: flex;
-    flex-direction: column;
+.cart-table-body {
+	display: table;
 }
-.row-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #cacaca;
-    margin-bottom: 10px;
+.row-container {
+	display: table-row;
 }
-.row-name-code{
-    display: flex;
-    flex-direction: column;
+.row-name-code {
+	float: left;
+	color: #999;
 }
-.row-product{
-    display: flex;
-    justify-content: space-between;
-    min-width: 200px;
-    align-items: center;
+.row-name-code h4 {
+	font-weight:normal;
+}
+.row-product {
+	display: table-cell;
+	border-bottom: solid 1px #DDD;
+	min-width: 200px;
+	padding: 10px;
 }
 .row-product i {
     font-size: 2em;
 }
-.row-product-img{
-    width: 80px;
-    height: 80px;
-    border: 1px solid #d2d2d2;
-    border-radius: 5px;
+.row-price, .row-quantity, .row-total {
+    display: table-cell;
+    border-bottom: solid 1px #DDD;
+    padding: 10px;
 }
-.row-quantity{
-    display: flex;
-    align-items: center;
+.row-action {
+    display: table-cell;
+    border-bottom: solid 1px #DDD;
+    padding: 10px;
+    text-align:center;
+    border-right: solid 1px #DDD;
+}
+.row-action i {
+	font-size: 20px;
+}
+.row-product-img {
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 20px;
 }
 .row-quantity button {
     padding: 0px 10px;
@@ -2978,14 +2999,16 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     padding: 10px 15px;
     border: 1px solid #bbbbbb;
 }
-.cart-container{
-    display: flex;
+.cart-container {
+	float: left;
+	width: 100%;
+	margin-bottom: 20px;
 }
-.cart-total-container{
-    flex: 1;
-    margin-top: 20px;
-    padding-left: 20px;
-    border-left: 1px solid #cacaca;
+.cart-total-container {
+	border: 1px solid #DDD;
+	float: right;
+	padding: 0;
+	background: #fdfdfd;
 }
 .cart-total-title{
     padding: 10px;
@@ -2997,7 +3020,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .cart-item{
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-bottom: 10px;
     border-bottom: 1px solid #cacaca;
     font-size: 1.20em;
     display: flex;
