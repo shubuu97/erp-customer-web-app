@@ -9,16 +9,8 @@ export default (props) => {
       </div>
       <div className="address-content">
         <div className="address-detail">
-          <h5>Chris Brown</h5>
-          <p>malviya nagar jaipur, Rajsthan, India - 302012</p>
-        </div>
-        <div className="address-detail">
-          <h5>Chris Brown</h5>
-          <p>malviya nagar jaipur, Rajsthan, India - 302012</p>
-        </div>
-        <div className="address-detail">
-          <h5>Chris Brown</h5>
-          <p>malviya nagar jaipur, Rajsthan, India - 302012</p>
+          <h5>{props.name}</h5>
+          <p>{props.address.companyAddress}, {props.address.city}, {props.address.state}, {props.address.country}- {props.address.zipCode}</p>
         </div>
       </div>
       <div className="addToCartButtonDiv">
