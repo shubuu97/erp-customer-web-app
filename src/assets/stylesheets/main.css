@@ -3113,3 +3113,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
+/***************************************CHECKOUT PAGE*********************************************/
+.checkout-product-list {
+    border-bottom: 2px solid #cacaca;
+    margin-bottom: 10px;
+}
+/****************************************CHECKOUT PAGE CSS END ***********************************/
