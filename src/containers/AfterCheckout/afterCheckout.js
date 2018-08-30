@@ -16,7 +16,7 @@ class AfterCheckout extends Component {
         return (<div className="message-alert">
         <img src={logo} />
             <div>{line1}</div>
-            <Button onClick={this.handleSwitch} variant="contained" color='primary'>Back to Shopping.</Button>
+            <Button onClick={this.handleSwitch} variant="contained" color='primary'>Back to Shopping</Button>
         </div>
         )
     }
