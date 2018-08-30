@@ -1097,7 +1097,7 @@ li.logout a:hover, li.logout a:focus {
 	max-width: 100%;
 	max-height: 100%;
 	overflow: hidden;
-	height: 450px;
+	height: 500px;
 	padding: 0;
 	border: none;
 	border-radius: 0;
@@ -1852,7 +1852,8 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     font-size: 1.4rem;
 }
 .form-d div {
-    font-size: 1.4rem;
+	font-size: 1.4rem;
+	line-height: 20px;
 }
 [class^="css-1aya2g8"], [class^="css-2o5izw"] {
     border: none !important;
@@ -1872,7 +1873,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     width: 0px !important;
 }
 .login-container.register .login {
-    height: 560px;
+    height: 630px;
     width: 450px;
 }
 .row.m-8 {
@@ -1907,14 +1908,18 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .header-nav {
 	display: -ms-flexbox;
 	display: flex;
-	padding: 0 50px 10px;
+	padding: 0 15px 10px;
 	max-width: 100%;
 	-ms-flex: 0 0 100%;
 	flex: 0 0 100%;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-ms-flex-align: center;
 	align-items: center;
+	margin: auto;
+	max-width: 1200px;
 }
 .main-logo {
 	width: 100px;
@@ -1927,12 +1932,17 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	padding: 0;
 	background: #FFF;
 	border-bottom: solid 1px rgba(6, 57, 32, 0.4);
+	border-top: solid 8px #0e8c4f;
 }
 .header-top {
-	padding: 6px 50px;
-	border-top: solid 8px #0e8c4f;
+	padding: 6px 15px;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-pack: end;
 	justify-content: flex-end;
+	margin: auto;
+	width: 100%;
+	max-width: 1200px;
 }
 .app-navbar {
 	color: #000;
@@ -2025,8 +2035,12 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .product-image {
 	border-bottom: solid 1px #ababab;
-	padding: 35px;
+	padding: 20px;
 	background: #FFF;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .product-content {
 	padding: 16px 0;
@@ -2164,13 +2178,17 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .subImages{
     display: flex;
+    margin-top:30px;
 }
-.subImages img{
-    width: 15%;
-    height: 15%;
-    border: 1px solid #d0d0d0;
-    border-radius: 5px;
-    margin: 10px;
+.subImages img {
+	width: 18%;
+	height: 65px;
+	margin: 0px 4px;
+	border: solid 1px #e5e5e5;
+	padding: 5px;
+}
+.subImages img.active {
+    border:solid 2px #0e8c4f;
 }
 .descriptionContent{
     display: flex;
@@ -2189,8 +2207,8 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     color: #fff !important;
 }
 .p-price {
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	color: #0e8c4f;
 	font-size: 26px;
 }
@@ -2201,10 +2219,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	width: 100px;
 }
 .wq-bar {
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }
 .p-desc {
-	margin-top: 50px;
+	margin-top: 30px;
 	line-height: 26px;
 }
 .p-desc b {
@@ -2380,7 +2398,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	justify-content: space-between !important;
 }
 .apply-discount {
-	padding: 10px 15px;
+	padding: 10px 0;
 }
 .apply-discount label {
 	font-size: 1.5rem;
@@ -2393,8 +2411,13 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	padding: 0 30px 0 0;
 }
 .text-input.error p {
-    color: red;
-    font-size: 1em;
+	color: red;
+	font-size: 1.2rem;
+	line-height: 14px;
+	margin-top: 3px;
+}
+.cart-item-button .add-cart-button {
+	width: 100%;
 }
 /*******************************CART PAGE CSS END**************************************************/
 
@@ -2530,6 +2553,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     }
     .right-content.content-full{
         width:83.33%;
+    }
+    .container {
+        width: 1200px;
     }
 }
 @media(max-width:1250px){
@@ -3117,5 +3143,29 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .checkout-product-list {
     border-bottom: 2px solid #cacaca;
     margin-bottom: 10px;
+}
+.biling-address-title {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid gray;
+}
+.address-content{
+    display: flex;
+    margin-top: 20px;
+}
+.address-detail {
+    max-width: 250px;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    margin-right: 20px;
+}
+.address-container{
+    display: flex;
+    flex-direction: column;
+}
+.address-order-details{
+    display: flex;
+    justify-content: space-evenly;
 }
 /****************************************CHECKOUT PAGE CSS END ***********************************/
