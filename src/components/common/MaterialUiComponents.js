@@ -3,6 +3,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 import SelectField from '@material-ui/core/Select';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 const TextFieldInput = (props) =>
@@ -11,15 +12,18 @@ const TextFieldInput = (props) =>
     
     let  {input,label,meta:{touched,error,pristine},...custom} = props;
     return(
-  
-    <TextField
+    [<TextField
       label={label}
       placeholder={label}
       error = {touched&&error?true:false}
       {...input}
       {...custom}
-    />
-      
+    />,
+    <div>{touched && error && <div className="text-input error"><FormHelperText >
+				{error}
+			</FormHelperText>
+      </div>}
+      </div>]
   )
 }
 

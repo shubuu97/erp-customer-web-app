@@ -1,4 +1,4 @@
-import LicenceInfoFields from './LiceneceInfo';
+
 import { Field, reduxForm, FormSection, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
@@ -26,7 +26,7 @@ let emailField = (props) => {
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
 
-                    <Field label='Email' name={`${email}.email`} component={TextFieldInput} />
+                    <Field label='Email *' name={`${email}.email`} component={TextFieldInput} />
 
 
 
@@ -56,7 +56,7 @@ let contactField = (props) => {
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
 
-                    <Field name={`${contact}.contact`} label='Contact' component={TextFieldInput} />
+                    <Field name={`${contact}.contact`} label='Contact *' component={TextFieldInput} />
 
 
 
@@ -86,13 +86,13 @@ class LicenceInfo extends Component {
                             <span>Comapny name will come here</span>
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['licenseType']} placeholder='License Type' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type'} />
+                                <Field options={props['licenseType']} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['category']} placeholder='Company Category' name={'category'} component={ReactSelectWrapper} label={'Company Category'} />
+                                <Field options={props['category']} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name={'licenseNumber'} label={'License Number'} component={TextFieldInput} />
+                                <Field name={'licenseNumber'} label={'License Number *'} component={TextFieldInput} />
                             </div>
                         </div>
                     
@@ -105,19 +105,19 @@ class LicenceInfo extends Component {
                                             <h2 className="box-title">Address Info</h2>
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'companyAddress'} label={'Company Address'} component={TextFieldInput} />
+                                            <Field name={'companyAddress'} label={'Company Address *'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'zipCode'} label={'Zip Code'} component={TextFieldInput} />
+                                            <Field name={'zipCode'} label={'Zip Code *'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'country'} label={'country'} component={TextFieldInput} />
+                                            <Field name={'country'} label={'Country *'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'state'} label={'state'} component={TextFieldInput} />
+                                            <Field name={'state'} label={'State *'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'city'} label={'city'} component={TextFieldInput} />
+                                            <Field name={'city'} label={'City *'} component={TextFieldInput} />
                                         </div>
                                     </div>
                                 </div>
