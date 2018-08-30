@@ -10,7 +10,7 @@ export default (props) => {
       <div className="address-content">
         <div className="address-detail">
           <h5>{props.name}</h5>
-          <p>{props.address.companyAddress}, {props.address.city}, {props.address.state}, {props.address.country}- {props.address.zipCode}</p>
+          <p>{props.address.companyAddress || props.address.address}, {props.address.city}, {props.address.state}, {props.address.country}- {props.address.zipCode}</p>
         </div>
       </div>
       <div className="addToCartButtonDiv">
