@@ -72,7 +72,7 @@ class CompanyProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <div className={classes.root + ' c-tabs'}>
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD'}} TabIndicatorProps={{color:'transparent'}}>
               <Tab className={value==0?classes.tabActive:null} label="Account" />

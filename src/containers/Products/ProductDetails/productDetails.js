@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 
 export default (props) => {
   return (
-    <div className="productDetails-container">
+    <div className="productDetails-container container">
       <ul className="breadcrumb">
         <li>Home</li>
         <li>Indica</li>
