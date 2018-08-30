@@ -45,7 +45,8 @@ const AddressInfo = (props) => {
 
 
                 }
-              {fields.length!=1&&<div className="col-md-4 col-sm-6"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
+            {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="col-md-4 col-sm-6"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
+
                 </div></div>))}
                 <div className="form-btn-group">
                     <Button onClick={() => fields.push()} variant="contained" color='primary'>Add New</Button>

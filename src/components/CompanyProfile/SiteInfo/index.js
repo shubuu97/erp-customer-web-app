@@ -25,9 +25,9 @@ let License = (props) => {
                     <Field label='License Number *' name={`${license}.licenseNumber`} component={TextFieldInput} />
 
 
+                {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="top-btn-gutter"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
 
 
-                    {fields.length != 1 && <div className="top-btn-gutter"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div>))}
                 <div className="col-sm-12"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
 
@@ -73,17 +73,14 @@ let Address = (props) => {
                 <div className="form-d col-md-4 col-sm-6 form-input">
                     <Field label='City *' name={`${address}.city`} component={TextFieldInput} />
                 </div>
-                <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
+        
                     
+                {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="col-sm-12"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
 
-
-
-
-                    {fields.length != 1 && <div className="col-sm-12"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div> </div>))}
             
 
-        
+          <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
         
         </div>
         </div>
@@ -120,9 +117,9 @@ let Site = (props) => {
                     
 
 
+                {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
 
 
-                    {fields.length != 1 && <div className="form-btn-group-left"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div>))}
             
 
