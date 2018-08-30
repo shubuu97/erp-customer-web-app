@@ -6,6 +6,7 @@ import { postCheckoutData } from '../action/checkout';
 import { CHECKOUT_URL } from '../constants/checkout';
 import {fetchLicenseDetailsData} from '../../../action/getLicenseInfo';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+import { addToCart } from '../action/product';
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -27,6 +28,7 @@ class CheckOut extends Component {
 		 this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
 	}
 	placeOrder = () => {
+		const {companyinfo} = this.props;
 		let items = [];
 		this.props.cartProductList.map((item) => {
 			let itemObj = {
@@ -44,25 +46,26 @@ class CheckOut extends Component {
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				billingAddress: {
-					address: "529 Mansarovar Plaza",
-					city: "Jaipur",
-					country: "India",
-					state: "Rajasthan",
-					zipCode: "3232",
+					address: companyinfo.companyInfo.companyAddressInfo.companyAddress,
+					city: companyinfo.companyInfo.companyAddressInfo.city,
+					country: companyinfo.companyInfo.companyAddressInfo.country,
+					state: companyinfo.companyInfo.companyAddressInfo.state,
+					zipCode: companyinfo.companyInfo.companyAddressInfo.zipCode,
 					addressType: false
 				},
 				shippingAddress: {
-					address: "529 Mansarovar Plaza",
-					city: "Jaipur",
-					country: "India",
-					state: "Rajasthan",
-					zipCode: "3232",
+					address: companyinfo.companyInfo.companyAddressInfo.companyAddress,
+					city: companyinfo.companyInfo.companyAddressInfo.city,
+					country: companyinfo.companyInfo.companyAddressInfo.country,
+					state: companyinfo.companyInfo.companyAddressInfo.state,
+					zipCode: companyinfo.companyInfo.companyAddressInfo.zipCode,
 					addressType: false
 				}
 			}
 		}
 		this.props.dispatch(postCheckoutData(CHECKOUT_URL, orderData)).then((data) => {
 			console.log("ORDER PLACED SUCCESSFULLY", data);
+			this.props.dispatch(addToCart([]));
 			this.props.history.push('/orderSuccess');
 		}, (err) => {
 			console.log("Error in order place", err);
@@ -72,6 +75,8 @@ class CheckOut extends Component {
 	render() {
 		console.log(this.props.cartProductList, "Cart list in checkout");
 		const { subTotal, orderTotal } = this.state;
+		const {companyinfo, userInfo} = this.props;
+		console.log("companyinfo is here",companyinfo);
 		return (
 			<div className="checkout-container">
 				<div>
@@ -79,8 +84,8 @@ class CheckOut extends Component {
 				</div>
 				<div className="address-order-details">
 					<div className="address-container">
-						<CheckoutAddresses type={'Billing Address'} />
-						<CheckoutAddresses type={'Shipping Address'} />
+						{companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo && <CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo}/>}
+						{companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo && <CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo}/>}
 					</div>
 					<OrderDetails placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
 				</div>
@@ -91,7 +96,7 @@ class CheckOut extends Component {
 const mapStateToPtops = (state) => {
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo =  state.licenseDetailsData.lookUpData.data;
-	console.log("companyinfo is here", companyinfo);
-	return { cartProductList };
+	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
+	return { cartProductList, companyinfo, userInfo };
 }
 export default connect(mapStateToPtops)(CheckOut);

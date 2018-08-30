@@ -28,11 +28,14 @@ export default (props) => {
             <h3 className="p-price">$ {props.detail.itemInfo.price}</h3>
             <div className="d-flex wq-bar">
               <label>Weight</label>
-              <span>{props.detail.itemInfo.unitCount}</span>
+              <span>{props.detail.itemInfo.unitCount} Grams</span>
             </div>
-            <div className="d-flex wq-bar">
+            {/* <div className="d-flex wq-bar">
               <label>Quantity</label>
               <span></span>
+            </div> */}
+            <div className="d-flex wq-bar">
+              <label>In Stock</label>
             </div>
           </div>
           <div className="addToCartButtonDiv">
