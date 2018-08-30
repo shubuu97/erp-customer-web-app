@@ -24,6 +24,11 @@ class ProductsContainer extends React.Component {
     const productDataList = products && products.itemsData;
     return (
       <div className="container">
+      <ul className="breadcrumb">
+        <li>Home</li>
+        <li>Indica</li>
+        
+      </ul>
         <ProductList productsList={productDataList} isLoading={this.props.isLoading} onProductClick={(item)=>this.productDetails(item)}/>
       </div>
     )
