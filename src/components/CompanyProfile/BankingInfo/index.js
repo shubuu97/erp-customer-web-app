@@ -44,10 +44,11 @@ let BankDetailComponent = (props)=>
                 <Field name={`${bank}.accountStatus`} label='Account Status *' component={TextFieldInput} />
             </div>
         
-                <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
+    
                 {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
         </div>
         </div>))}   
+        <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
         </div>
     )
 }
