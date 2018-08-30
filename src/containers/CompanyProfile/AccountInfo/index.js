@@ -1,4 +1,4 @@
-import CompanyRegistration from '../../../components/Register/CompanyRegistration/companyRegistration';
+import AccountInfoComponent from '../../../components/CompanyProfile/AccountInfo/AccountInfo';
 import {connect} from 'react-redux'
 import React,{Component} from 'react';
 import {patchUpdateBasicInfo} from '../../../action/updateBasicInfo'
@@ -45,7 +45,7 @@ class AccountInfo extends Component
         return(
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
-            <CompanyRegistration/>
+            <AccountInfoComponent/>
             <div className="form-btn-group">
               <Button variant="contained" type='submit' color='primary'>Save</Button>
             </div>

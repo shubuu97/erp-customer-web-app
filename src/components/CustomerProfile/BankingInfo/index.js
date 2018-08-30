@@ -34,7 +34,7 @@ let BankDetailComponent = (props)=>
                     <Field name={`${bankDetails}.bankName`} label={'Bank Name *'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.branchName`} label={'Bank Branch *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.branchName`} label={'Branch Name *'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
                     <Field name={`${bankDetails}.bankRoutingNumber`} label={'Bank Routing No. *'} component={TextFieldInput} />
@@ -42,9 +42,7 @@ let BankDetailComponent = (props)=>
                     <div className="col-md-4 col-sm-6 form-d form-input">
                     <Field name={`${bankDetails}.bankAccountNumber`} label={'Bank Account No. ' } component={TextFieldInput} />
                     </div>
-                    <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.bankBranch`} label={'Bank Branch *'} component={TextFieldInput} />
-                    </div>
+                   
                     <div className="col-md-4 col-sm-6 form-d form-input">
                     <Field name={`${bankDetails}.bankNumber`} label={'Bank Number *'} component={TextFieldInput} />
                     </div>

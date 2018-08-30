@@ -14,7 +14,7 @@ let AccountInfo = [
         name:'lastName',label:'Last Name *',component:TextFieldInput,type:'text'
        },
        {
-        name:'officialEmailAddress',label:'Email Address *',component:TextFieldInput,type:'text'
+        name:'officialEmailAddress',props:{disbled:true},label:'Email Address *',component:TextFieldInput,type:'text'
        },
        {
         name:'designation',label:'Designation *',component:TextFieldInput,type:'text'
