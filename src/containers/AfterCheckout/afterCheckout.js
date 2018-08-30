@@ -13,9 +13,11 @@ class AfterCheckout extends Component {
        
     }
     render() {
+        console.log("After checkout",this.props.orderData);
         return (<div className="message-alert">
         <img src={logo} />
             <div>{line1}</div>
+            <div></div>
             <Button onClick={this.handleSwitch} variant="contained" color='primary'>Back to Shopping</Button>
         </div>
         )
@@ -24,8 +26,8 @@ class AfterCheckout extends Component {
 function mapStateToProps(state)
 {
     let role = state.basicInfodata.role;
-
-    return {role}
+    let orderData = state.orderData.orderData;
+    return {role, orderData}
 }
 
 export default connect(mapStateToProps)(AfterCheckout)

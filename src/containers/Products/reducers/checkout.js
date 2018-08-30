@@ -1,10 +1,11 @@
 import * as CHECKOUT_CONSTANTS from '../constants/checkout';
 
-const inventoryItemData = (state = {
+const orderData = (state = {
   type: '',
   error: '',
   isFetching: false,
   didInvalidate: false,
+  orderData: {}
 }, action) => {
   switch (action.type) {
 
@@ -19,6 +20,7 @@ const inventoryItemData = (state = {
         isFetching: false,
         type: action.type,
         didInvalidate: false,
+        orderData: action.data,
         lastUpdated: action.receivedAt
       });
     case CHECKOUT_CONSTANTS.RECEIVED_CHECKOUT_ITEM_ERROR:
@@ -31,4 +33,4 @@ const inventoryItemData = (state = {
       return state
   }
 }
-export default inventoryItemData;
+export default orderData;
