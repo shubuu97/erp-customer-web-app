@@ -75,6 +75,7 @@ let contactField = (props) => {
 class LicenceInfo extends Component {
    
     render() {
+        console.log(this.props,"props is here")
         return (
             <div className="row">
 
@@ -83,7 +84,8 @@ class LicenceInfo extends Component {
                     <FormSection name="companyInfo">
                         <div className="row d-flex">
                         <div className="form-d col-md-4 col-sm-6 form-input">
-                            <span>Comapny name will come here</span>
+                            <label className="control-label">Company Name:</label>
+                            <span style={{fontSize:'1.4rem',marginTop:'2px'}}>{this.props.licenseDetailsData&&this.props.licenseDetailsData.companyName}</span>
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field options={props['licenseType']} placeholder='License Type' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type'} />

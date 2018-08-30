@@ -39,7 +39,7 @@ const asyncValidate = values => {
                 resolve();
             })
             .catch(errors => {
-
+            console.log(errors,"errors is here")
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
                 let expandObj = {}
