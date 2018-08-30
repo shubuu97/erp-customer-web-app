@@ -65,7 +65,7 @@ export default (props) => {
             {BasicInfoFields.map((info) => {
                 return (
                     <div className="col-md-4 col-sm-6 form-d form-input" >
-                        <Field name={info.name} label={info.label} component={info.component} />
+                        <Field props={info.props} name={info.name} label={info.label} component={info.component} />
                     </div>
                     )
             }
