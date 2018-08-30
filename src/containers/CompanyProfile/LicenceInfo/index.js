@@ -14,6 +14,7 @@ import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
+import { LinearProgress } from 'material-ui';
 
 class LicenseInfo extends Component
 {
@@ -50,11 +51,12 @@ class LicenseInfo extends Component
     }
     render()
     {
+        console.log("this is props",this.props)
         const {handleSubmit} = this.props;
         return(
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
-            <LicenseInfoComponent/>
+            <LicenseInfoComponent licenseDetailsData = {this.props.licenseDetailsData}/>
             <div className="row d-flex">
                 <div className="col-sm-12 form-btn-group">
                     <Button variant="contained" type='submit' color='primary'>Save</Button>
@@ -76,8 +78,10 @@ LicenseInfo = reduxForm({
 
 const mapStateToProps=(state)=>
 {
+    console.log(state,"state is here")
     let initialValues = state.licenseDetailsData.lookUpData.data;
     let isLoading = state.licenseDetailsData.isFetching;
+    let licenseDetailsData =  state.licenseDetailsData.lookUpData.data
     if(state.zipCodeData.meta)
     {
      let meta = state.zipCodeData.meta;
@@ -105,7 +109,7 @@ const mapStateToProps=(state)=>
       }
      }
     }
-    return {initialValues,isLoading}
+    return {initialValues,isLoading,licenseDetailsData}
 
 }
 
