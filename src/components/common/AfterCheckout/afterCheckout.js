@@ -1,0 +1,1 @@
+export const line1="Thank you, Your Order has been successfully placed."

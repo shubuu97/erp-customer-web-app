@@ -21,6 +21,10 @@ class CartContainer extends React.Component {
     this.goToCheckout = this.goToCheckout.bind(this);
   }
   componentDidMount() {
+    this.props.cartProductList && this.props.cartProductList.map((item)=>{
+      item.quantity = 1;
+      item.total = item.quantity * item.itemInfo.price;
+    })
     this.updateProductList(this.props.cartProductList);
     document.body.classList.add('cart-page')
   }
@@ -50,6 +54,7 @@ class CartContainer extends React.Component {
     let tax = 10;
     let total = subTotal + shipping + tax;
     this.setState({cartProducts: list, details:{subTotal, shipping, tax, total}});
+    this.props.dispatch(addToCart(list));
   }
   backToList() {
     this.props.history.push('/productList');

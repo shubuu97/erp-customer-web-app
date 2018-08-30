@@ -1,9 +1,30 @@
-import React from 'react';
+import React,{Component} from 'react';
+import {reduxForm} from 'redux-form';
+import DetailForm from '../BillingDetails/detailForm';
+import {connect} from 'react-redux';
+import Button from '@material-ui/core/Button'
 
-export default ()=>
+ class ShippingDetailsForm extends Component
 {
-    return(<div>
-    <h1> Shipping Details</h1>
-    <p> other content will come here</p>
-    </div>)
+    render()
+    {
+        return(
+            <div>
+                <DetailForm/>
+                <Button color="primary" variant='contained'>Submit </Button>
+            </div>
+        )
+    }
 }
+
+ShippingDetailsForm = reduxForm({
+    form:'ShippingForm'
+})(ShippingDetailsForm)
+
+
+function mapStateToProps(state)
+{
+    return {}
+}
+
+export default connect(mapStateToProps)(ShippingDetailsForm)

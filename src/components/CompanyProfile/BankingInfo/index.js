@@ -28,7 +28,7 @@ let BankDetailComponent = (props)=>
             </div>   
            
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${bank}.branchName`} label='Bank Branch *' component={TextFieldInput} />
+                <Field name={`${bank}.branchName`} label='Branch Name *' component={TextFieldInput} />
             </div>   
             <div className="form-d col-md-4 col-sm-6 form-input">
                 <Field name={`${bank}.bankRoutingNumber`} label='Bank Routing No. *' component={TextFieldInput} />
@@ -36,9 +36,7 @@ let BankDetailComponent = (props)=>
             <div className="form-d col-md-4 col-sm-6 form-input">
                 <Field name={`${bank}.bankAccountNumber`} label='Bank Account No. *' component={TextFieldInput} />
             </div>   
-            <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${bank}.bankBranch`} label='Bank Branch *' component={TextFieldInput} />
-            </div>   
+            
             <div className="form-d col-md-4 col-sm-6 form-input">
                 <Field name={`${bank}.bankNumber`} label='Bank Number *' component={TextFieldInput} />
             </div>
@@ -47,7 +45,7 @@ let BankDetailComponent = (props)=>
             </div>
         
                 <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
-                {fields.length!=1?<div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>:null}
+                {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
         </div>
         </div>))}   
         </div>

@@ -66,7 +66,7 @@ class MainLayout extends Component {
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, {userInfo.firstName || 'Guest'}</span>
-                <i class="fa fa-caret-down"></i>
+                <i className="fa fa-caret-down"></i>
               </div>
               <Menu
                 id="simple-menu"
@@ -84,6 +84,7 @@ class MainLayout extends Component {
                 <img src={logo} />
               </div>
               <NavBar handleClick={this.goToProductList} />
+
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>

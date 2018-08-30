@@ -31,7 +31,7 @@ let emailField = (props) => {
 
 
 
-                    {fields.length != 1 && <div className="top-btn-gutter"><Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
+                   {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="top-btn-gutter"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div>))}
                 <div className="col-sm-12"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
 
@@ -44,6 +44,8 @@ let emailField = (props) => {
 
 let contactField = (props) => {
     const { fields, meta: { error } } = props;
+
+    console.log(fields,"fields is here")
     if (fields.length == 0)
         fields.push();
     return (
@@ -57,12 +59,11 @@ let contactField = (props) => {
                 <div className="form-d col-md-4 col-sm-6 form-input">
 
                     <Field name={`${contact}.contact`} label='Contact *' component={TextFieldInput} />
-
-
-
-                    {fields.length != 1 &&<div className="top-btn-gutter"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
+                    {console.log(fields.get(index),"index is here")}
+                    {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="top-btn-gutter"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
                 </div>))}
-                <div className="col-sm-12"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
+
+               <div className="col-sm-12"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
 
         </div>
         </div>
