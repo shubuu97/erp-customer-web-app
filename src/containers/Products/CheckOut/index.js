@@ -4,6 +4,9 @@ import OrderDetails from './OrderDetails';
 import { connect } from 'react-redux';
 import { postCheckoutData } from '../action/checkout';
 import { CHECKOUT_URL } from '../constants/checkout';
+import {fetchLicenseDetailsData} from '../../../action/getLicenseInfo';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+
 class CheckOut extends Component {
 	constructor(props) {
 		super();
@@ -21,7 +24,7 @@ class CheckOut extends Component {
 		});
 		let orderTotal = subTotal + shipping + tax;
 		this.setState({ subTotal, orderTotal });
-		// this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
+		 this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
 	}
 	placeOrder = () => {
 		let items = [];
@@ -87,6 +90,8 @@ class CheckOut extends Component {
 }
 const mapStateToPtops = (state) => {
 	let cartProductList = state.productData.cartProductList;
+	let companyinfo =  state.licenseDetailsData.lookUpData.data;
+	console.log("companyinfo is here", companyinfo);
 	return { cartProductList };
 }
 export default connect(mapStateToPtops)(CheckOut);

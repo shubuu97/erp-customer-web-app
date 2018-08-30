@@ -38,7 +38,7 @@ export default (props) => {
           <div className="addToCartButtonDiv">
             <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={() => props.addToCart()}>ADD TO CART</Button>
             {/* <Button variant="contained" size='large' color="inherit" classes={{ root: 'buy-cart-button' }} onClick={() => props.buyProduct()}>BUY NOW</Button> */}
-            <p className="p-desc"><b>Description</b>{/*{props.detail.itemInfo.itemDesc}*/} This mostly indica strain is a mix of Afghani and Blackberry strains and has beautiful dark purple buds with orange hairs. Plants will flower at 7-8 weeks and are not particularly high yielders, but the dense, hard nugs have crystals throughout. Blackberry Kush tends to have a hashy, jet fuel smell and taste that is balanced by sweet berries. Blackberry Kush is often recommended for the treatment of pain thanks to its strong indica body effects, </p>
+            <p className="p-desc"><b>Description</b>{props.detail.itemInfo.itemDesc} </p>
           </div>
         </div>
       </div>
