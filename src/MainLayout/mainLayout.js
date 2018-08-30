@@ -84,6 +84,7 @@ class MainLayout extends Component {
                 <img src={logo} />
               </div>
               <NavBar handleClick={this.goToProductList} />
+
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>

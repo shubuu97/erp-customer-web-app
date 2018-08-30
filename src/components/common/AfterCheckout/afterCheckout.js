@@ -1,1 +1,1 @@
-export const line1="Your Order has been successfully placed."
+export const line1="Thank you, Your Order has been successfully placed."

@@ -61,6 +61,7 @@ class CheckOut extends Component
           }
           this.props.dispatch(postCheckoutData(CHECKOUT_URL, orderData)).then((data)=>{
             console.log("ORDER PLACED SUCCESSFULLY",data);
+            this.props.history.push('/orderSuccess');
           }, (err)=> {
             console.log("Error in order place",err);
           });
