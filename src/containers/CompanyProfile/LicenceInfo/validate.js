@@ -45,6 +45,7 @@ const asyncValidate = values => {
 
                 let expandObj = {}
                 errors.inner.forEach(error => {
+                    console.log(error,"error is here")
                     let messageArr = error.message.split('.');
                      expandObj[error.path] = messageArr[messageArr.length -1];
                     })

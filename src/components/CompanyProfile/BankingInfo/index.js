@@ -36,9 +36,7 @@ let BankDetailComponent = (props)=>
             <div className="form-d col-md-4 col-sm-6 form-input">
                 <Field name={`${bank}.bankAccountNumber`} label='Bank Account No. *' component={TextFieldInput} />
             </div>   
-            <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${bank}.bankBranch`} label='Bank Branch *' component={TextFieldInput} />
-            </div>   
+            
             <div className="form-d col-md-4 col-sm-6 form-input">
                 <Field name={`${bank}.bankNumber`} label='Bank Number *' component={TextFieldInput} />
             </div>
