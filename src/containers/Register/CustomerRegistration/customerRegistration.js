@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button'
 
 class CustomerRegistration extends Component
 {
-  submit=(formData)=>
+  handleSubmit=(formData)=>
   {
    let postData = {};
    postData.basicInfo = {};
@@ -22,7 +22,7 @@ class CustomerRegistration extends Component
    postData.basicInfo.lastName = formData.lastName;
    postData.basicInfo.middleName = formData.middleName;
    postData.basicInfo.email = formData.email;
-   postData.basicInfo.contactNumber ='7424926949';
+   postData.basicInfo.contactNumber ='9876543210';
    postData.basicInfo.addressInfo = [];
    let pushObj = {}
    pushObj.address= formData.address;
@@ -63,10 +63,10 @@ class CustomerRegistration extends Component
         <div className="login-logo">
           <img src={logologin} />
         </div>
-         <form onSubmit={handleSubmit(this.submit)}>
+         <form onSubmit={handleSubmit(this.handleSubmit)}>
            <CustomerRegister {...this.props} />
            <div className="btn-parent-full">
-              <Button variant="contained" color='primary' type='submit'>Register</Button>
+              <Button variant="contained" color='primary' type='submit' disabled={!this.props.anyTouched||this.props.invalid}>Register</Button>
               <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link>
               </div>
            </div>
@@ -82,15 +82,17 @@ CustomerRegistration = reduxForm(
  {
   form:'CustomerRegistration',
  enableReinitialize:true,
- keepDirtyOnReinitialize:true
+ keepDirtyOnReinitialize:true,
+ asyncValidate
 }
 )(CustomerRegistration);
 
 const mapStateToProps = (state) =>
 {
+  
   let initialValues = {}
 
-  if(state.zipCodeData.meta)
+  if(state.zipCodeData && state.zipCodeData.meta)
   {
    let meta = state.zipCodeData.meta;
    if(meta.form=="CustomerRegistration")

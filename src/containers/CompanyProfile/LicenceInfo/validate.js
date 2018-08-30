@@ -4,7 +4,7 @@ var contact = yup.object().shape({
     contact: yup.string().required()
 });
 var email = yup.object().shape({
-    email: yup.string().required()
+    email: yup.string().email().required()
 });
 
 var schema = yup.object().shape(
@@ -45,7 +45,8 @@ const asyncValidate = values => {
 
                 let expandObj = {}
                 errors.inner.forEach(error => {
-                     expandObj[error.path] = error.message;
+                    let messageArr = error.message.split('.');
+                     expandObj[error.path] = messageArr[messageArr.length -1];
                     })
 
                 //redux form will now understand the errors that yup has thrown

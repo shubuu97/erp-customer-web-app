@@ -55,7 +55,7 @@ class MainLayout extends Component {
   }
   render() {
     console.log('this is props', this.props);
-    const { classes, theme } = this.props;
+    const { classes, theme, userInfo, cartData } = this.props;
     const { anchorEl } = this.state;
     return (
       <div className="main-container">
@@ -65,7 +65,7 @@ class MainLayout extends Component {
             <div className="header-top">
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
-                <span className="user-name">Hey, Jack</span>
+                <span className="user-name">Hey, {userInfo.firstName || 'Guest'}</span>
                 <i class="fa fa-caret-down"></i>
               </div>
               <Menu
@@ -87,7 +87,7 @@ class MainLayout extends Component {
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li onClick={() => this.props.history.push('/cart')}><span className="rel"><img src={cart} /><span className="cart-round">2</span></span></li>
+                <li onClick={() => this.props.history.push('/cart')}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
               </ul>
             </div>
             {this.props.message.text && <Snackbar
@@ -124,9 +124,11 @@ class MainLayout extends Component {
 const mapStateToProps = state => {
   let message = state.commonData && state.commonData.message ? state.commonData.message : {};
   let isLoading = state.registerReducer.isFetching;
-  let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus
-  let role = state.basicInfodata && state.basicInfodata.role
-  return { message, isLoading, customerStatus, role }
+  let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
+  let cartData = (state.productData && state.productData.cartProductList) || [] ;
+  let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
+  let role = state.basicInfodata && state.basicInfodata.role;
+  return { message, isLoading, customerStatus, role, userInfo, cartData }
 }
 
 export default connect(mapStateToProps)((withStyles(styles)(MainLayout)))
