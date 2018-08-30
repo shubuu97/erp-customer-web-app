@@ -1,4 +1,4 @@
-import SiteInfoFields from './SiteInfo';
+
 import { Field,reduxForm, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
@@ -22,7 +22,7 @@ let License = (props) => {
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
 
-                    <Field label='License Number' name={`${license}.licenseNumber`} component={TextFieldInput} />
+                    <Field label='License Number <em>*</em>' name={`${license}.licenseNumber`} component={TextFieldInput} />
 
 
 
@@ -53,25 +53,25 @@ let Address = (props) => {
                 <div className="row d-flex">
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='Site Address' name={`${address}.siteAddress`} component={TextFieldInput} />
+                    <Field label='Site Address <em>*</em>' name={`${address}.siteAddress`} component={TextFieldInput} />
                 </div>
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='Contact Number' name={`${address}.contactNumber`} component={TextFieldInput} />
+                    <Field label='Contact Number <em>*</em>' name={`${address}.contactNumber`} component={TextFieldInput} />
                 </div>
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='Email' name={`${address}.email`} component={TextFieldInput} />
+                    <Field label='Email <em>*</em>' name={`${address}.email`} component={TextFieldInput} />
                 </div>
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='Zip Code' name={`${address}.zipCode`} component={TextFieldInput} />
+                    <Field label='Zip Code <em>*</em>' name={`${address}.zipCode`} component={TextFieldInput} />
                 </div>
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='Country' name={`${address}.country`} component={TextFieldInput} />
+                    <Field label='Country <em>*</em>' name={`${address}.country`} component={TextFieldInput} />
                 </div>
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='State' name={`${address}.state`} component={TextFieldInput} />
+                    <Field label='State <em>*</em>' name={`${address}.state`} component={TextFieldInput} />
                 </div>
                 <div className="form-d col-md-4 col-sm-6 form-input">
-                    <Field label='City' name={`${address}.city`} component={TextFieldInput} />
+                    <Field label='City <em>*</em>' name={`${address}.city`} component={TextFieldInput} />
                 </div>
                 <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
                     
@@ -103,10 +103,10 @@ let Site = (props) => {
 <div class="row d-flex">
           
           <div className="form-d col-md-4 col-sm-6 form-input">
-           <Field name={`${site}.siteName`} component={TextFieldInput} label="Site Name"/>
+           <Field name={`${site}.siteName`} component={TextFieldInput} label="Site Name <em>*</em>"/>
            </div>
            <div className="form-d col-md-4 col-sm-6 form-input">
-           <Field name={`${site}.licenseType`} options={prop.siteLicenceType} component={ReactSelectWrapper} placeholder='License Type'/>
+           <Field name={`${site}.licenseType`} options={prop.siteLicenceType} component={ReactSelectWrapper} placeholder='License Type <em>*</em>'/>
            </div>
            <div className="form-d col-md-4 col-sm-6 form-btn-group">
             <Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button>
