@@ -56,6 +56,7 @@ class CompanyProfileTab extends React.Component {
   componentDidMount()
   {
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
+      this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
       //this.props.dispatch(postBasicInfoData({email: 'test@aob.com'},'',`${APPLICATION_BFF_URL}/user/logindata`))
       this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
       this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));

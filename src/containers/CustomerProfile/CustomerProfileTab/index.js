@@ -45,6 +45,7 @@ class CustomerProfileTab extends React.Component {
   };
   componentDidMount()
   {
+    this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
 
 
