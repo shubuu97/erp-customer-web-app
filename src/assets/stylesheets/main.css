@@ -394,6 +394,7 @@ nav.navbar {
 }
 .form-d{
     margin-bottom:25px;
+    font-size:1.4rem;
 }
 .d-flex {
     display: flex;
@@ -489,7 +490,7 @@ input[type="radio"], input[type="checkbox"]{vertical-align: sub}
 .form-d input[type^="radio"]:nth-child(2) { margin-left: 40px;}
 .space-d{margin-top:10px;}
 .form-d-full{position: relative; margin-bottom:100px;}
-.form-d label.control-label { margin-bottom: 0px!important; }
+
 .custom-input{position:relative;}
 .custom-input .text-input.error{position:absolute; bottom:-34px;left:0; height:auto;}
 .form-inline label.control-label {
@@ -2079,7 +2080,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	/* background-color: #f7ffe4 !important; */
 }
 [class^="MuiTab-root-"], [class^="MuiTab-label-"]{
-    font-size:1.4rem !important;
+    /* font-size:1.4rem !important; */
 }
 .user-name {
 	margin-left: 10px;
@@ -2117,6 +2118,284 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .table-product-detail tbody tr:first-child td {
 	padding-top: 20px !important;
 }
+.c-tabs header {
+	box-shadow: none;
+}
+.c-tabs button span {
+	font-size:1.4rem;
+}
+.cart-heading {
+	margin-top: 0;
+	font-weight: 300;
+	margin-bottom: 15px;
+}
+/******************************PRODUCT DETAILS PAGE CSS START***************************************/
+
+.detailsContent{
+    display: flex;
+    flex-direction: row;
+}
+.imageContent {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	padding-right: 20px;
+	justify-content: center;
+	align-items: center;
+}
+.p-name {
+	font-size: 40px;
+	font-weight: 200;
+	margin-top: 0;
+}
+.ic {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+.ic span {
+	font-weight: 300;
+}
+.mainImage img {
+	width: 100%;
+}
+.subImages{
+    display: flex;
+}
+.subImages img{
+    width: 15%;
+    height: 15%;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    margin: 10px;
+}
+.descriptionContent{
+    display: flex;
+    flex: 0 0 50%;
+    flex-direction: column;
+    padding-left:20px
+}
+.add-cart-button {
+	font-size: 18px !important;
+	padding: 15px 40px !important;
+}
+.buy-cart-button{
+    background-color: #fb641b !important;
+    color: #fff !important;
+}
+.p-price {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	color: #0e8c4f;
+	font-size: 26px;
+}
+.wq-bar label {
+	margin-bottom: 0;
+	font-size: 15px;
+	padding-right: 20px;
+	width: 100px;
+}
+.wq-bar {
+	margin-bottom: 25px;
+}
+.p-desc {
+	margin-top: 50px;
+	line-height: 26px;
+}
+.p-desc b {
+	display: block;
+	margin-bottom: 8px;
+}
+/******************************PRODUCT DETAILS PAGE CSS END*****************************************/
+/******************************CART PAGE CSS STRT***************************************************/
+.cart-table {
+	border-top: solid 1px #DDD;
+	border-left: solid 1px #DDDD;
+	width: 100%;
+	display: table;
+    padding: 0;
+    margin-bottom:20px;
+}
+.cart-table-head {
+	display: table-row;
+	border-bottom: solid 1px #DDD;
+}
+.cart-table-head-item {
+	font-size: 1.25em;
+	padding: 10px;
+	border-right: solid 1px #DDD;
+	display: table-cell;
+	border-bottom: solid 1px #DDD;
+}
+.cart-table-body {
+	display: table;
+}
+.row-container {
+	display: table-row;
+}
+.row-name-code {
+	float: left;
+	color: #333;
+}
+.row-name-code h4 {
+	font-weight: 300;
+	margin-top: 25px;
+}
+.row-price h4, .row-total h4 {
+	font-weight: 400;
+}
+.row-product {
+	display: table-cell;
+	border-bottom: solid 1px #DDD;
+	min-width: 200px;
+	padding: 10px;
+	vertical-align: top;
+}
+.row-product i {
+    font-size: 2em;
+}
+.row-price, .row-quantity, .row-total {
+    display: table-cell;
+    border-bottom: solid 1px #DDD;
+    padding: 10px;
+}
+.row-action {
+	display: table-cell;
+	border-bottom: solid 1px #DDD;
+	padding: 10px;
+	text-align: center;
+	border-right: solid 1px #DDD;
+	width: 120px;
+}
+.row-action i {
+	font-size: 20px;
+}
+.row-action img {
+	width: 20px;
+	margin: 0 8px;
+	cursor: pointer;
+}
+.row-product-img {
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 20px;
+}
+.row-quantity button {
+	padding: 0;
+	font-size: 1.4em !important;
+	width: 30px;
+	text-align: center;
+	height: 40px;
+	background: transparent;
+	box-shadow: none;
+	border: solid 1px #DDD;
+}
+.row-quantity .d-flex {
+	margin-top: 20px;
+}
+.first-col{
+    min-width: 200px;
+}
+.row-quantity-item {
+	padding: 0;
+	border: 1px solid #bbbbbb;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 38px;
+	margin: 0 1px;
+}
+.addToCartButtonDiv {
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+}
+.addToCartButtonDiv button:first-child {
+	margin-right: auto;
+	margin-left: 0;
+}
+.descriptionContent .addToCartButtonDiv {
+	display: block;
+	width: 100%;
+}
+.cart-container {
+	float: left;
+	width: 100%;
+}
+.cart-total-container {
+	border: 1px solid #DDD;
+	float: right;
+	padding: 0 20px;
+	background: #fdfdfd;
+}
+.cart-total-title {
+	padding: 10px;
+	font-size: 1.25em;
+	border-bottom: 2px solid #cacaca;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+.cart-item {
+	padding: 6px 0;
+	font-size: 1.2em;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+.cart-total-total {
+	border-bottom: 1px solid #cacaca;
+	font-weight: bold;
+}
+.cart-empty{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    font-size: 2em;
+}
+.cart-empty button {
+	margin-top: 20px;
+	font-size: 2rem !important;
+	height: 50px;
+}
+.cart-item-button {
+	text-align: center;
+	padding: 10px 15px;
+}
+.MuiTab-label-477
+{font-size: 1.4em;}
+
+.justify-content-between {
+	-webkit-box-pack: justify !important;
+	-ms-flex-pack: justify !important;
+	justify-content: space-between !important;
+}
+.apply-discount {
+	padding: 10px 15px;
+}
+.apply-discount label {
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+.apply-discount .d-flex input.form-control {
+	width: 74%;
+}
+.col-sm-9.cart-table-parent {
+	padding: 0 30px 0 0;
+}
+.text-input.error p {
+    color: red;
+    font-size: 1em;
+}
+/*******************************CART PAGE CSS END**************************************************/
+
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -2832,201 +3111,3 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
-
-
-/******************************PRODUCT DETAILS PAGE CSS START***************************************/
-
-.detailsContent{
-    display: flex;
-    flex-direction: row;
-}
-.imageContent {
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-ms-flex: 0 0 50%;
-	flex: 0 0 50%;
-	padding-right: 20px;
-	justify-content: center;
-	align-items: center;
-}
-.p-name {
-	font-size: 40px;
-	font-weight: 200;
-	margin-top: 0;
-}
-.ic {
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 4px;
-}
-.ic span {
-	font-weight: 300;
-}
-.mainImage img {
-	width: 100%;
-}
-.subImages{
-    display: flex;
-}
-.subImages img{
-    width: 15%;
-    height: 15%;
-    border: 1px solid #d0d0d0;
-    border-radius: 5px;
-    margin: 10px;
-}
-.addToCartButtonDiv{
-
-}
-.descriptionContent{
-    display: flex;
-    flex: 0 0 50%;
-    flex-direction: column;
-    padding-left:20px
-}
-.add-cart-button {
-	font-size: 18px !important;
-	padding: 15px 40px !important;
-}
-.buy-cart-button{
-    background-color: #fb641b !important;
-    color: #fff !important;
-}
-.p-price {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	color: #0e8c4f;
-	font-size: 26px;
-}
-.wq-bar label {
-	margin-bottom: 0;
-	font-size: 15px;
-	padding-right: 20px;
-	width: 100px;
-}
-.wq-bar {
-	margin-bottom: 25px;
-}
-.p-desc {
-	margin-top: 50px;
-	line-height: 26px;
-}
-.p-desc b {
-	display: block;
-	margin-bottom: 8px;
-}
-/******************************PRODUCT DETAILS PAGE CSS END*****************************************/
-/******************************CART PAGE CSS STRT***************************************************/
-.cart-table{
-    flex: 3;
-    padding-right: 25px;
-}
-.cart-table-head{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #cacaca;
-    padding-bottom: 15px;
-}
-.cart-table-head-item{
-    font-size: 1.25em;
-    font-weight: bold;
-}
-.cart-table-body{
-    display: flex;
-    flex-direction: column;
-}
-.row-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #cacaca;
-    margin-bottom: 10px;
-}
-.row-name-code{
-    display: flex;
-    flex-direction: column;
-}
-.row-product{
-    display: flex;
-    justify-content: space-between;
-    min-width: 200px;
-    align-items: center;
-}
-.row-product i {
-    font-size: 2em;
-}
-.row-product-img{
-    width: 80px;
-    height: 80px;
-    border: 1px solid #d2d2d2;
-    border-radius: 5px;
-}
-.row-quantity{
-    display: flex;
-    align-items: center;
-}
-.row-quantity button {
-    padding: 0px 10px;
-    font-size: 1.75em !important;
-}
-.first-col{
-    min-width: 200px;
-}
-.row-quantity-item{
-    padding: 10px 15px;
-    border: 1px solid #bbbbbb;
-}
-.cart-container{
-    display: flex;
-}
-.cart-total-container{
-    flex: 1;
-    margin-top: 20px;
-    padding-left: 20px;
-    border-left: 1px solid #cacaca;
-}
-.cart-total-title{
-    padding: 10px;
-    font-size: 1.25em;
-    font-weight: bold;
-    border-bottom: 2px solid #cacaca;
-    text-align: center;
-}
-.cart-item{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #cacaca;
-    font-size: 1.20em;
-    display: flex;
-    justify-content: space-evenly;
-    align-content: center;
-}
-.cart-item span{
-    font-weight: bold;
-}
-.cart-total-total{
-    border-bottom: 2px solid #cacaca;
-}
-.cart-empty{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 500px;
-    font-size: 2em;
-    font-weight: bold;
-}
-.MuiTab-label-477
-{font-size: 1.4em;}
-.text-input.error p {
-    color: red;
-    font-size: 1em;
-    /* text-align: center; */
-}
-/*******************************CART PAGE CSS END**************************************************/

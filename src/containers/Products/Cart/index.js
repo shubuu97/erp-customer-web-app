@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import CartProductList from './ProductsInCart';
 import CartTotal from './CartTotal';
 import {findIndex} from 'lodash';
-import Button from '@material-ui/core/Button';
 import { addToCart } from '../action/product';
 import {showMessage} from '../../../action/common';
+import Button from '@material-ui/core/Button';
 
 class CartContainer extends React.Component {
   constructor (props) {
@@ -21,33 +21,6 @@ class CartContainer extends React.Component {
     this.goToCheckout = this.goToCheckout.bind(this);
   }
   componentDidMount() {
-    this.productDataList = [{
-      id: "1",
-      itemCode: "ASD",
-      price: 56,
-      description: "This is a hot case",
-      name: "hot1",
-      quantity: 1,
-      image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-    },
-    {
-      id: "2",
-      itemCode: "PUO",
-      price: 687,
-      description: "This is another one",
-      name: "TOp2",
-      quantity: 1,
-      image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-    },
-    {
-      id: "3",
-      itemCode: "UOUO",
-      price: 989,
-      description: "This is is kijek theresd",
-      name: "hot cokkoi",
-      quantity: 1,
-      image: "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"
-    }];
     this.updateProductList(this.props.cartProductList);
     document.body.classList.add('cart-page')
   }
@@ -84,24 +57,32 @@ class CartContainer extends React.Component {
   goToCheckout() {
     this.props.history.push('/checkout');
   }
+  clearCart = () => {
+    this.setState({cartProducts: []});
+    this.props.dispatch(addToCart([]));
+    this.props.dispatch(showMessage({text: "Cart cleared successfully", isSuccess: true}));
+    setTimeout(()=>{
+      this.props.dispatch(showMessage({text: "", isSuccess: true}));
+    },6000);
+  }
   render() {
     const {cartProducts, details} = this.state;
     return (
       <div >
       {cartProducts.length ? 
       <div>
+        <h2 className="cart-heading">Shopping Cart</h2>
       <div className="cart-container">
-        <CartProductList updateProductList={this.updateProductList} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
-        <CartTotal details={details}/>
+      
+        <CartProductList updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
+        <CartTotal goToCheckout={this.goToCheckout} details={details}/>
         </div>
-        <div className="addToCartButtonDiv">
-            <Button variant="contained" size='large' color="inherit" classes={{ root: 'add-cart-button' }} onClick={this.backToList}>CONTINUE SHOPPING</Button>
-            <Button variant="contained" size='large' color="inherit" classes={{ root: 'buy-cart-button' }} onClick={this.goToCheckout}>CHECKOUT</Button>
-          </div>
+        
       </div> : 
       <div className="cart-empty">
-      <span>There are no product in cart </span>
-      <a href="#/productList">Add New</a></div>
+        <span>There are no product in cart </span>
+        <Button variant="contained" size='large' color="primary" onClick={this.backToList}>Add Product</Button>
+      </div>
 
     }
       </div>
