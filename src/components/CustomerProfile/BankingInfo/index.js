@@ -31,25 +31,25 @@ let BankDetailComponent = (props)=>
                     <Field name={`${bankDetails}.accountName`} label={'Account Name'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.bankName`} label={'Bank Name *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.bankName`} label={'Bank Name <em>*</em>'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.branchName`} label={'Bank Branch *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.branchName`} label={'Bank Branch <em>*</em>'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.bankRoutingNumber`} label={'Bank Routing No. *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.bankRoutingNumber`} label={'Bank Routing No. <em>*</em>'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
                     <Field name={`${bankDetails}.bankAccountNumber`} label={'Bank Account No. ' } component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.bankBranch`} label={'Bank Branch *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.bankBranch`} label={'Bank Branch <em>*</em>'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.bankNumber`} label={'Bank Number *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.bankNumber`} label={'Bank Number <em>*</em>'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
-                    <Field name={`${bankDetails}.accountStatus`} label={'Account Status *'} component={TextFieldInput} />
+                    <Field name={`${bankDetails}.accountStatus`} label={'Account Status <em>*</em>'} component={TextFieldInput} />
                     </div>
                     <div className="col-md-4 col-sm-6 form-d form-input">
                     <Field name={`${bankDetails}.effectiveFrom`} label={'Effective From'} component={TextFieldInput} />
@@ -78,7 +78,7 @@ class CustomerBankingInfo extends Component {
              {
                          return (
                 <div className="col-md-4 col-sm-6 form-d form-input">
-                 <Field name={info.name} placeholder={`${info.label} *`} component={info.component} options={prop[info.name]} label={info.label}>
+                 <Field name={info.name} placeholder={`${info.label} <em>*</em>`} component={info.component} options={prop[info.name]} label={info.label}>
                  </Field>
                  </div>
              )
