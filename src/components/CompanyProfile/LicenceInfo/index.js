@@ -26,7 +26,7 @@ let emailField = (props) => {
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
 
-                    <Field label='Email *' name={`${email}.email`} component={TextFieldInput} />
+                    <Field label='Email <em>*</em>' name={`${email}.email`} component={TextFieldInput} />
 
 
 
@@ -86,13 +86,13 @@ class LicenceInfo extends Component {
                             <span>Comapny name will come here</span>
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['licenseType']} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
+                                <Field options={props['licenseType']} placeholder='License Type <em>*</em>' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type <em>*</em>'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['category']} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
+                                <Field options={props['category']} placeholder='Company Category <em>*</em>' name={'category'} component={ReactSelectWrapper} label={'Company Category <em>*</em>'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name={'licenseNumber'} label={'License Number *'} component={TextFieldInput} />
+                                <Field name={'licenseNumber'} label={'License Number <em>*</em>'} component={TextFieldInput} />
                             </div>
                         </div>
                     
@@ -105,19 +105,19 @@ class LicenceInfo extends Component {
                                             <h2 className="box-title">Address Info</h2>
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'companyAddress'} label={'Company Address *'} component={TextFieldInput} />
+                                            <Field name={'companyAddress'} label={'Company Address <em>*</em>'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'zipCode'} label={'Zip Code *'} component={TextFieldInput} />
+                                            <Field name={'zipCode'} label={'Zip Code <em>*</em>'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'country'} label={'Country *'} component={TextFieldInput} />
+                                            <Field name={'country'} label={'Country <em>*</em>'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'state'} label={'State *'} component={TextFieldInput} />
+                                            <Field name={'state'} label={'State <em>*</em>'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'city'} label={'City *'} component={TextFieldInput} />
+                                            <Field name={'city'} label={'City <em>*</em>'} component={TextFieldInput} />
                                         </div>
                                     </div>
                                 </div>
@@ -167,9 +167,7 @@ class LicenceInfo extends Component {
                 </div>
 
 
-                {/* <div className="form-d col-md-4 col-sm-6 form-input"> */}
-                    {/* <Field name={info.name} label={info.label} component={info.component} /> */}
-                {/* </div> */}
+               
 
             </div>
         )
