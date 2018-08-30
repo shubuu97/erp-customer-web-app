@@ -38,6 +38,7 @@ import CheckOut from './containers/Products/CheckOut/index';
 import SignUp from './containers/Register/SignUpTabs'
 import AfterRegister from './containers/AfterRegistration/afterRegistration';
 import AfterApproval from './containers/AfterApproval/afterApproval';
+import AfterCheckout from './containers/AfterCheckout/afterCheckout';
 
 const theme = createMuiTheme({
   
@@ -111,6 +112,7 @@ ReactDOM.render(
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
 <Route exact path='/approval' component={AfterApproval}/>
 <Route exact path='/register' component={AfterRegister}/>
+<Route exact path='/checkout' component={AfterCheckout}/>
 
 <RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
