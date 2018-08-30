@@ -1,22 +1,36 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 export default (props) => {
   return (
-   <div className="cart-total-container">
+   <div className="cart-total-container col-sm-3">
     <div className="cart-total-title">
-        CART TOTALS
+        Summary
     </div>
     <div className="cart-total-subtotal cart-item">
-        SUBTOTAL  <span>USD {props.details.subTotal}</span>
+        Subtotal  <span>$ {props.details.subTotal}</span>
     </div>
     <div className="cart-total-shipping cart-item">
-        SHIPPING <span>USD {props.details.shipping}</span>
+        Shipping Cost <span>$ {props.details.shipping}</span>
     </div>
     <div className="cart-total-tax cart-item">
-        TAX <span>USD {props.details.tax}</span>
+        Tax <span>$ {props.details.tax}</span>
     </div>
     <div className="cart-total-total cart-item">
-        TOTAL <span>USD {props.details.total}</span>
+        Order Total <span>$ {props.details.total}</span>
+    </div>
+    <div className="apply-discount">
+        <div className="d-flex justify-content-between">
+            <label>Apply Discount Code</label>
+            <i className="fa fa-angle-left"></i>
+        </div>
+        <div className="d-flex justify-content-between">
+            <input className="form-control" placeholder="Enter Discount Code"></input>
+            <Button variant="contained" color="secondary">Apply</Button>
+        </div>
+    </div>
+    <div className="col-sm-12 cart-item-button">
+        <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.goToCheckout}>Proceed to Checkout</Button>
     </div>
    </div>
   )

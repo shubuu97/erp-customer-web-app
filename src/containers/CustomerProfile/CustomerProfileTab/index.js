@@ -45,6 +45,7 @@ class CustomerProfileTab extends React.Component {
   };
   componentDidMount()
   {
+    this.props.dispatch(postBasicInfoData({ email: localStorage.getItem('email') }, '', `${APPLICATION_BFF_URL}/user/logindata`))
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
 
 
@@ -59,7 +60,7 @@ class CustomerProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root + ' c-tabs'}>
         <AppBar position="static">
           <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
             <Tab className={value==0?classes.tabActive:null} label="Account" />
@@ -79,5 +80,6 @@ CustomerProfileTab.propTypes = {
 };
 
 CustomerProfileTab=withStyles(styles)(CustomerProfileTab);
+
 export default connect()(CustomerProfileTab)
 

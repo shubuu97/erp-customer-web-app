@@ -66,7 +66,7 @@ class MainLayout extends Component {
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, {userInfo.firstName || 'Guest'}</span>
-                <i class="fa fa-caret-down"></i>
+                <i className="fa fa-caret-down"></i>
               </div>
               <Menu
                 id="simple-menu"

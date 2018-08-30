@@ -1,12 +1,33 @@
 import React from 'react';
 import Button from '@material-ui/core/Button'
-export default ()=>
-{
-    return(
-    <div>
-    <h1> Shipping Details</h1>
-    <p> other content will come here</p>
-    <Button color='primary' variant='contained'>Add New</Button>
-  <Button variant='contained' >Edit</Button>
-    </div>)
+export default (props) => {
+  return (
+    <div className="cart-total-container col-sm-3">
+      <div className="cart-total-title">
+        Your Order
+    </div>
+      <div className="checkout-product-list">
+        {props.cartProductList && props.cartProductList.map((item) => (
+          <div key={item.itemId} className="cart-total-subtotal cart-item">
+            {item.itemInfo.itemName} * {item.quantity || 1}  <span>$ {item.itemInfo.price * (item.quantity || 1)}</span>
+          </div>
+        ))}
+      </div>
+      <div className="cart-total-subtotal cart-item">
+        Subtotal  <span>$ {props.subTotal}</span>
+      </div>
+      <div className="cart-total-shipping cart-item">
+        Shipping Cost <span>$ 10</span>
+      </div>
+      <div className="cart-total-tax cart-item">
+        Tax <span>$ 8</span>
+      </div>
+      <div className="cart-total-total cart-item">
+        Order Total <span>$ {props.orderTotal}</span>
+      </div>
+      <div className="col-sm-12 cart-item-button">
+        <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder}>PLACE ORDER</Button>
+      </div>
+    </div>
+  )
 }

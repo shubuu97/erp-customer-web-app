@@ -56,7 +56,8 @@ class CompanyProfileTab extends React.Component {
   componentDidMount()
   {
       this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
-      //this.props.dispatch(postBasicInfoData({email: 'test@aob.com'},'',`${APPLICATION_BFF_URL}/user/logindata`))
+      this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+  
       this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
       this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
       this.props.dispatch(fetchSiteDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/siteinfo?_id=${localStorage.getItem("id")}`));
@@ -71,8 +72,8 @@ class CompanyProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className="c-tabs">
-        <div className={classes.root}>
+      <div>
+        <div className={classes.root + ' c-tabs'}>
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD'}} TabIndicatorProps={{color:'transparent'}}>
               <Tab className={value==0?classes.tabActive:null} label="Account" />
               <Tab className={value==1?classes.tabActive:null} label="Licence" />
@@ -95,6 +96,8 @@ CompanyProfileTab.propTypes = {
 };
 
 CompanyProfileTab = withStyles(styles)(CompanyProfileTab);
+
+
 
 export default connect()(CompanyProfileTab)
 
