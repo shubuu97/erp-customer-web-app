@@ -13,7 +13,8 @@ class CheckOut extends Component {
 		super();
 		this.state = {
 			subTotal: null,
-			orderTotal: null
+			orderTotal: null,
+			address: {}
 		};
 	}
 	componentDidMount() {
@@ -26,9 +27,13 @@ class CheckOut extends Component {
 		let orderTotal = subTotal + shipping + tax;
 		this.setState({ subTotal, orderTotal });
 		 this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
+		let address = {};
+		address = this.props.role == 'customer' ? this.props.userInfo.addressInfo[0] : this.props.companyinfo.companyInfo.companyAddressInfo;
+		this.setState({address});
 	}
 	placeOrder = () => {
 		const {companyinfo} = this.props;
+		const {address} = this.state;
 		let items = [];
 		this.props.cartProductList.map((item) => {
 			let itemObj = {
@@ -46,19 +51,19 @@ class CheckOut extends Component {
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				billingAddress: {
-					address: companyinfo.companyInfo.companyAddressInfo.companyAddress,
-					city: companyinfo.companyInfo.companyAddressInfo.city,
-					country: companyinfo.companyInfo.companyAddressInfo.country,
-					state: companyinfo.companyInfo.companyAddressInfo.state,
-					zipCode: companyinfo.companyInfo.companyAddressInfo.zipCode,
+					address: address.companyAddress || address.address,
+					city: address.city,
+					country: address.country,
+					state: address.state,
+					zipCode: address.zipCode,
 					addressType: false
 				},
 				shippingAddress: {
-					address: companyinfo.companyInfo.companyAddressInfo.companyAddress,
-					city: companyinfo.companyInfo.companyAddressInfo.city,
-					country: companyinfo.companyInfo.companyAddressInfo.country,
-					state: companyinfo.companyInfo.companyAddressInfo.state,
-					zipCode: companyinfo.companyInfo.companyAddressInfo.zipCode,
+					address: address.companyAddress || address.address,
+					city: address.city,
+					country: address.country,
+					state: address.state,
+					zipCode: address.zipCode,
 					addressType: false
 				}
 			}
@@ -74,9 +79,9 @@ class CheckOut extends Component {
 	}
 	render() {
 		console.log(this.props.cartProductList, "Cart list in checkout");
-		const { subTotal, orderTotal } = this.state;
+		const { subTotal, orderTotal, address } = this.state;
 		const {companyinfo, userInfo} = this.props;
-		console.log("companyinfo is here",companyinfo);
+		console.log("companyinfo is here",userInfo);
 		return (
 			<div className="checkout-container">
 				<div>
@@ -84,8 +89,8 @@ class CheckOut extends Component {
 				</div>
 				<div className="address-order-details">
 					<div className="address-container">
-						{companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo && <CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo}/>}
-						{companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo && <CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={companyinfo && companyinfo.companyInfo && companyinfo.companyInfo.companyAddressInfo}/>}
+						<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
+						<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
 					</div>
 					<OrderDetails placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
 				</div>
@@ -97,6 +102,7 @@ const mapStateToPtops = (state) => {
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo =  state.licenseDetailsData.lookUpData.data;
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
-	return { cartProductList, companyinfo, userInfo };
+	let role = state.basicInfodata && state.basicInfodata.role;
+	return { cartProductList, companyinfo, userInfo, role };
 }
 export default connect(mapStateToPtops)(CheckOut);
