@@ -1,4 +1,6 @@
 import React from 'react';
+import trash from './../../../assets/images/delete-button.png';
+import cartedit from './../../../assets/images/edit.png';
 
 export default (props) => {
   return (
@@ -25,7 +27,8 @@ export default (props) => {
         <h4>{props.total || props.price || '0'}</h4>
       </div>
       <div className="row-action">
-      <i className="fa fa-trash-o" onClick={()=>props.remove(props.id)}></i>
+      <img src={cartedit} />
+      <img src={trash} onClick={()=>props.remove(props.id)}/>
       </div>
     </div>
   )

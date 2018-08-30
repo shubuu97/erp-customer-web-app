@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductRow from './ProductRow';
 import {findIndex} from 'lodash';
+import Button from '@material-ui/core/Button';
 
 class ProductsInCart extends React.Component {
   
@@ -51,8 +52,8 @@ class ProductsInCart extends React.Component {
         remove={removeProduct}
       />);
   return (
-    
-    <div className="cart-table col-sm-9">
+    <div className="col-sm-9 cart-table-parent">
+    <div className="cart-table">
     <div className="cart-table-head">
       <div className="cart-table-head-item first-col">Product Name</div>
       <div className="cart-table-head-item">Price</div>
@@ -63,6 +64,11 @@ class ProductsInCart extends React.Component {
       
         {products}
       
+    </div>
+    <div className="addToCartButtonDiv">
+      <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.props.backToList}>Continue Shopping</Button>
+      <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.props.clearCart}>Clear Cart</Button>
+    </div>
     </div>
   );
   }
