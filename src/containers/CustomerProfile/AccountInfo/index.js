@@ -82,7 +82,7 @@ function mapStateToProps(state)
   let initialValues = {};
   initialValues =  state.basicInfodata.basicInfoData
   let isLoading = state.basicInfodata.isFetching;
- if(state.zipCodeData.meta)
+ if(state.zipCodeData &&state.zipCodeData.meta)
   {
    let meta = state.zipCodeData.meta;
    if(meta.form=="CustomerInfo" &&state.form&&state.form.CustomerInfo &&state.form.CustomerInfo.values)

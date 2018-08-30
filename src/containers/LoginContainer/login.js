@@ -60,6 +60,8 @@ class Login extends Component {
     var temp2 = this.props.dispatch(postLogin(values, '', `${APPLICATION_BFF_URL}/iam/user/login`)).then((data) => {
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
+      localStorage.setItem('email',data.data.email)
+
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
           localStorage.setItem('id', data.data.content._id)
