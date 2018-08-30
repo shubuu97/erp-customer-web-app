@@ -56,7 +56,7 @@ let contactField = (props) => {
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
 
-                    <Field name={`${contact}.contact`} label='Contact' component={TextFieldInput} />
+                    <Field name={`${contact}.contact`} label='Contact *' component={TextFieldInput} />
 
 
 
