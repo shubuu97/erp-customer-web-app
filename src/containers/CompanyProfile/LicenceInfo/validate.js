@@ -14,7 +14,7 @@ var schema = yup.object().shape(
             category: yup.string().required(),
             companyAddressInfo: yup.object().shape({
                 companyAddress: yup.string().required(),
-                zipCode: yup.string().required(),
+                zipCode: yup.number().min(4).required(),
                 country: yup.string().required(),
                 state: yup.string().required(),
                 city: yup.string().required()

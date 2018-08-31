@@ -38,7 +38,7 @@ class CustomerInfo extends Component
         }
       }, (err)=>{
         if(err.message) {
-          this.props.dispatch(showMessage({text: "Operation Failed", isSuccess: false}));
+          this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: false}));
           },6000);
