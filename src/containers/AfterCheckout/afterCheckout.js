@@ -20,6 +20,10 @@ class AfterCheckout extends Component {
             total = total + (item.quantity * item.price.price);
         });
         this.setState({total});
+        document.body.classList.add('order-success-page')
+    }
+    componentWillUnmount(){
+      document.body.classList.remove('order-success-page');
     }
     handleSwitch=()=>
     {

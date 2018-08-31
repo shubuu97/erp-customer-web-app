@@ -14,7 +14,8 @@ class CheckOut extends Component {
 		this.state = {
 			subTotal: null,
 			orderTotal: null,
-			address: {}
+			address: {},
+			toggle: false,
 		};
 	}
 	componentDidMount() {
@@ -30,9 +31,13 @@ class CheckOut extends Component {
 		let address = {};
 		address = this.props.role == 'customer' ? this.props.userInfo.addressInfo[0] : this.props.companyinfo.companyInfo.companyAddressInfo;
 		this.setState({address});
-	}
+		document.body.classList.add('checkout-page')
+	  }
+	  componentWillUnmount(){
+		document.body.classList.remove('checkout-page');
+	  }
 	placeOrder = () => {
-		const {companyinfo} = this.props;
+		const {userBasicInfo} = this.props;
 		const {address} = this.state;
 		let items = [];
 		this.props.cartProductList.map((item) => {
@@ -46,6 +51,8 @@ class CheckOut extends Component {
 		})
 		let orderData = {
 			data: {
+				customeName: userBasicInfo.basicInfoData.firstName + " " + userBasicInfo.basicInfoData.lastName,
+				customerId: userBasicInfo.id,
 				items: items,
 				paymentMethod: "CASH",
 				shippingAmt: 10,
@@ -77,23 +84,30 @@ class CheckOut extends Component {
 		});
 
 	}
+	toggle = () => {
+		this.setState({toggle: !this.state.toggle});
+	}
 	render() {
 		console.log(this.props.cartProductList, "Cart list in checkout");
-		const { subTotal, orderTotal, address } = this.state;
+		const { subTotal, orderTotal, address, toggle } = this.state;
 		const {companyinfo, userInfo} = this.props;
 		console.log("companyinfo is here",userInfo);
 		return (
-			<div className="checkout-container">
+			<div className="checkout-container container">
 				<div>
-					<h4>CHECKOUT</h4>
+					<h2 className="cart-heading">Checkout</h2>
 				</div>
-				<div className="address-order-details">
-					<div className="address-container">
-						<CheckoutAddresses  name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
-						<CheckoutAddresses  name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
-					</div>
-					<OrderDetails placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
+				<div className="col-sm-9 cart-table-parent">
+					<div className="address-order-details">
+						<div className="address-container">
+							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
+							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
+						</div>
+						</div>
+						
+					
 				</div>
+				<OrderDetails collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
 			</div>
 		)
 	}
@@ -101,8 +115,9 @@ class CheckOut extends Component {
 const mapStateToPtops = (state) => {
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo =  state.licenseDetailsData.lookUpData.data;
+	let userBasicInfo = state.basicInfodata;
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
 	let role = state.basicInfodata && state.basicInfodata.role;
-	return { cartProductList, companyinfo, userInfo, role };
+	return { cartProductList, companyinfo, userInfo, role, userBasicInfo };
 }
 export default connect(mapStateToPtops)(CheckOut);

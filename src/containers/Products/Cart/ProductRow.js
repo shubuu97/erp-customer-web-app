@@ -18,9 +18,9 @@ export default (props) => {
       </div>
       <div className="row-quantity">
         <div className="d-flex">
-        <button onClick={()=>props.updateQuantity(props.id,'add')}>+</button>
-        <div className="row-quantity-item">{props.quantity}</div>
         <button onClick={()=>props.updateQuantity(props.id,'sub')}>-</button>
+        <div className="row-quantity-item">{props.quantity}</div>        
+        <button onClick={()=>props.updateQuantity(props.id,'add')}>+</button>
         </div>
       </div>
       <div className="row-total">
