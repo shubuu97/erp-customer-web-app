@@ -1,14 +1,14 @@
 import  * as yup from 'yup';
 var schema = yup.object().shape({
-    companyName: yup.string().required(),
     firstName: yup.string().required(),
     lastName: yup.string().required(),
+    streetAddress: yup.string().required(),
     email: yup.string().email().required(),
-    designation: yup.string().required(),
-   
-
-
-  });
+    zipCode:yup.number().required(),
+    city:yup.string().required(),
+    state:yup.string().required(),
+    country:yup.string().required(),
+});
 const asyncValidate = values => {
 
 

@@ -22,8 +22,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import asyncValidate from './validate.js';
 
 
-
-
 const styles = theme => ({
   button: {
     fontSize: '1.4rem',
@@ -145,6 +143,7 @@ Login = reduxForm(
 )(Login)
 
 function mapStateToProps(state) {
+
   let isLoading = state.loginReducer.isFetching
   let loginData = state.loginReducer;
   let lookUpData = state.loginReducer.lookUpData;
