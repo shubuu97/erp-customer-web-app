@@ -38,7 +38,10 @@ const asyncValidate = values => {
                 let expandObj = {}
                 errors.inner.forEach(error => {
                     let messageArr = error.message.split('.');
-                     expandObj[error.path] = messageArr[messageArr.length -1];
+                    let errorMsg = messageArr[messageArr.length -1]
+                    let result = errorMsg.replace( /([A-Z])/g, " $1" );
+                    let finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+                     expandObj[error.path] = finalResult;
                     })
                 //redux form will now understand the errors that yup has thrown
                 reject(expand(expandObj));
