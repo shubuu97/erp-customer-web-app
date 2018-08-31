@@ -3149,4 +3149,28 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     border-bottom: 2px solid #cacaca;
     margin-bottom: 10px;
 }
+.biling-address-title {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid gray;
+}
+.address-content{
+    display: flex;
+    margin-top: 20px;
+}
+.address-detail {
+    max-width: 250px;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    margin-right: 20px;
+}
+.address-container{
+    display: flex;
+    flex-direction: column;
+}
+.address-order-details{
+    display: flex;
+    justify-content: space-evenly;
+}
 /****************************************CHECKOUT PAGE CSS END ***********************************/

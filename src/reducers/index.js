@@ -12,6 +12,7 @@ import {siteDetailsData} from './siteDetails'
 import {licenseDetailsData} from './licenseDetails'
 import zipCodeData from './zipCode'
 import productData from '../containers/Products/reducers/product';
+import orderData from  '../containers/Products/reducers/checkout';
 import commonData from './common';
 import approvaldata from './approval';
 import * as Log from '../constants/login'
@@ -32,7 +33,8 @@ let appReducer = combineReducers(
         zipCodeData,
         productData,
         commonData,
-        approvaldata
+        approvaldata,
+        orderData
     }
 );
 const rootReducer = (state, action) => {
