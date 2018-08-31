@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import BillingAddress from './BillingAddress';
+import ShippingAddress from './ShippingAddress'
 import addressEdit from '../../../../assets/images/edit.png';
 import checkGreen from '../../../../assets/images/check-green.jpg';
 
@@ -21,7 +23,10 @@ export default (props) => {
           <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} >New Address</Button>
         </div>
       </div>
-      
+      <div className="addToCartButtonDiv">
+      {props.type=="Billing Address"?<BillingAddress/>:<ShippingAddress/>}
+        
+      </div>
 
     </div>)
 }
