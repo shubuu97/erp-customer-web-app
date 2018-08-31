@@ -51,7 +51,7 @@ class CheckOut extends Component {
 		})
 		let orderData = {
 			data: {
-				customeName: userBasicInfo.basicInfoData.firstName + " " + userBasicInfo.basicInfoData.lastName,
+				customerName: userBasicInfo.basicInfoData.firstName + " " + userBasicInfo.basicInfoData.lastName,
 				customerId: userBasicInfo.id,
 				items: items,
 				paymentMethod: "CASH",
