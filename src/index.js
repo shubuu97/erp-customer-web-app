@@ -112,7 +112,7 @@ ReactDOM.render(
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
 <Route exact path='/approval' component={AfterApproval}/>
 <Route exact path='/register' component={AfterRegister}/>
-<Route exact path='/orderSuccess' component={AfterCheckout}/>
+<RouterWithMainLayout layout={MainLayout} exact path='/orderSuccess' component={AfterCheckout}/>
 
 <RouterWithMainLayout layout={MainLayout} exact path="/companyProfile" component = {CompanyProfile}/>
 <RouterWithMainLayout layout={MainLayout} path="/customerProfile" component = {CustomerProfile}/>
