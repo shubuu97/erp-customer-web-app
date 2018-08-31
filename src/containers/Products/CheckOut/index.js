@@ -89,8 +89,8 @@ class CheckOut extends Component {
 				</div>
 				<div className="address-order-details">
 					<div className="address-container">
-						<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
-						<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
+						<CheckoutAddresses  name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
+						<CheckoutAddresses  name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
 					</div>
 					<OrderDetails placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
 				</div>
