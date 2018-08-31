@@ -4,7 +4,7 @@ export default (props) => {
   return (
     <div className="cart-total-container col-sm-3">
       <div className="cart-total-title">
-        Your Order
+        Order Summary
     </div>
       <div className="checkout-product-list">
         {props.cartProductList && props.cartProductList.map((item) => (

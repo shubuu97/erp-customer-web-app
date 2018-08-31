@@ -30,7 +30,11 @@ class CheckOut extends Component {
 		let address = {};
 		address = this.props.role == 'customer' ? this.props.userInfo.addressInfo[0] : this.props.companyinfo.companyInfo.companyAddressInfo;
 		this.setState({address});
-	}
+		document.body.classList.add('checkout-page')
+	  }
+	  componentWillUnmount(){
+		document.body.classList.remove('checkout-page');
+	  }
 	placeOrder = () => {
 		const {companyinfo} = this.props;
 		const {address} = this.state;
@@ -83,17 +87,21 @@ class CheckOut extends Component {
 		const {companyinfo, userInfo} = this.props;
 		console.log("companyinfo is here",userInfo);
 		return (
-			<div className="checkout-container">
+			<div className="checkout-container container">
 				<div>
-					<h4>CHECKOUT</h4>
+					<h2 className="cart-heading">Checkout</h2>
 				</div>
-				<div className="address-order-details">
-					<div className="address-container">
-						<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
-						<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
-					</div>
-					<OrderDetails placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
+				<div className="col-sm-9 cart-table-parent">
+					<div className="address-order-details">
+						<div className="address-container">
+							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address}/>
+							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address}/>
+						</div>
+						</div>
+						
+					
 				</div>
+				<OrderDetails placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} orderTotal={orderTotal} subTotal={subTotal} />
 			</div>
 		)
 	}
