@@ -7,7 +7,7 @@ export default (props) => {
       <ul className="breadcrumb">
         <li>Home</li>
         <li>Indica</li>
-        <li>Mota Indica THC Tincture </li>
+        <li>{props.detail.itemInfo.itemName}</li>
       </ul>
       <div className="detailsContent">
         <div className="imageContent">
@@ -30,10 +30,16 @@ export default (props) => {
               <label>Weight</label>
               <span>{props.detail.itemInfo.unitCount} Grams</span>
             </div>
-            {/* <div className="d-flex wq-bar">
+            <div className="d-flex wq-bar">
               <label>Quantity</label>
-              <span></span>
-            </div> */}
+              <div className="d-flex">
+                <div className="row-quantity-item-detail">{props.detail.quantity}</div>
+                <div className="row-quantity-increase">
+                  <button onClick={() => props.updateQuantity('add')}>+</button>
+                  <button onClick={() => props.updateQuantity('sub')}>-</button>
+                </div>
+              </div>
+            </div>
             <div className="d-flex wq-bar">
               <label>In Stock</label>
             </div>
@@ -46,23 +52,23 @@ export default (props) => {
         </div>
       </div>
       <div className="table-responsive table-product-detail">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th colSpan="2">Additional Information</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td width="10%"><b>Dimensions </b></td>
-                  <td>40 MM X 30MM</td>
-                </tr>
-                <tr>
-                  <td><b>Weight</b></td>
-                  <td>1 Gram, 3.5 Grams, 7 Grams, 14 Grams, 28 Grams</td>
-                </tr>
-              </tbody>
-            </table>
+        <table className="table">
+          <thead>
+            <tr>
+              <th colSpan="2">Additional Information</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td width="10%"><b>Dimensions </b></td>
+              <td>40 MM X 30MM</td>
+            </tr>
+            <tr>
+              <td><b>Weight</b></td>
+              <td>1 Gram, 3.5 Grams, 7 Grams, 14 Grams, 28 Grams</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   )

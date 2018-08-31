@@ -22,7 +22,7 @@ class CartContainer extends React.Component {
   }
   componentDidMount() {
     this.props.cartProductList && this.props.cartProductList.map((item)=>{
-      item.quantity = 1;
+      item.quantity = item.quantity || 1;
       item.total = item.quantity * item.itemInfo.price;
     })
     this.updateProductList(this.props.cartProductList);

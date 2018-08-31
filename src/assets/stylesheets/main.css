@@ -2234,6 +2234,23 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: block;
 	margin-bottom: 8px;
 }
+.row-quantity-item-detail {
+	padding: 0;
+	border: 1px solid #bbbbbb;
+    width: 60px;
+    height: 40px;
+	text-align: center;
+	line-height: 38px;
+	margin: 0 1px;
+}
+.row-quantity-increase {
+    display: flex;
+    flex-direction: column;
+}
+.row-quantity-increase button{
+    height: 20px;
+    font-weight: bold;
+}
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
 .cart-table {
