@@ -2,7 +2,7 @@ import React from 'react';
 
 export default (props) => {
   return (
-    <div className="col-sm-3 product-parent" onClick={(e)=>{props.click && props.click(props.detail)}}>
+    <div className="col-sm-4 product-parent" onClick={(e)=>{props.click && props.click(props.detail)}}>
       <div className="product">
           <div className="product-image">
             <img className="img-responsive" src={props.image} alt={props.name} />
