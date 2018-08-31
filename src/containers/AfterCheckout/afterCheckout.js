@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { line1 } from '../../components/common/AfterCheckout/afterCheckout'
 import logo from './../../assets/images/logo-main.png';
+import thankyouCart from './../../assets/images/thankyou-cart-icon.png';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
 import { logout } from '../../action/loginAction';
@@ -33,15 +34,17 @@ class AfterCheckout extends Component {
     }
     render() {
         console.log("After checkout",this.props.orderData);
-        return (<div className="message-alert">
-        <img src={logo} />
-            <div>{line1}</div>
-            <div>Order Number: {this.props.orderData && this.props.orderData.data && this.props.orderData.data.orderId }</div>
-            <div>Date: {this.props.orderData && this.props.orderData.data && moment(this.props.orderData.data.orderDate).format('MMM Do YY')}</div>
-            <div>Total: $ {this.state.total}</div>
-            <div>Payment method: {this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.method}</div>
-            <div>Payment transaction ID: {this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.transactionId}</div>
-            <Button onClick={this.handleSwitch} variant="contained" color='primary'>Back to Shopping</Button>
+        return (<div className="thankyou-order">
+        <img src={thankyouCart} className="thankyoucart"/>
+            <h1>{line1}</h1>
+            <div className="thankyou-box">
+                <div className="d-flex justify-content-between"><label>Order Number: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.orderId }</span></div>
+                <div className="d-flex justify-content-between"><label>Date: </label><span>{this.props.orderData && this.props.orderData.data && moment(this.props.orderData.data.orderDate).format('MMM Do YY')}</span></div>
+                <div className="d-flex justify-content-between"><label>Total: </label><span>$ {this.state.total}</span></div>
+                <div className="d-flex justify-content-between"><label>Payment method: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.method}</span></div>
+                <div className="d-flex justify-content-between"><label>Payment transaction ID: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.transactionId}</span></div>
+            </div>
+            <Button onClick={this.handleSwitch} size="large" variant="contained" color='primary'>Continue Shopping</Button>
         </div>
         )
     }
