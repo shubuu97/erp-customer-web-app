@@ -34,7 +34,7 @@ class CompanyRegistration extends PureComponent {
     , (err)=>{
       console.log("Error in company register", err);
       
-        this.props.dispatch(showMessage({text: "Operation failed", isSuccess: false}));
+        this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
         setTimeout(()=>{
           this.props.dispatch(showMessage({text: "", isSuccess: false}));
         },6000);
