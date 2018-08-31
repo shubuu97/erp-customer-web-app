@@ -2032,15 +2032,20 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .product {
     cursor: pointer;
     margin-bottom: 30px;
+    width: 100%;
 }
 .product-image {
 	border-bottom: solid 1px #ababab;
 	padding: 20px;
 	background: #FFF;
-	height: 200px;
+	height: 260px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.product-image img {
+    height: auto;
+    max-height: 100%;
 }
 .product-content {
 	padding: 16px 0;
@@ -2197,7 +2202,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     padding-left:20px
 }
 .add-cart-button {
-	font-size: 16px !important;
+	font-size: 15px !important;
     padding: 15px !important;
     max-width:100%;
     min-width:140px !important;
