@@ -5,7 +5,7 @@ export default (props) => {
   return (
     <div className="cart-total-container col-sm-3">
       <div className="cart-total-title">
-        Your Order
+        Order Summary
     </div>
       <div>
         <Button color="primary" onClick={props.toggle} style={{ marginBottom: '1rem' }}>item count</Button>
