@@ -111,7 +111,7 @@ class CheckOut extends Component {
 		this.setState({ termCondition: !this.state.termCondition, showError: false })
 	}
 	render() {
-		console.log(this.props.cartProductList, "Cart list in checkout");
+		console.log(this.props.isLoading, "isLoading in checkout");
 		const { subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError } = this.state;
 		const { companyinfo, userInfo } = this.props;
 		console.log("companyinfo is here", userInfo);
@@ -133,7 +133,7 @@ class CheckOut extends Component {
 				<OrderDetails termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
 				paymentTerms={paymentTerms} paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
 				collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} 
-				orderTotal={orderTotal} subTotal={subTotal} showError={showError}/>
+				orderTotal={orderTotal} subTotal={subTotal} showError={showError} {...this.props}/>
 			</div>
 		)
 	}
@@ -144,6 +144,7 @@ const mapStateToPtops = (state) => {
 	let userBasicInfo = state.basicInfodata;
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
 	let role = state.basicInfodata && state.basicInfodata.role;
-	return { cartProductList, companyinfo, userInfo, role, userBasicInfo };
+	let isLoading= state.orderData.isFetching;
+	return { cartProductList, companyinfo, userInfo, role, userBasicInfo, isLoading };
 }
 export default connect(mapStateToPtops)(CheckOut);

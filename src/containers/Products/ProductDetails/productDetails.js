@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 
 export default (props) => {
   return (
@@ -12,11 +13,11 @@ export default (props) => {
       <div className="detailsContent">
         <div className="imageContent">
           <div className="mainImage">
-            <img className="img-responsive" src={(props.detail.itemInfo.images && props.detail.itemInfo.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'} alt={props.detail.itemInfo.itemName} />
+            <img className="img-responsive" src={props.mainImageUrl.url} alt={props.detail.itemInfo.itemName} />
           </div>
           <div className="subImages">
             {props.detail.itemInfo.images && props.detail.itemInfo.images.map((image, key) => (
-              <img key={key} className="img-responsive" src={image.url || "https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg"} alt={props.detail.itemInfo.itemName} />
+              <img key={key} onClick={()=>props.updateMainImage(image)} className="img-responsive" src={image.url || productPlaceholder} alt={props.detail.itemInfo.itemName} />
             ))}
           </div>
         </div>

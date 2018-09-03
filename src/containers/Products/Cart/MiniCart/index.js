@@ -50,7 +50,6 @@ class CartContainer extends React.Component {
     this.updateProductList(productsTemp);
   }
   updateProductList(list) {
-  debugger;
     let subTotal = 0;
     list.map((item)=>{
       subTotal = subTotal + (item.itemInfo.price * (item.quantity || 1));
