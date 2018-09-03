@@ -12,6 +12,7 @@ import { logout } from '../action/loginAction';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles, withTheme } from '@material-ui/core/styles';
+import MiniCart from '../containers/Products/Cart/MiniCart/'
 
 const styles = theme => ({
   failure: {
@@ -28,7 +29,8 @@ class MainLayout extends Component {
     super(props);
     this.state = {
       showMenu: false,
-      anchorEl: null
+      anchorEl: null,
+      showMiniCart:false
     };
   }
   handleOpen = () => {
@@ -53,6 +55,10 @@ class MainLayout extends Component {
   goToProductList = () => {
     this.props.history.push('/productList');
   }
+  toggleMiniCartState = () =>
+  {
+    this.setState({showMiniCart:!this.state.showMiniCart})
+  }
   render() {
     console.log('this is props', this.props);
     const { classes, theme, userInfo, cartData } = this.props;
@@ -62,7 +68,7 @@ class MainLayout extends Component {
         {/* {/ <HeaderLayout /> /} */}
         <div className="content">
           <div className="col-sm-12 app-header">
-            <div className="header-top">
+            <div className="header-top" style={{position:'relative'}}>
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, {userInfo.firstName || 'Guest'}</span>
@@ -75,6 +81,7 @@ class MainLayout extends Component {
                 onClose={this.handleMenuClose}
                 className={'user-menu'}
               >
+                 
                 <MenuItem onClick={this.handleProfile} style={{ fontSize: "1.4rem" }}>Profile</MenuItem>
                 <MenuItem onClick={this.handleLogOut} style={{ fontSize: "1.4rem" }}>Logout</MenuItem>
               </Menu>
@@ -88,8 +95,13 @@ class MainLayout extends Component {
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li onClick={() => this.props.history.push('/cart')}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
+                <li onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
+              
               </ul>
+
+            <div style={{position:'absolute',top: '86px',left:'72%',zIndex:'1000',top:'48px',backgroundColor:'wheat'}}>
+              {this.state.showMiniCart?<MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props}/>:null}
+              </div>
             </div>
             {this.props.message.text && <Snackbar
               anchorOrigin={{
