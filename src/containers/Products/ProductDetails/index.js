@@ -5,12 +5,14 @@ import ProductDetails from './productDetails';
 import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
+import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 
 class ProductDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productInfo: {}
+      productInfo: {},
+      mainImageUrl: {}
     }
   }
   componentDidMount() {
@@ -20,7 +22,8 @@ class ProductDetailsContainer extends React.Component {
       this.props.history.push('/productList')
     }
     productInfo.quantity = 1;
-    this.setState({ productInfo });
+    let mainImageUrl = selectedProduct.itemInfo.images[0] || {url:productPlaceholder};
+    this.setState({ productInfo, mainImageUrl });
     document.body.classList.add('product-details')
   }
   componentWillUnmount() {
@@ -51,12 +54,15 @@ class ProductDetailsContainer extends React.Component {
     }
     this.setState({ productInfo: productLocal });
   }
+  updateMainImage = (image) => {
+    this.setState({mainImageUrl: image});
+  }
 
   render() {
-    const { productInfo } = this.state;
+    const { productInfo, mainImageUrl } = this.state;
     return (
       <div>
-        {productInfo.itemInfo && <ProductDetails detail={productInfo} addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()} updateQuantity={this.updateQuantity} />}
+        {productInfo.itemInfo && <ProductDetails detail={productInfo} mainImageUrl={mainImageUrl} updateMainImage = {this.updateMainImage} addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()} updateQuantity={this.updateQuantity} />}
       </div>
     )
   }

@@ -16,6 +16,7 @@ class ProductsListClass extends React.Component {
                 id={product.itemId}
                 click={this.props.onProductClick}
                 detail={product}
+                {...this.props}
             />);
     return (
         <div className="row d-flex">

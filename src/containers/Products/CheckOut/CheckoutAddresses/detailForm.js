@@ -20,17 +20,17 @@ render()
                 <Field name="lastName" label="Last Name" component={TextFieldInput}/>
             </div>
             <div className="form-d col-md-12">
-                <Field name="streetAddress" label="Street Address" component={TextFieldInput}/>
-                <Field name="streetAddress" label="Street Address" component={TextFieldInput}/>
+                <Field name="streetAddress" label="Street Address 1" component={TextFieldInput}/>
+                <Field name="streetAddress" label="Street Address 2" component={TextFieldInput}/>
             </div>
             <div className="form-d col-md-6">
                 <Field name="city" label = "City" component={TextFieldInput}/>
             </div>
             <div className="form-d col-md-6">
-                <Field name="state" label = "State" component={TextFieldInput}/>
+                <Field name="state" label = "State/Province" component={TextFieldInput}/>
             </div> 
             <div className="form-d col-md-6">
-                <Field name="zipCode" label = "Zip Code " component={TextFieldInput}/>
+                <Field name="zipCode" label = "Zip/Postal Code" component={TextFieldInput}/>
             </div>
             <div className="form-d col-md-6">
                 <Field name="country" label = "Country" component={TextFieldInput}/>

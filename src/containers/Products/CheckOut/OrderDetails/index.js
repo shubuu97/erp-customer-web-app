@@ -2,6 +2,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Collapse } from 'reactstrap';
 import Select from 'react-select';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 export default (props) => {
   return (
     <div className="cart-total-container col-sm-3">
@@ -44,7 +46,7 @@ export default (props) => {
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,
         support your experience throughtout this website and for other
-        purposes described in our privacy policy.
+        purposes described in our privacy policy. {props.isLoading}
       </div>
       <div className="cart-item">
         <input type="checkbox" value={props.termCondition} onChange={props.selectTermCondition} />
@@ -54,7 +56,7 @@ export default (props) => {
         <p>* Please accept terms and conditions.</p>
       </div>}
       <div className="col-sm-12 cart-item-button">
-        <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder}>PLACE ORDER</Button>
+        <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>
     </div>
   )
