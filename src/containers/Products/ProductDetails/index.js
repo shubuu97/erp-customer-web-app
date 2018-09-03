@@ -12,7 +12,7 @@ class ProductDetailsContainer extends React.Component {
     super(props);
     this.state = {
       productInfo: {},
-      mainImageUrl: ''
+      mainImageUrl: {}
     }
   }
   componentDidMount() {
