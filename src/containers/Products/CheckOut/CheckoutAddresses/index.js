@@ -20,13 +20,10 @@ export default (props) => {
           <Button variant="contained" size='large' color="secondary">Ship Here</Button>
         </div>
         <div className="addToCartButtonDiv">
-          <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} >New Address</Button>
+          {props.type=="Billing Address"?<BillingAddress/>:<ShippingAddress/>}
         </div>
       </div>
-      <div className="addToCartButtonDiv">
-      {props.type=="Billing Address"?<BillingAddress/>:<ShippingAddress/>}
-        
-      </div>
+      
 
     </div>)
 }
