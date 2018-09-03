@@ -30,7 +30,7 @@ export default (props) => {
               <label>Weight</label>
               <span>{props.detail.itemInfo.unitCount} Grams</span>
             </div>
-            <div className="d-flex wq-bar">
+            <div className="d-flex wq-bar align-center">
               <label>Quantity</label>
               <div className="d-flex">
                 <div className="row-quantity-item-detail">{props.detail.quantity}</div>

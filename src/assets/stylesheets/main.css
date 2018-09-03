@@ -2255,6 +2255,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     height: 20px;
     font-weight: bold;
 }
+.align-center {
+    align-items: center;
+}
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
 .cart-table {
@@ -2532,6 +2535,15 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .address-detail.selected .address-select-img {
 	display: block;
+}
+.privacy-text {
+    font-size: 1.25rem;
+    margin-top: 20px;
+}
+.term-conditions {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-left: 10px;
 }
 .item-button {
 	padding-left: 0 !important;
