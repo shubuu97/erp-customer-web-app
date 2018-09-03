@@ -39,6 +39,7 @@ import SignUp from './containers/Register/SignUpTabs'
 import AfterRegister from './containers/AfterRegistration/afterRegistration';
 import AfterApproval from './containers/AfterApproval/afterApproval';
 import AfterCheckout from './containers/AfterCheckout/afterCheckout';
+import MiniCheckout from './containers/Products/Cart/MiniCart'
 
 const theme = createMuiTheme({
   
@@ -121,6 +122,7 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/productDetail" component = {productDetails}/>
 <RouterWithMainLayout layout={MainLayout} path="/cart" component = {Cart} />
 <RouterWithMainLayout layout={MainLayout} path="/checkout" component = {CheckOut} />
+<RouterWithMainLayout layout={MainLayout} path="/minicart" component = {MiniCheckout}/>
 
 </Switch>
 
