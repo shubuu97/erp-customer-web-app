@@ -19,20 +19,6 @@ export default (props) => {
           <img src={addressEdit} className="address-edit-img" />
           <Button variant="contained" size='large' color="secondary">Ship Here</Button>
         </div>
-        <div className="address-detail">
-          <h5>{props.name}</h5>
-          <p>{props.address.companyAddress || props.address.address}, {props.address.city}, {props.address.state}, {props.address.country}- {props.address.zipCode}</p>
-          <img src={checkGreen} className="address-select-img" />
-          <img src={addressEdit} className="address-edit-img" />
-          <Button variant="contained" size='large' color="secondary">Ship Here</Button>
-        </div>
-        <div className="address-detail">
-          <h5>{props.name}</h5>
-          <p>{props.address.companyAddress || props.address.address}, {props.address.city}, {props.address.state}, {props.address.country}- {props.address.zipCode}</p>
-          <img src={checkGreen} className="address-select-img" />
-          <img src={addressEdit} className="address-edit-img" />
-          <Button variant="contained" size='large' color="secondary">Ship Here</Button>
-        </div>
         <div className="addToCartButtonDiv">
           {props.type=="Billing Address"?<BillingAddress/>:<ShippingAddress/>}
         </div>
