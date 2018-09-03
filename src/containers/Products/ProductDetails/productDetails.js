@@ -42,7 +42,7 @@ export default (props) => {
               </div>
             </div>
             <div className="d-flex wq-bar">
-              <label>In Stock</label>
+              <label className="cart-stock"><i className="fa fa-check"></i> &nbsp;In Stock</label>
             </div>
           </div>
           <div className="addToCartButtonDiv">

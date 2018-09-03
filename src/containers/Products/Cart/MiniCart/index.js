@@ -86,17 +86,21 @@ class CartContainer extends React.Component {
     // })
     const {cartProducts, details} = this.state;
     return (
-      <div className="container">
+      <div className="mini-cart-popover">
       {cartProducts.length ? 
-      <div>
-      <div>Items in Cart </div>
-      <div>{cartProducts.length}</div>
-      <div>Card SubTotal</div>
-      <div>{this.state.details.subTotal}</div>
-
-      <Button variant="contained" size='large' color="primary" onClick={this.goToCheckout}>Checkout</Button>
-      <div className="cart-container">
-      
+      <div className="mini-cartBox">
+        <div className="mc-header">
+          <div className="mc-top">
+            <span>Items in Cart </span>
+            <label>{cartProducts.length}</label>
+          </div>
+          <div className="mc-top">
+            <span>Card SubTotal</span>
+            <label>{this.state.details.subTotal}</label>
+          </div>
+        </div>
+        <Button variant="contained" size='large' color="primary" onClick={this.goToCheckout} classes={{ root: 'add-cart-button' }}>Proceed to Checkout</Button>
+      <div className="mini-cart-container">      
         <CartProductList  updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
         </div>
         
