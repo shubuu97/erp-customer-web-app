@@ -2544,7 +2544,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .item-button:hover{
     background-color:transparent !important;
 }
-.form-d div {
+.form-d > div {
 	width: 100%;
 }
 .m-footer {
