@@ -29,24 +29,24 @@ import asyncValidate from './validate';
         console.log("props is here",this.props)
         return(
             <div>
-                <Button onClick={this.handleClickOpen}>Add New Address</Button>
+                <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.handleClickOpen}>New Address</Button>
                  <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
+          className="dialogbox-ui"
         >
                 <DialogContent>
+                <h2 className="modal-title">Billing Address</h2>
                 <DetailForm/>
                
                 </DialogContent>
-                <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Submit
-            </Button>
-          </DialogActions>
+                <DialogActions className="m-footer">
+                  <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button>
+                  <Button variant="contained" onClick={this.handleClose} color="secondary">
+                    Save Address
+                  </Button>
+                </DialogActions>
                 </Dialog>
             </div>
         )

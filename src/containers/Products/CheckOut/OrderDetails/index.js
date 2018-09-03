@@ -7,10 +7,10 @@ export default (props) => {
       <div className="cart-total-title">
         Order Summary
     </div>
-      <div>
-        <Button color="primary" onClick={props.toggle} style={{ marginBottom: '1rem' }}>item count</Button>
+      <div className="checkout-product-list">
+        <Button color="primary" onClick={props.toggle} classes={{ root: 'item-button' }}>item count <i class="fa fa-angle-down"></i></Button>
         <Collapse isOpen={props.collapse}>
-          <div className="checkout-product-list">
+          <div>
             {props.cartProductList && props.cartProductList.map((item) => (
               <div key={item.itemId} className="cart-total-subtotal cart-item">
                 {item.itemInfo.itemName} * {item.quantity || 1}  <span>$ {item.itemInfo.price * (item.quantity || 1)}</span>
