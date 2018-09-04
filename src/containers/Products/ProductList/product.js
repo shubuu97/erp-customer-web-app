@@ -8,13 +8,18 @@ export default (props) => {
         <div className="product-image" onClick={(e) => { props.click && props.click(props.detail) }}>
           <img className="img-responsive" src={props.image} alt={props.name} />
         </div>
-        <div className="product-content" onClick={(e) => { props.click && props.click(props.detail) }}>
-          <h4 className="product-name">{props.name}</h4>
-          <div className="product-price">${props.price}</div>
-          {/* <div className="product-code">Item Code:<span> {props.code}</span></div> */}
-          {/* <span className="quick-view" title="View Details"></span> */}
+        <div className="product-content">
+          <div className="pc-1" onClick={(e) => { props.click && props.click(props.detail) }}>
+            <h4 className="product-name">{props.name}</h4>
+            <div className="product-price">${props.price}</div>
+            {/* <div className="product-code">Item Code:<span> {props.code}</span></div> */}
+            {/* <span className="quick-view" title="View Details"></span> */}
+          </div>
+          <div className="pc-2">
+            <img className="info-icon" src={info} onClick={()=>props.showInfo(props.detail)}/>
+          </div>
         </div>
-        <img src={info} onClick={()=>props.showInfo(props.detail)}/>
+        
       </div>
     </div>
   )
