@@ -22,7 +22,13 @@ const asyncValidate = values => {
                 let reduxFormErrors = {};
 
                 errors.inner.forEach(error => {
-                    reduxFormErrors[error.path] = error.message;
+                    errors.inner.forEach(error => {
+                        let messageArr = error.message.split('.');
+                        let errorMsg = messageArr[messageArr.length -1]
+                        let result = errorMsg.replace( /([A-Z])/g, " $1" );
+                        let finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+                        reduxFormErrors[error.path] = finalResult;
+                        })
                 })
 
                 //redux form will now understand the errors that yup has thrown

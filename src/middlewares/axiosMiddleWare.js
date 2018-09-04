@@ -42,9 +42,9 @@ const axiosMiddleware = store => next => (action) => {
   
   
   const { dispatch } = store;
-  const { fetchConfig: config, subreddit, id } = action;
+  const { fetchConfig: config, subreddit, id,constants } = action;
   // @todo multiple params
-  dispatch(config.initHandler(subreddit));
+  dispatch(config.initHandler(subreddit,constants));
 
   const path = config.path || '/';
   const argMethod = config.method || 'GET';
@@ -78,8 +78,8 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
     requestObject
   )
     .then(responseData => {
-      dispatch(successHandler(subreddit, responseData.data, id, resolve))})
-    .catch(error => dispatch(failureHandler(subreddit, error, 500, reject)));
+      dispatch(successHandler(subreddit, responseData.data, id, resolve,constants))})
+    .catch(error => dispatch(failureHandler(subreddit, error, 500, reject,constants)));
 };
 
 export default axiosMiddleware;

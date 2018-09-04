@@ -23,11 +23,13 @@ const dynamicActionWrapper = ({
     successCbPassOnParams,
     resolve,
     reject,
+    constants
   }) => ({
     type: wrapperActionType,
     subreddit,
     id,
     successCbPassOnParams,
+    constants,
     fetchConfig: {
       path,
       method,
