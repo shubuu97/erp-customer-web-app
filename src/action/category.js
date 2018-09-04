@@ -44,3 +44,10 @@ export const fetchCategory = (url,data, subreddit) => dispatch => {
     }));
     })
 }
+
+export const selectedCategory = (category) => dispatch => {
+    dispatch({
+        type: CATEGORY_CONSTANTS.SELECTED_CATEGORY,
+        data: category
+    })
+}

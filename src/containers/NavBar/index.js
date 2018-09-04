@@ -5,7 +5,7 @@ export default class extends Component {
         return (
             <ul className="app-navbar">
                 {this.props.categories && this.props.categories.map((category)=>(
-                    <li onClick={this.props.handleClick}>{category.displayName}</li>
+                    <li className={category.id == this.props.selectedCategory.id ? 'active' : '' } onClick={()=>this.props.handleClick(category)}>{category.displayName}</li>
                 ))}
             </ul>
         )

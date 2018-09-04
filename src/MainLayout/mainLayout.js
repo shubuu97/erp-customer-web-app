@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import MiniCart from '../containers/Products/Cart/MiniCart/';
 import {fetchCategory} from '../action/category';
+import {selectedCategory} from '../action/category';
 import {APPLICATION_BFF_URL} from '../constants/urlConstants';
 
 const styles = theme => ({
@@ -61,7 +62,8 @@ class MainLayout extends Component {
     this.props.role == 'customer' ? this.props.history.push('/customerProfile') : this.props.history.push('/companyProfile');
     this.handleMenuClose();
   }
-  goToProductList = () => {
+  goToProductList = (category) => {
+    this.props.dispatch(selectedCategory(category));
     this.props.history.push('/productList');
   }
   toggleMiniCartState = () =>
@@ -74,7 +76,7 @@ class MainLayout extends Component {
   }
   render() {
     console.log('this is props', this.props);
-    const { classes, theme, userInfo, cartData, categories } = this.props;
+    const { classes, theme, userInfo, cartData, categories, selectedCategory } = this.props;
     const { anchorEl } = this.state;
     return (
       <div className="main-container">
@@ -106,7 +108,7 @@ class MainLayout extends Component {
               <div className="main-logo">
                 <img src={logo} />
               </div>
-              <NavBar handleClick={this.goToProductList} categories={categories.itemCategories} />
+              <NavBar selectedCategory={selectedCategory} handleClick={this.goToProductList} categories={categories.itemCategories} />
 
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
@@ -158,7 +160,8 @@ const mapStateToProps = state => {
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let role = state.basicInfodata && state.basicInfodata.role;
   let categories = state.categoryData && state.categoryData.categories;
-  return { message, isLoading, customerStatus, role, userInfo, cartData, categories }
+  let selectedCategory = state.categoryData && state.categoryData.selectedCategory;
+  return { message, isLoading, customerStatus, role, userInfo, cartData, categories, selectedCategory }
 }
 
 export default connect(mapStateToProps)((withStyles(styles)(MainLayout)))

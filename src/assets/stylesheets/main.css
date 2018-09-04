@@ -1943,7 +1943,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     -moz-transition:ease-in-out all 0.6s;
     -o-transition:ease-in-out all 0.6s;
 }
-.app-navbar li:hover, .app-navbar li:focus {
+.app-navbar li:hover, .app-navbar li:focus, .app-navbar li.active {
 	color: #0E8C4D;
 }
 .navRight {
