@@ -15,6 +15,7 @@ import productData from '../containers/Products/reducers/product';
 import orderData from  '../containers/Products/reducers/checkout';
 import commonData from './common';
 import approvaldata from './approval';
+import categoryData from './category';
 import * as Log from '../constants/login'
 let appReducer = combineReducers(
     {
@@ -34,7 +35,8 @@ let appReducer = combineReducers(
         productData,
         commonData,
         approvaldata,
-        orderData
+        orderData,
+        categoryData
     }
 );
 const rootReducer = (state, action) => {
