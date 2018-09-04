@@ -33,12 +33,11 @@ export default (props) => {
             </div>
             <div className="d-flex wq-bar align-center">
               <label>Quantity</label>
-              <div className="d-flex">
-                <div className="row-quantity-item-detail">{props.detail.quantity}</div>
-                <div className="row-quantity-increase">
-                  <button onClick={() => props.updateQuantity('add')}>+</button>
+              <div className="row-quantity">
+                <div className="d-flex">
                   <button onClick={() => props.updateQuantity('sub')}>-</button>
-                </div>
+                  <div className="row-quantity-item">{props.detail.quantity}</div>
+                  <button onClick={() => props.updateQuantity('add')}>+</button></div>
               </div>
             </div>
             <div className="d-flex wq-bar">

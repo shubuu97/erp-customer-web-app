@@ -31,21 +31,21 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
   />)
 })
     return (
-      <div>
-      <Card style={{marginTop:'5px'}}>
-      <CardContent>
-      <div style={{display:'flex',justifyContent:'space-between'}}>
-      <div>{this.props.id}</div>
-      <div>{moment(this.props.placedDate).format('DD MMMM YYYY')}</div>
-      <div>{this.props.status}</div>
-      <div><Button color='primary' variant='contained'> Track Order</Button></div>
-    
-      </div>
-      <div>{itemLists}</div>
-     
-      </CardContent>
+      <div className="order-card">
+        <div className="order-card-header">
+          <div className="card-header-left">
+            <div className="track-item"><span className="track-id">{this.props.id}</span></div>
+            <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span></div>
+          </div>
+          <div className="card-header-right">
+            <Button color='secondary' variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+          </div>
+        </div>
+        <div className="order-card-content">        
+          {itemLists}      
+        </div>
 
-      </Card>
       </div>
     )
   }

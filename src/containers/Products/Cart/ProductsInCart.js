@@ -57,9 +57,9 @@ class ProductsInCart extends React.Component {
     <div className="cart-table-head">
       <div className="cart-table-head-item first-col">Product Name</div>
       <div className="cart-table-head-item">Price</div>
-      <div className="cart-table-head-item">Qty</div>
+      <div className="cart-table-head-item">Quantity</div>
       <div className="cart-table-head-item">Sub Total</div>
-      <div className="cart-table-head-item">Action</div>
+      
     </div>
       
         {products}

@@ -95,7 +95,7 @@ class CartContainer extends React.Component {
             <label>{cartProducts.length}</label>
           </div>
           <div className="mc-top">
-            <span>Card SubTotal</span>
+            <span>Cart Subtotal</span>
             <label>{this.state.details.subTotal}</label>
           </div>
         </div>

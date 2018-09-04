@@ -45,7 +45,7 @@ export default (props) => {
       </div>
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,
-        support your experience throughtout this website and for other
+        support your experience throughout this website and for other
         purposes described in our privacy policy. {props.isLoading}
       </div>
       <div className="cart-item checkbox-custom">
