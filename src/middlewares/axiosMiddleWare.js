@@ -79,22 +79,7 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
   )
     .then(responseData => {
       dispatch(successHandler(subreddit, responseData.data, id, resolve,constants))})
-      .catch((error)=>
-      {
-        if (error.response) {
-          
-     return  dispatch(failureHandler(subreddit, error.response.data, error.response.code, reject,constants))
-        
-        } else if (error.request) {
-          console.log(error.request,'request error is here');
-
-          return  dispatch(failureHandler(subreddit, {message:'You are not connected to internet'}, 500, reject,constants))
-        } else {
-          return  dispatch(failureHandler(subreddit, error, 500, reject,constants))
-        }
-       return  dispatch(failureHandler(subreddit, error, 500, reject,constants))
-      })
+    .catch(error => dispatch(failureHandler(subreddit, error, 500, reject,constants)));
 };
 
 export default axiosMiddleware;
-

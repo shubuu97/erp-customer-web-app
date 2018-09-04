@@ -25,7 +25,6 @@ export default class Orders extends React.Component {
        key={index}
        placedDate={order.orderDate}
       id={order.id}
-      handleTrack={this.props.handleTrack}
       saleProducts={order.saleProducts}
       status={order.status}
       order={order}  />)

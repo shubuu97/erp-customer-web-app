@@ -7,7 +7,7 @@ var address=yup.object().shape({
     city:yup.string().required(),
     country:yup.string().required(),
     state:yup.string().required(),
-    zipCode:yup.number().required().min(4),
+    zipCode:yup.number().required(),
 
     
 })
