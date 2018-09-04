@@ -9,11 +9,43 @@ import {showMessage} from '../../../action/common';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
 import expand from 'keypather/expand';
 import {Link} from 'react-router-dom';
+import Snackbar from '@material-ui/core/Snackbar';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button'
+
+
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  button: {
+    fontSize: '1.4rem',
+    color: '#FFF',
+  },
+  buttonLogin: {
+    fontSize: '1.4rem',
+    color: '#FFF',
+  },
+  failure: {
+    background: 'red',
+    fontSize: '1.4rem'
+},
+success: {
+  background: 'green',
+  fontSize: '1.4rem'
+}
+});
+
 
 class CustomerRegistration extends Component
 {
+  
+    constructor(props) {
+      super(props);
+      this.state = {
+        message: '',
+        isSuccess: false
+      }
+    }
   handleSubmit=(formData)=>
   {
    let postData = {};
@@ -41,11 +73,11 @@ class CustomerRegistration extends Component
       },6000);
     }
   }, (err)=>{
-     {
-      this.props.dispatch(showMessage({text: err.message, isSuccess: false}));
-      setTimeout(()=>{
-        this.props.dispatch(showMessage({text: "", isSuccess: false}));
-      },6000);
+    if (err.message) {
+      this.setState({ message: err.message, isSuccess: false });
+      setTimeout(() => {
+        // this.setState({ message: '' });
+      }, 6000);
     }
   })
   
@@ -54,9 +86,13 @@ class CustomerRegistration extends Component
    
    
   }
+  handleOpen = () => {
+    return true;
+  };
  render()
  {
-   const {handleSubmit} = this.props;
+   const {handleSubmit,classes, theme} = this.props;
+
    return(
     <div className="login-container register">
       <div className="login">
@@ -71,6 +107,22 @@ class CustomerRegistration extends Component
               </div>
            </div>
            </form>
+           {this.state.message && <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.handleOpen()}
+            autoHideDuration={6000}
+            onClose={() => { }}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+              classes: {
+                root: this.state.isSuccess ? classes.success : classes.failure
+            }
+            }}
+            message={<span id="message-id">{this.state.message}</span>}
+          />}
         </div>
     </div>
    )
@@ -116,4 +168,4 @@ const mapStateToProps = (state) =>
  return {initialValues:initialValues}
 }
 
-export default connect(mapStateToProps)(CustomerRegistration)
+export default connect(mapStateToProps)(withStyles(styles)(CustomerRegistration))
