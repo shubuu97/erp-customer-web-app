@@ -13,9 +13,10 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import MiniCart from '../containers/Products/Cart/MiniCart/';
-import {fetchCategory} from '../action/category';
-import {selectedCategory} from '../action/category';
-import {APPLICATION_BFF_URL} from '../constants/urlConstants';
+import { fetchCategory } from '../action/category';
+import { fetchCategoryTypeAndItems } from '../action/categoryTypeAndItems';
+import { selectedCategory } from '../action/category';
+import { APPLICATION_BFF_URL } from '../constants/urlConstants';
 
 const styles = theme => ({
   failure: {
@@ -33,13 +34,13 @@ class MainLayout extends Component {
     this.state = {
       showMenu: false,
       anchorEl: null,
-      showMiniCart:false
+      showMiniCart: false
     };
   }
   componentDidMount() {
-    this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, {isActive: 1})).then((data)=>{
+    this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, { isActive: 1 })).then((data) => {
       console.log("Category list is ", data);
-    }, (err)=>{
+    }, (err) => {
       console.log(err);
     });
   }
@@ -64,14 +65,30 @@ class MainLayout extends Component {
   }
   goToProductList = (category) => {
     this.props.dispatch(selectedCategory(category));
-    this.props.history.push('/productList');
+    this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, {categoryId: category.categoryId.toString()})).then((data)=>{
+      console.log("Product Data", data);
+    }, (err)=>{
+      console.log(err);
+    });
+    switch (this.props.customerStatus) {
+      case 'In Approval':
+        this.props.history.push('/approval')
+        break;
+      case 'New':
+        this.props.history.push('/approval')
+        break;
+      case 'Approved':
+        this.props.history.push('/productList')
+        break;
+      case 'Rejected':
+        this.props.history.push('/approval')
+        break;
+    }
   }
-  toggleMiniCartState = () =>
-  {
-    this.setState({showMiniCart:!this.state.showMiniCart})
+  toggleMiniCartState = () => {
+    this.setState({ showMiniCart: !this.state.showMiniCart })
   }
-  handleOrders=()=>
-  {
+  handleOrders = () => {
     this.props.history.push('/orders')
   }
   render() {
@@ -83,7 +100,7 @@ class MainLayout extends Component {
         {/* {/ <HeaderLayout /> /} */}
         <div className="content">
           <div className="col-sm-12 app-header">
-            <div className="header-top" style={{position:'relative'}}>
+            <div className="header-top" style={{ position: 'relative' }}>
               <div className="user-avatar" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, {userInfo.firstName || 'Guest'}</span>
@@ -96,10 +113,10 @@ class MainLayout extends Component {
                 onClose={this.handleMenuClose}
                 className={'user-menu'}
               >
-                 
+
                 <MenuItem onClick={this.handleProfile} style={{ fontSize: "1.4rem" }}>Profile</MenuItem>
-                <MenuItem onClick={this.handleOrders} style={{fontSize:'1.4rem'}}>Orders</MenuItem>
-                 
+                <MenuItem onClick={this.handleOrders} style={{ fontSize: '1.4rem' }}>Orders</MenuItem>
+
 
                 <MenuItem onClick={this.handleLogOut} style={{ fontSize: "1.4rem" }}>Logout</MenuItem>
               </Menu>
@@ -115,11 +132,11 @@ class MainLayout extends Component {
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
                 <li onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
                 <div>
-                  {this.state.showMiniCart?<MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props}/>:null}
+                  {this.state.showMiniCart ? <MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props} /> : null}
                 </div>
               </ul>
 
-            
+
             </div>
             {this.props.message.text && <Snackbar
               anchorOrigin={{
@@ -156,7 +173,7 @@ const mapStateToProps = state => {
   let message = state.commonData && state.commonData.message ? state.commonData.message : {};
   let isLoading = state.registerReducer.isFetching;
   let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
-  let cartData = (state.productData && state.productData.cartProductList) || [] ;
+  let cartData = (state.productData && state.productData.cartProductList) || [];
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let role = state.basicInfodata && state.basicInfodata.role;
   let categories = state.categoryData && state.categoryData.categories;

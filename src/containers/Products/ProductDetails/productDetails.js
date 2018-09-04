@@ -8,28 +8,28 @@ export default (props) => {
       <ul className="breadcrumb">
         <li>Home</li>
         <li>Indica</li>
-        <li>{props.detail.itemInfo.itemName}</li>
+        <li>{props.detail.itemName}</li>
       </ul>
       <div className="detailsContent">
         <div className="imageContent">
           <div className="mainImage">
-            <img className="img-responsive" src={props.mainImageUrl.url} alt={props.detail.itemInfo.itemName} />
+            <img className="img-responsive" src={props.mainImageUrl.url} alt={props.detail.itemName} />
           </div>
           <div className="subImages">
-            {props.detail.itemInfo.images && props.detail.itemInfo.images.map((image, key) => (
-              <img key={key} onClick={()=>props.updateMainImage(image)} className="img-responsive" src={image.url || productPlaceholder} alt={props.detail.itemInfo.itemName} />
+            {props.detail.images && props.detail.images.map((image, key) => (
+              <img key={key} onClick={()=>props.updateMainImage(image)} className="img-responsive" src={image.url || productPlaceholder} alt={props.detail.itemName} />
             ))}
           </div>
         </div>
         <div className="descriptionContent">
           <div className="namePriceDiv">
-            <h2 className="p-name">{props.detail.itemInfo.itemName}</h2>
-            <p className="ic text-uppercase">Item Code: <span>{props.detail.itemInfo.itemNo}</span></p>
-            {/* <p className="ic">Unit Count: <span>{props.detail.itemInfo.unitCount}</span></p> */}
-            <h3 className="p-price">$ {props.detail.itemInfo.price}</h3>
+            <h2 className="p-name">{props.detail.itemName}</h2>
+            <p className="ic text-uppercase">Item Code: <span>{props.detail.itemNo}</span></p>
+            {/* <p className="ic">Unit Count: <span>{props.detail.unitCount}</span></p> */}
+            <h3 className="p-price">$ {props.detail.price}</h3>
             <div className="d-flex wq-bar">
               <label>Weight</label>
-              <span>{props.detail.itemInfo.unitCount} Grams</span>
+              <span>{props.detail.unitCount} Grams</span>
             </div>
             <div className="d-flex wq-bar align-center">
               <label>Quantity</label>
@@ -48,7 +48,7 @@ export default (props) => {
           <div className="addToCartButtonDiv">
             <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={() => props.addToCart()}>ADD TO CART</Button>
             {/* <Button variant="contained" size='large' color="inherit" classes={{ root: 'buy-cart-button' }} onClick={() => props.buyProduct()}>BUY NOW</Button> */}
-            <p className="p-desc"><b>Description</b>{props.detail.itemInfo.itemDesc} </p>
+            <p className="p-desc"><b>Description</b>{props.detail.itemDesc} </p>
           </div>
         </div>
       </div>

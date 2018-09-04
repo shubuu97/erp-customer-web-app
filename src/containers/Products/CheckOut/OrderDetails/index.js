@@ -16,7 +16,7 @@ export default (props) => {
           <div>
             {props.cartProductList && props.cartProductList.map((item) => (
               <div key={item.itemId} className="cart-total-subtotal cart-item">
-                {item.itemInfo.itemName} * {item.quantity || 1}  <span>$ {item.itemInfo.price * (item.quantity || 1)}</span>
+                {item.itemName} * {item.quantity || 1}  <span>$ {item.price * (item.quantity || 1)}</span>
               </div>
             ))}
           </div>

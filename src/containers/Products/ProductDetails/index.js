@@ -19,10 +19,11 @@ class ProductDetailsContainer extends React.Component {
     const { selectedProduct } = this.props;
     let productInfo = selectedProduct;
     if (Object.keys(selectedProduct).length === 0) {
-      this.props.history.push('/productList')
+      this.props.history.push('/productList');
+      return;
     }
     productInfo.quantity = 1;
-    let mainImageUrl = selectedProduct.itemInfo.images[0] || {url:productPlaceholder};
+    let mainImageUrl = (selectedProduct.images && selectedProduct.images[0]) || {url:productPlaceholder};
     this.setState({ productInfo, mainImageUrl });
     document.body.classList.add('product-details')
   }
@@ -62,7 +63,7 @@ class ProductDetailsContainer extends React.Component {
     const { productInfo, mainImageUrl } = this.state;
     return (
       <div>
-        {productInfo.itemInfo && <ProductDetails detail={productInfo} mainImageUrl={mainImageUrl} updateMainImage = {this.updateMainImage} addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()} updateQuantity={this.updateQuantity} />}
+        {productInfo && <ProductDetails detail={productInfo} mainImageUrl={mainImageUrl} updateMainImage = {this.updateMainImage} addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()} updateQuantity={this.updateQuantity} />}
       </div>
     )
   }

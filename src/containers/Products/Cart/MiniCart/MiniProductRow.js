@@ -14,7 +14,7 @@ export default (props) => {
         <label>{props.name}</label>
         <h4 className="mini-price">
           {/* {props.price} */}
-          {props.total || props.price || '0'}
+          $ {props.total || props.price || '0'}
         </h4>
         <div className="mini-qty">
           <span>Qty</span>
