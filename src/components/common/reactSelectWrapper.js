@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Select from 'react-select';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 RFReactSelect.defaultProps = {
   multi: false,
@@ -7,10 +8,11 @@ RFReactSelect.defaultProps = {
 };
 
 
-export default function RFReactSelect({ input , options, multi, className,placeholder}) {
-  const { name, value, onBlur, onChange, onFocus } = input;
+export default function RFReactSelect({ input ,meta:{touched,error,pristine}, options, multi, className,placeholder}) {
+  const { name, value, onBlur, onChange, onFocus } = input; 
   const transformedValue = transformValue(value, options, multi);
   return (
+    [
     <Select
       valueKey="value"
       name={name}
@@ -25,7 +27,13 @@ export default function RFReactSelect({ input , options, multi, className,placeh
       onBlur={() => onBlur(value)}
       onFocus={onFocus}
       className={className}
-    />
+    />,
+    <div>{touched && error && <div className="text-input error"><FormHelperText >
+    {error}
+  </FormHelperText>
+  </div>}
+  </div>
+    ]
   );
 }
 
