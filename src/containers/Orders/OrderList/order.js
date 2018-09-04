@@ -38,7 +38,7 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
       <div>{this.props.id}</div>
       <div>{moment(this.props.placedDate).format('DD MMMM YYYY')}</div>
       <div>{this.props.status}</div>
-      <div><Button onClick={()=>this.props.handleTrack(this.props.id)} color='primary' variant='contained'> Track Order</Button></div>
+      <div><Button color='primary' variant='contained'> Track Order</Button></div>
     
       </div>
       <div>{itemLists}</div>
