@@ -6,13 +6,13 @@ import {reduxForm} from 'redux-form';
 import asyncValidate from './validate.js'
 import { postSiteData } from '../../../action/siteInfo';
 import Button from '@material-ui/core/Button';
-import { fetchSiteDetailsData } from '../../../action/getSiteInfo';
 import {connect} from 'react-redux';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
+import { fetchSiteDetailsData } from '../../../action/getSiteInfo';
 
 class SiteInfo extends Component
 {
@@ -33,6 +33,8 @@ class SiteInfo extends Component
      this.props.dispatch(postSiteData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/siteinfo`)).then((data)=>{
         if(data.data.message) {
             this.props.handleTabSwitch(4);
+            this.props.dispatch(fetchSiteDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/siteinfo?_id=${localStorage.getItem("id")}`));
+
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));

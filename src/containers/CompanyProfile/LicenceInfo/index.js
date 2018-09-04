@@ -16,6 +16,7 @@ import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
 import { LinearProgress } from 'material-ui';
 
+
 class LicenseInfo extends Component
 {
     // componentDidMount()
@@ -34,6 +35,7 @@ class LicenseInfo extends Component
      this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`)).then((data)=>{
         if(data.data.message) {
          this.props.handleTabSwitch(3)
+         this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));

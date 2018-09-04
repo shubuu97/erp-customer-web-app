@@ -7,7 +7,9 @@ import Button from '@material-ui/core/Button';
 import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
-import asyncValidate from './validate'
+import asyncValidate from './validate';
+import {postBasicInfoData} from '../../../action/basicInfoActions';
+
 
 
 class AccountInfo extends Component
@@ -22,6 +24,8 @@ class AccountInfo extends Component
     }
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/basicinfo`)).then((data)=>{
         if(data.data.message) {
+          this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           
           setTimeout(()=>{
