@@ -13,7 +13,7 @@ class CartContainer extends React.Component {
     super(props);
     this.state = {
       cartProducts: [],
-      details:{}
+      details:{}  
     }
     this.removeProductFromCart = this.removeProductFromCart.bind(this);
     this.updateProductList = this.updateProductList.bind(this);
@@ -22,7 +22,7 @@ class CartContainer extends React.Component {
   }
   componentDidMount() {
     this.props.cartProductList && this.props.cartProductList.map((item)=>{
-      item.quantity = item.quantity || 1;
+      item.quantity = 1;
       item.total = item.quantity * item.itemInfo.price;
     })
     this.updateProductList(this.props.cartProductList);

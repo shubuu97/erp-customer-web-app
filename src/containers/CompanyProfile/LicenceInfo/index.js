@@ -114,4 +114,4 @@ const mapStateToProps=(state)=>
 }
 
 
-export default connect(mapStateToProps)(withLoader(LicenseInfo))
+export default connect(mapStateToProps)((LicenseInfo))

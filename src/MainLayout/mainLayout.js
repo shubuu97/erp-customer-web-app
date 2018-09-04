@@ -68,6 +68,10 @@ class MainLayout extends Component {
   {
     this.setState({showMiniCart:!this.state.showMiniCart})
   }
+  handleOrders=()=>
+  {
+    this.props.history.push('/orders')
+  }
   render() {
     console.log('this is props', this.props);
     const { classes, theme, userInfo, cartData, categories } = this.props;
@@ -92,6 +96,9 @@ class MainLayout extends Component {
               >
                  
                 <MenuItem onClick={this.handleProfile} style={{ fontSize: "1.4rem" }}>Profile</MenuItem>
+                <MenuItem onClick={this.handleOrders} style={{fontSize:'1.4rem'}}>Orders</MenuItem>
+                 
+
                 <MenuItem onClick={this.handleLogOut} style={{ fontSize: "1.4rem" }}>Logout</MenuItem>
               </Menu>
             </div>

@@ -39,7 +39,8 @@ import SignUp from './containers/Register/SignUpTabs'
 import AfterRegister from './containers/AfterRegistration/afterRegistration';
 import AfterApproval from './containers/AfterApproval/afterApproval';
 import AfterCheckout from './containers/AfterCheckout/afterCheckout';
-import MiniCheckout from './containers/Products/Cart/MiniCart'
+import MiniCheckout from './containers/Products/Cart/MiniCart';
+import Orders from './containers/Orders/OrderList';
 
 const theme = createMuiTheme({
   
@@ -99,7 +100,7 @@ ReactDOM.render(
 
 <Route exact path="/" component={Login}/>
 <RouterWithMainLayout layout={MainLayout} exact path="/companyRegister" component={CompanyRegister}/>
-<RouterWithMainLayout  layout={MainLayout} exact path="/customerRegister" component={CustomerRegister}/>
+<Route  layout={MainLayout} exact path="/customerRegister" component={CustomerRegister}/>
 
 
 <Route exact path="/app" component={App} />
@@ -123,6 +124,9 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/cart" component = {Cart} />
 <RouterWithMainLayout layout={MainLayout} path="/checkout" component = {CheckOut} />
 <RouterWithMainLayout layout={MainLayout} path="/minicart" component = {MiniCheckout}/>
+<RouterWithMainLayout layout={MainLayout} path="/orders" component = {Orders}/>
+
+
 
 </Switch>
 
