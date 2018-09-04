@@ -10,6 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
+import {isEmpty} from 'lodash';
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -52,10 +53,10 @@ class ProductsContainer extends React.Component {
     this.props.dispatch(setSelectedCategoryType(data));
   }
   render() {
-    console.log("Product Data with type", this.props.categoryTypeAndItems);
     const { products, categoryTypeAndItems, selectedCategoryType } = this.props;
+    console.log("Product Data with type", selectedCategoryType);
     const { openItemInfo, popupItemInfo } = this.state;
-    const productDataList = selectedCategoryType.products ||  (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0].products);
+    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) ||  (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
     return (
       <div className="container">
         <ul className="breadcrumb">
@@ -119,7 +120,8 @@ const mapStateToProps = state => {
   let isLoading = state.productData.isFetching;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let categoryTypeAndItems = state.categoryTypeAndItems && state.categoryTypeAndItems.categoryTypeAndItems;
-  let selectedCategoryType = state.productData && state.productData.selectedCategoryType;
+  let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
+  console.log("Captain", selectedCategoryType);
   return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType }
 }
 

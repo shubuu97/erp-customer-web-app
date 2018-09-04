@@ -20,7 +20,8 @@ import routeDeciderHoc from '../../components/Login/routerDecider';
 import { showMessage } from '../../action/common';
 import Snackbar from '@material-ui/core/Snackbar';
 import asyncValidate from './validate.js';
-import {fetchCategory} from '../../action/category';
+import { fetchCategory, selectedCategory } from '../../action/category';
+import { fetchCategoryTypeAndItems } from '../../action/categoryTypeAndItems';
 
 
 const styles = theme => ({
@@ -35,11 +36,11 @@ const styles = theme => ({
   failure: {
     background: 'red',
     fontSize: '1.4rem'
-},
-success: {
-  background: 'green',
-  fontSize: '1.4rem'
-}
+  },
+  success: {
+    background: 'green',
+    fontSize: '1.4rem'
+  }
 });
 
 class Login extends Component {
@@ -59,16 +60,26 @@ class Login extends Component {
     var temp2 = this.props.dispatch(postLogin(values, '', `${APPLICATION_BFF_URL}/iam/user/login`)).then((data) => {
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
-      localStorage.setItem('email',data.data.email)
+      localStorage.setItem('email', data.data.email)
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
-          this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, {isActive: 1}));
+          this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, { isActive: 1 })).then((data) => {
+            console.log("Category list is ", data);
+            this.props.dispatch(selectedCategory(data.data.itemCategories[0]));
+            this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: data.data.itemCategories[0].categoryId.toString() })).then((data) => {
+          }, (err) => {
+            console.log(err);
+          });
+            console.log("Product Data", data);
+          }, (err) => {
+            console.log(err);
+          });
           localStorage.setItem('id', data.data.content._id)
-            this.setState({ message: "Successful Operation", isSuccess: true });
-            setTimeout(() => {
-              this.setState({ message: '' });
-            }, 6000);
+          this.setState({ message: "Successful Operation", isSuccess: true });
+          setTimeout(() => {
+            this.setState({ message: '' });
+          }, 6000);
         })
     }, (err) => {
       if (err.message) {
@@ -126,7 +137,7 @@ class Login extends Component {
               'aria-describedby': 'message-id',
               classes: {
                 root: this.state.isSuccess ? classes.success : classes.failure
-            }
+              }
             }}
             message={<span id="message-id">{this.state.message}</span>}
           />}

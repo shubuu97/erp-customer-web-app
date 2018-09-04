@@ -22,13 +22,9 @@ class CartContainer extends React.Component {
   }
 
   componentDidMount() {
-
-
-
-    // this.props.cartProductList && this.props.cartProductList.map((item)=>{
-    //   item.quantity = 1;
-    //   item.total = item.quantity * item.price;
-    // })
+    this.props.cartProductList && this.props.cartProductList.map((item)=>{
+      item.total = (item.quantity || 1) * item.price;
+    })
     this.updateProductList(this.props.cartProductList);
     document.body.classList.add('cart-page')
   }
