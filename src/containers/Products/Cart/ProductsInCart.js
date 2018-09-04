@@ -19,6 +19,7 @@ class ProductsInCart extends React.Component {
   }
   updateQuantity(productId, type) {
     const {productsData} = this.state;
+    debugger;
     let productIndex = findIndex(productsData, {itemId:productId});
     let productList = productsData;
     let productLocal = productList[productIndex];
@@ -27,7 +28,7 @@ class ProductsInCart extends React.Component {
     } else if(type === 'sub') {
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
     }
-    productLocal.total = productLocal.quantity * productLocal.itemInfo.price;
+    productLocal.total = productLocal.quantity * productLocal.price;
     productList[productIndex] = productLocal;
     this.setState({productsData: productList});
     this.props.updateProductList(productList);
@@ -39,13 +40,13 @@ class ProductsInCart extends React.Component {
     productsData.map(product =>
       <ProductRow
         key={product.itemId}
-        code={product.itemInfo.itemNo}
-        price={product.itemInfo.price}
+        code={product.itemNo}
+        price={product.price}
         total={product.total}
-        description={product.itemInfo.itemShortDesc}
+        description={product.itemShortDesc}
         quantity={product.quantity || 1}
-        name={product.itemInfo.itemName}
-        image={(product.itemInfo.images && product.itemInfo.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
+        name={product.itemName}
+        image={(product.images && product.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
         id={product.itemId}
         updateQuantity={this.updateQuantity}
         detail={product}
@@ -57,9 +58,9 @@ class ProductsInCart extends React.Component {
     <div className="cart-table-head">
       <div className="cart-table-head-item first-col">Product Name</div>
       <div className="cart-table-head-item">Price</div>
-      <div className="cart-table-head-item">Qty</div>
+      <div className="cart-table-head-item">Quantity</div>
       <div className="cart-table-head-item">Sub Total</div>
-      <div className="cart-table-head-item">Action</div>
+      
     </div>
       
         {products}

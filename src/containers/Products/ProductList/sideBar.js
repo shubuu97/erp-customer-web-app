@@ -5,34 +5,12 @@ export default (props) => {
         <div className="left-sidebar">
             <div className="left-sidebar-category">
                 <h4>Categories</h4>
-                <div className="category-list selected">
-                    <span className="categoryName">Indica</span>
-                    <span className="category-count">43</span>
-                </div>
-                <div className="category-list">
-                    <span className="categoryName">Sativa</span>
-                    <span className="category-count">36</span>
-                </div>
-                <div className="category-list">
-                    <span className="categoryName">Hybrid</span>
-                    <span className="category-count">17</span>
-                </div>
-                <div className="category-list">
-                    <span className="categoryName">Extract</span>
-                    <span className="category-count">14</span>
-                </div>
-                <div className="category-list">
-                    <span className="categoryName">Gear</span>
-                    <span className="category-count">44</span>
-                </div>
-                <div className="category-list">
-                    <span className="categoryName">Peroll</span>
-                    <span className="category-count">26</span>
-                </div>
-                <div className="category-list">
-                    <span className="categoryName">Tropicals</span>
-                    <span className="category-count">12</span>
-                </div>
+                {props.types && props.types.map((type, key) => (
+                    <div className={`category-list ${props.selectedType.itemType == type.itemType ? 'selected':''}`} key={key} onClick={()=>props.selectCategoryType(type)}>
+                        <span className="categoryName">{type.itemType}</span>
+                        <span className="category-count">{type.products.length}</span>
+                    </div>
+                ))}
             </div>
             <div className="left-sidebar-category">
                 <h4>By Price</h4>

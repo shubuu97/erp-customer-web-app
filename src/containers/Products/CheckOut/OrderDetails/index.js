@@ -16,7 +16,7 @@ export default (props) => {
           <div>
             {props.cartProductList && props.cartProductList.map((item) => (
               <div key={item.itemId} className="cart-total-subtotal cart-item">
-                {item.itemInfo.itemName} * {item.quantity || 1}  <span>$ {item.itemInfo.price * (item.quantity || 1)}</span>
+                {item.itemName} * {item.quantity || 1}  <span>$ {item.price * (item.quantity || 1)}</span>
               </div>
             ))}
           </div>
@@ -45,7 +45,7 @@ export default (props) => {
       </div>
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,
-        support your experience throughtout this website and for other
+        support your experience throughout this website and for other
         purposes described in our privacy policy. {props.isLoading}
       </div>
       <div className="cart-item checkbox-custom">

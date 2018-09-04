@@ -26,7 +26,7 @@ class ProductsInCart extends React.Component {
     
       productLocal.quantity = quantity
    
-    productLocal.total = productLocal.quantity * productLocal.itemInfo.price;
+    productLocal.total = productLocal.quantity * productLocal.price;
     productList[productIndex] = productLocal;
     this.setState({productsData: productList});
     this.props.updateProductList(productList);
@@ -38,13 +38,13 @@ class ProductsInCart extends React.Component {
     productsData.map(product =>
       <ProductRow
         key={product.itemId}
-        code={product.itemInfo.itemNo}
-        price={product.itemInfo.price}
+        code={product.itemNo}
+        price={product.price}
         total={product.total}
-        description={product.itemInfo.itemShortDesc}
+        description={product.itemShortDesc}
         quantity={product.quantity || ''}
-        name={product.itemInfo.itemName}
-        image={(product.itemInfo.images && product.itemInfo.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
+        name={product.itemName}
+        image={(product.images && product.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
         id={product.itemId}
         updateQuantity={this.updateQuantity}
         detail={product}

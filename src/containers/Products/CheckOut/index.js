@@ -55,8 +55,8 @@ class CheckOut extends Component {
 			let itemObj = {
 				id: item.itemId,
 				qty: item.quantity,
-				name: item.itemInfo.itemName,
-				pricePerUnit: item.itemInfo.price,
+				name: item.itemName,
+				pricePerUnit: item.price,
 			};
 			items.push(itemObj);
 		})

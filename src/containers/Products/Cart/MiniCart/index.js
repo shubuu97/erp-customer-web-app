@@ -27,7 +27,7 @@ class CartContainer extends React.Component {
 
     // this.props.cartProductList && this.props.cartProductList.map((item)=>{
     //   item.quantity = 1;
-    //   item.total = item.quantity * item.itemInfo.price;
+    //   item.total = item.quantity * item.price;
     // })
     this.updateProductList(this.props.cartProductList);
     document.body.classList.add('cart-page')
@@ -52,7 +52,7 @@ class CartContainer extends React.Component {
   updateProductList(list) {
     let subTotal = 0;
     list.map((item)=>{
-      subTotal = subTotal + (item.itemInfo.price * (item.quantity || 1));
+      subTotal = subTotal + ((item.price || 0) * (item.quantity || 1));
     })
     let shipping = 7;
     let tax = 10;
@@ -81,7 +81,7 @@ class CartContainer extends React.Component {
 
     // this.props.cartProductList && this.props.cartProductList.map((item)=>{
     //   item.quantity = 1;
-    //   item.total = item.quantity * item.itemInfo.price;
+    //   item.total = item.quantity * item.price;
     //   subTotal = item.total+subTotal
     // })
     const {cartProducts, details} = this.state;
@@ -95,7 +95,7 @@ class CartContainer extends React.Component {
             <label>{cartProducts.length}</label>
           </div>
           <div className="mc-top">
-            <span>Card SubTotal</span>
+            <span>Cart Subtotal</span>
             <label>{this.state.details.subTotal}</label>
           </div>
         </div>

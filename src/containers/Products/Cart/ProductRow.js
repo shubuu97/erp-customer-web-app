@@ -24,12 +24,12 @@ export default (props) => {
         </div>
       </div>
       <div className="row-total">
-        <h4>{props.total || props.price || '0'}</h4>
+        <div className="d-flex">
+          <h4>{props.total || props.price || '0'}</h4>
+          <img src={trash} onClick={()=>props.remove(props.id)}/>
+        </div>
       </div>
-      <div className="row-action">
-      <img src={cartedit} />
-      <img src={trash} onClick={()=>props.remove(props.id)}/>
-      </div>
+     
     </div>
   )
 }
