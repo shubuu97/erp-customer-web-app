@@ -6,6 +6,8 @@ import SideBar from './sideBar';
 import { fetchInventoryItemData, setSelectedProduct } from '../action/product';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 
@@ -70,7 +72,7 @@ class ProductsContainer extends React.Component {
             >
               <DialogContent>
                 <h2 className="modal-title">Product Details</h2>
-                <div className="productDetails-container container">
+                <div className="productDetails-container">
                   <div className="detailsContent">
                     <div className="imageContent">
                       <div className="mainImage">
@@ -100,6 +102,9 @@ class ProductsContainer extends React.Component {
                   </div>
                 </div>
               </DialogContent>
+              <DialogActions className="m-footer">
+                <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button>
+              </DialogActions>
             </Dialog>}
           </div>
         </div>
