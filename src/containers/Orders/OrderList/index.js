@@ -27,9 +27,6 @@ class OrderContainer extends React.Component {
     return (
       <div className="container">
       <OrderDetails
-      id={'12121'}
-      orderPlaced={'1212'}
-      orderTotal={'2121'}
       orderListData={this.props.orderListData.data}/>
       </div>
     )
