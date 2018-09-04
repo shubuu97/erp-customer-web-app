@@ -1264,37 +1264,6 @@ span.iicon img {
 }
 /* ==================================== NEW USER PROFILE CSS ====================================== */
 
-/* ==================================== CHECKBOX CSS ====================================== */
-.checkbox.custom-checkbox {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.checkbox.custom-checkbox input[type="checkbox"] {
-    margin-left: 0;
-    position:static;
-    display: none;
-}
-.checkbox.custom-checkbox span::before {
-    width: 16px;
-    height: 16px;
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 2px;
-    border-radius: 1px;
-    border: 1px solid #d4d4d4;
-    line-height: 14px;
-    text-align: center;
-}
-.checkbox.custom-checkbox input[type="checkbox"]:checked + span::before {
-    border-color: #C40075;
-    content: "\f00c";
-    font-family: 'FontAwesome';
-    color: #C40075;
-    font-size:1.2rem;
-}
-/* ==================================== CHECKBOX CSS ====================================== */
 .sd.tt {
     position: absolute;
     top: 10px;
@@ -2062,13 +2031,17 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .product-content {
 	padding: 13px;
+	display: flex;
+	justify-content: space-between;
 }
 .product-name {
-    margin-top: 0;
-    font-size: 18px;
-    margin-bottom: 0;
-    word-break: break-all;
-    font-weight: normal;
+	margin-top: 0;
+	font-size: 18px;
+	margin-bottom: 0;
+	word-break: break-all;
+	font-weight: normal;
+	position: relative;
+	padding-right: 10px;
 }
 .product-price {
 	font-size: 15px;
@@ -2107,12 +2080,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	min-width: 130px;
 	font-size: 16px !important;
 	height: 40px;
-}
-[class^="CompanyProfileTab-root-"], [class^="MuiTypography-body1-"] {
-	/* background-color: #f7ffe4 !important; */
-}
-[class^="MuiTab-root-"], [class^="MuiTab-label-"]{
-    /* font-size:1.4rem !important; */
 }
 .user-name {
 	margin-left: 10px;
@@ -2161,6 +2128,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	font-weight: 300;
 	margin-bottom: 25px;
 }
+.info-icon {
+	width: 24px;
+	cursor: pointer;
+}
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
 
 .detailsContent{
@@ -2184,19 +2155,23 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	margin-top: 0;
 }
 .ic {
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold;
 	margin-bottom: 4px;
 }
 .ic span {
 	font-weight: 300;
 }
+.mainImage {
+	padding-bottom: 15px;
+	border-bottom: solid 1px #DDD;
+}
 .mainImage img {
 	width: 100%;
 }
 .subImages{
     display: flex;
-    margin-top:30px;
+    margin-top:15px;
 }
 .subImages img {
 	width: 65px;
@@ -2559,7 +2534,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .term-conditions {
     font-size: 0.8em;
     font-weight: bold;
-    margin-left: 10px;
 }
 .item-button {
 	padding-left: 0 !important;
@@ -2589,7 +2563,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .modal-close {
     background: transparent url('../images/close.png') no-repeat !important;
-    background-size: 18px !important;
+    background-size: 16px !important;
     background-position: center;
     -webkit-box-shadow: none;
     box-shadow: none !important;
@@ -2598,6 +2572,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     right: 20px;
     min-width: 20px !important;
     padding: 0 !important;
+    opacity: 0.7;
 }
 .flex-form > div:first-child {
 	width: calc(100% - 40px);
@@ -2795,6 +2770,48 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	font-weight: 400;
 }
 /**************************************** LEFT SIDE BAR CSS END ***********************************/
+
+.dialogbox-ui h2.p-name {
+	font-size: 36px;
+}
+
+/* ==================================== CHECKBOX CSS ====================================== */
+.checkbox-custom {
+	position: relative;
+	padding: 0;
+	line-height: 18px;
+}
+.checkbox-custom input[type="checkbox"]{
+    display: none;
+    position: static;
+}
+.checkbox-custom label{
+    padding-left:26px;
+}
+.checkbox-custom span::before{
+    width:16px;
+    height:16px;
+    content:"";
+    display: block;
+    position: absolute;
+    left:0;
+    top:1px;
+    border-radius: 1px;
+    border:1px solid #BBB;
+    line-height: 13px;
+    text-align: center;
+}
+.checkbox-custom input[type="checkbox"]:checked + span::before{
+    border-color:#0e8c4f;
+    content:"\f00c";
+    font-family: 'FontAwesome';
+    color:#0e8c4f;
+    font-size:12px;
+}
+.cart-item.checkbox-custom span::before {
+	top: 3px;
+}
+/* ==================================== CHECKBOX CSS ====================================== */
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
