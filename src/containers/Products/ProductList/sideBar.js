@@ -36,21 +36,29 @@ export default (props) => {
             </div>
             <div className="left-sidebar-category">
                 <h4>By Price</h4>
-                <div class="category-priceRange">
-                    <input value="false" type="checkbox" />
-                    <span class="term-conditions">Under $50</span>
+                <div className="category-priceRange checkbox-custom">
+                    <label>
+                        <input value="false" type="checkbox" />
+                        <span className="term-conditions">Under $50</span>
+                    </label>
                 </div>
-                <div class="category-priceRange">
-                    <input value="false" type="checkbox" />
-                    <span class="term-conditions">$50 - $100</span>
+                <div className="category-priceRange checkbox-custom">
+                    <label>
+                        <input value="false" type="checkbox" />
+                        <span className="term-conditions">$50 - $100</span>
+                    </label>
                 </div>
-                <div class="category-priceRange">
-                    <input value="false" type="checkbox" />
-                    <span class="term-conditions">$100 - $200</span>
+                <div className="category-priceRange checkbox-custom">
+                    <label>
+                        <input value="false" type="checkbox" />
+                        <span className="term-conditions">$100 - $200</span>
+                    </label>
                 </div>
-                <div class="category-priceRange">
-                    <input value="false" type="checkbox" />
-                    <span class="term-conditions">Above $200</span>
+                <div className="category-priceRange checkbox-custom">
+                    <label>
+                        <input value="false" type="checkbox" />
+                        <span className="term-conditions">Above $200</span>
+                    </label>
                 </div>
             </div>
         </div>
