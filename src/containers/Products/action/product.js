@@ -37,6 +37,11 @@ export const setSelectedProduct = (data) => ({
     data: data,
 });
 
+export const setSelectedCategoryType = (data) => ({
+  type: INVENTORY_CONSTANTS.SET_SELECTED_CATEGORY_TYPE,
+  data: data,
+});
+
 export const addToCart = (data) => ({
   type: INVENTORY_CONSTANTS.ADD_TO_CART,
   data: data,

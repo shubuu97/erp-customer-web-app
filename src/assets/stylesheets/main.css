@@ -1920,9 +1920,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .app-navbar {
 	color: #000;
 	/* text-align: center; */
-	padding: 0 50px;
+	padding: 0 15px;
 	margin: 0;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-size: 1.4rem;
 	-ms-flex-pack: center;
 	justify-content: center;
@@ -1931,17 +1931,19 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: -ms-flexbox;
 	display: flex;
 	margin-right: auto;
+	margin-left: auto;
 }
 .app-navbar li {
+	display: -ms-inline-flexbox;
 	display: inline-flex;
-	line-height: 26px;
-	padding: 15px 20px;
+	line-height: 18px;
+	padding: 15px 7px;
 	font-weight: 500;
-    cursor: pointer;
-    transition:ease-in-out all 0.6s;
-    -webkit-transition:ease-in-out all 0.6s;
-    -moz-transition:ease-in-out all 0.6s;
-    -o-transition:ease-in-out all 0.6s;
+	cursor: pointer;
+	transition: ease-in-out all 0.6s;
+	-webkit-transition: ease-in-out all 0.6s;
+	-moz-transition: ease-in-out all 0.6s;
+	-o-transition: ease-in-out all 0.6s;
 }
 .app-navbar li:hover, .app-navbar li:focus, .app-navbar li.active {
 	color: #0E8C4D;
@@ -1960,8 +1962,8 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	border-right: solid 1px rgba(0, 0, 0, 0.55);
-	padding-right: 15px;
-	padding-left: 15px;
+	padding-right: 12px;
+	padding-left: 12px;
 }
 .navRight li:last-child, .navRight li:nth-child(3) {
 	border-right: none;
@@ -1972,35 +1974,35 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     cursor: pointer;
 }
 .rel img {
-	width: 22px;
+	width: 20px;
 }
 .bell-round {
 	display: inline-block;
-	width: 17px;
-	height: 17px;
+	width: 16px;
+	height: 16px;
 	background: #ff4e00;
 	text-align: center;
 	border-radius: 20px;
 	color: #FFF;
 	font-size: 11px;
-	line-height: 17px;
+	line-height: 16px;
 	position: absolute;
-	right: -7px;
+	right: -8px;
 	top: -1px;
 }
 .cart-round {
 	background: #10824a;
 	color: #FFF;
 	display: inline-block;
-	width: 22px;
-	height: 22px;
+	width: 20px;
+	height: 20px;
 	border-radius: 20px;
 	text-align: center;
-	line-height: 22px;
+	line-height: 20px;
 	position: absolute;
 	top: -10px;
-	right: -20px;
-	font-size: 13px;
+	right: -16px;
+	font-size: 12px;
 }
 .product-parent {
 	display: flex;
@@ -2151,7 +2153,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .p-name {
 	font-size: 40px;
-	font-weight: 200;
+	font-weight: 300;
 	margin-top: 0;
 }
 .ic {
@@ -2209,7 +2211,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	margin-bottom: 0;
 	font-size: 15px;
 	padding-right: 20px;
-	width: 100px;
+	width: 110px;
 }
 .wq-bar {
 	margin-bottom: 15px;
@@ -2245,8 +2247,8 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .align-center {
     align-items: center;
 }
-.cart-stock{
-    color:red;
+.cart-stock {
+	color: #0ed10e;
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
@@ -2301,6 +2303,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     border-bottom: solid 1px #DDD;
     padding: 10px;
 }
+.row-total {
+	border-right: solid 1px #DDD;
+}
 .row-action {
 	display: table-cell;
 	border-bottom: solid 1px #DDD;
@@ -2312,10 +2317,11 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .row-action i {
 	font-size: 20px;
 }
-.row-action img {
+.row-action img, .row-total img {
 	width: 20px;
-	margin: 0 8px;
+	margin: auto 10px auto auto;
 	cursor: pointer;
+	height: 20px;
 }
 .row-product-img {
 	width: 80px;
@@ -2326,15 +2332,24 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .row-quantity button {
 	padding: 0;
 	font-size: 1.4em !important;
-	width: 30px;
+	width: 26px;
 	text-align: center;
-	height: 40px;
+	height: 34px;
 	background: transparent;
+	-webkit-box-shadow: none;
 	box-shadow: none;
 	border: solid 1px #DDD;
 }
 .row-quantity .d-flex {
 	margin-top: 20px;
+}
+.detailsContent .row-quantity {
+	padding: 0;
+	border-bottom: 0;
+	display: block;
+}
+.detailsContent .row-quantity .d-flex {
+	margin-top: 0;
 }
 .first-col{
     min-width: 200px;
@@ -2342,10 +2357,10 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 .row-quantity-item {
 	padding: 0;
 	border: 1px solid #bbbbbb;
-	width: 40px;
-	height: 40px;
+	width: 34px;
+	height: 34px;
 	text-align: center;
-	line-height: 38px;
+	line-height: 32px;
 	margin: 0 1px;
 }
 .addToCartButtonDiv {
@@ -2528,7 +2543,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: block;
 }
 .privacy-text {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     margin-top: 20px;
 }
 .term-conditions {
@@ -2655,8 +2670,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: block;
 }
 .mc-top label {
-	font-size: 16px;
+	font-size: 17px;
 	margin: 0;
+	color: #0e8c4d;
 }
 .mc-header {
 	display: flex;
@@ -2748,13 +2764,14 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	font-weight: 500;
 }
 .category-count {
-	border-radius: 25px;
+	border-radius: 3px;
 	background: transparent;
-	width: 22px;
+	width: auto;
 	height: 22px;
 	line-height: 22px;
 	text-align: center;
 	font-size: 13px;
+	padding: 0 4px;
 }
 .category-list.selected .category-count {
 	background: #0e8c4f;
@@ -2812,6 +2829,68 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	top: 3px;
 }
 /* ==================================== CHECKBOX CSS ====================================== */
+
+/* ==================================== ORDER PAGE CSS START ====================================== */
+.order-card {
+	border-radius: 4px;
+	background: #FFF;
+	margin-bottom: 20px;
+	border: solid 1px #DDD;
+	box-shadow: 0 0px 10px -6px #ccc;
+}
+.order-card-header {
+	display: flex;
+	justify-content: space-between;
+	background: #fbfbfb;
+	border-bottom: solid 1px #DDD;
+	padding: 10px;
+	border-radius: 4px 4px 0 0;
+}
+.card-header-left {
+	display: flex;
+	width: 65%;
+	align-items: center;
+}
+.card-header-right {
+	display: flex;
+	width: 35%;
+	justify-content: end;
+}
+.track-item {
+	padding: 0 15px;
+	border-right: solid 1px #DDD;
+	display: flex;
+	flex-wrap: wrap;
+}
+.track-item:first-child {
+	padding-left: 0;
+}
+.track-item:last-child {
+	border-right: 0;
+}
+.track-id {
+	background: #0E8C4F;
+	padding: 4px 12px;
+	color: #FFF;
+	border-radius: 3px;
+}
+.track-status {
+	display: block;
+	width: 100%;
+	margin: 0;
+	font-weight: 500;
+	font-size: 1.3rem;
+    text-transform: uppercase;
+    line-height: 15px;
+}
+.order-track-date {
+	text-transform: uppercase;
+	font-size: 1.3rem;
+}
+.order-card-content {
+	padding: 15px;
+}
+/* ==================================== ORDER PAGE CSS END ====================================== */
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){

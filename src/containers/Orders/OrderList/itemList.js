@@ -10,9 +10,9 @@ import CardHeader from '@material-ui/core/CardHeader'
     export default (props)=>
     {
         return (
-            <div style={{marginTop:'5px'}}>
-                <Card>
-                    <CardContent>
+            
+                <div>
+                    <div>
                         <div>image will come here</div>
                         <div>
                             <div>
@@ -26,9 +26,9 @@ import CardHeader from '@material-ui/core/CardHeader'
                             <div>Quantity</div>
                             <div>{props.quantity}</div>
                         </div>
-                    </CardContent>
-                </Card>
-            </div>
+                    </div>
+                </div>
+            
         )
     }
 

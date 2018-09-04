@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
 import * as OPTIONS from '../constants/OrderList';
@@ -12,14 +13,6 @@ class OrderContainer extends React.Component {
     }
  
   }
-  handleTrack=(id) =>{
-    this.props.history.push({pathname: '/track',
-    
-    state: { id : id }})
-  }
-
-  
-
   componentDidMount()
   {
   let options = {
@@ -34,8 +27,7 @@ class OrderContainer extends React.Component {
     return (
       <div className="container">
       <OrderDetails
-      orderListData={this.props.orderListData.data}
-      handleTrack={this.handleTrack} />
+      orderListData={this.props.orderListData.data}/>
       </div>
     )
   }

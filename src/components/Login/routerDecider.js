@@ -6,7 +6,7 @@ const routerDeciderHoc = (WrappedComponent) => {
     return class Enhancer extends WrappedComponent {
       
         render() {
-        
+            console.log("In the route decider", this.props.customerStatus);
             localStorage.setItem('id',this.props.id)
 
             switch (this.props.customerStatus) {
