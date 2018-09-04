@@ -19,7 +19,6 @@ class ProductsInCart extends React.Component {
   }
   updateQuantity(productId, type) {
     const {productsData} = this.state;
-    debugger;
     let productIndex = findIndex(productsData, {itemId:productId});
     let productList = productsData;
     let productLocal = productList[productIndex];
