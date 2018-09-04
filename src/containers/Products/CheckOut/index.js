@@ -54,7 +54,7 @@ class CheckOut extends Component {
 		this.props.cartProductList.map((item) => {
 			let itemObj = {
 				id: item.itemId,
-				qty: item.quantity,
+				qty: parseInt(item.quantity),
 				name: item.itemName,
 				pricePerUnit: item.price,
 			};

@@ -17,6 +17,7 @@ import { fetchCategory } from '../action/category';
 import { fetchCategoryTypeAndItems } from '../action/categoryTypeAndItems';
 import { selectedCategory } from '../action/category';
 import { APPLICATION_BFF_URL } from '../constants/urlConstants';
+import { setSelectedCategoryType } from '../containers/Products/action/product';
 
 const styles = theme => ({
   failure: {
@@ -67,6 +68,7 @@ class MainLayout extends Component {
     this.props.dispatch(selectedCategory(category));
     this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, {categoryId: category.categoryId.toString()})).then((data)=>{
       console.log("Product Data", data);
+      this.props.dispatch(setSelectedCategoryType(null));
     }, (err)=>{
       console.log(err);
     });
