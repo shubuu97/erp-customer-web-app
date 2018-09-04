@@ -20,6 +20,7 @@ import routeDeciderHoc from '../../components/Login/routerDecider';
 import { showMessage } from '../../action/common';
 import Snackbar from '@material-ui/core/Snackbar';
 import asyncValidate from './validate.js';
+import {fetchCategory} from '../../action/category';
 
 
 const styles = theme => ({
@@ -62,6 +63,7 @@ class Login extends Component {
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
+          this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, {isActive: 1}));
           localStorage.setItem('id', data.data.content._id)
             this.setState({ message: "Successful Operation", isSuccess: true });
             setTimeout(() => {

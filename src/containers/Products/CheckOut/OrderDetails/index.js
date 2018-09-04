@@ -48,9 +48,11 @@ export default (props) => {
         support your experience throughtout this website and for other
         purposes described in our privacy policy. {props.isLoading}
       </div>
-      <div className="cart-item">
-        <input type="checkbox" value={props.termCondition} onChange={props.selectTermCondition} />
-        <span className="term-conditions">I have read and agree to the website terms and conditions*</span>
+      <div className="cart-item checkbox-custom">
+        <label>
+          <input type="checkbox" value={props.termCondition} onChange={props.selectTermCondition} />
+          <span className="term-conditions">I have read and agree to the website terms and conditions*</span>
+        </label>
       </div>
       {props.showError && <div className="text-input error">
         <p>* Please accept terms and conditions.</p>

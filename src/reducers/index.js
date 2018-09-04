@@ -15,6 +15,7 @@ import productData from '../containers/Products/reducers/product';
 import orderData from  '../containers/Products/reducers/checkout';
 import commonData from './common';
 import approvaldata from './approval';
+import categoryData from './category';
 import * as Log from '../constants/login';
 import OrderListData from '../containers/Orders/reducer/orderList'
 let appReducer = combineReducers(
@@ -36,6 +37,7 @@ let appReducer = combineReducers(
         commonData,
         approvaldata,
         orderData,
+        categoryData,
         OrderListData
     }
 );
