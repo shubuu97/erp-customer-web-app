@@ -103,12 +103,12 @@ class MainLayout extends Component {
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
                 <li onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
-              
+                <div>
+                  {this.state.showMiniCart?<MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props}/>:null}
+                </div>
               </ul>
 
-            <div style={{position:'absolute',top: '86px',left:'72%',zIndex:'1000',top:'48px',backgroundColor:'wheat'}}>
-              {this.state.showMiniCart?<MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props}/>:null}
-              </div>
+            
             </div>
             {this.props.message.text && <Snackbar
               anchorOrigin={{
