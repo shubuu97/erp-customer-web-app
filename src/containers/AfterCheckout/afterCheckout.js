@@ -42,7 +42,7 @@ class AfterCheckout extends Component {
                 <div className="d-flex justify-content-between"><label>Date: </label><span>{this.props.orderData && this.props.orderData.data && moment(this.props.orderData.data.orderDate).format('MMM Do YY')}</span></div>
                 <div className="d-flex justify-content-between"><label>Total: </label><span>$ {this.state.total}</span></div>
                 <div className="d-flex justify-content-between"><label>Payment method: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.method}</span></div>
-                <div className="d-flex justify-content-between"><label>Payment transaction ID: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.transactionId}</span></div>
+                <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.transactionId}</span></div>
             </div>
             <Button onClick={this.handleSwitch} size="large" variant="contained" color='primary'>Continue Shopping</Button>
         </div>

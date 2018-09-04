@@ -25,7 +25,7 @@ export default (props) => {
         </div>
       </div>
       <div className="mini-cartAction">
-        <img src={cartedit} />
+        {/* <img src={cartedit} /> */}
         <img src={trash} onClick={()=>props.remove(props.id)}/>
       </div>
     </div>
