@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-export default class TrackOrder extends React.Component {
+export default class TrackOrders extends React.Component {
     constructor (props) {
       super(props);
       this.state = {
@@ -12,23 +12,28 @@ export default class TrackOrder extends React.Component {
   
     render() {
   
-  
-    return (<div>
+return (<div>
         <div>
-    orderPlaced = "03/09/2018"
+    PLACED ON = "03/09/2018"
     </div>
     <div>
-    orderAccepted="03/09/2018"
+    CONFIRMATION STATUS="03/09/2018"
     </div>
     <div>
     
-    orderProcessing="03/09/2018"
+    PROCESSING="03/09/2018"
     </div>
     <div>
-    orderReadyToDispatch="03/09/2018"
+    Ready To Dispatch="03/09/2018"
     </div>
     <div>
-        orderShipped="03/09/2018"
+    Shipped="03/09/2018"
+    </div>
+    <div>
+    In Transit="03/09/2018"
+    </div>
+    <div>
+    Delivered="03/09/2018"
     </div>
     </div>)
   
