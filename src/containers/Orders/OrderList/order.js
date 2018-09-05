@@ -5,7 +5,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import ItemList from './itemList';
 import Button from '@material-ui/core/Button';
-import moment from 'moment'
+import moment from 'moment';
+import greenCheck from './../../../assets/images/green-check.png';
+import mapicon from './../../../assets/images/map-marker.png';
 
  
 export default class Order extends React.Component {
@@ -34,12 +36,20 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
       <div className="order-card">
         <div className="order-card-header">
           <div className="card-header-left">
-            <div className="track-item"><span className="track-id">{this.props.id}</span></div>
+            <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
-            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span> <span className="p-status">Payment Status</span></div>
           </div>
           <div className="card-header-right">
-            <Button color='secondary' variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+            <div className="orderStatus">
+              <span><img src={greenCheck} /></span>
+              <div className="o-status">
+                <label>Delivered</label>
+                <span>Sun, Apr 8<sup>th</sup> 2018</span>
+              </div>
+            </div>
+            <Button color='secondary' variant='contained'>Cancel Order</Button>
+            <Button color='secondary' variant='contained'><img src={mapicon} /> Track</Button>
           </div>
         </div>
         <div className="order-card-content">        
