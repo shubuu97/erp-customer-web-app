@@ -4,7 +4,7 @@
   import { connect } from 'react-redux';
   import * as OPTIONS from '../constants/OrderList';
   import {postData} from '../action/post';
-  import TrackOrder from './trackOrder';
+  import TrackOrders from './trackOrders';
   import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
   import { fetchTrackData } from '../action/getTrack';
   
@@ -24,8 +24,8 @@
     render() {
       return (
         <div className="container">
-        <TrackOrder
-      //   trackData={this.props.trackData.data}
+        <TrackOrders
+       trackData={this.props.trackData.data}
       />
         </div>
       )
@@ -33,7 +33,7 @@
   }
   
   function mapStateToProps(state) {
-    return //{trackData:state.TrackData.trackData};
+    return {trackData:state.TrackData.trackData};
   }
   
   export default connect(mapStateToProps)(TrackOrderContainer)
