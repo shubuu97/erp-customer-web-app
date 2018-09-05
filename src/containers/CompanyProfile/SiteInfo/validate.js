@@ -1,5 +1,6 @@
 import  * as yup from 'yup';
-import expand from 'keypather/expand'
+import expand from 'keypather/expand';
+import {get} from 'lodash';
 var address=yup.object().shape({
     siteAddress:yup.string().required(),
     contactNumber:yup.number().required(),
@@ -17,17 +18,57 @@ var license= yup.object().shape({
 var siteInfo= yup.object().shape({
     licenseType:yup.string().required(),
     siteLicense:yup.array(license),
-    addressInfo:yup.array(address)
+    addressInfo:yup.array(address),
+    siteName:yup.string().required(),
 
 })
-var schema = yup.object().shape({ siteInfo: yup.array(siteInfo)
-});
-const asyncValidate = values => {
+// var schema = yup.object().shape({ siteInfo: yup.array(siteInfo)
+// });
 
+var schema =  yup.object().shape({
+    siteInfo:yup.lazy(values=>{
+    
+            let isExist = false;
+            values.forEach((value)=>{
+                if(get(value, 'siteName') || get(value, 'licenseType')) {
+                    isExist = true;
+                    return;
+                }
+                if(get(value, 'siteLicense')) {
+                    value.siteLicense.forEach((siteLic)=>{
+                        if(get(siteLic, 'licenseNumber')) {
+                            isExist = true;
+                            return;
+                        }
+                    })
+                }
+                if(get(value, 'addressInfo')) {
+                    value.addressInfo.forEach((address)=>{
+                        if(get(address, 'siteAddress') || get(address, 'contactNumber') || get(address, 'email') ||
+                         get(address, 'city') || get(address, 'state') || get(address, 'country') || get(address, 'zipCode')) {
+                            isExist = true;
+                            return;
+                        }
+                    })
+
+                }
+            })
+
+            
+            if(!isExist)
+            return yup.mixed().notRequired();
+        
+        return yup.array(siteInfo)
+    })})
+
+
+
+const asyncValidate = values => {
+    console.log(values,"values is here")
     return new Promise((resolve, reject) => {
 
         //Validate our form values against our schema! Also dont abort the validate early.
-        schema.validate(values, {abortEarly: false})
+        schema.validate({siteInfo:values.siteInfo}, {abortEarly: false})
             .then(() => {
                 //form is valid happy days!
                 resolve();
@@ -39,6 +80,8 @@ const asyncValidate = values => {
                 errors.inner.forEach(error => {
                     let messageArr = error.message.split('.');
                     let errorMsg = messageArr[messageArr.length -1]
+                    if(errorMsg=='')
+                    errorMsg = messageArr[messageArr.length-2];
                     let result = errorMsg.replace( /([A-Z])/g, " $1" );
                     let finalResult = result.charAt(0).toUpperCase() + result.slice(1);
                      expandObj[error.path] = finalResult;

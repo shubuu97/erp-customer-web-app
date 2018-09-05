@@ -71,7 +71,7 @@ if (process.env.NODE_ENV !== 'production') {
     key: 'root',
     storage,
     stateReconciler: hardSet,
-    blacklist: ['commonData', 'zipCodeData']
+    blacklist: ['commonData', 'zipCodeData','form']
   };
  const persistedReducer = persistReducer(persistConfig, reducer);
 
