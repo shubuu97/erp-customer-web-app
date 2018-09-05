@@ -9,8 +9,8 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 
 const paymentTerms = [{ label: 'Current', value: 'current' },
-{ label: 'Net 30', value: 'net30' },
-{ label: 'Net 45', value: 'net45' }];
+{ label: 'Net 30', value: 'NET30' },
+{ label: 'Net 45', value: 'NET45' }];
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -20,7 +20,7 @@ class CheckOut extends Component {
 			orderTotal: null,
 			address: {},
 			toggle: false,
-			paymentTerm: '',
+			paymentTerm: {},
 			termCondition: false,
 			showError: false
 		};
@@ -44,8 +44,8 @@ class CheckOut extends Component {
 		document.body.classList.remove('checkout-page');
 	}
 	placeOrder = () => {
-		const { userBasicInfo } = this.props;
-		const { address } = this.state;
+		const { userBasicInfo, role } = this.props;
+		const { address, paymentTerm } = this.state;
 		let items = [];
 		if(!this.state.termCondition) {
 			this.setState({showError: true});
@@ -65,6 +65,8 @@ class CheckOut extends Component {
 				customerName: userBasicInfo.basicInfoData.firstName + " " + userBasicInfo.basicInfoData.lastName,
 				customerId: userBasicInfo.id,
 				items: items,
+				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
+				paymentTerms: paymentTerm.value || 'current',
 				paymentMethod: "CASH",
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
