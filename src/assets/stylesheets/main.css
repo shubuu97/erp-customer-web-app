@@ -6,7 +6,7 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: #F9F9F9;
     margin:0;}
-body.product-list, body.product-details, body.cart-page, body.checkout-page, body.order-success-page {
+body.product-list, body.product-details, body.cart-page, body.checkout-page, body.order-success-page, body.order-history-page, body.track-order-page {
     background: #FFF;
 }
 .json-pretty{
@@ -2961,6 +2961,85 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	font-weight: 500;
 }
 /* ==================================== ORDER PAGE CSS END ====================================== */
+
+/* ==================================== TRACK ORDER PAGE CSS START ====================================== */
+.track-order-detail {
+	display: flex;
+	padding-bottom: 15px;
+	border-bottom: solid 1px #DDD;
+	justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+.track-d {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	padding: 0 50px;
+}
+.track-d label {
+	margin-bottom: 0;
+	font-weight: 500;
+	margin-right: 10px;
+}
+.to-content-box {
+	width: 100%;
+	max-width: 450px;
+	margin: auto;
+    background: url('../images/v-border.png');
+    background-repeat: repeat-y;
+    background-position: left 50px top;
+}
+.to-content-row {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	margin-bottom: 40px;
+}
+.to-content-img {
+	width: 100px;
+}
+.to-content-img img {
+	width: 100%;
+}
+.to-border {
+    background: url('../images/dotted.png');
+    background-repeat:repeat-x;
+	width: 100px;
+	height: 2px;
+}
+.to-status {
+	display: flex;
+	flex-wrap: wrap;
+    padding-left: 15px;
+    background: url('../images/v-dotted.png');
+    background-repeat:repeat-y;
+    width: 250px;
+}
+.to-status label {
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 1.6rem;
+}
+.to-status span {
+	text-transform: uppercase;
+	color: #666;
+	font-size: 1.5rem;
+	margin-bottom: 0px;
+}
+.track-order-desc p {
+	margin: 6px 0 0;
+	font-size: 1.3rem;
+}
+.track-order-desc p a {
+	color: #0e8c4f;
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+/* ==================================== TRACK ORDER PAGE CSS END ====================================== */
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){

@@ -18,8 +18,12 @@
     }
     componentDidMount()
     {
-  this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${this.props.location.state.id}/history`,''))
-    }
+  // this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${this.props.location.state.id}/history`,''))
+  document.body.classList.add('track-order-page');
+}
+componentWillUnmount() {
+  document.body.classList.remove('track-order-page');
+}
   
     render() {
       return (
