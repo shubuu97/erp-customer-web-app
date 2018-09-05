@@ -18,6 +18,7 @@ import { fetchCategoryTypeAndItems } from '../action/categoryTypeAndItems';
 import { selectedCategory } from '../action/category';
 import { APPLICATION_BFF_URL } from '../constants/urlConstants';
 import { setSelectedCategoryType } from '../containers/Products/action/product';
+import { get } from 'lodash';
 
 const styles = theme => ({
   failure: {
@@ -40,7 +41,16 @@ class MainLayout extends Component {
   }
   componentDidMount() {
     this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, { isActive: 1 })).then((data) => {
-      console.log("Category list is ", data);
+      console.log("Category list in Main Layout", data);
+      this.props.dispatch(selectedCategory(get(data, 'data.itemCategories[0]', null)));
+      if (get(data, 'data.itemCategories[0]', null)) {
+        this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: data.data.itemCategories[0].categoryId.toString() })).then((typeData) => {
+          console.log("In Main Layout Component did mount", typeData);
+          this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
+        }, (err) => {
+          console.log(err);
+        });
+      }
     }, (err) => {
       console.log(err);
     });
@@ -66,10 +76,10 @@ class MainLayout extends Component {
   }
   goToProductList = (category) => {
     this.props.dispatch(selectedCategory(category));
-    this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, {categoryId: category.categoryId.toString()})).then((data)=>{
+    this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: category.categoryId.toString() })).then((data) => {
       console.log("Product Data", data);
-      this.props.dispatch(setSelectedCategoryType(null));
-    }, (err)=>{
+      this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
+    }, (err) => {
       console.log(err);
     });
     switch (this.props.customerStatus) {
@@ -132,7 +142,7 @@ class MainLayout extends Component {
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li style={this.props.customerStatus!='Approved'?{pointerEvents:'none',opacity:0.6}:null} onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
+                <li style={this.props.customerStatus != 'Approved' ? { pointerEvents: 'none', opacity: 0.6 } : null} onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
                 <div>
                   {this.state.showMiniCart ? <MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props} /> : null}
                 </div>
