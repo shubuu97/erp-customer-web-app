@@ -19,6 +19,7 @@ import categoryData from './category';
 import categoryTypeAndItems from './categoryTypeAndItems';
 import * as Log from '../constants/login';
 import OrderListData from '../containers/Orders/reducer/orderList'
+import TrackData from '../containers/Orders/reducer/TrackOrder'
 let appReducer = combineReducers(
     {
         //reducer code will come here
@@ -40,7 +41,8 @@ let appReducer = combineReducers(
         orderData,
         categoryData,
         OrderListData,
-        categoryTypeAndItems
+        categoryTypeAndItems,
+        TrackData
     }
 );
 const rootReducer = (state, action) => {
