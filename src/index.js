@@ -42,6 +42,8 @@ import AfterCheckout from './containers/AfterCheckout/afterCheckout';
 import MiniCheckout from './containers/Products/Cart/MiniCart';
 import Orders from './containers/Orders/OrderList';
 import TrackOrder from './containers/Orders/TrackOrder';
+import ResetPassword from './Passwords/ResetPassword/resetPassword';
+import ForgotPassword from './Passwords/forgotPassword/forgotPassword';
 
 const theme = createMuiTheme({
   
@@ -127,6 +129,9 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/minicart" component = {MiniCheckout}/>
 <RouterWithMainLayout layout={MainLayout} path="/orders" component = {Orders}/>
 <RouterWithMainLayout layout={MainLayout} path="/track" component = {TrackOrder}/>
+<RouterWithMainLayout layout={MainLayout} path="/reset" component = {ResetPassword}/>
+<Route exact path="/forgot" component={ForgotPassword} />
+
 
 
 
