@@ -13,6 +13,11 @@ class OrderContainer extends React.Component {
     }
  
   }
+   handleTrack=(id) =>{
+       this.props.history.push({pathname: '/track',
+       
+       state: { id : id }})
+     }
   componentDidMount()
   {
   let options = {
@@ -27,7 +32,8 @@ class OrderContainer extends React.Component {
     return (
       <div className="container">
       <OrderDetails
-      orderListData={this.props.orderListData.data}/>
+      orderListData={this.props.orderListData.data}
+      handleTrack={this.handleTrack} />
       </div>
     )
   }

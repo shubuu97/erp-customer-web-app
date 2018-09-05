@@ -132,7 +132,7 @@ class MainLayout extends Component {
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
+                <li style={this.props.customerStatus!='Approved'?{pointerEvents:'none',opacity:0.6}:null} onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
                 <div>
                   {this.state.showMiniCart ? <MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props} /> : null}
                 </div>
