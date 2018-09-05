@@ -39,7 +39,7 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
             <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span></div>
           </div>
           <div className="card-header-right">
-            <Button color='secondary' variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+            <Button color='secondary' onClick={()=>this.props.handleTrack(this.props.id)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
           </div>
         </div>
         <div className="order-card-content">        
