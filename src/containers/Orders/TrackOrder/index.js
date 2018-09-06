@@ -18,8 +18,11 @@
     }
     componentDidMount()
     {
-  // this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${this.props.location.state.id}/history`,''))
-  document.body.classList.add('track-order-page');
+    if(localStorage.getItem('orderId'))
+   this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${localStorage.getItem("id")}`,''))
+  else
+  this.props.history.push('/orders')
+   document.body.classList.add('track-order-page');
 }
 componentWillUnmount() {
   document.body.classList.remove('track-order-page');
