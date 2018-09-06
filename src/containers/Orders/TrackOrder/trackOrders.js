@@ -14,17 +14,27 @@ export default class TrackOrders extends React.Component {
   
   
     render() {
-  
+        
 
-       let TrackOrderdata =  this.props.trackData.map((track)=>
-    {
-        return (<div>
+       let TrackOrderdata
+     if ( Array.isArray(this.props.trackData))
+       {
+        TrackOrderdata=  this.props.trackData.map((track)=>
+        {
+            return (<div>
+    
+                <TrackOrder/>
+            </div>)
+        })
+       }
 
-            <TrackOrder/>
-        </div>)
-    })
+       else{
+        TrackOrderdata = <div>No history yet    </div>
+       }
+      
   
     return (<div>
+        <h2 className="cart-heading">Track Order</h2>
       {TrackOrderdata}
     </div>)
   

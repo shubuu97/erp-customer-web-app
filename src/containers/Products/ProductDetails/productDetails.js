@@ -7,7 +7,7 @@ export default (props) => {
     <div className="productDetails-container container">
       <ul className="breadcrumb">
         <li>Home</li>
-        <li>Indica</li>
+        <li onClick={props.gotoList}>{props.selectedCategoryType.itemType || ''}</li>
         <li>{props.detail.itemName}</li>
       </ul>
       <div className="detailsContent">

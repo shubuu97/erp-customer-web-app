@@ -14,9 +14,8 @@ class OrderContainer extends React.Component {
  
   }
    handleTrack=(id) =>{
-       this.props.history.push({pathname: '/track',
-       
-       state: { id : id }})
+     localStorage.setItem('orderId',id)
+       this.props.history.push('/track')
      }
   componentDidMount()
   {
@@ -26,6 +25,10 @@ class OrderContainer extends React.Component {
       error: OPTIONS.RECEIVED_ORDER_LIST_ERROR
     }
     this.props.dispatch(postData(OPTIONS.ORDER_URL, {data:{customerId:localStorage.getItem('id')}},'Order_List', options));
+    document.body.classList.add('order-history-page');
+  }
+  componentWillUnmount() {
+    document.body.classList.remove('order-history-page');
   }
 
   render() {

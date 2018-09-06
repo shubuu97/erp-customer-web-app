@@ -23,7 +23,7 @@ class ProductDetailsContainer extends React.Component {
       return;
     }
     productInfo.quantity = 1;
-    let mainImageUrl = (selectedProduct.images && selectedProduct.images[0]) || {url:productPlaceholder};
+    let mainImageUrl = (selectedProduct.images && selectedProduct.images[0]) || { url: productPlaceholder };
     this.setState({ productInfo, mainImageUrl });
     document.body.classList.add('product-details')
   }
@@ -56,14 +56,21 @@ class ProductDetailsContainer extends React.Component {
     this.setState({ productInfo: productLocal });
   }
   updateMainImage = (image) => {
-    this.setState({mainImageUrl: image});
+    this.setState({ mainImageUrl: image });
+  }
+  gotoList = () => {
+    this.props.history.push('productList');
   }
 
   render() {
     const { productInfo, mainImageUrl } = this.state;
+    const { selectedCategoryType } = this.props;
     return (
       <div>
-        {productInfo && <ProductDetails detail={productInfo} mainImageUrl={mainImageUrl} updateMainImage = {this.updateMainImage} addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()} updateQuantity={this.updateQuantity} />}
+        {productInfo && <ProductDetails selectedCategoryType={selectedCategoryType} detail={productInfo}
+          mainImageUrl={mainImageUrl} updateMainImage={this.updateMainImage}
+          addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()}
+          updateQuantity={this.updateQuantity} gotoList={this.gotoList} />}
       </div>
     )
   }
@@ -72,7 +79,8 @@ class ProductDetailsContainer extends React.Component {
 const mapStateToProps = state => {
   let selectedProduct = state.productData.selectedProduct;
   let cartProductList = state.productData.cartProductList;
-  return { selectedProduct, cartProductList }
+  let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
+  return { selectedProduct, cartProductList, selectedCategoryType }
 }
 
 export default connect(mapStateToProps)(ProductDetailsContainer)
