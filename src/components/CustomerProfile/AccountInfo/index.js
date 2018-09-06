@@ -24,7 +24,7 @@ const AddressInfo = (props) => {
         <div className="col-sm-12">
             
             {fields.map((Address, index) => (
-                <div className="form-box2">
+                <div className="form-box">
                 <div className="row d-flex">
                 {AddressInfoFields.map((info) => {
 
@@ -59,7 +59,7 @@ export default (props) => {
     return (
         <div className="row">
         <div className="col-sm-12">
-        <div className="form-box">
+        
         <div className="row d-flex">
             <h2 className="box-title col-sm-12">Basic Info</h2>
             {BasicInfoFields.map((info) => {
@@ -88,7 +88,7 @@ export default (props) => {
             
 
         </div>
-        </div>
+        
         </div>
         </div>
     )
