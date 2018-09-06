@@ -14,9 +14,8 @@ class OrderContainer extends React.Component {
  
   }
    handleTrack=(id) =>{
-       this.props.history.push({pathname: '/track',
-       
-       state: { id : id }})
+     localStorage.setItem('orderId',id)
+       this.props.history.push('/track')
      }
   componentDidMount()
   {
