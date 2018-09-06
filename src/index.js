@@ -52,7 +52,7 @@ const theme = createMuiTheme({
       main: '#0e8c4d',
     },
     secondary: {
-      main: '#585858',
+      main: '#818181',
     },
     default:{
       main:'#dc0909'
@@ -102,7 +102,7 @@ ReactDOM.render(
 <Switch>
 
 <Route exact path="/" component={Login}/>
-<RouterWithMainLayout layout={MainLayout} exact path="/companyRegister" component={CompanyRegister}/>
+<Route layout={MainLayout} exact path="/companyRegister" component={CompanyRegister}/>
 <Route  layout={MainLayout} exact path="/customerRegister" component={CustomerRegister}/>
 
 
