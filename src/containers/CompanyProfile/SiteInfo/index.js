@@ -24,8 +24,11 @@ class SiteInfo extends Component
     // }
     updateSubmitHandler=(values)=>
     {
-  
-
+if(!values.siteInfo[0].siteName||values.siteInfo[0].siteName=='')
+{
+  this.props.handleTabSwitch(3);
+  return;
+}
     let requestObj={
         ...values,
         businessCustomerId:localStorage.getItem('id')

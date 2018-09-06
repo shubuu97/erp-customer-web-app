@@ -65,7 +65,7 @@ class CompanyProfileTab extends React.Component {
 
   handleTabSwitch=(tabNumber)=>
   {
-
+    this.setState({ value:tabNumber });
   }
   render() {
     const { classes } = this.props;

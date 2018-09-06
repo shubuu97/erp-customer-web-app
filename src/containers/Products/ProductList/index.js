@@ -10,7 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
-import {isEmpty} from 'lodash';
+import { isEmpty } from 'lodash';
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -52,24 +52,36 @@ class ProductsContainer extends React.Component {
     console.log("Show selected type", data);
     this.props.dispatch(setSelectedCategoryType(data));
   }
+  applyPriceRangeFilter = (type, value) => {
+    console.log('applyPriceRangeFilter', type, value);
+    const { categoryTypeAndItems, selectedCategoryType } = this.props;
+    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
+    
+  }
   render() {
     const { products, categoryTypeAndItems, selectedCategoryType } = this.props;
     console.log("Product Data with type", selectedCategoryType);
     const { openItemInfo, popupItemInfo } = this.state;
-    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) ||  (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
+    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
+    const NoProduct = () => (
+      <div className="no-product-text">
+        There are no product in this category
+      </div>)
     return (
       <div className="container">
         <ul className="breadcrumb">
           <li>Home</li>
-          <li>Indica</li>
-
+          {selectedCategoryType.itemType && <li>{selectedCategoryType.itemType || ''}</li>}
         </ul>
         <div className="row">
           <div className="col-sm-3">
-            <SideBar types={categoryTypeAndItems.itemTypes} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType}/>
+            <SideBar types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />
           </div>
           <div className="col-sm-9">
-            <ProductList productsList={productDataList} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} />
+            {productDataList.length ? <ProductList productsList={productDataList} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
+            {!productDataList.length &&
+              <NoProduct />
+            }
             {openItemInfo && <Dialog
               open={openItemInfo}
               onClose={this.handleClose}
@@ -121,7 +133,6 @@ const mapStateToProps = state => {
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let categoryTypeAndItems = state.categoryTypeAndItems && state.categoryTypeAndItems.categoryTypeAndItems;
   let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
-  console.log("Captain", selectedCategoryType);
   return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType }
 }
 

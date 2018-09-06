@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 
 import SelectField from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import FileUpload from './fileUpload'
 
 
 const TextFieldInput = (props) =>
@@ -11,6 +12,7 @@ const TextFieldInput = (props) =>
   { 
     
     let  {input,label,meta:{touched,error,pristine},...custom} = props;
+    console.log(error,"error is here")
     return(
     [<TextField
       label={label}
@@ -51,5 +53,6 @@ const TextFieldInput = (props) =>
       TextFieldInput,
       ReactSelectWrapper,
       SelectFieldInput,
+      FileUpload
 }
   
