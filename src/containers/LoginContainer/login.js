@@ -22,7 +22,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import asyncValidate from './validate.js';
 import { fetchCategory, selectedCategory } from '../../action/category';
 import { fetchCategoryTypeAndItems } from '../../action/categoryTypeAndItems';
-
+import { fetchProfileFormData } from '../../action/profileFormData';
+import {setSelectedCategoryType, applyFilter} from '../../containers/Products/action/product';
+import {get} from 'lodash';
 
 const styles = theme => ({
   button: {
@@ -42,6 +44,13 @@ const styles = theme => ({
     fontSize: '1.4rem'
   }
 });
+
+const priceFilterObject = {
+  lessThan50: false,
+  from50To100: false,
+  from100To200: false,
+  above200: false
+}
 
 class Login extends Component {
   constructor(props) {
@@ -64,13 +73,21 @@ class Login extends Component {
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
+          if (this.props.role == 'customer') {
+            this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
+          } else {
+            this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
+          }
+          // Fetch Category Data
           this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, { isActive: 1 })).then((data) => {
             console.log("Category list is ", data);
             this.props.dispatch(selectedCategory(data.data.itemCategories[0]));
-            this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: data.data.itemCategories[0].categoryId.toString() })).then((data) => {
-          }, (err) => {
-            console.log(err);
-          });
+            this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: data.data.itemCategories[0].categoryId.toString() })).then((typeData) => {
+              this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
+              this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
+            }, (err) => {
+              console.log(err);
+            });
             console.log("Product Data", data);
           }, (err) => {
             console.log(err);
@@ -85,7 +102,7 @@ class Login extends Component {
       if (err.message) {
         this.setState({ message: err.message, isSuccess: false });
         setTimeout(() => {
-           this.setState({ message: '' });
+          this.setState({ message: '' });
         }, 6000);
       }
     })

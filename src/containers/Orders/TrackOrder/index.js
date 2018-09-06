@@ -3,7 +3,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as OPTIONS from '../constants/OrderList';
-import { postData } from '../action/post';
 import TrackOrders from './trackOrders';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { fetchTrackData } from '../action/getTrack';
