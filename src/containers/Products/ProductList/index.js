@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import { isEmpty } from 'lodash';
+import { priceFilter } from '../../../utills/productFilter';
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -18,7 +19,14 @@ class ProductsContainer extends React.Component {
     this.state = {
       openItemInfo: false,
       popupItemInfo: {},
-      mainImageUrl: {}
+      mainImageUrl: {},
+      priceFilterObject: {
+        lessThan50: false,
+        from50To100: false,
+        from100To200: false,
+        above200: false 
+      },
+      filteredData: []
     }
   }
   productDetails(item) {
@@ -27,9 +35,12 @@ class ProductsContainer extends React.Component {
     this.props.history.push('/productDetail');
   }
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
+    // const { dispatch } = this.props;
+    // dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
     document.body.classList.add('product-list');
+    const { categoryTypeAndItems, selectedCategoryType } = this.props;
+    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
+    this.setState({filteredData: productDataList});
   }
   componentWillUnmount() {
     document.body.classList.remove('product-list');
@@ -56,13 +67,17 @@ class ProductsContainer extends React.Component {
     console.log('applyPriceRangeFilter', type, value);
     const { categoryTypeAndItems, selectedCategoryType } = this.props;
     const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
-    
+    let priceFilterObject = this.state.priceFilterObject;
+    priceFilterObject[type] = value;
+    this.setState({priceFilterObject: priceFilterObject});
+    let filteredData = priceFilter(productDataList, priceFilterObject);
+    this.setState({filteredData: filteredData});
   }
   render() {
-    const { products, categoryTypeAndItems, selectedCategoryType } = this.props;
+    const { categoryTypeAndItems, selectedCategoryType } = this.props;
     console.log("Product Data with type", selectedCategoryType);
-    const { openItemInfo, popupItemInfo } = this.state;
-    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
+    const { openItemInfo, popupItemInfo, filteredData } = this.state;
+    // const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
     const NoProduct = () => (
       <div className="no-product-text">
         There are no product in this category
@@ -78,8 +93,8 @@ class ProductsContainer extends React.Component {
             <SideBar types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />
           </div>
           <div className="col-sm-9">
-            {productDataList.length ? <ProductList productsList={productDataList} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
-            {!productDataList.length &&
+            {filteredData.length ? <ProductList productsList={filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
+            {!filteredData.length &&
               <NoProduct />
             }
             {openItemInfo && <Dialog
