@@ -5,9 +5,9 @@ import { TextFieldInput,ReactSelectWrapper } from '../../common/MaterialUiCompon
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
-let prop={};
-prop.paymentTerms = [{label:'current',value:'current'},{label:'Net 30',value:'Net 30'},{label:'Net 45',value:'Net 45'}];
-prop.invoiceCurrencyCode=[{label:'INR',value:'INR'},{label:'USD',value:'USD'}]
+import withLoader from '../../LoaderHoc';
+
+
 
 let BankDetailComponent = (props)=>
 {
@@ -56,6 +56,7 @@ let BankDetailComponent = (props)=>
 
 class BankingInfo  extends Component {
     render() {
+        console.log(this.props,'props is here')
         return (
             <div className="">
            
@@ -71,10 +72,10 @@ class BankingInfo  extends Component {
                         <Field name='creditLimit' label='Credit Limit' component={TextFieldInput} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={prop.paymentTerms}></Field>
+                        <Field name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
                     </div>
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='invoiceCurrencyCode' label='Invoice Currency *' placeholder='Currency Code' options={prop.invoiceCurrencyCode} component={ReactSelectWrapper} option={prop.invoiceCurrencyCode} />
+                        <Field name='invoiceCurrencyCode' label='Invoice Currency *' placeholder='Currency Code' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='nameOnCheque' label='Print Name On Check As *' component={TextFieldInput} />
@@ -83,7 +84,7 @@ class BankingInfo  extends Component {
                         <Field name='currencyCode' label='CurrencyCode *' component={TextFieldInput} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='preferredPaymentMethods' label='Preferred Payment Method *' component={TextFieldInput} />
+                        <Field name='preferredPaymentMethods' placeholder='Preferred Payment Method *' options={this.props.paymentMethods} component={ReactSelectWrapper} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='uploadVoidCheck' label='Upload Void Check' component={TextFieldInput} />
@@ -96,7 +97,7 @@ class BankingInfo  extends Component {
             <div className="row">
                 <div className="col-md-12">
                                         
-                    <FieldArray name='bankDetails' component={BankDetailComponent}/>
+                    <FieldArray  name='bankDetails' component={BankDetailComponent}/>
                         {/* {BankDetailFields.map((info) => {
                             return (
                                 <div className="form-d col-md-4 col-sm-6 form-input">
@@ -114,4 +115,4 @@ class BankingInfo  extends Component {
     }
 }
 
-export default BankingInfo
+export default withLoader(BankingInfo)

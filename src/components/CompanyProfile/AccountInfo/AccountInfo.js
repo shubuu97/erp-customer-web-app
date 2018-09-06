@@ -2,8 +2,9 @@ import { Field } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
 import Button from '@material-ui/core/Button';
+import withLoader from '../../../components/LoaderHoc'
 
-export default class AccountInfo extends Component {
+class AccountInfo extends Component {
     render() {
         return (
             <div>
@@ -39,3 +40,5 @@ export default class AccountInfo extends Component {
         )
     }
 }
+
+export default withLoader(AccountInfo)

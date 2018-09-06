@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as OPTIONS from '../constants/OrderList';
-import {postData} from '../action/post';
+import {postData} from '../../../action/common/post';
 import OrderDetails from './Orders';
 
 class OrderContainer extends React.Component {

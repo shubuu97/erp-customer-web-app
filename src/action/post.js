@@ -1,5 +1,5 @@
-import * as orderList from '../constants/OrderList';
-import dynamicActionWrapper from '../../../utills/actionHelpers';
+import * as orderList from '../../containers/Orders/constants/OrderList';
+import dynamicActionWrapper from '../../utills/actionHelpers';
 import post from './post'
 
 
