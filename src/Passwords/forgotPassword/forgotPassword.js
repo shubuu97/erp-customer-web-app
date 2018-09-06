@@ -7,33 +7,10 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button  from '@material-ui/core/Button';
 import {TextFieldInput} from '../../components/common/MaterialUiComponents'
+import {reduxForm} from 'redux-form';
 
 
-const email = ({ input,
-	label,
-	meta: { touched, error },
-	...custom
-}) => {
-	return (
-		<FormGroup controlId="email" bsSize="large">
-
-			<FormControl
-				autoFocus
-				type="email"
-				name="email"
-				onChange={input.onChange}
-				placeholder="Email"
-			/>
-			{touched && error && <div className="text-input error"><FormHelperText >
-				{error}
-			</FormHelperText>
-			</div>}
-		</FormGroup>)
-}
-
-
-
-export default class ForgotPassword extends Component {
+class ForgotPassword extends Component {
 
 	render() {
 		return (
@@ -47,3 +24,7 @@ export default class ForgotPassword extends Component {
 		)
 	}
 }
+
+export default reduxForm(
+    {form:'forgot'}
+)(ForgotPassword)
