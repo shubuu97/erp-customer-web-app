@@ -85,7 +85,7 @@ class Login extends Component {
       if (err.message) {
         this.setState({ message: err.message, isSuccess: false });
         setTimeout(() => {
-          // this.setState({ message: '' });
+           this.setState({ message: '' });
         }, 6000);
       }
     })
