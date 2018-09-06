@@ -16,25 +16,25 @@ export default (props) => {
                 <h4>By Price</h4>
                 <div className="category-priceRange checkbox-custom">
                     <label>
-                        <input value="false" type="checkbox" />
+                        <input type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('<50', e.target.checked)}/>
                         <span className="term-conditions">Under $50</span>
                     </label>
                 </div>
                 <div className="category-priceRange checkbox-custom">
                     <label>
-                        <input value="false" type="checkbox" />
+                        <input type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('50-100', e.target.checked)}/>
                         <span className="term-conditions">$50 - $100</span>
                     </label>
                 </div>
                 <div className="category-priceRange checkbox-custom">
                     <label>
-                        <input value="false" type="checkbox" />
+                        <input type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('100-200', e.target.checked)}/>
                         <span className="term-conditions">$100 - $200</span>
                     </label>
                 </div>
                 <div className="category-priceRange checkbox-custom">
                     <label>
-                        <input value="false" type="checkbox" />
+                        <input type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('>200', e.target.checked)}/>
                         <span className="term-conditions">Above $200</span>
                     </label>
                 </div>
