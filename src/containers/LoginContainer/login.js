@@ -22,6 +22,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import asyncValidate from './validate.js';
 import { fetchCategory, selectedCategory } from '../../action/category';
 import { fetchCategoryTypeAndItems } from '../../action/categoryTypeAndItems';
+import {fetchProfileFormData} from '../../action/profileFormData';
 
 
 const styles = theme => ({
@@ -64,6 +65,12 @@ class Login extends Component {
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
+          if(this.props.role == 'customer') {
+            this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
+          } else {
+            this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
+          }
+          // Fetch Category Data
           this.props.dispatch(fetchCategory(`${APPLICATION_BFF_URL}/inventory/itemcategories`, { isActive: 1 })).then((data) => {
             console.log("Category list is ", data);
             this.props.dispatch(selectedCategory(data.data.itemCategories[0]));

@@ -15,15 +15,18 @@ import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
 import { LinearProgress } from 'material-ui';
+import _get from 'lodash/get';
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 
 class LicenseInfo extends Component
 {
-    // componentDidMount()
-    // {
-    
-    //     this.props.dispatch(fetchLicenseDetailsData(`${}/businesscustomer/companyinfo?_`));
-    // }
+    componentDidMount()
+    {
+        this.props.dispatch(fetchLicenseDetailsData(`${this.props.urlLinks.getCompanyInfo.href}?_id=${localStorage.getItem("id")}`));
+
+    }
     updateSubmitHandler=(values)=>
     {
   
@@ -32,14 +35,16 @@ class LicenseInfo extends Component
         ...values,
         businessCustomerId:localStorage.getItem('id')
     }
-     this.props.dispatch(postLicenseData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/companyinfo`)).then((data)=>{
+     this.props.dispatch(postLicenseData(requestObj,'',`${this.props.urlLinks.updateOrCreateCompanyInfo.href}`)).then((data)=>{
         if(data.data.message) {
-         this.props.handleTabSwitch(3)
-         this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));
-          },6000);
+          },2000);
+          setTimeout(()=>{
+            this.props.handleTabSwitch(2);
+          },2000);
+
         }
       }, (err)=>{
         if(err.message) {
@@ -58,10 +63,11 @@ class LicenseInfo extends Component
         return(
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
-            <LicenseInfoComponent licenseDetailsData = {this.props.licenseDetailsData}/>
+            <LicenseInfoComponent {...this.props} licenseDetailsData = {this.props.licenseDetailsData}/>
             <div className="row d-flex">
                 <div className="col-sm-12 form-btn-group">
-                    <Button variant="contained" type='submit' color='primary'>Save</Button>
+                <Button disabled={this.props.isSaving} variant="contained" type='submit' color='primary' disabled={this.props.isSaving}>{!this.props.isSaving && 'SAVE AND CONTINUE'}{this.props.isSaving && <CircularProgress size={24} />}</Button>
+
                 </div>
             </div>
             </form>
@@ -82,8 +88,13 @@ const mapStateToProps=(state)=>
 {
     console.log(state,"state is here")
     let initialValues = state.licenseDetailsData.lookUpData.data;
+     let companyCategories = _get(state,"licenseDetailsData.lookUpData.data.companyCategories.data",[{label:'',value:''}])
+     let licenseTypes = _get(state,"licenseDetailsData.lookUpData.data.licenseTypes.data",[{label:'',value:''}])
+
     let isLoading = state.licenseDetailsData.isFetching;
-    let licenseDetailsData =  state.licenseDetailsData.lookUpData.data
+    let licenseDetailsData =  state.licenseDetailsData.lookUpData.data;
+    let isSaving =   _get(state,'updateLicenseData.isFetching',false)
+
     if(state.zipCodeData.meta)
     {
      let meta = state.zipCodeData.meta;
@@ -111,7 +122,8 @@ const mapStateToProps=(state)=>
       }
      }
     }
-    return {initialValues,isLoading,licenseDetailsData}
+    let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
+    return {initialValues,isLoading,urlLinks,companyCategories,licenseTypes,isSaving}
 
 }
 

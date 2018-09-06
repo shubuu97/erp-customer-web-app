@@ -9,8 +9,8 @@ import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import asyncValidate from './validate';
 import {postBasicInfoData} from '../../../action/basicInfoActions';
-
-
+import CircularProgress from '@material-ui/core/CircularProgress'
+import _get from 'lodash/get'
 
 class AccountInfo extends Component
 {
@@ -24,13 +24,16 @@ class AccountInfo extends Component
     }
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/basicinfo`)).then((data)=>{
         if(data.data.message) {
-          this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+        
+          setTimeout(()=>{
+            this.props.handleTabSwitch(1);
+          },2000);
 
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));
-          },6000);
+          },2000);
         }
       }, (err)=>{
         if(err.message) {
@@ -42,16 +45,20 @@ class AccountInfo extends Component
       });
   
     }
-   
+   componentDidMount()
+   {
+    this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+
+   }
     render()
     {
-        const {handleSubmit} = this.props;
+        const {handleSubmit,submitting} = this.props;
         return(
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
-            <AccountInfoComponent/>
+            <AccountInfoComponent {...this.props} />
             <div className="form-btn-group">
-              <Button variant="contained" type='submit' color='primary'>Save</Button>
+              <Button disabled={this.props.isSaving} variant="contained" type='submit' color='primary' disabled={this.props.isSaving}>{!this.props.isSaving && 'SAVE AND CONTINUE'}{this.props.isSaving && <CircularProgress size={24} />}</Button>
             </div>
             </form>
             </div>
@@ -68,12 +75,13 @@ function mapStateToProps(state)
 {
  let initialValues = {};
  initialValues =  state.basicInfodata.basicInfoData
- let isLoading = state.basicInfodata.isFetching
+ let isLoading = state.basicInfodata.isFetching;
+ let isSaving =   _get(state,'updateBasicInfo.isFetching',false)
 
- return {initialValues,isLoading}
+ return {initialValues,isLoading,isSaving}
 }
 
-export default connect(mapStateToProps)(withLoader(AccountInfo))
+export default connect(mapStateToProps)(AccountInfo)
 
 
 
