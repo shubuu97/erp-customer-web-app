@@ -15,7 +15,7 @@ let License = (props) => {
     return (
         <div className="row">
         <div className="col-sm-12">
-        <div className="form-box2">
+        <div className="form-box">
         <div className="row d-flex">
 
             {fields.map((license, index) => (
@@ -49,7 +49,7 @@ let Address = (props) => {
         
 
             {fields.map((address, index) => (
-                <div className="form-box2">
+                <div className="form-box">
                 <div className="row d-flex">
 
                 <div className="form-d col-md-4 col-sm-6 form-input">
@@ -96,7 +96,7 @@ let Site = (props) => {
 
             {fields.map((site, index) => (
 
-                <div className="form-box">
+                <div className="">
 <div class="row d-flex">
           
           <div className="form-d col-md-4 col-sm-6 form-input">
