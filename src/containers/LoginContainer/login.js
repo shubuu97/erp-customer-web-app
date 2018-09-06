@@ -73,7 +73,7 @@ class Login extends Component {
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
-          if (this.props.role == 'customer') {
+          if(data.data.content.customerStatus) {
             this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
           } else {
             this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
