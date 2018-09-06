@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProductList from './products';
 import SideBar from './sideBar';
-import { fetchInventoryItemData, setSelectedProduct, setSelectedCategoryType } from '../action/product';
+import { fetchInventoryItemData, setSelectedProduct, setSelectedCategoryType, applyFilter } from '../action/product';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import { isEmpty } from 'lodash';
-import { priceFilter } from '../../../utills/productFilter';
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -35,15 +34,13 @@ class ProductsContainer extends React.Component {
     this.props.history.push('/productDetail');
   }
   componentDidMount() {
-    // const { dispatch } = this.props;
-    // dispatch(fetchInventoryItemData(`${APPLICATION_BFF_URL}/inventory/items`));
     document.body.classList.add('product-list');
-    const { categoryTypeAndItems, selectedCategoryType } = this.props;
-    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
-    this.setState({filteredData: productDataList});
   }
   componentWillUnmount() {
     document.body.classList.remove('product-list');
+  }
+  componentWillReceiveProps(nextProps){
+    console.log("In product list recieve props",nextProps);
   }
   handleClose = () => {
     this.setState({ openItemInfo: false });
@@ -62,23 +59,22 @@ class ProductsContainer extends React.Component {
   selectCategoryType = (data) => {
     console.log("Show selected type", data);
     this.props.dispatch(setSelectedCategoryType(data));
-    this.setState({filteredData: data.products});
+    this.props.dispatch(applyFilter(data.products, this.state.priceFilterObject));
   }
   applyPriceRangeFilter = (type, value) => {
-    console.log('applyPriceRangeFilter', type, value);
     const { categoryTypeAndItems, selectedCategoryType } = this.props;
     const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
     let priceFilterObject = this.state.priceFilterObject;
     priceFilterObject[type] = value;
     this.setState({priceFilterObject: priceFilterObject});
-    let filteredData = priceFilter(productDataList, priceFilterObject);
-    this.setState({filteredData: filteredData});
+    this.props.dispatch(applyFilter(productDataList, priceFilterObject));
   }
+  
   render() {
-    const { categoryTypeAndItems, selectedCategoryType } = this.props;
+    const { categoryTypeAndItems, selectedCategoryType, filteredDataSet } = this.props;
     console.log("Product Data with type", selectedCategoryType);
     const { openItemInfo, popupItemInfo, filteredData } = this.state;
-    // const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
+    console.log("filteredDataSet==", filteredDataSet);
     const NoProduct = () => (
       <div className="no-product-text">
         There are no product in this category
@@ -91,11 +87,11 @@ class ProductsContainer extends React.Component {
         </ul>
         <div className="row">
           <div className="col-sm-3">
-            <SideBar types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />
+            {filteredDataSet.filterObj && <SideBar filteredDataSet={filteredDataSet} types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />}
           </div>
           <div className="col-sm-9">
-            {filteredData.length ? <ProductList productsList={filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
-            {!filteredData.length &&
+            {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
+            {filteredDataSet.filteredData && !filteredDataSet.filteredData.length &&
               <NoProduct />
             }
             {openItemInfo && <Dialog
@@ -149,7 +145,8 @@ const mapStateToProps = state => {
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let categoryTypeAndItems = state.categoryTypeAndItems && state.categoryTypeAndItems.categoryTypeAndItems;
   let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
-  return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType }
+  let filteredDataSet = (state.productData && state.productData.filteredDataSet) || {};
+  return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType, filteredDataSet }
 }
 
 export default connect(mapStateToProps)(ProductsContainer)

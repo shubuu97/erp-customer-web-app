@@ -19,7 +19,7 @@ import { fetchCategory } from '../action/category';
 import { fetchCategoryTypeAndItems } from '../action/categoryTypeAndItems';
 import { selectedCategory } from '../action/category';
 import { APPLICATION_BFF_URL } from '../constants/urlConstants';
-import { setSelectedCategoryType } from '../containers/Products/action/product';
+import { setSelectedCategoryType, applyFilter } from '../containers/Products/action/product';
 import { get } from 'lodash';
 
 const styles = theme => ({
@@ -32,6 +32,12 @@ const styles = theme => ({
     fontSize: '1.4rem'
   }
 });
+const priceFilterObject = {
+  lessThan50: false,
+  from50To100: false,
+  from100To200: false,
+  above200: false
+}
 class MainLayout extends Component {
   constructor(props) {
     super(props);
@@ -50,6 +56,7 @@ class MainLayout extends Component {
         this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: data.data.itemCategories[0].categoryId.toString() })).then((typeData) => {
           console.log("In Main Layout Component did mount", typeData);
           this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
+          this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
         }, (err) => {
           console.log(err);
         });
@@ -82,6 +89,7 @@ class MainLayout extends Component {
     this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: category.categoryId.toString() })).then((data) => {
       console.log("Product Data", data);
       this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
+      this.props.dispatch(applyFilter(get(data, 'data.itemTypes[0].products', []), priceFilterObject));
     }, (err) => {
       console.log(err);
     });

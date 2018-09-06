@@ -6,8 +6,8 @@ import {profileFormData} from './profileFormData';
 import loginReducer from './login';
 import updateBasicInfo from './updateBasicInfo'
 import {bankDetailsData} from './bankingDetails'
-import licenseData from './licenseInfo'
-import siteData from './siteInfo'
+import updateLicenseData from './licenseInfo'
+import updateSiteData from './siteInfo'
 import {siteDetailsData} from './siteDetails'
 import {licenseDetailsData} from './licenseDetails'
 import zipCodeData from './zipCode'
@@ -26,12 +26,12 @@ let appReducer = combineReducers(
         form:formReducer,
         registerReducer,
         basicInfodata,
-        profileFormData,
+        urlLinks:profileFormData,
         loginReducer,
         updateBasicInfo,
         bankDetailsData,
-        licenseData,
-        siteData,
+        updateLicenseData,
+        updateSiteData,
         siteDetailsData,
         licenseDetailsData,
         zipCodeData,

@@ -15,6 +15,7 @@ const routerDeciderHoc = (WrappedComponent) => {
                 return null
                     break;
                 case 'New':
+                
                 if(this.props.role=='customer'){
                 this.props.history.push('/customerProfile')
                 return null}
