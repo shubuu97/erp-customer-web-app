@@ -18,10 +18,10 @@ let CustomerBankInfo = [
         name:'invoiceCurrencyCode',label:'Invoice Currency',component:ReactSelectWrapper,type:'select'
        },
        {
-        name:'currencyCode',label:'CurrencyCode',component:TextFieldInput,type:'text'
+        name:'currencyCode',label:'CurrencyCode',component:ReactSelectWrapper,type:'select'
        },
        {
-        name:'preferredPaymentMethods',label:'Preferred Payment Method',component:TextFieldInput,type:'text'
+        name:'preferredPaymentMethods',label:'Preferred Payment Method',component:ReactSelectWrapper,type:'select'
        },
        {
         name:'uploadVoidCheck',label:'Upload Void Check',component:FileUpload,type:'fileInput'
