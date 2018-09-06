@@ -81,6 +81,12 @@ class CustomerBankingInfo extends Component {
                  </div>
              )
             }
+            if(info.type=='fileInput')
+            {
+                return (
+                    <Field name={info.name} component={info.component}/>
+                )
+            }
             return (
             <div className="col-md-4 col-sm-6 form-d form-input">
                 <Field name={info.name} label={info.label} component={info.component} />
