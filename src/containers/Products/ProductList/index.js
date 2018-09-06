@@ -87,11 +87,11 @@ class ProductsContainer extends React.Component {
         </ul>
         <div className="row">
           <div className="col-sm-3">
-            <SideBar filteredDataSet={filteredDataSet} types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />
+            {filteredDataSet.filterObj && <SideBar filteredDataSet={filteredDataSet} types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />}
           </div>
           <div className="col-sm-9">
-            {filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
-            {!filteredDataSet.filteredData.length &&
+            {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
+            {filteredDataSet.filteredData && !filteredDataSet.filteredData.length &&
               <NoProduct />
             }
             {openItemInfo && <Dialog

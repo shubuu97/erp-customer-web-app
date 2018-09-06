@@ -7,10 +7,12 @@ import userAvatar from './../assets/images/usericon2.png';
 import search from './../assets/images/search.png';
 import bell from './../assets/images/bell-icon.png';
 import cart from './../assets/images/cart-icon.png';
+import offers from './../assets/images/offers.png';
 import { Redirect } from 'react-router-dom';
 import { logout } from '../action/loginAction';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import menuicon from './../assets/images/menu.png';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import MiniCart from '../containers/Products/Cart/MiniCart/';
 import { fetchCategory } from '../action/category';
@@ -42,7 +44,8 @@ class MainLayout extends Component {
     this.state = {
       showMenu: false,
       anchorEl: null,
-      showMiniCart: false
+      showMiniCart: false,
+      isMenuOpen: false
     };
   }
   componentDidMount() {
@@ -111,17 +114,21 @@ class MainLayout extends Component {
   handleOrders = () => {
     this.props.history.push('/orders')
   }
+  toggleMenu = () => {
+    console.log('toggleMenu', this.state.isMenuOpen);
+    this.setState({isMenuOpen : !this.state.isMenuOpen});
+  }
   render() {
     console.log('this is props', this.props);
     const { classes, theme, userInfo, cartData, categories, selectedCategory } = this.props;
-    const { anchorEl } = this.state;
+    const { anchorEl, isMenuOpen } = this.state;
     return (
       <div className="main-container">
         {/* {/ <HeaderLayout /> /} */}
         <div className="content">
           <div className="col-sm-12 app-header">
-            <div className="header-top" style={{ position: 'relative' }}>
-              <div className="user-avatar" onClick={this.handleMenu}>
+            <div className="header-top">
+              <div className="user-avatar hidden-xs" onClick={this.handleMenu}>
                 <img src={userAvatar} />
                 <span className="user-name">Hey, {userInfo.firstName || 'Guest'}</span>
                 <i className="fa fa-caret-down"></i>
@@ -142,21 +149,24 @@ class MainLayout extends Component {
               </Menu>
             </div>
             <div className="header-nav">
+              <span className="visible-xs menu" onClick={this.toggleMenu}><img src={menuicon} /></span>
               <div className="main-logo">
                 <img src={logo} />
               </div>
-              <NavBar selectedCategory={selectedCategory} handleClick={this.goToProductList} categories={categories.itemCategories} />
-
+              {isMenuOpen && <div className="backdrop visible-xs" onClick={this.toggleMenu}></div>}
+              <NavBar selectedCategory={selectedCategory} userInfo={userInfo} isMenuOpen={isMenuOpen} handleClick={this.goToProductList} categories={categories.itemCategories} />
               <ul className="navRight">
-                <li><span className="rel"><img src={search} /></span></li>
+                <li className="hidden-xs"><span className="rel"><img src={search} /></span></li>
+                <li><span className="rel offers-icon"><img src={offers} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
                 <li style={this.props.customerStatus != 'Approved' ? { pointerEvents: 'none', opacity: 0.6 } : null} onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
                 <div>
                   {this.state.showMiniCart ? <MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props} /> : null}
                 </div>
               </ul>
-
-
+              <div className="mobile-search visible-xs">
+                <input className="form-control" placeholder="Search" />
+              </div>
             </div>
             {this.props.message.text && <Snackbar
               anchorOrigin={{
