@@ -7,6 +7,7 @@ import userAvatar from './../assets/images/usericon2.png';
 import search from './../assets/images/search.png';
 import bell from './../assets/images/bell-icon.png';
 import cart from './../assets/images/cart-icon.png';
+import offers from './../assets/images/offers.png';
 import { Redirect } from 'react-router-dom';
 import { logout } from '../action/loginAction';
 import Menu from '@material-ui/core/Menu';
@@ -141,6 +142,7 @@ class MainLayout extends Component {
 
               <ul className="navRight">
                 <li><span className="rel"><img src={search} /></span></li>
+                <li><span className="rel offers-icon"><img src={offers} /></span></li>
                 <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
                 <li style={this.props.customerStatus != 'Approved' ? { pointerEvents: 'none', opacity: 0.6 } : null} onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
                 <div>

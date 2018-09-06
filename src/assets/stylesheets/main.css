@@ -1936,8 +1936,8 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	line-height: 18px;
-	padding: 15px 7px;
-	font-weight: 500;
+	padding: 15px 6px;
+	font-weight: 400;
 	cursor: pointer;
 	transition: ease-in-out all 0.6s;
 	-webkit-transition: ease-in-out all 0.6s;
@@ -1964,7 +1964,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	padding-right: 12px;
 	padding-left: 12px;
 }
-.navRight li:last-child, .navRight li:nth-child(3) {
+.navRight li:last-child, .navRight li:nth-child(4) {
 	border-right: none;
 	padding-right: none;
 }
@@ -1974,6 +1974,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .rel img {
 	width: 20px;
+}
+.rel.offers-icon img{
+    width:25px;
 }
 .bell-round {
 	display: inline-block;
