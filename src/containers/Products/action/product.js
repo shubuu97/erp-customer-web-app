@@ -1,5 +1,6 @@
 import * as INVENTORY_CONSTANTS from '../constants/product';
 import dynamicActionWrapper from '../../../utills/actionHelpers'
+import {filter} from 'lodash';
 
 export const requestInventoryData = subreddit => ({
   type: INVENTORY_CONSTANTS.REQUEST_INVENTORY_ITEM,
@@ -33,8 +34,8 @@ export const fetchInventoryItemData = (url, subreddit) => dispatch =>
   }));
 
 export const setSelectedProduct = (data) => ({
-    type: INVENTORY_CONSTANTS.SET_SELECTED_PRODUCT,
-    data: data,
+  type: INVENTORY_CONSTANTS.SET_SELECTED_PRODUCT,
+  data: data,
 });
 
 export const setSelectedCategoryType = (data) => ({
@@ -46,4 +47,38 @@ export const addToCart = (data) => ({
   type: INVENTORY_CONSTANTS.ADD_TO_CART,
   data: data,
 });
+
+export const applyFilter = (list, filterObj) => {
+  let dataObj = {
+    filteredData : [],
+    filterObj: filterObj
+  }
+  if (filterObj.lessThan50) {
+    filter(list, (item) => item.price < 50).map((product) => {
+      dataObj.filteredData.push(product);
+    });
+  }
+  if (filterObj.from50To100) {
+    filter(list, (item) => (item.price > 50 && item.price < 100)).map((product) => {
+      dataObj.filteredData.push(product);
+    });
+  }
+  if (filterObj.from100To200) {
+    filter(list, (item) => (item.price > 100 && item.price < 200)).map((product) => {
+      dataObj.filteredData.push(product);
+    });
+  }
+  if (filterObj.above200) {
+    filter(list, (item) => (item.price > 200)).map((product) => {
+      dataObj.filteredData.push(product);
+    });
+  }
+  if (!filterObj.lessThan50 && !filterObj.from50To100 && !filterObj.from100To200 && !filterObj.above200) {
+    dataObj.filteredData = list;
+  }
+  return {
+    type: INVENTORY_CONSTANTS.APPLY_FILTER,
+    data: dataObj,
+  }
+};
 
