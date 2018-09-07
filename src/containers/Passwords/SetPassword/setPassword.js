@@ -79,6 +79,9 @@ class SetPassword extends Component {
     //   console.log(error);
     // })
   }
+  handleSubmitEmail = (formData) => {
+    console.log(formData);
+  }
 
   render() {
     const { handleSubmit, classes, theme } = this.props;
@@ -106,17 +109,19 @@ class SetPassword extends Component {
             <div className="login-logo">
               <img src={logologin} />
             </div>
-            <div className="row">
-              <div className="col-sm-12">
-                <h2 className="forgot-text">Confirmation email</h2>
+            <form onSubmit={handleSubmit(this.handleSubmitEmail)}>
+              <div className="row">
+                <div className="col-sm-12">
+                  <h2 className="forgot-text">Confirmation email</h2>
+                </div>
+                <div className="form-d col-sm-12">
+                  <Field name={'email'} label={'Email'} placeholder={'Email'} component={TextFieldInput} />
+                </div>
               </div>
-              <div className="form-d col-sm-12">
-                <Field name={'email'} label={'Email'} placeholder={'Email'} component={TextFieldInput} />
+              <div className="btn-parent-full">
+                <Button type='submit' variant="contained" color='primary' label="Submit">Confirm</Button>
               </div>
-            </div>
-            <div className="btn-parent-full">
-              <Button type='submit' variant="contained" color='primary' label="Submit">Confirm</Button>
-            </div>
+            </form>
           </div>
         }
         {this.state.errorMessage && <Snackbar
