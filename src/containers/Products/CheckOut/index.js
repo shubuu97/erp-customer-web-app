@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import { postCheckoutData } from '../action/checkout';
 import { CHECKOUT_URL } from '../constants/checkout';
 import { fetchLicenseDetailsData } from '../../../action/getLicenseInfo';
+import {fetchBankingDetailsData} from '../../../action/getBankingDetails';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
-
-const paymentTerms = [{ label: 'Current', value: 'current' },
-{ label: 'Net 30', value: 'NET30' },
-{ label: 'Net 45', value: 'NET45' }];
+import _get from 'lodash/get';
+import {find} from 'lodash';
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -22,7 +21,8 @@ class CheckOut extends Component {
 			toggle: false,
 			paymentTerm: {},
 			termCondition: false,
-			showError: false
+			showError: false,
+			paymentTerms:[]
 		};
 	}
 	componentDidMount() {
@@ -34,10 +34,25 @@ class CheckOut extends Component {
 		});
 		let orderTotal = subTotal + shipping + tax;
 		this.setState({ subTotal, orderTotal });
-		this.props.dispatch(fetchLicenseDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/companyinfo?_id=${localStorage.getItem("id")}`));
 		let address = {};
-		address = this.props.role == 'customer' ? this.props.userInfo.addressInfo[0] : this.props.companyinfo.companyInfo.companyAddressInfo;
-		this.setState({ address });
+		if(this.props.role == 'customer') {
+			address = this.props.userInfo.addressInfo[0];
+			this.setState({ address });
+		} else {
+			this.props.dispatch(fetchLicenseDetailsData(`${this.props.urlLinks.getCompanyInfo.href}?_id=${localStorage.getItem("id")}`)).then((companyInfoData)=>{
+				console.log("companyInfoData in did mount",companyInfoData);
+				address = _get(companyInfoData, 'data.companyInfo.companyAddressInfo', {});
+				this.setState({ address });
+			});
+		}
+		this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`)).then((bankingData)=>{
+			console.log("bankingData in did mount",bankingData);
+			let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
+			let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
+			let paymentTerms = [{ label: 'Current', value: 'current' }];
+			paymentTerms.push(selectedPaymentTerms);
+			this.setState({paymentTerms});
+		});
 		document.body.classList.add('checkout-page')
 	}
 	componentWillUnmount() {
@@ -114,7 +129,7 @@ class CheckOut extends Component {
 	}
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
-		const { subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError } = this.state;
+		const { subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms } = this.state;
 		const { companyinfo, userInfo } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
@@ -129,8 +144,6 @@ class CheckOut extends Component {
 							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address} />
 						</div>
 					</div>
-
-
 				</div>
 				<OrderDetails termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
 				paymentTerms={paymentTerms} paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
@@ -147,6 +160,7 @@ const mapStateToPtops = (state) => {
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
 	let role = state.basicInfodata && state.basicInfodata.role;
 	let isLoading= state.orderData.isFetching;
-	return { cartProductList, companyinfo, userInfo, role, userBasicInfo, isLoading };
+	let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
+	return { cartProductList, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks };
 }
 export default connect(mapStateToPtops)(CheckOut);
