@@ -6,6 +6,10 @@ import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import BankDetailFields from '../../../components/common/BankDetails/bankDetails'
 import withLoader from '../../LoaderHoc';
+import Dropzone from  'react-dropzone';
+import {uploadVoidCheck} from '../../../action/uploadVoidCheck';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+import {showMessage} from '../../../action/common.js'
 
 
 
@@ -55,6 +59,46 @@ let BankDetailComponent = (props)=>
 
 
 class BankingInfo  extends Component {
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            acceptedFile:[]
+        }
+    }
+
+    dropHandler = (accept,reject)=>
+    {
+    if(accept.length>0)
+    {    
+     this.setState({acceptedFile:accept});
+     let formData = new FormData();
+formData.append('file',accept[0])
+formData.append('mediaType','customer')
+formData.append('mediaTypeId','1234567')
+this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`,formData,'fileUpload'))
+.then((data)=>
+{
+    debugger;
+    console.log(data,"data")
+    this.props.autofill('bankingDetailInfo.uploadVoidCheck',data.message.relativeURL)
+    this.props.dispatch(showMessage({text:'Upload success',isSuccess:true}));
+    setTimeout(()=>{
+        this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+    },6000)
+})
+.catch((error)=>
+{
+    this.props.dispatch(showMessage({text:error.message,isSuccess:true}));
+    setTimeout(()=>{
+        this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+    },6000)
+})
+
+    }
+    }
     render() {
         console.log(this.props,'props is here')
         return (
@@ -87,7 +131,17 @@ class BankingInfo  extends Component {
                         <Field name='preferredPaymentMethods' placeholder='Preferred Payment Method *' options={this.props.paymentMethods} component={ReactSelectWrapper} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='uploadVoidCheck' label='Upload Void Check' component={TextFieldInput} />
+                    <Field
+    component={TextFieldInput}
+    name="uploadVoidCheck"
+    type="hidden"
+    style={{ height: 0 }}
+    
+/>
+<Dropzone
+onDrop={this.dropHandler}>
+<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Try dropping some files here, or click to select files to upload.</div>}</div>
+</Dropzone>
                     </div>
                 </div> 
             </div>

@@ -1,4 +1,4 @@
-import BankingInfoComponent from '../../../components/CustomerProfile/BankingInfo';
+import BankingInfoComponent from '../../../components/CompanyProfile/BankingInfo';
 
 import React,{Component} from 'react';
 
@@ -13,13 +13,14 @@ import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import {getApprovalStatus} from '../../../action/submitForApproval';
+import _get from 'lodash/get'
 class CustomerBankingDetails extends Component
 {
-    // componentDidMount()
-    // {
+    componentDidMount()
+    {
     
-    //     this.props.dispatch(fetchBankingDetailsData(`${}/customer/bankingdetails?_id=5b73115a03a8187d56e12ae6`));
-    // }
+        this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingInfoDetailsData.href}?_id=${localStorage.getItem("id")}`));
+    }
     bankingDataSaveHandler=(values)=>
     {
   
@@ -28,7 +29,7 @@ class CustomerBankingDetails extends Component
         ...values,
         customerId:localStorage.getItem('id')
     }
-     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/customer/bankingdetails`)).then((data)=>{
+     this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`)).then((data)=>{
         if(data.data.message) {
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
@@ -71,7 +72,7 @@ class CustomerBankingDetails extends Component
         return(
             <div>
                  <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}>
-            <BankingInfoComponent/>
+            <BankingInfoComponent {...this.props}/>
             <div className="form-btn-group">
                 <Button variant="contained" type='submit' color='primary'>Save</Button> 
                 <Button  variant="contained" disabled={this.props.invalid||!this.props.anyTouched} onClick={this.submitForApproval}  color='primary' >Submit for approval</Button>
@@ -91,12 +92,13 @@ const mapStateToProps=(state)=>
 {
     let initialValues = state.bankDetailsData.lookUpData.data
     let isLoading= state.bankDetailsData.isFetching
-    return {initialValues,isLoading}
+    let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
+    let paymentMethods   = _get(state,"bankDetailsData.lookUpData.data.paymentMethods.data",[{label:'',value:''}])
+    let paymentTerms = _get(state,"bankDetailsData.lookUpData.data.paymentTerms.data",[{label:'',value:''}])
+    let currencyCodes   = _get(state,"bankDetailsData.lookUpData.data.currencyCodes.data",[{label:'',value:''}])
+    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods}
 
 }
 
 
-export default connect(mapStateToProps)(withLoader(CustomerBankingDetails))
-
-
-      
+export default connect(mapStateToProps)(CustomerBankingDetails)
