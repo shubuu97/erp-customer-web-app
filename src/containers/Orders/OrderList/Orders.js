@@ -1,7 +1,7 @@
 import React from 'react';
 import Order from './order'
 import OrderList from '.';
- 
+ import _get from 'lodash/get';
 export default class Orders extends React.Component {
   constructor (props) {
     super(props);
@@ -26,6 +26,8 @@ export default class Orders extends React.Component {
        placedDate={order.orderDate}
       id={order.id}
       handleTrack={this.props.handleTrack}
+      trackingNumber={_get(order,'trackingNumber','')}
+      shipper={_get(order,'shipper.name','')}
       saleProducts={order.saleProducts}
       status={order.status}
       order={order}  />)
