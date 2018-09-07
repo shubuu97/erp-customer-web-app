@@ -88,7 +88,6 @@ formData.append('mediaTypeId','1234567')
 this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`,formData,'fileUpload'))
 .then((data)=>
 {
-    debugger;
     console.log(data,"data")
     this.props.autofill('bankingDetailInfo.uploadVoidCheck',data.message.relativeURL)
     this.props.dispatch(showMessage({text:'Upload success',isSuccess:true}));

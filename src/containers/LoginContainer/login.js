@@ -112,7 +112,7 @@ class Login extends Component {
     var temp2 = this.props.dispatch(postRegisterTokenData({ roleName: type }, '', `${APPLICATION_BFF_URL}/iam/signup/token`)).then((data) => {
       localStorage.setItem('authToken', data.data.authToken);
       if (type === 'Customer') {
-        this.props.history.push('/customerRegister')
+        this.props.history.push('/customerRegister');
       } else {
         this.props.history.push('/companyRegister');
       }

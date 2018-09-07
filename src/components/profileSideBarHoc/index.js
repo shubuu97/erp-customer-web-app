@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { debug } from 'util';
 
 const profileSideBar = (WrappedComponent) => {
-    return class Enhancer extends WrappedComponent {
+
+    return class Enhancer extends Component {
+   constructor(props)
+   {
+     super(props)
+     this.state = {
+      activeLi:1
+     }
+   }
+      handleMenuClick = () => {
+        localStorage.getItem('role') == 'customer' ? this.props.history.push('/customerProfile') : this.props.history.push('/companyProfile');
+      }
+      handleClick=(activeLi)=>
+      {
+        this.setState({activeLi});
+        this.props.history.push('/orders')
+      }
         render() {
             return (
             <div className="container">
@@ -10,12 +27,12 @@ const profileSideBar = (WrappedComponent) => {
             <div className="col-sm-3">
               <div className="profile-sidebar">
                 <ul>
-                  <li className="active">My Profile</li>
-                  <li>My Orders</li>
-                  <li>Address Book</li>
-                  <li>My Offers</li>
-                  <li>Notifications</li>
-                  <li>Logout</li>
+                  <li onClick={()=>this.handleMenuClick()} className={this.state.activeLi==1?`active`:null}>My Profile</li>
+                  <li className={this.state.activeLi==2?`active`:null}  onClick={()=>this.handleClick(2)}>My Orders</li>
+                  <li className={this.state.activeLi==3?`active`:null}>Address Book</li>
+                  <li className={this.state.activeLi==4?`active`:null}>My Offers</li>
+                  <li className={this.state.activeLi==5?`active`:null}>Notifications</li>
+                  <li className={this.state.activeLi==6?`active`:null}>Logout</li>
                 </ul>
               </div>
               </div>
