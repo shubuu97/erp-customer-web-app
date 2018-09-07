@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 
 export default (props) => {
   return (
-   <div className="cart-total-container col-sm-3">
+   <div className="cart-total-container col-md-3">
     <div className="cart-total-title">
         Summary
     </div>

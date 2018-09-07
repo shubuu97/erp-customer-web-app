@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as OPTIONS from '../constants/OrderList';
 import {postData} from '../../../action/common/post';
 import OrderDetails from './Orders';
+import profileSideBar from '../../../components/profileSideBarHoc';
 
 class OrderContainer extends React.Component {
   constructor (props) {
@@ -33,7 +34,7 @@ class OrderContainer extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="col-sm-9">
       <OrderDetails
       orderListData={this.props.orderListData.data}
       handleTrack={this.handleTrack} />
@@ -46,4 +47,4 @@ function mapStateToProps(state) {
   return {orderListData:state.OrderListData.orderListData};
 }
 
-export default connect(mapStateToProps)(OrderContainer)
+export default connect(mapStateToProps)(profileSideBar(OrderContainer))

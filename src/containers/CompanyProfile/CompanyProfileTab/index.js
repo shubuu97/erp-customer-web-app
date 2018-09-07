@@ -9,6 +9,7 @@ import AccountInfo from '../AccountInfo';
 import LicenceInfo from '../LicenceInfo';
 import SiteInfo from '../SiteInfo';
 import BankingInfo from '../BankingInfo';
+import profileSideBar from '../../../components/profileSideBarHoc';
 
 
 function TabContainer(props) {
@@ -56,7 +57,7 @@ class CompanyProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className="container">
+      <div className="col-sm-9">
         <div className={classes.root + ' c-tabs'}>
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD'}} TabIndicatorProps={{color:'transparent'}}>
               <Tab className={value==0?classes.tabActive:null} label="Account" />
@@ -83,5 +84,5 @@ CompanyProfileTab = withStyles(styles)(CompanyProfileTab);
 
 
 
-export default CompanyProfileTab
+export default profileSideBar(CompanyProfileTab);
 

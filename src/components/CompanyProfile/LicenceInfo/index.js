@@ -84,23 +84,30 @@ class LicenceInfo extends Component {
 
 
                 <div className="col-sm-12">
-                <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field props={{disabled:true}} name={'companyName'}  label={'Company Name'} component={TextFieldInput} />
-                            </div>
+                <div className="row">
+                <div className="form-d col-md-4 form-input">
+                    <Field props={{disabled:true}} name={'companyName'}  label={'Company Name'} component={TextFieldInput} />
+                </div>
+
                     <FormSection name="companyInfo">
-                        <div className="row d-flex">
+                    <div className="col-md-8 form-d">
                         
-                            <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
+                            <div className="row d-flex">                        
+                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                    <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
+                                </div>
+                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                    <Field options={this.props.companyCategories} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
+                                </div>
+                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                    <Field name={'licenseNumber'} label={'License Number *'} component={TextFieldInput} />
+                                </div>
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={this.props.companyCategories} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
-                            </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name={'licenseNumber'} label={'License Number *'} component={TextFieldInput} />
-                            </div>
-                        </div>
-                    
+                        
+                    </div>
+                        
+                    </FormSection>
+                    </div>
                     <FormSection name="companyAddressInfo">
                         <div className="row">
                             <div className="col-sm-12">
@@ -166,7 +173,7 @@ class LicenceInfo extends Component {
                 
                     <FieldArray name="emailAddresses" component={emailField} />
                       
-                    </FormSection>
+                    
 
 
                 </div>
