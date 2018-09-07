@@ -6,9 +6,9 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button  from '@material-ui/core/Button';
-import {TextFieldInput} from '../../components/common/MaterialUiComponents'
+import {TextFieldInput} from '../../../components/common/MaterialUiComponents'
 import {reduxForm} from 'redux-form';
-import logologin from '../../assets/images/logo-main.png';
+import logologin from '../../../assets/images/logo-main.png';
 
 
 class ForgotPassword extends Component {
