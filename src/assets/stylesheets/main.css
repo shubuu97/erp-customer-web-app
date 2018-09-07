@@ -2536,6 +2536,30 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     color:#FFF;
 }
 /* ==================================== PROFILE SIDE BAR CSS END ====================================== */
+.form-select-label > div {
+	margin-top: 4px;
+}
+.form-select-label label {
+	position: absolute;
+	font-size: 11px;
+	left: 17px;
+	top: -4px;
+}
+.form-d .dropzone {
+	cursor: pointer;
+	border: solid 2px #0E8C4F;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	color: #0E8C4F;
+	font-weight: 500;
+	min-height: 100px;
+	padding: 15px;
+}
+.form-d .dropzone div{
+	font-size: 16px;
+}
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
