@@ -22,7 +22,7 @@ class CheckOut extends Component {
 			paymentTerm: '',
 			termCondition: false,
 			showError: false,
-			paymentTerms:[]
+			paymentTerms:[{ label: 'Current', value: 'current' }, { label: 'Net 45', value: 'NET45' }]
 		};
 	}
 	componentDidMount() {
@@ -45,14 +45,14 @@ class CheckOut extends Component {
 				this.setState({ address });
 			});
 		}
-		this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`)).then((bankingData)=>{
-			console.log("bankingData in did mount",bankingData);
-			let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
-			let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
-			let paymentTerms = [{ label: 'Current', value: 'current' }];
-			paymentTerms.push(selectedPaymentTerms);
-			this.setState({paymentTerms});
-		});
+		// this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`)).then((bankingData)=>{
+		// 	console.log("bankingData in did mount",bankingData);
+		// 	let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
+		// 	let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
+		// 	let paymentTerms = [{ label: 'Current', value: 'current' }];
+		// 	paymentTerms.push(selectedPaymentTerms);
+		// 	this.setState({paymentTerms});
+		// });
 		document.body.classList.add('checkout-page')
 	}
 	componentWillUnmount() {

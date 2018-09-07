@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { debug } from 'util';
 
 /** Render hijacking HOC for inducing loader */
 
@@ -7,8 +8,11 @@ const routerDeciderHoc = (WrappedComponent) => {
       
         render() {
             console.log("In the route decider", this.props.customerStatus);
-            localStorage.setItem('id',this.props.id)
-
+            localStorage.setItem('id',this.props.id);
+            if(this.props.role&&this.props.role=="customer")
+            localStorage.setItem('role','customer')
+            else
+            localStorage.setItem('role','company')
             switch (this.props.customerStatus) {
                 case 'In Approval':
                this.props.history.push('/approval')
@@ -17,9 +21,11 @@ const routerDeciderHoc = (WrappedComponent) => {
                 case 'New':
                 
                 if(this.props.role=='customer'){
+
                 this.props.history.push('/customerProfile')
                 return null}
                 else{
+
                 this.props.history.push('/companyProfile')
                 return null
                 }
