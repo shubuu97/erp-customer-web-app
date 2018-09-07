@@ -19,7 +19,7 @@ class CustomerBankingDetails extends Component
     componentDidMount()
     {
     
-        this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingInfoDetailsData.href}?_id=${localStorage.getItem("id")}`));
+        this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`));
     }
     bankingDataSaveHandler=(values)=>
     {
@@ -102,6 +102,3 @@ const mapStateToProps=(state)=>
 
 
 export default connect(mapStateToProps)(CustomerBankingDetails)
-
-
-      

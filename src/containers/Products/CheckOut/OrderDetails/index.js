@@ -37,7 +37,7 @@ export default (props) => {
       <div>
         <Select
           name={'payment-term'}
-          placeholder={'Payment Terms'}
+          placeholder='Payment Terms'
           value={props.paymentTerm}
           options={props.paymentTerms}
           onChange={props.paymentTermUpdate}

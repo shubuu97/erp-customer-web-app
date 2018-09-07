@@ -13,8 +13,16 @@ RFReactSelect.defaultProps = {
 export default function RFReactSelect({ input ,meta:{touched,error,pristine}, options, multi, className,placeholder}) {
   const { name, value, onBlur, onChange, onFocus } = input;
   const transformedValue = transformValue(value, options, multi);
+
   return (
-    [<Select
+
+    [
+    <label style={{    display: 'inline-block',
+      maxWidth: '100%',
+       marginB0ttom: '0px',
+      fontWeight: '000',
+      color: 'rgba(0, 0, 0, 0.38)'}}>{placeholder}</label>,
+    <Select
       valueKey="value"
       name={name}
       placeholder={placeholder}
