@@ -113,10 +113,10 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='creditLimit' label='Credit Limit' component={TextFieldInput} />
                     </div>   
-                    <div className="form-d col-md-4 col-sm-6 form-input">
+                    <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                         <Field name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
                     </div>
-                    <div className="form-d col-md-4 col-sm-6 form-input">
+                    <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                         <Field name='invoiceCurrencyCode' label='Invoice Currency *' placeholder='Currency Code' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
@@ -125,7 +125,7 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='currencyCode' label='CurrencyCode *' component={TextFieldInput} />
                     </div>   
-                    <div className="form-d col-md-4 col-sm-6 form-input">
+                    <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                         <Field name='preferredPaymentMethods' placeholder='Preferred Payment Method *' options={this.props.paymentMethods} component={ReactSelectWrapper} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
@@ -133,10 +133,10 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
     component={TextFieldInput}
     name="uploadVoidCheck"
     type="hidden"
-    style={{ height: 0 }}
+    style={{ height: '0', display:'none' }}
     
 />
-<Dropzone
+<Dropzone className="dropzone"
 onDrop={this.dropHandler}>
 <div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Upload Void check here</div>}</div>
 </Dropzone>
