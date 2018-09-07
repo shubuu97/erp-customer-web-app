@@ -1,4 +1,3 @@
-
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
@@ -112,6 +111,12 @@ let Site = (props) => {
                         </div>
 
                     </div>
+
+                    <FieldArray name={`${site}.siteLicense`} component={License} />
+                    <FieldArray name={`${site}.addressInfo`} component={Address} />
+
+
+
 
                     {(fields.length == 1 || (fields.get(index) && fields.get(index)._id)) ? null : <div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
 

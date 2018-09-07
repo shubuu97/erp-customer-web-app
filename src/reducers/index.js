@@ -18,8 +18,9 @@ import approvaldata from './approval';
 import categoryData from './category';
 import categoryTypeAndItems from './categoryTypeAndItems';
 import * as Log from '../constants/login';
-import OrderListData from '../containers/Orders/reducer/orderList'
-import TrackData from '../containers/Orders/reducer/TrackOrder'
+import OrderListData from '../containers/Orders/reducer/orderList';
+import TrackData from '../containers/Orders/reducer/TrackOrder';
+import  uploadVoidCheck from './checkUpload'
 let appReducer = combineReducers(
     {
         //reducer code will come here
@@ -42,7 +43,8 @@ let appReducer = combineReducers(
         categoryData,
         OrderListData,
         categoryTypeAndItems,
-        TrackData
+        TrackData,
+        uploadVoidCheck
     }
 );
 const rootReducer = (state, action) => {
