@@ -76,7 +76,7 @@ class CustomerRegistration extends Component
     if (err.message) {
       this.setState({ message: err.message, isSuccess: false });
       setTimeout(() => {
-        // this.setState({ message: '' });
+        this.setState({ message: '', isSuccess: false });
       }, 6000);
     }
   })

@@ -19,7 +19,7 @@ class CheckOut extends Component {
 			orderTotal: null,
 			address: {},
 			toggle: false,
-			paymentTerm: {},
+			paymentTerm: '',
 			termCondition: false,
 			showError: false,
 			paymentTerms:[]
