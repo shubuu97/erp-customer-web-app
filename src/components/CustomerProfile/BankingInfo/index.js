@@ -8,8 +8,16 @@ import Button from '@material-ui/core/Button';
 
 import MenuItem from 'material-ui/MenuItem';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
+<<<<<<< HEAD
+import Dropzone from  'react-dropzone';
+import {uploadVoidCheck} from '../../../action/uploadVoidCheck';
+import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
+import withLoader from '../../../components/LoaderHoc';
+import {showMessage} from '../../../action/common.js'
+=======
 import withLoader from '../../../components/LoaderHoc'
 
+>>>>>>> 5772432327f1ed24a932c39ae439dc0f26335426
 let prop={};
 prop.paymentTerms = [{label:'current',value:'current'},{label:'Net 30',value:'Net 30'},{label:'Net 45',value:'Net 45'}];
 prop.invoiceCurrencyCode=[{label:'INR',value:'INR'},{label:'USD',value:'USD'}]
@@ -61,10 +69,53 @@ let BankDetailComponent = (props)=>
                 <div className="form-btn-group"><Button variant="contained" color='primary' primary={true} onClick={() => fields.push()}>Add New</Button></div>
         </div>
     )
+    
 }
-
 class CustomerBankingInfo extends Component {
+
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            acceptedFile:[]
+        }
+    }
+
+    dropHandler = (accept,reject)=>
+    {
+    if(accept.length>0)
+    {    
+     this.setState({acceptedFile:accept});
+     let formData = new FormData();
+formData.append('file',accept[0])
+formData.append('mediaType','customer')
+formData.append('mediaTypeId','1234567')
+this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`,formData,'fileUpload'))
+.then((data)=>
+{
+    debugger;
+    console.log(data,"data")
+    this.props.autofill('bankingDetailInfo.uploadVoidCheck',data.message.relativeURL)
+    this.props.dispatch(showMessage({text:'Upload success',isSuccess:true}));
+    setTimeout(()=>{
+        this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+    },6000)
+})
+.catch((error)=>
+{
+    this.props.dispatch(showMessage({text:error.message,isSuccess:true}));
+    setTimeout(()=>{
+        this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+    },6000)
+})
+
+    }
+    }
         render() {
+
+            console.log(this.props,"props is here")
             return (
             <div className="row d-flex">
                 <h2 className="col-sm-12 box-title">Customer Banking Details</h2>
@@ -86,7 +137,19 @@ class CustomerBankingInfo extends Component {
             if(info.type=='fileInput')
             {
                 return (
-                    <Field name={info.name} component={info.component}/>
+    <div>
+                    <Field
+    component={TextFieldInput}
+    name="uploadVoidCheck"
+    type="hidden"
+    style={{ height: 0 }}
+    
+/>
+<Dropzone
+onDrop={this.dropHandler}>
+<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Try dropping some files here, or click to select files to upload.</div>}</div>
+</Dropzone>
+</div>
                 )
             }
             return (
@@ -108,4 +171,8 @@ class CustomerBankingInfo extends Component {
 
         }
 }
+<<<<<<< HEAD
+export default  withLoader(CustomerBankingInfo)
+=======
 export default withLoader(CustomerBankingInfo)
+>>>>>>> 5772432327f1ed24a932c39ae439dc0f26335426

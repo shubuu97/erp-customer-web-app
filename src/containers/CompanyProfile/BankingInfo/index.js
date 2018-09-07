@@ -111,7 +111,7 @@ const mapStateToProps=(state)=>
 }
 
 
-export default connect(mapStateToProps)((BankingInfo))
+export default connect(mapStateToProps)(BankingInfo)
 
 
       
