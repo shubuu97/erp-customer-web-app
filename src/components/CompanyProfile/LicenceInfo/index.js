@@ -93,10 +93,10 @@ class LicenceInfo extends Component {
                     <div className="col-md-8 form-d">
                         
                             <div className="row d-flex">                        
-                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                                     <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
                                 </div>
-                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                                     <Field options={this.props.companyCategories} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
                                 </div>
                                 <div className="form-d col-md-4 col-sm-6 form-input">

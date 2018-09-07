@@ -103,7 +103,7 @@ return (
 <div className="form-d col-md-4 col-sm-6 form-input">
 <Field name={`${site}.siteName`} component={TextFieldInput} label="Site Name *" />
 </div>
-<div className="form-d col-md-4 col-sm-6 form-input">
+<div className="form-d col-md-4 col-sm-6 form-input form-select-label">
 <Field name={`${site}.licenseType`} options={props.licenseTypes} component={ReactSelectWrapper} placeholder='License Type *' />
 </div>
 <div className="form-d col-md-4 col-sm-6 form-btn-group">
