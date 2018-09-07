@@ -14,7 +14,7 @@ var schema = yup.object().shape(
             category: yup.string().required(),
             companyAddressInfo: yup.object().shape({
                 companyAddress: yup.string().required(),
-                zipCode: yup.number().min(4).required(),
+                zipCode: yup.number().min(3).required(),
                 country: yup.string().required(),
                 state: yup.string().required(),
                 city: yup.string().required()
@@ -46,7 +46,9 @@ const asyncValidate = values => {
                 let expandObj = {}
                 errors.inner.forEach(error => {
                     let messageArr = error.message.split('.');
-                    let errorMsg = messageArr[messageArr.length -1]
+                    let errorMsg = messageArr[messageArr.length -1];
+                    if(errorMsg=='')
+                    errorMsg = messageArr[messageArr.length-2];
                     let result = errorMsg.replace( /([A-Z])/g, " $1" );
                     let finalResult = result.charAt(0).toUpperCase() + result.slice(1);
                      expandObj[error.path] = finalResult;
