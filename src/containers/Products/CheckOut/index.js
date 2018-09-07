@@ -122,7 +122,7 @@ class CheckOut extends Component {
 				<div>
 					<h2 className="cart-heading">Checkout</h2>
 				</div>
-				<div className="col-sm-9 cart-table-parent">
+				<div className="col-md-9 cart-table-parent">
 					<div className="address-order-details">
 						<div className="address-container">
 							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address} />

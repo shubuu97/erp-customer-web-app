@@ -1343,12 +1343,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	flex: 0 0 100%;
 	-ms-flex-pack: justify;
 	justify-content: flex-start;
-	-ms-flex-pack: center;
-	-ms-flex-align: center;
-	align-items: center;
+	align-items: flex-end;
 	margin: auto;
-    max-width: 1200px;
-    flex-wrap: wrap;
+	max-width: 1200px;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-top: -30px;
 }
 .main-logo {
 	width: 110px;
@@ -1395,7 +1395,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	line-height: 18px;
-	padding: 15px 20px;
+	padding: 5px 20px;
 	font-weight: 500;
 	cursor: pointer;
 	transition: ease-in-out all 0.6s;
@@ -1409,7 +1409,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .navRight {
 	padding: 0;
-	margin: 0 0 0 auto;
+	margin: 0 0 5px auto;
 	-ms-flex-pack: center;
 	justify-content: center;
 	max-height: 43px;
@@ -1580,6 +1580,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .table-product-detail tbody tr:first-child td {
 	padding-top: 20px !important;
+	min-width: 100px;
 }
 .c-tabs header {
 	box-shadow: none;
@@ -1598,9 +1599,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
 
-.detailsContent{
-    display: flex;
-    flex-direction: row;
+.detailsContent {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 .imageContent {
 	display: -ms-flexbox;
@@ -1817,9 +1821,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     min-width: 200px;
 }
 .row-quantity-item {
-	padding: 0;
+	padding: 0 10px;
 	border: 1px solid #bbbbbb;
-	width: 34px;
+	width: auto;
 	height: 34px;
 	text-align: center;
 	line-height: 32px;
@@ -2502,12 +2506,36 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-size: 1.4rem;
 	font-weight: 500;
 }
+.ot-button button {
+	margin-right: 10px;
+}
 /* ==================================== TRACK ORDER PAGE CSS END ====================================== */
-.right-content {
+.main-content {
 	float: left;
 	width: 100%;
 	padding: 20px 0;
 }
+.col-sm-12, .col-md-12 {
+	width: 100%;
+}
+/* ==================================== PROFILE SIDE BAR CSS START ====================================== */
+.profile-sidebar ul {
+	margin: 0;
+	padding: 0;
+}
+.profile-sidebar ul li {
+	display: block;
+	padding: 20px;
+	background: #ececec;
+	margin-bottom: 1px;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.profile-sidebar ul li:hover, .profile-sidebar ul li.active {
+    background: #0e8c4f;
+    color:#FFF;
+}
+/* ==================================== PROFILE SIDE BAR CSS END ====================================== */
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
@@ -2693,7 +2721,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         font-size: 1.3rem;
     }
     .app-navbar li {
-        padding: 15px 8px;
+        padding: 5px 8px;
         font-weight: 400;
     }
     .navRight li {
@@ -2711,6 +2739,16 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .user-name {
         font-size: 1.1em;
+    }
+    .cart-item-button {
+        padding: 10px 0;
+    }
+    .add-cart-button {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+    .address-detail {
+        width: 35%;
     }
 }
 @media (max-width:991px){
@@ -2745,9 +2783,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .panel-heading, .react-bs-table-container {
         padding: 20px;
     }
-    ul.breadcrumb li {
-        font-size:1.6rem;
-    }
     .slide-panel {
         margin-left: 25%;
         padding: 20px;
@@ -2760,9 +2795,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         background-size: auto 70%;
         background-position: right bottom;
     }
-    .header-top, .header-nav {
+    .header-top {
         max-width: 750px;
         position: relative;
+    }
+    .header-nav {
+        max-width: 750px;
+        position: relative;
+        margin-top: 0;
+        align-items: center;
     }
     .app-header {
         border-top: solid 4px #0e8c4f;
@@ -2785,6 +2826,30 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .main-logo {
         width: 76px;
+    }
+    .p-name {
+        font-size: 34px;
+    }
+    .ic {
+        font-size: 14px;
+    }
+    .p-price {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    .wq-bar label {
+        font-size: 14px;
+    }
+    .cart-table-parent {
+        padding: 0 0 30px;
+    }
+    .cart-total-container {
+        float: none;
+        padding: 0 15px;
+        max-width: 300px;
+        width: 100%;
+        margin: auto;
     }
 }
 @media(max-width:799px){
@@ -3071,6 +3136,52 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	Label the data
 	*/
     #no-more-tables td:before { content: attr(data-title); }
+
+    .cart-table {
+        display: block;
+        border-right: solid 1px #DDDD;
+    }
+    .cart-table-head {
+        display: none;
+    }
+    .row-container {
+        display: block;
+    }
+    .row-product, .row-price, .row-quantity, .row-total {
+        padding: 10px 10px 10px 130px;
+        display: block;
+        position: relative;
+    }
+    .row-product::before, .row-price::before, .row-quantity::before, .row-total::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120px;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        line-height: 38px;
+        border-right: solid 1px #ddd;
+        bottom: 0;
+        content: attr(data-title);
+        padding-left: 10px;
+    }
+    .row-name-code, .row-product-img {
+        float: none;
+    }
+    .row-quantity .d-flex {
+        margin-top: 0;
+    }
+    .row-name-code h4 {
+        margin-top: 15px;
+    }
+    .row-price h4, .row-total h4 {
+        margin: 0;
+    }
+    .cart-heading {
+        margin-bottom: 15px;
+        font-size: 26px;
+    }
     
     /* ============================= */
     .css-sourceMap-modules-importLoaders-1-localIdentName-ReactDrawer__drawer-right___h_uSC-sass {
@@ -3130,12 +3241,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         width:30px;
     }
     .table-responsive {
-        overflow-y: auto;
-        height: auto;
-    }
-    .table-responsive-finance {
-        overflow-y: auto;
-        /* height: 50px; */
+        border:none;
     }
     #menu-bar {
         height: calc(100% - 50px);
@@ -3297,6 +3403,27 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         background: #0E8C4D;
         border-bottom-color: #06713d;
     }
+    .imageContent {
+        flex: 0 0 100%;
+        padding-right: 0;
+    }
+    .descriptionContent {
+        padding-left: 0;
+        padding-top: 20px;
+        flex: 0 0 100%;
+    }
+    .row-quantity button {
+        width: 20px;
+        height: 30px;
+    }
+    .row-quantity-item {
+        padding: 0 5px;
+        height: 30px;
+        line-height: 28px;
+    }
+    .address-detail {
+        width: 45%;
+    }
 }
 @media (min-width:480px) and (max-width:767px){
     .form-d {
@@ -3343,9 +3470,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .tab-content {
         padding: 10px;
         border:1px solid #00598d;
-    }
-    ul.breadcrumb li {
-        font-size:1.5rem;
     }
     .panel-info .master-search.panel-title {
         top: -36px;
@@ -3413,6 +3537,27 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .login-container.register .login {
         height: auto;
         position: relative;
+    }
+    .subImages img {
+        width: 40px;
+        height: 40px;
+        margin: 0px 2px;
+        padding: 3px;
+    }
+    .dialogbox-ui h2.p-name {
+        font-size: 26px;
+    }
+    .p-price {
+        font-size: 22px;
+    }
+    .dialogbox-ui > div:nth-child(2) {
+        margin: 20px;
+    }
+    .p-name {
+        font-size: 30px;
+    }
+    .address-detail {
+        width: 80%;
     }
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
