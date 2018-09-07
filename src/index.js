@@ -132,7 +132,7 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/track" component = {TrackOrder}/>
 <RouterWithMainLayout layout={MainLayout} path="/reset" component = {ResetPassword}/>
 <Route exact path="/forgot" component={ForgotPassword} />
-<Route exact path="/set" component={SetPassword} />
+<Route exact path="/confirmation" component={SetPassword} />
 
 
 
