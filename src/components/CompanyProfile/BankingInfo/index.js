@@ -48,7 +48,7 @@ let BankDetailComponent = (props)=>
                 {(fields.length == 1||(fields.get(index)&&fields.get(index)._id)) ?null:<div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
         </div>
         </div>))}   
-        <div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
+        <div className="form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
         </div>
     )
 }
