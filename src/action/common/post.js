@@ -31,11 +31,11 @@ export  const receiveError = (subreddit, err, errCode, reject,constants) => {
   };
 
 
-export const postData = (url, data,subreddit,constants) => dispatch => {
+export const postData = (url, data,subreddit,constants, method) => dispatch => {
     return new Promise((resolve, reject) => {
     dispatch(dynamicActionWrapper({
         path: url,
-        method: 'post',
+        method: method || 'post',
         body:data,
         initCb: request,
         successCb: receive,
