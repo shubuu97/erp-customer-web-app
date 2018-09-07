@@ -113,12 +113,6 @@ let Site = (props) => {
 
                     </div>
 
-                    <FieldArray name={`${site}.siteLicense`} component={License} />
-                    <FieldArray name={`${site}.addressInfo`} component={Address} />
-
-
-
-
                     {(fields.length == 1 || (fields.get(index) && fields.get(index)._id)) ? null : <div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
 
 
