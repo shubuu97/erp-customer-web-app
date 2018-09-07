@@ -79,8 +79,6 @@ formData.append('mediaTypeId','1234567')
 this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`,formData,'fileUpload'))
 .then((data)=>
 {
-    debugger;
-    console.log(data,"data")
     this.props.autofill('bankingDetailInfo.uploadVoidCheck',data.message.relativeURL)
     this.props.dispatch(showMessage({text:'Upload success',isSuccess:true}));
     setTimeout(()=>{
@@ -140,7 +138,7 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
 />
 <Dropzone
 onDrop={this.dropHandler}>
-<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Try dropping some files here, or click to select files to upload.</div>}</div>
+<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Upload Void check here</div>}</div>
 </Dropzone>
                     </div>
                 </div> 
