@@ -112,7 +112,8 @@ class MainLayout extends Component {
     this.setState({ showMiniCart: !this.state.showMiniCart })
   }
   handleOrders = () => {
-    this.props.history.push('/orders')
+    this.props.history.push('/orders');
+    this.handleMenuClose();
   }
   toggleMenu = () => {
     console.log('toggleMenu', this.state.isMenuOpen);
