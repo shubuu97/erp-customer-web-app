@@ -8,15 +8,20 @@ import Button from '@material-ui/core/Button';
 
 import MenuItem from 'material-ui/MenuItem';
 import { TextFieldInput } from '../../common/MaterialUiComponents';
+<<<<<<< HEAD
 import Dropzone from  'react-dropzone';
 import {uploadVoidCheck} from '../../../action/uploadVoidCheck';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants';
 import withLoader from '../../../components/LoaderHoc';
 import {showMessage} from '../../../action/common.js'
+=======
+import withLoader from '../../../components/LoaderHoc'
+
+>>>>>>> 5772432327f1ed24a932c39ae439dc0f26335426
 let prop={};
 prop.paymentTerms = [{label:'current',value:'current'},{label:'Net 30',value:'Net 30'},{label:'Net 45',value:'Net 45'}];
 prop.invoiceCurrencyCode=[{label:'INR',value:'INR'},{label:'USD',value:'USD'}]
-
+prop.preferredPaymentMethods = [{label:'INR',value:'INR'},{label:'USD',value:'USD'}]
 
 let BankDetailComponent = (props)=>
 {
@@ -166,4 +171,8 @@ onDrop={this.dropHandler}>
 
         }
 }
+<<<<<<< HEAD
 export default  withLoader(CustomerBankingInfo)
+=======
+export default withLoader(CustomerBankingInfo)
+>>>>>>> 5772432327f1ed24a932c39ae439dc0f26335426

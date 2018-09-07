@@ -16,7 +16,7 @@ import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
-
+import _get from 'lodash/get'
 
 class CustomerInfo extends Component
 
@@ -29,6 +29,7 @@ class CustomerInfo extends Component
         basicInfo:values,
         _id:localStorage.getItem('id')
     }
+    
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`)).then((data)=>{
         if(data.data.message) {
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
@@ -82,6 +83,7 @@ function mapStateToProps(state)
   let initialValues = {};
   initialValues =  state.basicInfodata.basicInfoData
   let isLoading = state.basicInfodata.isFetching;
+  let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
  if(state.zipCodeData &&state.zipCodeData.meta)
   {
    let meta = state.zipCodeData.meta;
@@ -109,7 +111,7 @@ function mapStateToProps(state)
     }
    }
   }
- return {initialValues, isLoading}
+ return {initialValues, isLoading,urlLinks}
 }
 
 export default connect(mapStateToProps)(withLoader(CustomerInfo))

@@ -101,4 +101,11 @@ const mapStateToProps=(state)=>
 }
 
 
+<<<<<<< HEAD
 export default connect(mapStateToProps)(CustomerBankingDetails)
+=======
+export default connect(mapStateToProps)(CustomerBankingDetails)
+
+
+      
+>>>>>>> 5772432327f1ed24a932c39ae439dc0f26335426
