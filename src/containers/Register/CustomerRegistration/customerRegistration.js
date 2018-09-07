@@ -103,7 +103,7 @@ class CustomerRegistration extends Component
            <CustomerRegister {...this.props} />
            <div className="btn-parent-full">
               <Button variant="contained" color='primary' type='submit' disabled={!this.props.anyTouched||this.props.invalid}>Register</Button>
-              <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link>
+              <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link> or Join as <Link to= '/companyRegister'>Company</Link>
               </div>
            </div>
            </form>

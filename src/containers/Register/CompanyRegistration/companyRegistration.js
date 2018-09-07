@@ -48,7 +48,7 @@ class CompanyRegistration extends PureComponent {
   }
   render() {
   
-    const { handleSubmit } = this.props;
+    const { handleSubmit} = this.props;
     return (
       <div className="login-container register">
         <div className="login">
@@ -58,9 +58,9 @@ class CompanyRegistration extends PureComponent {
           <form onSubmit={handleSubmit(this.submit)}>
             <CompanyRegister />
             <div className="btn-parent-full">
-              <Button variant="contained" color='primary' type='submit' label="Register">Register</Button>
+              <Button disabled={!this.props.anyTouched||this.props.invalid} variant="contained" color='primary' type='submit' label="Register">Register</Button>
             </div>
-            <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link>
+            <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link> or Join as <Link to= '/customerRegister'>Customer</Link>
             </div>
           </form>
         </div>

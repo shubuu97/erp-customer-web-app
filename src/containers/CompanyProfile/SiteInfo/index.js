@@ -18,8 +18,10 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 class SiteInfo extends Component
 {
 
-    componentDidMount()
+    componentWillMount()
     {
+
+
       this.props.dispatch(fetchSiteDetailsData(`${this.props.urlLinks.getSiteInfo.href}?_id=${localStorage.getItem("id")}`));
 
     }
