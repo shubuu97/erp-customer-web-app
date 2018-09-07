@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import AccountInfo from '../AccountInfo';
 import BankingInfo from '../BankingInfo';
+import profileSideBar from '../../../components/profileSideBarHoc';
 
 function TabContainer(props) {
   return (
@@ -56,7 +57,7 @@ class CustomerProfileTab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className="container">
+      <div className="col-sm-9">
       <div className={classes.root + ' c-tabs'}>
         <AppBar position="static">
           <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
@@ -79,5 +80,5 @@ CustomerProfileTab.propTypes = {
 
 CustomerProfileTab=withStyles(styles)(CustomerProfileTab);
 
-export default CustomerProfileTab
+export default profileSideBar(CustomerProfileTab);
 

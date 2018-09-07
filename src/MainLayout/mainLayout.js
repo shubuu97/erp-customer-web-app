@@ -186,7 +186,7 @@ class MainLayout extends Component {
               message={<span id="message-id">{this.props.message.text}</span>}
             />}
           </div>
-          <div className="right-content">
+          <div className="main-content">
 
             {this.props.children}
           </div>

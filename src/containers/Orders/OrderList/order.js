@@ -23,14 +23,19 @@ export default class Order extends React.Component {
   render() {
 let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
 {
-  return (<ItemList
+  return ([<ItemList
   saleProduct = {saleProduct}
   key={index}
   imgSrc={''}
   name={saleProduct.itemName}
   price={saleProduct.Price}
   quantity={saleProduct.quantity}
-  />)
+  />,
+  <div className="ot-button">
+    <Button color='secondary' variant='contained'>Cancel Order</Button>
+    <Button color='secondary' onClick={()=>this.props.handleTrack(this.props.id)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+  </div>
+])
 })
     return (
       <div className="order-card">
@@ -48,8 +53,6 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
                 <span>Sun, Apr 8<sup>th</sup> 2018</span>
               </div>
             </div>
-            <Button color='secondary' variant='contained'>Cancel Order</Button>
-            <Button color='secondary' onClick={()=>this.props.handleTrack(this.props.id)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
           </div>
         </div>
         <div className="order-card-content">        

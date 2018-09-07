@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default (props) => {
   return (
-    <div className="cart-total-container col-sm-3">
+    <div className="cart-total-container col-md-3">
       <div className="cart-total-title">
         Order Summary
     </div>

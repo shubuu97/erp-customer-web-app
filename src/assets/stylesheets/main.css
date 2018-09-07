@@ -23,13 +23,6 @@ label.control-label{
 .react-bs-table-container {
     padding: 20px 30px;
 }
-.panel-info > .panel-heading {
-    color: #fff !important;
-    background: linear-gradient(#004974, #1e84bf) !important;
-  }
-  .panel-info {
-    border-color: #31708f;
-}
 .custom-btn{
     float: right;
 }
@@ -40,7 +33,6 @@ label.control-label{
     margin-top: -20px;
     margin-left: -25px;
 }
-
 .loader-wrapper{
     position: fixed;
     top: 50%;
@@ -231,131 +223,6 @@ nav.navbar {
     float: right;
 }
 /*************************************** NAVBAR HEADER CSS *****************************************/
-
-/*************************************** RIGHT PANEL CSS *****************************************/
-.panel-info {
-    border: none;
-    float: left;
-    width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-    position: relative;
-}   
-.panel-body {
-    padding: 30px;
-}
-.panel-info > .panel-heading {
-    color: #00598d !important;
-    background: #FFF !important;
-    border-color: transparent;
-}
-
-.panel.panel-info .panel.panel-info{
-    margin-top:40px;
-}
-.panel-default > .panel-heading + .panel-collapse > .panel-body {
-	border-top-color: #eee;
-}
-.panel-body .panel-body {
-    padding: 20px 0;
-}
-.panel-info .panel-info .panel-heading {
-    padding-left: 0;
-    padding-right: 0;
-}
-.panel-heading {
-    padding: 20px 30px 10px;
-    cursor: pointer;
-}
-.contact-panel .panel.panel-info {
-    background: #fefefe;
-}
-.panel.panel-info .contact-panel > .panel.panel-info {
-    padding: 0 20px;
-    margin-top: 0;
-    border: solid 1px #eee;
-}
-.contact-panel .panel.panel-info > .panel-heading {
-    background: #fefefe !important;
-}
-.panel-first {
-    float: left;
-    width: 100%;
-}
-.panel-first .panel {
-    margin-bottom: 0;
-}
-.panel-first .panel-heading {
-	padding: 20px 0 10px;
-}
-.panel-first .panel-body {
-	padding: 30px 0;
-}
-.contact-panel .panel.panel-info {
-	background: #fefefe;
-	border: solid 1px #DDD;
-}
-.contact-panel .panel.panel-info .panel.panel-info {
-    border: none;
-    margin-bottom: 0;
-}
-.contact-panel {
-    float: left;
-    width: 100%;
-}
-.panel-info .panel-title {
-    font-size:1.8rem;
-    font-weight: bold;
-    padding-bottom: 4px;
-    border-bottom: solid 1px #DDD;
-    color:rgb(49, 112, 143);
-}
-.panel-head {
-    color: #00598d;
-    font-size:1.8rem;
-    font-weight: bold;
-}
-.panel-info .master-search.panel-title {
-    padding: 0;
-    border: none;
-    float: right;
-    margin-top: 20px;
-    margin-right: 30px;
-    width: 100%;
-    text-align: right;
-    cursor: pointer;
-}
-.master-search.panel-title a {
-    width: 20px;
-    height: 20px;
-    background: url("../images/search-minus.png") no-repeat;
-    background-size: 20px;
-    display: inline-block;
-    background-position: center;
-}
-.master-search.panel-title a.collapsed {
-    background: url("../images/search-plus.png") no-repeat;
-    background-size: 20px;
-    background-position: center;
-}
-.panel-info .panel-title{padding-bottom: 10px; border-bottom: solid 1px #ddd;}
-.panel.panel-info .panel.panel-info{margin-top: 0;}
-.right-content {
-	padding: 20px 0;
-	transition: ease-in-out all 0.3s;
-    -webkit-transition: ease-in-out all 0.3s;
-    -moz-transition: ease-in-out all 0.3s;
-    -ms-transition: ease-in-out all 0.3s;
-    -o-transition: ease-in-out all 0.3s;
-	float: right;
-}
-.panel-body-alter {
-	padding: 0 30px;
-	float: left;
-	width: 100%;
-	margin-bottom: 20px;
-}
-/*************************************** RIGHT PANEL CSS *****************************************/
 
 /*************************************** FORM CSS *****************************************/
 .form-d [class^="MuiIconButton-root-"] {
@@ -704,235 +571,6 @@ table .custom-input input[type="date"]{
 /*************************************** TABLE CSS *****************************************/
 
 /*========================================= TABS CSS ==============================================*/
-
-/*============================================= STRAIN PAGE CSS ===========================================*/
-.strainBlock {
-    background: #FFF;
-    padding: 20px 30px;
-    width: 100%;
-    margin-top: 10px;
-}
-.days-box {
-    display: flex;
-    max-width: 110px;
-    width: 100%;
-    margin: auto;
-    padding-left: 30px; 
-    margin-top: 10px;
-    margin-bottom: -16px;
-    position:relative; 
-    z-index:1;
-    background: #fff;
-}
-.days-box .form-control {
-    max-width: 50px;
-    border-radius: 0;
-    height: 30px;
-    padding: 4px 10px;
-    border-color: #999;
-    background: #f2f2f3;
-}
-.days {
-    line-height: 30px;    
-    color: #666;
-    font-size:1.3rem;
-}
-
-/*================================= STRAIN CIRCLE CSS =====================================*/
-.circle.special{background: #fff!important;box-shadow: none!important; border: solid 1px #bbb!important;}
-.circle{width:40px!important;height:40px!important;top:17px!important;}
-.circle-contain.one .circle.special::after {
-	content: "Nursery";
-	position: absolute;
-	width: 60px;
-	height: 30px;
-	font-size:1.3rem;
-	left: -21%;
-	color: #666;
-    top: 100%;
-    margin-top: 5px;
-}
-.circle-contain.one .circle.special::before
-{background-image: url("../images/nursary.png");
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 26px;
-    height: 26px;
-    bottom: 5px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    left: 7px;}
-.circle-contain.two .circle.special::after {
-    content: "Vegetative";
-    position: absolute;
-    width: 53px;
-    height: 30px;
-    font-size:1.3rem;
-    left: -23%;
-    color: #666;
-    top: 100%;
-    text-align: center;
-    margin-top: 5px;
-}
-.circle-contain.two .circle.special::before
-{background-image: url("../images/plants.png");
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 30px;
-    height: 30px;
-    bottom: 5px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    left: 4px;}
-.circle-contain.three .circle.special::after {
-	content: "Flowering";
-	position: absolute;
-	width: 60px;
-	height: 30px;
-	font-size:1.3rem;
-	left: -27%;
-	color: #666;
-    top: 100%;
-    margin-top: 5px;
-}
-.circle-contain.three .circle.special::before
-{background-image: url("../images/flowering.png");
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 35px;
-    height: 35px;
-    bottom: 0px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    left: 4px;}
-.circle-contain.four .circle.special::after {
-	content: "Harvest";
-	position: absolute;
-	width: 60px;
-	height: 30px;
-	font-size:1.3rem;
-	left: -30%;
-	color: #666;
-    top: 100%;
-    margin-top: 5px;
-}
-.circle-contain.four .circle.special::before
-{background-image: url("../images/harvest.png");
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 32px;
-    height: 32px;
-    bottom: 0px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    left: 5px;}
-/*================================= STRAIN CIRCLE CSS =====================================*/
-.comments-parent {
-    background: #f9f9f9;
-    padding: 10px 15px;
-  }
-.commentSection {
-    width: auto;
-    border: none;
-    display: flex;
-    max-width: 700px;
-}
-.profilePic {
-    margin: 0;
-    padding: 0;
-    border: none;
-    background-color: #f4f4f4;
-}
-.profile{
-    width:100px;
-    display: inline-block;
-}
-.profileDisplay {
-    width: 70px;
-    display: inline-block;
-    padding-left: 10px;
-}
-.profilePicDisplay {
-    width: 100%;
-}
-.commentBox {
-    width: 100%;
-    display: inline-block;
-    padding: 0 5px 0 0;
-}
-.commentBoxDisplay {
-    width: calc(100% - 190px);
-    display: inline-block;
-    padding: 0 15px;
-    font-weight: 400;
-    font-style: normal;
-    font-size:1.4rem;
-    border-left: solid 1px #eee;
-    border-right: solid 1px #eee;
-}
-.cmt {
-    height: 91px;
-    width: 100%;
-    border: none;
-}
-.publish{
-    width:100px;
-    display: inline-block;
-    text-align: right;
-}
-.publish2 {
-    width: 100px;
-    display: inline-block;
-    text-align: right;
-    padding: 6px 10px;
-}
-.commentUserId{
-    /* font-family: 'Avenir Medium', 'Avenir'; */
-    font-weight: 500;
-    font-style: normal;
-    font-size:1.2rem;
-    color: #0D0D0D;
-    text-align: right;
-}
-.commentDate{
-    font-size:1rem;
-    color: #0D0D0D;
-    text-align: right;
-}
-.showComments {
-    overflow-y: auto;
-    height: 200px;
-    width: 100%;
-    margin-top: 15px;
-}
-.showComments > div {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: solid 1px #eee;
-}
-.userId {
-    font-weight: 700;
-    font-style: normal;
-    font-size:1.2rem;
-    color: #0099FF;
-    text-align: right;
-}
-.date {
-    font-weight: 700;
-    font-style: normal;
-    font-size:1.3rem;
-    text-align: right;
-}
-.state-text {
-	float: left;
-	line-height: 33px;
-	padding-right: 10px;
-}
-/*============================================= STRAIN PAGE CSS ===========================================*/
 #hide-tab {
 	display: none;
 }
@@ -1286,18 +924,6 @@ span.iicon img {
     -ms-transition: ease-in-out all 0.3s;
     -o-transition: ease-in-out all 0.3s;
 }
-.right-content.content-full .slide-panel{
-    margin-left: 16.66%;
-}
-.right-content .slide-panel{
-    margin-left: 0;
-}
-.right-content.content-full .slide-panel-bottom{
-    margin-left: 16.66%;
-}
-.right-content .slide-panel-bottom{
-    margin-left: 0;
-}
 .rdtPicker {
     top: -240px !important;
 }
@@ -1590,164 +1216,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 @-webkit-keyframes sk-stretchdelay { 0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  20% { -webkit-transform: scaleY(1.0) } }
 @keyframes sk-stretchdelay { 0%, 40%, 100% { transform: scaleY(0.4); -webkit-transform: scaleY(0.4); }  20% { transform: scaleY(1.0);-webkit-transform: scaleY(1.0); } }
 /*========================================= SPINNER CSS =======================================*/
-.result-data{position: fixed;bottom: 0; left: 0; right: 0; padding: 7px; background: #ddd; z-index: 11;}
-.result-data ul{padding: 0; margin: 0; list-style-image: none;text-align: center;}
-.result-data li{display: inline-block; text-align: center; padding: 0 25px;}
-a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease-out; transition: all 0.3s ease-out; }
-.action-colunm .btn-toolbar i{font-size:2.5rem; color:#005383;}
-.action-colunm .btn-toolbar i.fa-stack-2x{font-size:2.8rem;color: #d9534f;}
-.action-colunm .btn-toolbar i.fa-stack-1x{font-size:1rem; line-height: 24px;color: #d9534f;}
-.action-colunm span.action-icon{display: inline-block; float:left;  text-align: center; cursor: pointer; font-size:1.1rem;}
-.dotsandlines{top:38px;position: absolute;width:97%!important;z-index:0;}
-.line{border-bottom: 1px dashed #bbb!important;}
-.Select-clear-zone {opacity: 0;transition: ease all .5s;}
-.custom-input:hover .Select-clear-zone {opacity: 1 }
-.table-custom td div span {padding: 0!important;}
-.scrollable-area::after{content:""; display: table; clear: both;}
-.scrollable-area {height:700px; overflow-x:auto;margin-top: 24px;}
-.plant-phase-table .action-bar{display: flex; width: 100%;}
-.col-01, .col-02, .col-03{ flex:0 0 33.33%;}
-.col-03{justify-content: flex-end;display: flex;}
-.col-02{justify-content: center; display: flex; }
 
-.btn-bulk .text-left{text-align:left!important;}
-
-.pad-top-20{padding-top:20px;}
-.pad-top-25{padding-top:25px;}
-.panel-sub-head{display:inline-block; vertical-align: top;}
-.marg-right-20{margin-right:20px;}
-.spacer-between{padding:0 100px 0 0;}
-
-.view-details-icon{width: 30px; height: 30px;display:block; margin:0 auto;}
-.view-details-icon:before{content: "";	background: url("../images/view-details.png") no-repeat; background-size: 100% 100%; margin-top:10px; width:24px; height:24px; display :block;cursor:pointer; }
-.syncup-done:before{content: "";background: url("../images/done.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.syncup-panding:before{content: "";	background: url("../images/waiting.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.syncup-close:before{content: "";	background: url("../images/cross.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.plant-history-info {content: "";background: url("../images/plant-history.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.lot-history-info {content: "";background: url("../images/info.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.strain-history-info {content: "";background: url("../images/plant-history.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.top-spacer {margin-top:13px;}
-.btn-lab, .btn-lab:active{background: url("../images/lab-icon.png") no-repeat;background-size: 64%; min-width: 39px!important; background-position: center;}
-.pad-none{padding: 0!important;}
-.marg-none{margin: 0!important;}
-.sample-row{margin-bottom: 10px;}
-.sample-row input{width:85%!important; margin-right: 10px;}
-.up-file .form-control{border: 0!important; background: transparent;}
-.up-file .form-control:focus{box-shadow:0!important;}
-.text-name span{display: inline-block; padding-right: 5px;}
-.text-name { margin-bottom: 5px; padding: 3px 5px; border:dashed 1px #cecece;}
-.lot-manage .react-drawer-drawer{width: 22%;}
-.sample-block{margin-bottom:20px;}
-
-/*========================================= SLIDE CSS =======================================*/
-.slide-panel .panel-heading{padding: 0 15px;}
-.slide-panel .rdtPicker{bottom:38px;}
-.left-slide-area{height: 100%; background: #fff; position: relative; overflow-y: auto; padding:30px 15px 20px; }
-.close-slide {position: absolute;top: 10px;right: 14px;content: ""; background: url("../images/close.png") no-repeat; background-size: 100% 100%;width: 16px;height: 16px;display: block;cursor: pointer;}
-.close-slide-sample {position: absolute;right: 20px;content: ""; background: url("../images/close.png") no-repeat; background-size: 100% 100%;width: 16px;height: 16px;cursor: pointer;}
-.left-slide-area h2{font-weight: bold; text-align: left; font-size:2.5rem; padding: 5px 0; margin:0 0 40px 0; border-bottom: solid 2px #bbb;}
-.left-slide-area .custom-btn{padding: 5px 8px; font-size:1.3rem;}
-.left-slide-area .labelmain{  margin-bottom: 10px;  border-radius: 4px;padding-top: 2px; font-size:1.6rem; padding: 3px 10px; background: #f9f9f9;}
-.left-slide-area .form-d{padding-left: 20px;position:relative; padding-bottom: 35px; margin-bottom: 0; width:100%;}
-.left-slide-area .form-d:last-child::before{display:none;}
-.left-slide-area .form-d:before {content: '';width: 1px;height: 100%;position: absolute;top: 5px;left:6px;background: #b0b0b0;}
-.left-slide-area .form-d span.decor1 {width: 14px;height: 14px;border-radius: 50%;border: 2px solid #F1F1F1;background: #fff;display: inline-block;position: absolute;z-index: 1;margin-right: 20px;left: 0px;top: 5px;}
-.left-slide-area .form-d span.inner1 { width: 4px;height: 4px;background: #F1F1F1; border-radius: 50%; display: block; margin: auto; margin-top: 3px;}
-.left-slide-area .form-d span.decor1 {border-color: #186AAB;}
-.left-slide-area .form-d span.inner1 {background: #186AAB;}
-.left-slide-area-plants, .left-slide-area-lot {height: 100%; background: #fff; position: relative; overflow-y: auto; padding:30px 15px 20px; }
-.left-slide-area-plants  .labelmain,.left-slide-area-lot  .labelmain{  margin-bottom: 10px;  border-radius: 4px;padding-top: 2px; font-size:1.6rem; padding: 3px 10px; background: #f9f9f9;}
-.left-slide-area-plants  .form-d-plants{padding-left: 80px;position:relative; padding-bottom: 35px; margin-bottom: 0; width:100%;}
-.left-slide-area-plants  .form-d-plants:last-child::before{display:none;}
-.left-slide-area-plants  .form-d-plants span.decor2 {width: 80px;height: 80px;border: 2px solid #F1F1F1;display: inline-block;position: absolute;z-index: 1;margin-right: 20px;left: 5px;top: 5px;}
-.left-slide-area-plants  .form-d-plants span.decor2-strain {width: 80px;height: 110px;border: 2px solid #F1F1F1;display: inline-block;position: absolute;z-index: 1;margin-right: 20px;left: 5px;top: 5px;}
-.left-slide-area-plants  .form-d-plants span.decor2-strain {border-color: #186AAB;}
-.left-slide-area-plants  .form-d-plants span.decor2 {border-color: #186AAB;}
-.left-slide-area-plants  .form-d-plants span.decor2-reassign {width: 80px;height: 90px;border: 2px solid #F1F1F1;display: inline-block;position: absolute;z-index: 1;margin-right: 20px;left: 5px;top: 5px;}
-.left-slide-area-plants  .form-d-plants span.decor2-reassign {border-color: #186AAB;}
-.left-slide-area-plants  .form-d-plants span.nursery { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.nursery {background: url("../images/nursary.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.relocate { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.relocate {background: url("../images/relocate.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.tag-assign { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.tag-assign {background: url("../images/tag.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.tag-change { width: 60px;height: 65px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.tag-change {background: url("../images/reassigntag.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.vegetative { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.vegetative {background: url("../images/plants.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.flowering { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.flowering {background: url("../images/flowering.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.harvest { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.harvest {background: url("../images/harvest-phase.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.harvest-weight { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.harvest-weight {background: url("../images/harvest.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.manicure { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.manicure {background: url("../images/manicure-icon.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.waste-weight { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.waste-weight {background: url("../images/waste-plant.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.destroy { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-plants  .form-d-plants span.destroy {background: url("../images/destroy.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-plants  .form-d-plants span.labelPlants {padding-left:15px;}
-.metric-synced:before{content: "";background: url("../images/metrcsynced.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.metric-syncing:before{content: "";background: url("../images/metrcsyncing.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.metric-sync-success:before{content: "";background: url("../images/done.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.metric-sync-rejected:before{content: "";background: url("../images/cross.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.metric-sync-pending:before{content: "";background: url("../images/waiting.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.left-slide-area-lot  .form-d-lot{padding-left: 80px;position:relative; padding-bottom: 35px; margin-bottom: 0; width:100%;}
-.left-slide-area-lot  .form-d-lot:last-child::before{display:none;}
-.left-slide-area-lot  .form-d-lot span.decor2 {width: 80px;height: 80px;border: 2px solid #F1F1F1;display: inline-block;position: absolute;z-index: 1;margin-right: 20px;left: 5px;top: 5px;}
-.left-slide-area-lot  .form-d-lot span.decor2 {border-color: #186AAB;}
-.left-slide-area-lot  .form-d-lot span.decor2-reassign {width: 80px;height: 90px;border: 2px solid #F1F1F1;display: inline-block;position: absolute;z-index: 1;margin-right: 20px;left: 5px;top: 5px;}
-.left-slide-area-lot  .form-d-lot span.decor2-reassign {border-color: #186AAB;}
-.left-slide-area-lot  .form-d-lot span.item-name { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-lot  .form-d-lot span.item-name {background: url("../images/item-name.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-lot  .form-d-lot span.lot-weight { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-lot  .form-d-lot span.lot-weight {background: url("../images/lot-weight.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-lot  .form-d-lot span.package-tag { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-lot  .form-d-lot span.package-tag {background: url("../images/package-tag.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-lot  .form-d-lot span.lot-status { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-lot  .form-d-lot span.lot-status {background: url("../images/lot-status.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-lot  .form-d-lot span.relocate { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-lot  .form-d-lot span.relocate {background: url("../images/relocate.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-lot  .form-d-lot span.item-type { width: 60px;height: 60px; display: block; margin: 8px;}
-.left-slide-area-lot  .form-d-lot span.item-type {background: url("../images/item-type.png") no-repeat; background-size: 100% 100%;}
-.left-slide-area-lot  .form-d-lot span.labelLot {padding-left:15px;}
-.metric-synced:before{content: "";background: url("../images/metrcsynced.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-.metric-syncing:before{content: "";background: url("../images/metrcsyncing.png") no-repeat; background-size: 100% 100%;  width:24px; height:24px; display :block;cursor:pointer;margin:0 auto; }
-/*========================================= SLIDE CSS =======================================*/
-
-/*========================================= RIGHT DRAWER CSS =======================================*/
-.drawer-close {
-    padding: 7px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor:pointer;
-    z-index: 1;
-}
-.right-drawer .react-drawer-drawer {
-    width: 500px;
-    bottom: 0;
-    overflow: auto;
-    top: 77px;
-    height: auto;
-    z-index: 99;
-    border-bottom: solid 1px #DDD;
-    border-top: solid 1px #DDD;
-    max-width:100%;
-}
-.right-drawer-plants .react-drawer-drawer,.right-drawer-lot .react-drawer-drawer {
-    width: 500px;
-    bottom: 0;
-    overflow: auto;
-    top: 75px;
-    height: auto;
-    z-index: 99;
-    border-bottom: solid 1px #DDD;
-    border-top: solid 1px #DDD;
-    max-width:100%;
-}
-/*========================================= RIGHT DRAWER CSS =======================================*/
 .pb-10{padding-bottom: 10px;}
 .change-phase-fb{ float: left;text-align: left;}
 .change-phase-rb{ float: right;}
@@ -1874,12 +1343,12 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	flex: 0 0 100%;
 	-ms-flex-pack: justify;
 	justify-content: flex-start;
-	-ms-flex-pack: center;
-	-ms-flex-align: center;
-	align-items: center;
+	align-items: flex-end;
 	margin: auto;
-    max-width: 1200px;
-    flex-wrap: wrap;
+	max-width: 1200px;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-top: -30px;
 }
 .main-logo {
 	width: 110px;
@@ -1926,7 +1395,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	line-height: 18px;
-	padding: 15px 20px;
+	padding: 5px 20px;
 	font-weight: 500;
 	cursor: pointer;
 	transition: ease-in-out all 0.6s;
@@ -1940,7 +1409,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .navRight {
 	padding: 0;
-	margin: 0 0 0 auto;
+	margin: 0 0 5px auto;
 	-ms-flex-pack: center;
 	justify-content: center;
 	max-height: 43px;
@@ -2111,6 +1580,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 .table-product-detail tbody tr:first-child td {
 	padding-top: 20px !important;
+	min-width: 100px;
 }
 .c-tabs header {
 	box-shadow: none;
@@ -2129,9 +1599,12 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 }
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
 
-.detailsContent{
-    display: flex;
-    flex-direction: row;
+.detailsContent {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 .imageContent {
 	display: -ms-flexbox;
@@ -2348,9 +1821,9 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     min-width: 200px;
 }
 .row-quantity-item {
-	padding: 0;
+	padding: 0 10px;
 	border: 1px solid #bbbbbb;
-	width: 34px;
+	width: auto;
 	height: 34px;
 	text-align: center;
 	line-height: 32px;
@@ -3033,7 +2506,36 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	font-size: 1.4rem;
 	font-weight: 500;
 }
+.ot-button button {
+	margin-right: 10px;
+}
 /* ==================================== TRACK ORDER PAGE CSS END ====================================== */
+.main-content {
+	float: left;
+	width: 100%;
+	padding: 20px 0;
+}
+.col-sm-12, .col-md-12 {
+	width: 100%;
+}
+/* ==================================== PROFILE SIDE BAR CSS START ====================================== */
+.profile-sidebar ul {
+	margin: 0;
+	padding: 0;
+}
+.profile-sidebar ul li {
+	display: block;
+	padding: 20px;
+	background: #ececec;
+	margin-bottom: 1px;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.profile-sidebar ul li:hover, .profile-sidebar ul li.active {
+    background: #0e8c4f;
+    color:#FFF;
+}
+/* ==================================== PROFILE SIDE BAR CSS END ====================================== */
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
@@ -3112,12 +2614,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         left:-25%;
         width:25%;
     }
-    .right-content.content-full{
-        width:75%;
-    }
-    .right-content{
-        width:100%;
-    }
 }
 @media(min-width:992px){
     .d-flex .col-md-4.form-d {
@@ -3161,9 +2657,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .navbar-collapse.collapse{
         left:-16.66%;
         width:16.66%;
-    }
-    .right-content.content-full{
-        width:83.33%;
     }
     .container {
         width: 1200px;
@@ -3217,12 +2710,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         overflow-x: auto;
         padding-bottom: 170px;
     }
-    .right-content.content-full .slide-panel {
-        margin-left: 25%;
-    }
-    .right-content.content-full .slide-panel-bottom {
-        margin-left: 25%;
-    }
     .header-top, .header-nav {
         max-width: 970px;
     }
@@ -3234,7 +2721,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         font-size: 1.3rem;
     }
     .app-navbar li {
-        padding: 15px 8px;
+        padding: 5px 8px;
         font-weight: 400;
     }
     .navRight li {
@@ -3252,6 +2739,16 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     }
     .user-name {
         font-size: 1.1em;
+    }
+    .cart-item-button {
+        padding: 10px 0;
+    }
+    .add-cart-button {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+    .address-detail {
+        width: 35%;
     }
 }
 @media (max-width:991px){
@@ -3286,9 +2783,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .panel-heading, .react-bs-table-container {
         padding: 20px;
     }
-    ul.breadcrumb li {
-        font-size:1.6rem;
-    }
     .slide-panel {
         margin-left: 25%;
         padding: 20px;
@@ -3301,9 +2795,15 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         background-size: auto 70%;
         background-position: right bottom;
     }
-    .header-top, .header-nav {
+    .header-top {
         max-width: 750px;
         position: relative;
+    }
+    .header-nav {
+        max-width: 750px;
+        position: relative;
+        margin-top: 0;
+        align-items: center;
     }
     .app-header {
         border-top: solid 4px #0e8c4f;
@@ -3326,6 +2826,30 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     }
     .main-logo {
         width: 76px;
+    }
+    .p-name {
+        font-size: 34px;
+    }
+    .ic {
+        font-size: 14px;
+    }
+    .p-price {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    .wq-bar label {
+        font-size: 14px;
+    }
+    .cart-table-parent {
+        padding: 0 0 30px;
+    }
+    .cart-total-container {
+        float: none;
+        padding: 0 15px;
+        max-width: 300px;
+        width: 100%;
+        margin: auto;
     }
 }
 @media(max-width:799px){
@@ -3552,10 +3076,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .profilePic {
         width: 100%;
     }
-    .right-content {
-        float: left;
-        width: 100%;
-    }
     ul.breadcrumb {
         padding: 0;
     }
@@ -3564,12 +3084,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     }
     .mb20-xs{
         margin-bottom:20px;
-    }
-    .right-content.content-full .slide-panel {
-        margin-left: 0;
-    }
-    .right-content.content-full .slide-panel-bottom {
-        margin-left: 0;
     }
 /* =========================== */
     #no-more-tables table, 
@@ -3622,6 +3136,52 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
 	Label the data
 	*/
     #no-more-tables td:before { content: attr(data-title); }
+
+    .cart-table {
+        display: block;
+        border-right: solid 1px #DDDD;
+    }
+    .cart-table-head {
+        display: none;
+    }
+    .row-container {
+        display: block;
+    }
+    .row-product, .row-price, .row-quantity, .row-total {
+        padding: 10px 10px 10px 130px;
+        display: block;
+        position: relative;
+    }
+    .row-product::before, .row-price::before, .row-quantity::before, .row-total::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120px;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        line-height: 38px;
+        border-right: solid 1px #ddd;
+        bottom: 0;
+        content: attr(data-title);
+        padding-left: 10px;
+    }
+    .row-name-code, .row-product-img {
+        float: none;
+    }
+    .row-quantity .d-flex {
+        margin-top: 0;
+    }
+    .row-name-code h4 {
+        margin-top: 15px;
+    }
+    .row-price h4, .row-total h4 {
+        margin: 0;
+    }
+    .cart-heading {
+        margin-bottom: 15px;
+        font-size: 26px;
+    }
     
     /* ============================= */
     .css-sourceMap-modules-importLoaders-1-localIdentName-ReactDrawer__drawer-right___h_uSC-sass {
@@ -3681,12 +3241,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         width:30px;
     }
     .table-responsive {
-        overflow-y: auto;
-        height: auto;
-    }
-    .table-responsive-finance {
-        overflow-y: auto;
-        /* height: 50px; */
+        border:none;
     }
     #menu-bar {
         height: calc(100% - 50px);
@@ -3737,6 +3292,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
         -o-transition: ease-in-out all 0.3s;
         z-index: 9;
         overflow: auto;
+        border-right: solid 2px #06713d;
     }
     .app-navbar.menuOpen{
         left:0;
@@ -3792,6 +3348,7 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .user-avatar {
         background: #0e8c4f;
         padding: 10px 15px;
+        border-bottom: solid 2px #06713d;
     }
     .user-avatar-circle {
         background: #FFF;
@@ -3841,6 +3398,32 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .c-tabs > div:nth-child(2) {
         padding: 15px !important;
     }
+    .app-navbar li:hover, .app-navbar li:focus, .app-navbar li.active {
+        color: #FFF;
+        background: #0E8C4D;
+        border-bottom-color: #06713d;
+    }
+    .imageContent {
+        flex: 0 0 100%;
+        padding-right: 0;
+    }
+    .descriptionContent {
+        padding-left: 0;
+        padding-top: 20px;
+        flex: 0 0 100%;
+    }
+    .row-quantity button {
+        width: 20px;
+        height: 30px;
+    }
+    .row-quantity-item {
+        padding: 0 5px;
+        height: 30px;
+        line-height: 28px;
+    }
+    .address-detail {
+        width: 45%;
+    }
 }
 @media (min-width:480px) and (max-width:767px){
     .form-d {
@@ -3887,9 +3470,6 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .tab-content {
         padding: 10px;
         border:1px solid #00598d;
-    }
-    ul.breadcrumb li {
-        font-size:1.5rem;
     }
     .panel-info .master-search.panel-title {
         top: -36px;
@@ -3957,6 +3537,27 @@ a, button { -webkit-transition: all 0.3s ease-out;-moz-transition: all 0.3s ease
     .login-container.register .login {
         height: auto;
         position: relative;
+    }
+    .subImages img {
+        width: 40px;
+        height: 40px;
+        margin: 0px 2px;
+        padding: 3px;
+    }
+    .dialogbox-ui h2.p-name {
+        font-size: 26px;
+    }
+    .p-price {
+        font-size: 22px;
+    }
+    .dialogbox-ui > div:nth-child(2) {
+        margin: 20px;
+    }
+    .p-name {
+        font-size: 30px;
+    }
+    .address-detail {
+        width: 80%;
     }
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
