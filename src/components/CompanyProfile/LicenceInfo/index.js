@@ -3,7 +3,9 @@ import { Field, reduxForm, FormSection, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
 import Button from '@material-ui/core/Button';
-import MenuItem from 'material-ui/MenuItem'
+import MenuItem from 'material-ui/MenuItem';
+import withLoader from '../../LoaderHoc'
+
 let props = {};
 props.licenseType = [{ label: 'Type1: Small Cultivation', value: 'Small Cultivation' }, { label: 'Type2: Medium Cultivation', value: 'Medium Cultivation' },{ label: 'Type3: Nursery Cultivation', value: 'Nursery Cultivation' }];
 props.category = [{ label: 'Retailer', value: 'Retailer' }, { label: 'Distributer', value: 'Distributer' }];
@@ -89,10 +91,10 @@ class LicenceInfo extends Component {
                         <div className="row d-flex">
                         
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['licenseType']} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
+                                <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field options={props['category']} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
+                                <Field options={this.props.companyCategories} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field name={'licenseNumber'} label={'License Number *'} component={TextFieldInput} />
@@ -179,4 +181,4 @@ class LicenceInfo extends Component {
     }
 }
 
-export default LicenceInfo
+export default withLoader(LicenceInfo)

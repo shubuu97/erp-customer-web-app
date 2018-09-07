@@ -8,7 +8,8 @@ const inventoryItemData = (state = {
   inventoryItemList: [],
   selectedProduct: {},
   selectedCategoryType: {},
-  cartProductList: []
+  cartProductList: [],
+  filteredDataSet: {}
 }, action) => {
   switch (action.type) {
 
@@ -47,6 +48,11 @@ const inventoryItemData = (state = {
       return Object.assign({}, state, {
         type: action.type,
         selectedCategoryType: action.data
+      })
+    case INVENTORY_CONSTANTS.APPLY_FILTER:
+      return Object.assign({}, state, {
+        type: action.type,
+        filteredDataSet: action.data
       })
     default:
       return state

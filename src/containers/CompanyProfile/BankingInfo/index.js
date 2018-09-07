@@ -2,6 +2,7 @@ import BankingInfoComponent from '../../../components/CompanyProfile/BankingInfo
 
 import React,{Component} from 'react';
 
+
 import {reduxForm} from 'redux-form';
 
 import Button from '@material-ui/core/Button';
@@ -10,19 +11,19 @@ import asyncValidate from './validate.js'
 import {postBankingData} from '../../../action/banking'
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 import {connect} from 'react-redux';
-import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import {getApprovalStatus} from '../../../action/submitForApproval';
+import _get from 'lodash/get' 
 
 class BankingInfo extends Component
 {
 
-    // componentDidMount()
-    // {
-    
-    //     this.props.dispatch(fetchBankingDetailsData(`${}/businesscustomer/bankingdetails?_id=5b7514dfab851a001b83452a`));
-    // }
+    componentDidMount()
+    {
+      //this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
+      this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`))
+    }
     bankingDataSaveHandler=(values)=>
     {
   
@@ -31,9 +32,8 @@ class BankingInfo extends Component
         ...values,
         businessCustomerId : localStorage.getItem('id')
     }
-     this.props.dispatch(postBankingData(requestObj,'',`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails`)).then((data)=>{
+     this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`)).then((data)=>{
         if(data.data.message) {
-          this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
 
           this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
           setTimeout(()=>{
@@ -80,7 +80,7 @@ class BankingInfo extends Component
         return(
             <div>
 <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}> 
-<BankingInfoComponent/>
+<BankingInfoComponent {...this.props}/>
 
                 <div className="form-btn-group">
                     <Button variant="contained" type='submit' color='primary'>Save</Button>
@@ -99,13 +99,19 @@ class BankingInfo extends Component
 const mapStateToProps=(state)=>
 {
     let initialValues = state.bankDetailsData.lookUpData.data
-    let isLoading= state.bankDetailsData.isFetching
-    return {initialValues,isLoading}
+    let isLoading= state.bankDetailsData.isFetching;
+    let paymentTerms = _get(state,"bankDetailsData.lookUpData.data.paymentTerms.data",[{label:'',value:''}])
+    let currencyCodes   = _get(state,"bankDetailsData.lookUpData.data.currencyCodes.data",[{label:'',value:''}])
+    let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
+    
+    let paymentMethods   = _get(state,"bankDetailsData.lookUpData.data.paymentMethods.data",[{label:'',value:''}])
+
+    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods}
 
 }
 
 
-export default connect(mapStateToProps)(withLoader(BankingInfo))
+export default connect(mapStateToProps)((BankingInfo))
 
 
       
