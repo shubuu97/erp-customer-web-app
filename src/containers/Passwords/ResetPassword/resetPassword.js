@@ -7,7 +7,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button  from '@material-ui/core/Button';
 import {reduxForm} from 'redux-form';
-import {TextFieldInput} from '../../components/common/MaterialUiComponents'
+import {TextFieldInput} from '../../../components/common/MaterialUiComponents'
 
 
  class ResetPassword extends Component {

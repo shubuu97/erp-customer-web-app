@@ -42,9 +42,9 @@ import AfterCheckout from './containers/AfterCheckout/afterCheckout';
 import MiniCheckout from './containers/Products/Cart/MiniCart';
 import Orders from './containers/Orders/OrderList';
 import TrackOrder from './containers/Orders/TrackOrder';
-import ResetPassword from './Passwords/ResetPassword/resetPassword';
-import ForgotPassword from './Passwords/forgotPassword/forgotPassword';
-import SetPassword from './Passwords/SetPassword/setPassword';
+import ResetPassword from './containers/Passwords/ResetPassword/resetPassword';
+import ForgotPassword from './containers/Passwords/forgotPassword/forgotPassword';
+import SetPassword from './containers/Passwords/SetPassword/setPassword';
 
 const theme = createMuiTheme({
   
