@@ -133,11 +133,11 @@ class SetPassword extends Component {
             <img src={logologin} />
           </div>
           <form onSubmit={handleSubmit(this.handleSubmit)}>
-            {userInfoFromToken.data && userInfoFromToken.data.userInfo && <div>{userInfoFromToken.data.userInfo.email}</div>}
-            <div className="form-d col-sm-12">
+            {userInfoFromToken.data && userInfoFromToken.data.userInfo && <div className="verify-mail">{userInfoFromToken.data.userInfo.email}</div>}
+            <div className="form-d">
               <Field name={'newPassword'} label={'New Password'} type="password" placeholder={'New Password'} component={TextFieldInput} />
             </div>
-            <div className="form-d col-sm-12">
+            <div className="form-d">
               <Field name={'confirmNewPassword'} label={'Confirm New Password'} type="password" placeholder={'Confirm New Password'} component={TextFieldInput} />
             </div>
             <div className="btn-parent-full">

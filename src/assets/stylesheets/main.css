@@ -2677,6 +2677,11 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .ps-first-section {
 	margin-bottom: 40px;
 }
+.verify-mail {
+    text-align: left;
+    color: #0e8c4f;
+    font-weight: bold;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
