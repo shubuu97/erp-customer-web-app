@@ -55,6 +55,9 @@ class ResetPassword extends Component {
       if (success.data && success.data.code == 202) {
         this.setState({ errorMessage: 'Password updated successfully', isSuccess: true, isLoading: false });
         setTimeout(() => {
+          this.props.history.push('/StaticProfileView');
+        }, 2000);
+        setTimeout(() => {
           this.setState({ errorMessage: '' });
         }, 6000);
       }
@@ -120,7 +123,10 @@ class ResetPassword extends Component {
 }
 
 const ResetPasswordForm = reduxForm(
-  { form: 'reset', asyncValidate }
+  {
+    form: 'reset', asyncValidate,
+    enableReinitialize: true
+  }
 )(ResetPassword)
 
 
