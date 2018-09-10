@@ -14,6 +14,8 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import * as SET_PASSWORD_CONSTANT from '../constants/setPassword';
 import Snackbar from '@material-ui/core/Snackbar';
 import { showMessage } from '../../../action/common.js';
+import { get } from 'lodash';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
   failure: {
@@ -32,7 +34,8 @@ class SetPassword extends Component {
       tokenStatus: '',
       errorMessage: '',
       isSuccess: false,
-      userInfoFromToken: {}
+      userInfoFromToken: {},
+      isLoading: false
     }
   }
   componentWillMount() {
@@ -68,16 +71,53 @@ class SetPassword extends Component {
   handleSubmit = (formData) => {
     console.log(formData);
     console.log(this.state.userInfoFromToken);
-    let options = {
-      init: SET_PASSWORD_CONSTANT.REQUEST_SET_PASSWORD,
-      success: SET_PASSWORD_CONSTANT.RECEIVED_SET_PASSWORD,
-      error: SET_PASSWORD_CONSTANT.RECEIVED_SET_PASSWORD_ERROR
+    const { userInfoFromToken } = this.state;
+    if (formData.newPassword && formData.confirmNewPassword) {
+      let updatePasswordUrl = get(userInfoFromToken, 'data._links.updatePassword.href', '');
+      if (updatePasswordUrl) {
+        let options = {
+          init: SET_PASSWORD_CONSTANT.REQUEST_SET_PASSWORD,
+          success: SET_PASSWORD_CONSTANT.RECEIVED_SET_PASSWORD,
+          error: SET_PASSWORD_CONSTANT.RECEIVED_SET_PASSWORD_ERROR
+        }
+        let bodyData = {
+          passwordType: "setPassword",
+          newPassword: formData.newPassword,
+          confirmPassword: formData.confirmNewPassword
+        }
+        this.setState({ isLoading: true });
+        this.props.dispatch(postData(updatePasswordUrl, bodyData, null, options, userInfoFromToken.data._links.updatePassword.verb)).then((success) => {
+          console.log("Password success is here", success);
+          if (success.data && success.data.code == 202) {
+            this.setState({ errorMessage: 'Password updated successfully', isSuccess: true, isLoading: false });
+            setTimeout(() => {
+              this.props.history.push('/');
+            }, 3000);
+            setTimeout(() => {
+              this.setState({ errorMessage: '' });
+            }, 6000);
+          }
+          else {
+            this.setState({ errorMessage: 'Error in password updates, Please try again', isSuccess: false });
+            setTimeout(() => {
+              this.setState({ errorMessage: '' });
+            }, 6000);
+          }
+        }, (error) => {
+          this.setState({ errorMessage: error.message, isSuccess: false });
+          setTimeout(() => {
+            this.setState({ errorMessage: '' });
+          }, 6000);
+          console.log("Error in set password", error);
+        })
+      }
+    } else {
+      let errMsg = !formData.newPassword ? 'Please enter password' : 'Please enter confirm password';
+      this.setState({ errorMessage: errMsg, isSuccess: false });
+          setTimeout(() => {
+            this.setState({ errorMessage: '' });
+          }, 6000);
     }
-    // this.props.dispatch(postData(`${APPLICATION_BFF_URL}/iam/update/password`, null, options, 'PATCH')).then((success) => {
-    //   console.log("Password success is here", success);
-    // }, (error) => {
-    //   console.log(error);
-    // })
   }
   handleSubmitEmail = (formData) => {
     console.log(formData);
@@ -85,7 +125,7 @@ class SetPassword extends Component {
 
   render() {
     const { handleSubmit, classes, theme } = this.props;
-    const { tokenStatus } = this.state;
+    const { tokenStatus, userInfoFromToken, isLoading } = this.state;
     return (
       <div className="login-container">
         {tokenStatus == 'valid' && <div className="login">
@@ -93,6 +133,7 @@ class SetPassword extends Component {
             <img src={logologin} />
           </div>
           <form onSubmit={handleSubmit(this.handleSubmit)}>
+            {userInfoFromToken.data && userInfoFromToken.data.userInfo && <div>{userInfoFromToken.data.userInfo.email}</div>}
             <div className="form-d col-sm-12">
               <Field name={'newPassword'} label={'New Password'} type="password" placeholder={'New Password'} component={TextFieldInput} />
             </div>
@@ -119,7 +160,7 @@ class SetPassword extends Component {
                 </div>
               </div>
               <div className="btn-parent-full">
-                <Button type='submit' variant="contained" color='primary' label="Submit">Confirm</Button>
+                <Button type='submit' variant="contained" color="primary" label="Submit" disabled={isLoading}>{!isLoading && 'Confirm'}{isLoading && <CircularProgress size={24} />}</Button>
               </div>
             </form>
           </div>
