@@ -16,6 +16,7 @@ import profileSideBar from '../../../components/profileSideBarHoc';
 	render() {
 		return (
 			<div className="col-sm-9">
+				<h2 class="reset-password">Reset Password</h2>
 				<div className="row d-flex">
 					<div className="form-d col-sm-12">
 						<Field name={'password'} label={'Password'} placeholder={'Password'} component={TextFieldInput} />

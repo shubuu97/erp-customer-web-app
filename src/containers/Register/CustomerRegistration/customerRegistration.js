@@ -66,7 +66,7 @@ class CustomerRegistration extends Component
    
    this.props.dispatch(postCustomerRegisterData(postData,'customerRegistr',`${APPLICATION_BFF_URL}/customer/register`)).then((data)=>{
 {
-      this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
+      this.props.dispatch(showMessage({text: "Successfully Saved", isSuccess: true}));
       this.props.history.push('/register');
       setTimeout(()=>{
         this.props.dispatch(showMessage({text: "", isSuccess: true}));
@@ -100,10 +100,11 @@ class CustomerRegistration extends Component
           <img src={logologin} />
         </div>
          <form onSubmit={handleSubmit(this.handleSubmit)}>
+          <h2 className="forgot-text">Individual Customer Sign Up</h2>
            <CustomerRegister {...this.props} />
            <div className="btn-parent-full">
               <Button variant="contained" color='primary' type='submit' disabled={!this.props.anyTouched||this.props.invalid}>Register</Button>
-              <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link> or Join as <Link to= '/companyRegister'>Company</Link>
+              <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In<br /></Link> Join as <Link to= '/companyRegister'>Company</Link>
               </div>
            </div>
            </form>

@@ -766,10 +766,16 @@ li.logout a:hover, li.logout a:focus {
 	color: #0e8c4d;
 }
 .forgot-text {
-	text-align: left;
 	font-weight: 400;
 	font-size: 22px;
 	color: #0e8c4f;
+}
+.reset-password {
+	font-weight: 400;
+	font-size: 26px;
+	color: #0e8c4f;
+	margin-top: 0;
+	margin-bottom: 15px;
 }
 /*=================================== LOGIN CONTAINER CSS================================== */ 
 

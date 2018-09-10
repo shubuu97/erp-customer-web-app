@@ -35,7 +35,7 @@ class BankingInfo extends Component
      this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`)).then((data)=>{
         if(data.data.message) {
 
-          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
+          this.props.dispatch(showMessage({text: "Successfully Saved", isSuccess: true}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);

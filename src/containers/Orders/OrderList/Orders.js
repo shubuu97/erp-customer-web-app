@@ -28,6 +28,7 @@ export default class Orders extends React.Component {
       handleTrack={this.props.handleTrack}
       trackingNumber={_get(order,'trackingNumber','')}
       shipper={_get(order,'shipper.name','')}
+      payment={_get(order,'payment',{})}
       saleProducts={order.saleProducts}
       status={order.status}
       order={order}  />)
@@ -41,7 +42,7 @@ export default class Orders extends React.Component {
    console.log(OrderList,"zzz")
 return(
   <div>
-    <h2 className="cart-heading">Your Orders</h2>
+    <h2 className="reset-password">Your Orders</h2>
     {ordersList}
   </div>
 )
