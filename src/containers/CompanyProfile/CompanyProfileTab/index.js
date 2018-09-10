@@ -10,6 +10,7 @@ import LicenceInfo from '../LicenceInfo';
 import SiteInfo from '../SiteInfo';
 import BankingInfo from '../BankingInfo';
 import profileSideBar from '../../../components/profileSideBarHoc';
+import qs from 'query-string'
 
 
 function TabContainer(props) {
@@ -51,6 +52,12 @@ class CompanyProfileTab extends React.Component {
   handleTabSwitch=(tabNumber)=>
   {
     this.setState({ value:tabNumber });
+  }
+  componentDidMount()
+  {
+   let queryString =  qs.parse(this.props.location.search);
+     queryString.tab?this.handleTabSwitch(parseInt(queryString.tab)):null
+
   }
   render() {
     const { classes } = this.props;
