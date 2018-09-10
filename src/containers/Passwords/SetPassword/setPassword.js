@@ -13,9 +13,9 @@ import { connect } from 'react-redux';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import * as SET_PASSWORD_CONSTANT from '../constants/setPassword';
 import Snackbar from '@material-ui/core/Snackbar';
-import { showMessage } from '../../../action/common.js';
 import { get } from 'lodash';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import asyncValidate from './validate.js';
 
 const styles = theme => ({
   failure: {
@@ -187,7 +187,7 @@ class SetPassword extends Component {
 }
 
 const setPasswordForm = reduxForm(
-  { form: 'setPasswordForm' }
+  { form: 'setPasswordForm', asyncValidate }
 )(SetPassword)
 
 export default connect()(withStyles(styles)(setPasswordForm));
