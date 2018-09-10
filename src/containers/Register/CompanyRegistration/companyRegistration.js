@@ -56,11 +56,12 @@ class CompanyRegistration extends PureComponent {
               <img src={logologin} />
           </div>
           <form onSubmit={handleSubmit(this.submit)}>
+          <h2 className="forgot-text">Company SIgn up</h2>
             <CompanyRegister />
             <div className="btn-parent-full">
               <Button disabled={!this.props.anyTouched||this.props.invalid} variant="contained" color='primary' type='submit' label="Register">Register</Button>
             </div>
-            <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link> or Join as <Link to= '/customerRegister'>Customer</Link>
+            <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In</Link><br /> Join as <Link to= '/customerRegister'>Customer</Link>
             </div>
           </form>
         </div>
