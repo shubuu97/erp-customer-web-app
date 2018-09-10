@@ -9,6 +9,7 @@ export default class TrackOrders extends React.Component {
   }
   render() {
     let TrackOrderdata;
+    const {orderDetails} = this.props;
     if (Array.isArray(this.props.trackData) && this.props.trackData.length) {
       TrackOrderdata = this.props.trackData.map((track) => {
         return (
@@ -22,7 +23,9 @@ export default class TrackOrders extends React.Component {
     return (
       <div>
         <h2 className="cart-heading">Track Order</h2>
-        {TrackOrderdata}
+        <div>
+          <TrackOrder orderDetails={orderDetails}/>
+        </div>
       </div>)
   }
 }

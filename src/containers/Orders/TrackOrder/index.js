@@ -11,7 +11,7 @@ class TrackOrderContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      item:{}
     }
 
   }
@@ -20,6 +20,11 @@ class TrackOrderContainer extends React.Component {
       this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${localStorage.getItem("id")}/history`, ''))
     else
       this.props.history.push('/orders')
+
+      if(localStorage.getItem('orderedItem')){
+        let item = JSON.parse(localStorage.getItem('orderedItem'));
+        this.setState({item});
+      }
     document.body.classList.add('track-order-page');
   }
   componentWillUnmount() {
@@ -31,6 +36,7 @@ class TrackOrderContainer extends React.Component {
       <div className="container">
         <TrackOrders
           trackData={this.props.trackData.data}
+          orderDetails={this.state.item}
         />
       </div>
     )
