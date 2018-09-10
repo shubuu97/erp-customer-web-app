@@ -15,6 +15,9 @@ import grid from '../../../assets/images/grid.png';
 import placehold from '../../../assets/images/waste-plant.png';
 import info from '../../../assets/images/info.png';
 import { isEmpty } from 'lodash';
+import { addToCart } from '../action/product';
+import { findIndex } from 'lodash';
+import { showMessage } from '../../../action/common';
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -29,7 +32,8 @@ class ProductsContainer extends React.Component {
         from100To200: false,
         above200: false 
       },
-      filteredData: []
+      filteredData: [],
+      isGridView: true
     }
   }
   productDetails(item) {
@@ -73,11 +77,26 @@ class ProductsContainer extends React.Component {
     this.setState({priceFilterObject: priceFilterObject});
     this.props.dispatch(applyFilter(productDataList, priceFilterObject));
   }
+  changeView() {
+    this.setState({isGridView: !this.state.isGridView});
+  }
+  addToCart = (productInfo) => {
+    const { cartProductList, dispatch } = this.props;
+    let cartList = cartProductList || [];
+    if (findIndex(cartList, { itemId: productInfo.itemId }) == -1) {
+      cartList.push(productInfo);
+      dispatch(addToCart(cartList));
+    }
+    this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
+    setTimeout(() => {
+      this.props.dispatch(showMessage({ text: "", isSuccess: true }));
+    }, 6000);
+  }
   
   render() {
     const { categoryTypeAndItems, selectedCategoryType, filteredDataSet } = this.props;
     console.log("Product Data with type", selectedCategoryType);
-    const { openItemInfo, popupItemInfo, filteredData } = this.state;
+    const { openItemInfo, popupItemInfo, filteredData, isGridView } = this.state;
     console.log("filteredDataSet==", filteredDataSet);
     const NoProduct = () => (
       <div className="no-product-text">
@@ -96,8 +115,8 @@ class ProductsContainer extends React.Component {
           <div className="col-sm-9">
             <div className="filter-bar">
               <ul className="list-grid">
-                <li className="active"><img src={grid} /></li>
-                <li><img src={list} /></li>
+                <li className={isGridView ? `active`: ''} onClick={()=>this.changeView()}><img src={grid} /></li>
+                <li className={!isGridView ? `active`: ''} onClick={()=>this.changeView()}><img src={list} /></li>
               </ul>
               <div className="sort-by">
                 <span>Sort By</span>
@@ -108,39 +127,9 @@ class ProductsContainer extends React.Component {
                 </select>
               </div>
             </div>
-            <div className="product-list-box">
-              <div className="product-list-img">
-                <img className="img-responsive" src={placehold} />
-              </div>
-              <div className="product-list-content">
-                <div className="pro-head">
-                  <h4 className="product-name">Brownie Cookies</h4>
-                  <div className="pc-2">
-                    <img className="info-icon" src={info}/>
-                  </div>
-                </div>
-                <div className="product-price">$54</div>
-                <p class="p-desc">This mostly indica strain is a mix of Afghani and Blackberry strains and has beautiful dark purple buds with orange hairs. Plants will flower at 7-8 weeks and are not particularly high yielders, but the dense, hard nugs have crystals throughout...</p>
-                <Button color='primary' variant='contained'>Add to Cart</Button>
-              </div>
-            </div>
-            <div className="product-list-box">
-              <div className="product-list-img">
-                <img className="img-responsive" src={placehold} />
-              </div>
-              <div className="product-list-content">
-                <div className="pro-head">
-                  <h4 className="product-name">Brownie Cookies</h4>
-                  <div className="pc-2">
-                    <img className="info-icon" src={info}/>
-                  </div>
-                </div>
-                <div className="product-price">$54</div>
-                <p class="p-desc">This mostly indica strain is a mix of Afghani and Blackberry strains and has beautiful dark purple buds with orange hairs. Plants will flower at 7-8 weeks and are not particularly high yielders, but the dense, hard nugs have crystals throughout...</p>
-                <Button color='primary' variant='contained'>Add to Cart</Button>
-              </div>
-            </div>
-            {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
+            {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} 
+            isLoading={this.props.isLoading} showInfo={this.showInfo} 
+            onProductClick={(item) => this.productDetails(item)} isGridView={isGridView} addToCart={this.addToCart}/> : null}
             {filteredDataSet.filteredData && !filteredDataSet.filteredData.length &&
               <NoProduct />
             }
@@ -192,11 +181,12 @@ class ProductsContainer extends React.Component {
 const mapStateToProps = state => {
   let products = state.productData.inventoryItemList.data
   let isLoading = state.productData.isFetching;
+  let cartProductList = state.productData.cartProductList;
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let categoryTypeAndItems = state.categoryTypeAndItems && state.categoryTypeAndItems.categoryTypeAndItems;
   let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
   let filteredDataSet = (state.productData && state.productData.filteredDataSet) || {};
-  return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType, filteredDataSet }
+  return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType, filteredDataSet, cartProductList }
 }
 
 export default connect(mapStateToProps)(ProductsContainer)
