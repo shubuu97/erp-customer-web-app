@@ -66,8 +66,8 @@ class ProductsInCart extends React.Component {
       
     </div>
     <div className="addToCartButtonDiv">
-      <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.props.backToList}>Continue Shopping</Button>
-      <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.props.clearCart}>Clear Cart</Button>
+      <Button variant="contained" size='large' color="secondary" classes={{ root: 'small-btn' }} onClick={this.props.backToList}>Continue Shopping</Button>
+      <Button variant="contained" size='large' color="secondary" classes={{ root: 'small-btn' }} onClick={this.props.clearCart}>Clear Cart</Button>
     </div>
     </div>
   );

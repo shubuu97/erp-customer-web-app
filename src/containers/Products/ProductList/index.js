@@ -10,6 +10,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
+import list from '../../../assets/images/list.png';
+import grid from '../../../assets/images/grid.png';
+import placehold from '../../../assets/images/waste-plant.png';
+import info from '../../../assets/images/info.png';
 import { isEmpty } from 'lodash';
 
 class ProductsContainer extends React.Component {
@@ -90,6 +94,52 @@ class ProductsContainer extends React.Component {
             {filteredDataSet.filterObj && <SideBar filteredDataSet={filteredDataSet} types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />}
           </div>
           <div className="col-sm-9">
+            <div className="filter-bar">
+              <ul className="list-grid">
+                <li className="active"><img src={grid} /></li>
+                <li><img src={list} /></li>
+              </ul>
+              <div className="sort-by">
+                <span>Sort By</span>
+                <select className="form-control">
+                  <option>Alphabetically, A-Z</option>
+                  <option>Alphabetically, Z-A</option>
+                  <option>Numerical</option>
+                </select>
+              </div>
+            </div>
+            <div className="product-list-box">
+              <div className="product-list-img">
+                <img className="img-responsive" src={placehold} />
+              </div>
+              <div className="product-list-content">
+                <div className="pro-head">
+                  <h4 className="product-name">Brownie Cookies</h4>
+                  <div className="pc-2">
+                    <img className="info-icon" src={info}/>
+                  </div>
+                </div>
+                <div className="product-price">$54</div>
+                <p class="p-desc">This mostly indica strain is a mix of Afghani and Blackberry strains and has beautiful dark purple buds with orange hairs. Plants will flower at 7-8 weeks and are not particularly high yielders, but the dense, hard nugs have crystals throughout...</p>
+                <Button color='primary' variant='contained'>Add to Cart</Button>
+              </div>
+            </div>
+            <div className="product-list-box">
+              <div className="product-list-img">
+                <img className="img-responsive" src={placehold} />
+              </div>
+              <div className="product-list-content">
+                <div className="pro-head">
+                  <h4 className="product-name">Brownie Cookies</h4>
+                  <div className="pc-2">
+                    <img className="info-icon" src={info}/>
+                  </div>
+                </div>
+                <div className="product-price">$54</div>
+                <p class="p-desc">This mostly indica strain is a mix of Afghani and Blackberry strains and has beautiful dark purple buds with orange hairs. Plants will flower at 7-8 weeks and are not particularly high yielders, but the dense, hard nugs have crystals throughout...</p>
+                <Button color='primary' variant='contained'>Add to Cart</Button>
+              </div>
+            </div>
             {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} isLoading={this.props.isLoading} showInfo={this.showInfo} onProductClick={(item) => this.productDetails(item)} /> : null}
             {filteredDataSet.filteredData && !filteredDataSet.filteredData.length &&
               <NoProduct />

@@ -7,9 +7,9 @@ import withLoader from '../../../components/LoaderHoc'
 class AccountInfo extends Component {
     render() {
         return (
-            <div>
+            <div className="form-box">
                         <div className="row">
-                            <div className="col-sm-12 form-d form-input">
+                            <div className="col-sm-12 form-d form-input dsfd">
                                 <Field name='companyName'   label='Company Name' component={TextFieldInput} />
                             </div>
                         </div>

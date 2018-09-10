@@ -138,7 +138,7 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
 />
 <Dropzone className="dropzone"
 onDrop={this.dropHandler}>
-<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Upload Void check here</div>}</div>
+<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'240px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div className="dropzone-img"></div>}</div>
 </Dropzone>
                     </div>
                 </div> 
