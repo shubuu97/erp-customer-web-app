@@ -28,6 +28,7 @@ export default class Orders extends React.Component {
       handleTrack={this.props.handleTrack}
       trackingNumber={_get(order,'trackingNumber','')}
       shipper={_get(order,'shipper.name','')}
+      payment={_get(order,'payment',{})}
       saleProducts={order.saleProducts}
       status={order.status}
       order={order}  />)
