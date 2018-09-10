@@ -32,10 +32,7 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
   price={saleProduct.Price}
   quantity={saleProduct.quantity}
   />,
-  <div className="ot-button">
-    <Button color='secondary' variant='contained'>Cancel Order</Button>
-    <Button color='secondary' onClick={()=>this.props.handleTrack(this.props.id)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
-  </div>
+  
 ])
 })
     return (
@@ -44,22 +41,23 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
           <div style={{width:'100%'}} className="card-header-left">
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
-            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span> </div>
-           <div><PaymentStatus 
-           payment={this.props.payment}/></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span> <div><PaymentStatus payment={this.props.payment}/></div></div>
+           
            <div className="track-item"><label className="track-status">Logistics Partner</label><span className="track-id">{this.props.shipper}</span></div>
           <div className="track-item"><label className="track-status">Tracking Number</label><span className="track-id">{this.props.trackingNumber}</span></div>
 
           </div>
-          {/* <div className="card-header-right">
-            <div className="orderStatus">
+          <div className="card-header-right">
+            {/* <div className="orderStatus">
               <span><img src={greenCheck} /></span>
               <div className="o-status">
                 <label>Delivered</label>
                 <span>Sun, Apr 8<sup>th</sup> 2018</span>
               </div>
-            </div>
-          </div> */}
+            </div> */}
+            <Button color='secondary' variant='contained'>Cancel Order</Button>
+    <Button color='secondary' onClick={()=>this.props.handleTrack(this.props.id)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+          </div>
         </div>
         <div className="order-card-content">        
           {itemLists}      
