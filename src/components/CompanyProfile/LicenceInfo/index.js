@@ -81,15 +81,15 @@ class LicenceInfo extends Component {
         console.log(this.props,"props is here")
         return (
             <div className="row">
-
-
-                <div className="col-sm-12">
-                <div className="row">
-                <div className="form-d col-md-4 form-input">
+<div className="form-d col-md-4 form-input">
                     <Field props={{disabled:true}} name={'companyName'}  label={'Company Name'} component={TextFieldInput} />
                 </div>
+                     <FormSection name="companyInfo">
+                <div className="col-sm-12">
+                <div className="row">
+                
 
-                    <FormSection name="companyInfo">
+                   
                     <div className="col-md-8 form-d">
                         
                             <div className="row d-flex">                        
@@ -106,7 +106,7 @@ class LicenceInfo extends Component {
                         
                     </div>
                         
-                    </FormSection>
+                  
                     </div>
                     <FormSection name="companyAddressInfo">
                         <div className="row">
@@ -172,7 +172,7 @@ class LicenceInfo extends Component {
                     <FieldArray name="contactNumbers" component={contactField} />
                 
                     <FieldArray name="emailAddresses" component={emailField} />
-                      
+                     
                     
 
 
@@ -182,6 +182,7 @@ class LicenceInfo extends Component {
                 {/* <div className="form-d col-md-4 col-sm-6 form-input"> */}
                     {/* <Field name={info.name} label={info.label} component={info.component} /> */}
                 {/* </div> */}
+                </FormSection>
 
             </div>
         )

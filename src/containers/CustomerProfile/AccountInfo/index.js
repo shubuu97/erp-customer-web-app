@@ -47,12 +47,12 @@ class CustomerInfo extends Component
       });
   
     }
-    // componentDidMount()
-    // {
-    //     this.props.dispatch(fetchProfileFormData(`${}/customer/register`));
+    componentDidMount()
+    {
+      this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
 
-    //     this.props.dispatch(postBasicInfoData({_id: "5b7530f8a3b7320018ee14b7"},'',`${}/customer/basicinfo/search`))
-    // }
+    }
+   
     render()
     {
         const {handleSubmit} = this.props;
@@ -61,7 +61,7 @@ class CustomerInfo extends Component
             <div>
                 
                 <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
-               <AccountInfo/>
+               <AccountInfo {...this.props}/>
                 <div className="form-btn-group">
                   <Button type='submit' variant="contained" color='primary'   label="Submit">Save </Button>
                 </div>
@@ -114,4 +114,4 @@ function mapStateToProps(state)
  return {initialValues, isLoading,urlLinks}
 }
 
-export default connect(mapStateToProps)(withLoader(CustomerInfo))
+export default connect(mapStateToProps)(CustomerInfo)

@@ -7,9 +7,9 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 import AddressInfoFields from '../../common/AddressInfo/adddressInfoFields';
 import BasicInfoFields from '../../common/BasicInfo/BasicInfoFields';
 import accountInfoFields from './accountInfoFields'
-import AccountInfo from './accountInfoFields';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import withLoader from '../../../components/LoaderHoc/index';
+
 
 let prop = {};
 prop.country = [{label:'India',value:'India'},{label:'China',value:'India'}];
@@ -54,8 +54,9 @@ const AddressInfo = (props) => {
         </div>
     )
 }
-export default (props) => {
-
+class  AddressInfoComp extends Component {
+render()
+{
     return (
         <div className="row">
         <div className="col-sm-12">
@@ -93,5 +94,6 @@ export default (props) => {
         </div>
     )
 }
+}
 
-
+export default withLoader(AddressInfoComp)
