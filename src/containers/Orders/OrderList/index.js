@@ -14,8 +14,20 @@ class OrderContainer extends React.Component {
     }
  
   }
-   handleTrack=(id) =>{
-     localStorage.setItem('orderId',id)
+   handleTrack=(order) =>{
+     console.log("tracking order", order);
+     let item = {
+       payment: order.payment,
+       customer: order.customer,
+       status: order.status,
+       supplier: order.supplier,
+       orderDate: order.orderDate,
+       orderId: order.id,
+       trackingNumber: order.trackingNumber,
+       shipper: order.shipper
+      };
+     localStorage.setItem('orderedItem',JSON.stringify(item));
+     localStorage.setItem('orderId',order.id)
        this.props.history.push('/track')
      }
   componentDidMount()
