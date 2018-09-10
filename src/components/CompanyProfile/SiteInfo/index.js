@@ -16,7 +16,7 @@ fields.push();
 return (
 <div className="row">
 <div className="col-sm-12">
-<div className="form-box">
+<div className="form-box2">
 <div className="row d-flex">
 
 {fields.map((license, index) => (
@@ -81,7 +81,7 @@ return (
 </div> </div>))}
 
 
-<div className="col-sm-12 form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
+<div className="form-btn-group-left"><Button variant="contained" color='primary' onClick={() => fields.push()}>Add new</Button></div>
 
 </div>
 </div>
@@ -97,7 +97,7 @@ return (
 
 {fields.map((site, index) => (
 
-<div className="">
+<div className="form-box">
 <div class="row d-flex">
 
 <div className="form-d col-md-4 col-sm-6 form-input">
@@ -118,7 +118,7 @@ return (
 
 
 
-{(fields.length == 1 || (fields.get(index) && fields.get(index)._id)) ? null : <div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
+{(fields.length == 1 || (fields.get(index) && fields.get(index)._id)) ? null : <div className="form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
 
 
 </div>))}

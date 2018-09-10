@@ -68,7 +68,7 @@ class CompanyProfileTab extends React.Component {
         <div className={classes.root + ' c-tabs'}>
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD'}} TabIndicatorProps={{color:'transparent'}}>
               <Tab className={value==0?classes.tabActive:null} label="Account" />
-              <Tab className={value==1?classes.tabActive:null} label="Licence" />
+              <Tab className={value==1?classes.tabActive:null} label="License" />
               <Tab className={value==2?classes.tabActive:null} label="Site"  />
               <Tab className={value==3?classes.tabActive:null} label="Banking"/>
             </Tabs>

@@ -37,7 +37,7 @@ class LicenseInfo extends Component
     }
      this.props.dispatch(postLicenseData(requestObj,'',`${this.props.urlLinks.updateOrCreateCompanyInfo.href}`)).then((data)=>{
         if(data.data.message) {
-          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
+          this.props.dispatch(showMessage({text: "Successfully Saved", isSuccess: true}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },2000);

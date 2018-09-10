@@ -19,7 +19,7 @@ export default (props) => {
     <div className="cart-total-total cart-item">
         Order Total <span>$ {props.details.total}</span>
     </div>
-    <div className="apply-discount">
+    {/* <div className="apply-discount">
         <div className="d-flex justify-content-between">
             <label>Apply Discount Code</label>
             <i className="fa fa-angle-left"></i>
@@ -28,7 +28,7 @@ export default (props) => {
             <input className="form-control" placeholder="Enter Discount Code"></input>
             <Button variant="contained" color="secondary">Apply</Button>
         </div>
-    </div>
+    </div> */}
     <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.goToCheckout}>Proceed to Checkout</Button>
     </div>

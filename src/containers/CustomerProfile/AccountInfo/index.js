@@ -32,7 +32,7 @@ class CustomerInfo extends Component
     
      this.props.dispatch(patchUpdateBasicInfo(requestObj,'',`${APPLICATION_BFF_URL}/customer/basicinfo`)).then((data)=>{
         if(data.data.message) {
-          this.props.dispatch(showMessage({text: "Successful Operation", isSuccess: true}));
+          this.props.dispatch(showMessage({text: "Successfully Saved", isSuccess: true}));
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);

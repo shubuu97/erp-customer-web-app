@@ -70,6 +70,7 @@ class Login extends Component {
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
       localStorage.setItem('email', data.data.email)
+      localStorage.setItem('userLoginId',data.data.id)
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
@@ -93,7 +94,7 @@ class Login extends Component {
             console.log(err);
           });
           localStorage.setItem('id', data.data.content._id)
-          this.setState({ message: "Successful Operation", isSuccess: true });
+          this.setState({ message: "Successfully Saved", isSuccess: true });
           setTimeout(() => {
             this.setState({ message: '' });
           }, 6000);
