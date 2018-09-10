@@ -38,8 +38,12 @@ routeChanger(tab)
     render()
     {
         return(
-            <div>
-            <div>
+            <div className="col-sm-9">
+            <div className="staticProfile-box">
+            <h2 className="cart-heading">Profile Information <Button color='secondary' variant="contained">Change Password</Button></h2>
+            <div className="row d-flex">
+            <div className="col-md-6">
+            <h4 className="ac-heading">Account Details</h4>
             <AccountView 
             addressInfo={_get(this.props.accountDetails,'addressInfo','')}
             contactNumber={_get(this.props.accountDetails,'contactNumber','')}
@@ -50,9 +54,10 @@ routeChanger(tab)
 
             
             accountDetails={this.props.accountDetails}/>
-            <div><Button color='primary' variant="contained" onClick={()=>this.routeChanger(0)}>Edit</Button></div>
+            <div className="top-gutter20"><Button color='secondary' variant="contained" onClick={()=>this.routeChanger(0)}>Edit Info</Button></div>
             </div>
-            <div style={{marginTop:'10px'}}>
+            <div className="col-md-6">
+            <h4 className="ac-heading">Banking Details</h4>
             <BankView
             accountNumber={_get(this.props.bankingDetails,'accountNumber','')}
             bankingDetails={this.props.bankingDetails}
@@ -63,8 +68,11 @@ routeChanger(tab)
             nameOnCheque={_get(this.props.bankingDetails,'nameOnCheque','')}
             paymentTerms={_get(this.props.bankingDetails,'paymentTerms','')}
             preferredPaymentMethods={_get(this.props.bankingDetails,'preferredPaymentMethods','')}/>
+            <div className="top-gutter20"><Button color='secondary' variant="contained"  onClick={()=>this.routeChanger(1)}>Edit info</Button></div>
             </div>
-            <div><Button color='primary' variant="contained"  onClick={()=>this.routeChanger(1)}>Edit</Button></div>
+            
+            </div>
+            </div>
             </div>
         )
     }

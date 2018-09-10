@@ -9,7 +9,7 @@ if(Array.isArray(props.bankDetails))
 {
     BankDetails =   props.bankDetails.map((bankDetail)=>
 {
-    return( <div>
+    return( <div className="row">
        <div>Account Name -  {bankDetail.accountName}</div>
        <div>Account Status -{bankDetail.accountStatus}</div>
         <div>Bank Account Number-{bankDetail.bankAccountNumber}</div>
@@ -23,18 +23,18 @@ else{
     BankDetails = null
 }
     return(
-    <Card>
-          <div>Account Number - {props.accountNumber}</div>
-        <div>Credit Limit - {props.creditLimit}</div>
-        <div>Currency Code - {props.currencyCode}</div>
-        <div>Invoice Currency Code - {props.invoiceCurrencyCode}</div>
-        <div>Name On Cheque - {props.nameOnCheque}</div>
-        <div>Payment Terms - {props.paymentTerms}</div>
-        <div>Preferred Payment Methods - {props.preferredPaymentMethods}</div>
-        <div>Account Number - {props.accountNumber}</div>
-        <div>Bank Details- {BankDetails}</div>
+    <div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Company Account Number:</label></div> <div className="col-xs-6 ac-main">{props.accountNumber}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Credit Limit:</label></div> <div className="col-xs-6 ac-main"> {props.creditLimit}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Currency Code:</label></div> <div className="col-xs-6 ac-main"> {props.currencyCode}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Invoice Currency Code:</label></div> <div className="col-xs-6 ac-main"> {props.invoiceCurrencyCode}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Name On Cheque:</label></div> <div className="col-xs-6 ac-main"> {props.nameOnCheque}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Payment Terms:</label> {props.paymentTerms}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Preferred Payment Methods:</label></div> <div className="col-xs-6 ac-main"> {props.preferredPaymentMethods}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Account Number:</label></div> <div className="col-xs-6 ac-main"> {props.accountNumber}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Bank Details:</label></div> <div className="col-xs-6 ac-main"> {BankDetails}</div></div>
 
-    </Card>
+    </div>
     )
 }
 

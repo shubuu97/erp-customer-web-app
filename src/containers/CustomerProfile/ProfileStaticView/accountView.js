@@ -1,6 +1,5 @@
 import React from 'react';
 import { array } from 'prop-types';
-import Card from '@material-ui/core/Card';
 
 
 const accountView =  (props)=>
@@ -11,11 +10,9 @@ if(Array.isArray(props.addressInfo))
     AddressInfo =   props.addressInfo.map((address)=>
 {
     return( <div>
-       <div>Address -  {address.address}</div>
-       <div>Zip Code -{address.zipCode}</div>
-        <div>City-{address.city}</div>
-        <div>State-{address.state}</div>
-        <div>Country-{address.country}</div>
+       <div className="ac-main-inner">{address.address}, </div>
+       <div className="ac-main-inner">{address.city}, {address.state}, {address.zipCode},</div>
+       <div className="ac-main-inner">{address.country}</div>
     </div>)
 })
 }
@@ -23,14 +20,15 @@ else{
     AddressInfo = null
 }
     return(
-    <Card>
-        <div>First Name- {props.firstName}</div>
-        <div>Last Name - {props.lastName}</div>
-        <div>Email- {props.email}</div>
-        <div>Contact Number- {props.contactNumber}</div>
-        <div>License Number- {props.licenseNumber}</div>
-         <div>Address Info- {AddressInfo}</div>
-    </Card>
+    <div>
+        <div className="ac-main">{props.firstName} {props.lastName}</div>
+        <div className="ac-main"> {AddressInfo}</div>
+        <div className="ac-secondary-box">
+            <div className="ac-main"><label>Email:</label> {props.email}</div>
+            <div className="ac-main"><label>Contact Number:</label> {props.contactNumber}</div>
+            <div className="ac-main"><label>License Number:</label> {props.licenseNumber}</div>         
+        </div>
+    </div>
     )
 }
 

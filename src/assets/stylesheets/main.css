@@ -1599,10 +1599,32 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	margin-top: 0;
 	font-weight: 300;
 	margin-bottom: 25px;
+	display: flex;
+	justify-content: space-between;
 }
 .info-icon {
 	width: 24px;
 	cursor: pointer;
+}
+.ac-heading {
+	margin-top: 0;
+	padding-bottom: 10px;
+	border-bottom: solid 1px #000;
+    margin-bottom: 10px;
+    font-size:16px;
+}
+.ac-main {
+	line-height: 22px;
+}
+.ac-secondary-box {
+	margin: 20px 0 0;
+}
+.ac-main label {
+	margin: 0;
+	line-height: 24px;
+}
+.top-gutter20{
+    margin-top:20px;
 }
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
 
@@ -2682,6 +2704,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     color: #0e8c4f;
     font-weight: bold;
 }
+
+/*************************************** STATIC PROFILE PAGE CSS START *****************************************/
+.staticProfile-box {
+	background: #fdfdfd;
+	padding: 25px;
+}
+/*************************************** STATIC PROFILE PAGE CSS START *****************************************/
+
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -3407,8 +3437,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .form-d {
         margin-bottom: 10px;
     }
-    .login{
-        padding:15px 0;
+    .login {
+        padding: 15px 0;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+        top: 50px;
     }
     .menu {
         margin-right: 15px;
