@@ -93,7 +93,7 @@ class Login extends Component {
             console.log(err);
           });
           localStorage.setItem('id', data.data.content._id)
-          this.setState({ message: "Successful Operation", isSuccess: true });
+          this.setState({ message: "Successfully Saved", isSuccess: true });
           setTimeout(() => {
             this.setState({ message: '' });
           }, 6000);

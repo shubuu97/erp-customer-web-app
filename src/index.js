@@ -45,6 +45,7 @@ import TrackOrder from './containers/Orders/TrackOrder';
 import ResetPassword from './containers/Passwords/ResetPassword/resetPassword';
 import ForgotPassword from './containers/Passwords/forgotPassword/forgotPassword';
 import SetPassword from './containers/Passwords/SetPassword/setPassword';
+import PaymentStatus from './containers/Orders/OrderList/paymentStatus';
 
 const theme = createMuiTheme({
   
@@ -133,6 +134,7 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/reset" component = {ResetPassword}/>
 <Route exact path="/forgot" component={ForgotPassword} />
 <Route exact path="/confirmation" component={SetPassword} />
+<RouterWithMainLayout layout={MainLayout} path="/paymentStatus" component = {PaymentStatus}/>
 
 
 
