@@ -41,10 +41,10 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
           <div style={{width:'100%'}} className="card-header-left">
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
-            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span> <div><PaymentStatus payment={this.props.payment}/></div></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span> <div className="p-status"><PaymentStatus payment={this.props.payment}/></div></div>
            
-           <div className="track-item"><label className="track-status">Logistics Partner</label><span className="track-id">{this.props.shipper}</span></div>
-          <div className="track-item"><label className="track-status">Tracking Number</label><span className="track-id">{this.props.trackingNumber}</span></div>
+           {/* <div className="track-item"><label className="track-status">Logistics Partner</label><span className="track-id">{this.props.shipper}</span></div>
+          <div className="track-item"><label className="track-status">Tracking Number</label><span className="track-id">{this.props.trackingNumber}</span></div> */}
 
           </div>
           <div className="card-header-right">

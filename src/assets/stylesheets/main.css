@@ -2375,6 +2375,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     cursor: pointer;
     color: #0e8c4f;
 }
+.p-status a {
+	color: #0e8c4f;
+}
 .orderStatus {
 	display: flex;
 	align-items: center;
@@ -2660,6 +2663,19 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .btn-group-margin button {
 	margin-right: 8px;
+}
+.ps-row {
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.4rem;
+    margin-top: 15px;
+    text-transform: capitalize;
+}
+.ps-row label {
+	margin: 0;
+}
+.ps-first-section {
+	margin-bottom: 40px;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
