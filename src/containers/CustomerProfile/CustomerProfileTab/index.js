@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import AccountInfo from '../AccountInfo';
 import BankingInfo from '../BankingInfo';
 import profileSideBar from '../../../components/profileSideBarHoc';
+import * as qs from 'query-string'
 
 function TabContainer(props) {
   return (
@@ -42,22 +43,24 @@ class CustomerProfileTab extends React.Component {
   };
   componentDidMount()
   {
-    // this.props.dispatch(postBasicInfoData({ email: localStorage.getItem('email') }, '', `${APPLICATION_BFF_URL}/user/logindata`))
-     
+   let queryString =  qs.parse(this.props.location.search);
+     queryString.tab?this.handleTabSwitch(parseInt(queryString.tab)):null
 
-
-      // this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/customer/bankingdetails?_id=${localStorage.getItem("id")}`));
   }
   handleChange = (event, value) => {
     this.setState({ value });
   };
+  handleTabSwitch=(tabNumber)=>
+  {
+    this.setState({ value:tabNumber });
+  }
  
   render() {
     const { classes } = this.props;
     const { value } = this.state;
 
     return (
-      <div className="col-sm-9">
+      <div>
       <div className={classes.root + ' c-tabs'}>
         <AppBar position="static">
           <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
@@ -80,5 +83,5 @@ CustomerProfileTab.propTypes = {
 
 CustomerProfileTab=withStyles(styles)(CustomerProfileTab);
 
-export default profileSideBar(CustomerProfileTab);
+export default (CustomerProfileTab);
 

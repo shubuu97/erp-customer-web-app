@@ -81,21 +81,20 @@ class LicenceInfo extends Component {
         console.log(this.props,"props is here")
         return (
             <div className="row">
-
-
-                <div className="col-sm-12">
-                <div className="form-box">
-                <div className="row">
-                <div className="form-d col-md-4 form-input">
+<div className="form-d col-md-4 form-input">
                     <Field props={{disabled:true}} name={'companyName'}  label={'Company Name'} component={TextFieldInput} />
                 </div>
+                     <FormSection name="companyInfo">
+                <div className="col-sm-12">
+                <div className="row">
+                
 
-                    <FormSection name="companyInfo">
+                   
                     <div className="col-md-8 form-d">
                         
                             <div className="row d-flex">                        
                                 <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
-                                    <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'License Type *'} />
+                                    <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
                                 </div>
                                 <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                                     <Field options={this.props.companyCategories} placeholder='Company Category *' name={'category'} component={ReactSelectWrapper} label={'Company Category *'} />
@@ -107,12 +106,12 @@ class LicenceInfo extends Component {
                         
                     </div>
                         
-                    </FormSection>
+                  
                     </div>
                     <FormSection name="companyAddressInfo">
                         <div className="row">
                             <div className="col-sm-12">
-                                <div className="form-box2">
+                                <div className="form-box">
                                     <div className="row d-flex">
                                         <div className="col-sm-12">
                                             <h2 className="box-title">Address Info</h2>
@@ -141,7 +140,7 @@ class LicenceInfo extends Component {
                     <FormSection name="organizationInfo">
                         <div className="row">
                             <div className="col-sm-12">
-                                <div className="form-box2">
+                                <div className="form-box">
                                     <div className="row d-flex">
                                         <div className="col-sm-12">
                                             <h2 className="box-title">Parent Organization Info</h2>
@@ -150,19 +149,19 @@ class LicenceInfo extends Component {
                                             <Field name={'name'} label={'Name'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'address'} label={'Address'} component={TextFieldInput} />
+                                            <Field name={'address'} label={'address'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
                                             <Field name={'zipCode'} label={'Zip Code'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'country'} label={'Country'} component={TextFieldInput} />
+                                            <Field name={'country'} label={'country'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'state'} label={'State'} component={TextFieldInput} />
+                                            <Field name={'state'} label={'state'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'city'} label={'City'} component={TextFieldInput} />
+                                            <Field name={'city'} label={'city'} component={TextFieldInput} />
                                         </div>
                                     </div>
                                 </div>
@@ -173,15 +172,17 @@ class LicenceInfo extends Component {
                     <FieldArray name="contactNumbers" component={contactField} />
                 
                     <FieldArray name="emailAddresses" component={emailField} />
-                      
+                     
                     
-                    </div>
+
+
                 </div>
 
 
                 {/* <div className="form-d col-md-4 col-sm-6 form-input"> */}
                     {/* <Field name={info.name} label={info.label} component={info.component} /> */}
                 {/* </div> */}
+                </FormSection>
 
             </div>
         )

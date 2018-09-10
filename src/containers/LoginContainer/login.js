@@ -70,6 +70,7 @@ class Login extends Component {
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
       localStorage.setItem('email', data.data.email)
+      localStorage.setItem('userLoginId',data.data.id)
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {

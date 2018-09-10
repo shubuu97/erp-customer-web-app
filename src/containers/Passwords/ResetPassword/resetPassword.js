@@ -48,7 +48,7 @@ class ResetPassword extends Component {
       newPassword: formData.newPassword,
       confirmPassword: formData.confirmNewPassword
     }
-    let userId = localStorage.getItem('id');
+    let userId = localStorage.getItem('userLoginId');
     this.setState({ isLoading: true });
     this.props.dispatch(postData(`${APPLICATION_BFF_URL}/iam/user/password/${userId}`, bodyData, null, options, 'PATCH')).then((success) => {
       console.log("Password success is here", success);

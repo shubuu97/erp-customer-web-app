@@ -122,7 +122,7 @@ const mapStateToProps=(state)=>
       }
      }
     }
-    let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
+    let urlLinks = _get(state,'urlLinks.formSearchData._links',{});
     return {initialValues,isLoading,urlLinks,companyCategories,licenseTypes,isSaving}
 
 }

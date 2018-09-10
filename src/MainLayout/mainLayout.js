@@ -81,7 +81,7 @@ class MainLayout extends Component {
     this.setState({ anchorEl: null });
   };
   handleProfile = () => {
-    this.props.role == 'customer' ? this.props.history.push('/customerProfile') : this.props.history.push('/companyProfile');
+    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/StaticProfileView');
     this.handleMenuClose();
   }
   goToProductList = (category) => {
