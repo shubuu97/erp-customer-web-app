@@ -39,8 +39,8 @@ class AfterCheckout extends Component {
             <h1>{line1}</h1>
             <div className="thankyou-box">
                 <div className="d-flex justify-content-between"><label>Order Number: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.orderId }</span></div>
-                <div className="d-flex justify-content-between"><label>Date: </label><span>{this.props.orderData && this.props.orderData.data && moment(this.props.orderData.data.orderDate).format('MMM Do YY')}</span></div>
-                <div className="d-flex justify-content-between"><label>Total: </label><span>$ {this.state.total}</span></div>
+                <div className="d-flex justify-content-between"><label>Order date: </label><span>{this.props.orderData && this.props.orderData.data && moment(this.props.orderData.data.orderDate).format('MMM Do YY')}</span></div>
+                <div className="d-flex justify-content-between"><label>Order total: </label><span>$ {this.state.total}</span></div>
                 <div className="d-flex justify-content-between"><label>Payment method: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.method}</span></div>
                 <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.transactionId}</span></div>
             </div>

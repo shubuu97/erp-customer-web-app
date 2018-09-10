@@ -40,9 +40,9 @@ export default (props) => {
                   <button onClick={() => props.updateQuantity('add')}>+</button></div>
               </div>
             </div>
-            <div className="d-flex wq-bar">
+            {/* <div className="d-flex wq-bar">
               <label className="cart-stock"><i className="fa fa-check"></i> &nbsp;In Stock</label>
-            </div>
+            </div> */}
           </div>
           <div className="addToCartButtonDiv">
             <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={() => props.addToCart()}>ADD TO CART</Button>

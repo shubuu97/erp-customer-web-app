@@ -22,7 +22,7 @@ class CheckOut extends Component {
 			paymentTerm: '',
 			termCondition: false,
 			showError: false,
-			paymentTerms:[{ label: 'Current', value: 'current' }, { label: 'Net 45', value: 'NET45' }]
+			paymentTerms:[{ label: 'Current', value: 'current' }]
 		};
 	}
 	componentDidMount() {
@@ -45,14 +45,14 @@ class CheckOut extends Component {
 				this.setState({ address });
 			});
 		}
-		// this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`)).then((bankingData)=>{
-		// 	console.log("bankingData in did mount",bankingData);
-		// 	let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
-		// 	let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
-		// 	let paymentTerms = [{ label: 'Current', value: 'current' }];
-		// 	paymentTerms.push(selectedPaymentTerms);
-		// 	this.setState({paymentTerms});
-		// });
+		this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`)).then((bankingData)=>{
+			console.log("bankingData in did mount",bankingData);
+			let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
+			let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
+			let paymentTerms = [{ label: 'Current', value: 'current' }];
+			paymentTerms.push(selectedPaymentTerms);
+			this.setState({paymentTerms});
+		});
 		document.body.classList.add('checkout-page')
 	}
 	componentWillUnmount() {
@@ -63,7 +63,11 @@ class CheckOut extends Component {
 		const { address, paymentTerm } = this.state;
 		let items = [];
 		if(!this.state.termCondition) {
-			this.setState({showError: true});
+			this.setState({showError: 'Please accept terms and conditions.'});
+			return;
+		}
+		if(!paymentTerm.value) {
+			this.setState({showError: 'Please accept payment term.'});
 			return;
 		}
 		this.props.cartProductList.map((item) => {
@@ -120,12 +124,12 @@ class CheckOut extends Component {
 	paymentTermUpdate = (val) => {
 		console.log(val);
 		if (val) {
-			this.setState({ paymentTerm: val });
+			this.setState({ paymentTerm: val, showError: '' });
 		}
 	}
 	selectTermCondition = () => {
 		console.log(this.state.termCondition);
-		this.setState({ termCondition: !this.state.termCondition, showError: false })
+		this.setState({ termCondition: !this.state.termCondition, showError: '' })
 	}
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
