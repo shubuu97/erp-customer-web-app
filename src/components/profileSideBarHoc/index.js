@@ -30,7 +30,7 @@ const profileSideBar = (WrappedComponent) => {
           <div className="container">
             <h2 class="cart-heading">My Account</h2>
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-md-3 col-sm-4">
                 <div className="profile-sidebar">
                   <ul>
                     <li className={`${this.props.location.pathname == '/StaticProfileView' ? 'active' : ''}`} onClick={() => this.handleMenuClick()}>My Profile</li>
@@ -42,7 +42,7 @@ const profileSideBar = (WrappedComponent) => {
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-9">
+              <div className="col-md-9 col-sm-8">
                 <WrappedComponent {...this.props} />
               </div>
 

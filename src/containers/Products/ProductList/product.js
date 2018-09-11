@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 export default (props) => {
   if (props.isGridView) {
     return (
-      <div className="col-sm-4 product-parent" >
+      <div className="col-sm-6 col-lg-4 product-parent" >
         <div className="product">
           <div className="product-image" onClick={(e) => { props.click && props.click(props.detail) }}>
             <img className="img-responsive" src={props.image} alt={props.name} />
