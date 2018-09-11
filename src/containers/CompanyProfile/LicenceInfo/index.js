@@ -22,7 +22,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 class LicenseInfo extends Component
 {
-    componentDidMount()
+  componentWillMount()
     {
         this.props.dispatch(fetchLicenseDetailsData(`${this.props.urlLinks.getCompanyInfo.href}?_id=${localStorage.getItem("id")}`));
 

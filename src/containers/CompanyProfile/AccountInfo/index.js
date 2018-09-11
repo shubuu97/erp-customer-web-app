@@ -45,7 +45,7 @@ class AccountInfo extends Component
       });
   
     }
-   componentDidMount()
+   componentWillMount()
    {
     this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
 
@@ -68,6 +68,8 @@ class AccountInfo extends Component
 
 AccountInfo = reduxForm({
     form:'AccountInfo',
+    enableReinitialize:true,
+    keepDirtyOnReinitialize:true,
   asyncValidate}
 )(AccountInfo);
 

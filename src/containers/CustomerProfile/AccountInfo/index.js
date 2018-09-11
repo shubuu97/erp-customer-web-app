@@ -47,7 +47,7 @@ class CustomerInfo extends Component
       });
   
     }
-    componentDidMount()
+    componentWillMount()
     {
       this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
 
