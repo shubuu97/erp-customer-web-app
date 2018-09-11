@@ -2817,6 +2817,17 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     padding-left:0;
     padding-right:0;
 }
+.cart-backdrop{
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 8;
+}
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
