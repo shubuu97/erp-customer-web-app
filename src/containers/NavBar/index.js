@@ -17,8 +17,8 @@ export default class extends Component {
                 ))}
             </ul>
             <ul className="visible-xs mobile-user">
-                <li onClick={this.handleProfile}><span><img src={account} /></span>My Account</li>
-                <li onClick={this.handleLogOut}><span><img src={logout} /></span>Logout</li>
+                <li onClick={this.props.handleProfile}><span><img src={account} /></span>My Account</li>
+                <li onClick={this.props.handleLogOut}><span><img src={logout} /></span>Logout</li>
             </ul>
             </div>
         )

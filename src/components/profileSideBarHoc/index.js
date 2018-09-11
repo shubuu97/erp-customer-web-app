@@ -13,18 +13,17 @@ const profileSideBar = (WrappedComponent) => {
      }
    }
       handleMenuClick = () => {
-        localStorage.getItem('role') == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/companyProfile');
+        localStorage.getItem('role') == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/StaticProfileView');
       }
       handleClick=(activeLi,route)=>
       {
         this.setState({activeLi});
         this.props.history.push(route)
+        console.log("location", this.props.location);
       }
       handleLogOut = () => {
-        // this.props.dispatch(logout());
-        // localStorage.clear();
-        // this.props.history.push('/');
-        // this.handleMenuClose();
+         this.props.dispatch(logout());
+         this.props.history.push('/');
       }
         render() {
       
@@ -35,11 +34,11 @@ const profileSideBar = (WrappedComponent) => {
             <div className="col-sm-3">
               <div className="profile-sidebar">
                 <ul>
-                  <li onClick={()=>this.handleMenuClick()}>My Profile</li>
-                  <li   onClick={()=>this.handleClick(2,'/orders')}>My Orders</li>
-                  <li  onClick={()=>this.handleClick(3,'/AddressBook')}>Address Book</li>
-                  <li  onClick={()=>this.handleClick(4,'/myOffers')}>My Offers</li>
-                  <li  onClick={()=>this.handleClick(5,'/Notifications')}>Notifications</li>
+                  <li className={`${this.props.location.pathname == '/StaticProfileView' ? 'active': ''}`} onClick={()=>this.handleMenuClick()}>My Profile</li>
+                  <li className={`${this.props.location.pathname == '/orders' ? 'active': ''}`}  onClick={()=>this.handleClick(2,'/orders')}>My Orders</li>
+                  <li className={`${this.props.location.pathname == '/AddressBook' ? 'active': ''}`} onClick={()=>this.handleClick(3,'/AddressBook')}>Address Book</li>
+                  <li className={`${this.props.location.pathname == '/myOffers' ? 'active': ''}`} onClick={()=>this.handleClick(4,'/myOffers')}>My Offers</li>
+                  <li className={`${this.props.location.pathname == '/Notifications' ? 'active': ''}`} onClick={()=>this.handleClick(5,'/Notifications')}>Notifications</li>
                   <li  onClick={()=>this.handleLogOut()}>Logout</li>
                 </ul>
               </div>
