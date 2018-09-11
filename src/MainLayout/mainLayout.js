@@ -193,15 +193,15 @@ class MainLayout extends Component {
           {/* <Alert stack={{ limit: 3 }} /> */}
         </div>
         <div className="footer">
-        <div className="footer-left">
-              <div>Terms & Condition</div>
-              <div>Privacy Policy</div>
-              <div>Disclaimer</div>
-              <div>Leagal Policy</div>
-        </div>
-        <div className="footer-right">
+          <ul>
+            <li>Terms & Condition</li>
+            <li>Privacy Policy</li>
+            <li>Disclaimer</li>
+            <li>Leagal Policy</li>
+          </ul>
+        {/* <div className="footer-right">
           { `\u00A9 2018 Cannablock. All rights reserved` }
-        </div>
+        </div> */}
         </div>
       </div>
     );
