@@ -53,6 +53,7 @@ routeChanger(tab)
             <div><Button color='primary' variant="contained" onClick={()=>this.routeChanger(0)}>Edit</Button></div>
             </div>
             <div style={{marginTop:'10px'}}>
+            
             <BankView
             accountNumber={_get(this.props.bankingDetails,'accountNumber','')}
             bankingDetails={this.props.bankingDetails}
