@@ -19,7 +19,7 @@ import _get from 'lodash/get'
 class BankingInfo extends Component
 {
 
-    componentDidMount()
+  componentWillMount()
     {
       //this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
       this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`))
@@ -93,7 +93,9 @@ class BankingInfo extends Component
 }
  BankingInfo=reduxForm({
     form:'CompanyBankingInfo',
-    asyncValidate
+    asyncValidate,
+    enableReinitialize:true,
+    keepDirtyOnReinitialize:true
 })(BankingInfo)
 
 const mapStateToProps=(state)=>

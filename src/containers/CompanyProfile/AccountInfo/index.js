@@ -14,6 +14,8 @@ import _get from 'lodash/get'
 
 class AccountInfo extends Component
 {
+
+
     updateSubmitHandler=(values)=>
     {
   
@@ -45,11 +47,12 @@ class AccountInfo extends Component
       });
   
     }
-   componentDidMount()
+   componentWillMount()
    {
     this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
 
    }
+   
     render()
     {
         const {handleSubmit,submitting} = this.props;
@@ -68,6 +71,8 @@ class AccountInfo extends Component
 
 AccountInfo = reduxForm({
     form:'AccountInfo',
+    enableReinitialize:true,
+    keepDirtyOnReinitialize:true,
   asyncValidate}
 )(AccountInfo);
 

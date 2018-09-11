@@ -48,6 +48,9 @@ import SetPassword from './containers/Passwords/SetPassword/setPassword';
 import StaticProfileView from './containers/CustomerProfile/ProfileStaticView/profileView'
 import PaymentStatus from './containers/Orders/OrderList/paymentStatus';
 import CompanyStaticProfileView from './containers/CompanyProfile/ProfileStaticView/profileView'
+import Notification from './containers/Notifications';
+import AddressBook from './containers/AddressBook';
+import MyOffers from './containers/MyOffers'
 
 const theme = createMuiTheme({
   
@@ -136,6 +139,10 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/reset" component = {ResetPassword}/>
 <RouterWithMainLayout layout={MainLayout} path="/StaticProfileView" component = {StaticProfileView}/>
 <RouterWithMainLayout layout={MainLayout} path="/ComapnyStaticProfileView" component = {CompanyStaticProfileView}/>
+<RouterWithMainLayout layout={MainLayout} path="/Notifications" component = {Notification}/>
+<RouterWithMainLayout layout={MainLayout} path="/AddressBook" component = {AddressBook}/>
+<RouterWithMainLayout layout={MainLayout} path="/myOffers" component = {MyOffers}/>
+
 
 <Route exact path="/forgot" component={ForgotPassword} />
 <Route exact path="/confirmation" component={SetPassword} />

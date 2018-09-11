@@ -55,7 +55,7 @@ export default (props) => {
         </label>
       </div>
       {props.showError && <div className="text-input error">
-        <p>* Please accept terms and conditions.</p>
+        <p>* {props.showError}</p>
       </div>}
       <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
