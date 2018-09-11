@@ -9,7 +9,7 @@ if(Array.isArray(props.bankDetails))
 {
     BankDetails =   props.bankDetails.map((bankDetail)=>
 {
-    return( <div className="col-sm-6 form-d">
+    return( <div className="col-sm-6 plr-0">
         <div className="alt-accounts">
             <div className="row"><div className="col-xs-6 ac-main"><label>Account Name:</label></div> <div className="col-xs-6 ac-main">  {bankDetail.accountName}</div></div>
             <div className="row"><div className="col-xs-6 ac-main"><label>Account Status:</label></div> <div className="col-xs-6 ac-main">{bankDetail.accountStatus}</div></div>
@@ -34,7 +34,7 @@ else{
         <div className="row"><div className="col-xs-6 ac-main"><label>Payment Terms:</label> {props.paymentTerms}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Preferred Payment Methods:</label></div> <div className="col-xs-6 ac-main"> {props.preferredPaymentMethods}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Account Number:</label></div> <div className="col-xs-6 ac-main"> {props.accountNumber}</div></div>
-        <div className="row ac-secondary-box d-flex"><div className="col-xs-12"><label className="s-title">Accounts Detail:</label></div> <div className="d-flex"> {BankDetails}</div></div>
+        <div className="row ac-secondary-box d-flex mlr-0"><div className="col-xs-12 plr-0"><label className="s-title">Accounts Detail:</label></div> <div className="d-flex"> {BankDetails}</div></div>
 
     </div>
     )

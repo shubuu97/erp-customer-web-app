@@ -20,7 +20,7 @@ class ProductsListClass extends React.Component {
                 {...this.props}
             />);
     return (
-        <div className="row d-flex">
+        <div className="row">
             {productsData}
         </div >
     );

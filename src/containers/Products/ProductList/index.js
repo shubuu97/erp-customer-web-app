@@ -109,10 +109,10 @@ class ProductsContainer extends React.Component {
           {selectedCategoryType.itemType && <li>{selectedCategoryType.itemType || ''}</li>}
         </ul>
         <div className="row">
-          <div className="col-sm-3">
+          <div className="col-md-3 col-sm-4">
             {filteredDataSet.filterObj && <SideBar filteredDataSet={filteredDataSet} types={categoryTypeAndItems.itemTypes} applyPriceRangeFilter={this.applyPriceRangeFilter} selectedType={selectedCategoryType} selectCategoryType={this.selectCategoryType} />}
           </div>
-          <div className="col-sm-9">
+          <div className="col-md-9 col-sm-8">
             <div className="filter-bar">
               <ul className="list-grid">
                 <li className={isGridView ? `active`: ''} onClick={()=>this.changeView()}><img src={grid} /></li>
@@ -140,7 +140,7 @@ class ProductsContainer extends React.Component {
               className="dialogbox-ui"
             >
               <DialogContent>
-                <h2 className="modal-title">Product Details</h2>
+                <h2 className="modal-title">Product Details <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
                 <div className="productDetails-container">
                   <div className="detailsContent">
                     <div className="imageContent">
@@ -168,7 +168,7 @@ class ProductsContainer extends React.Component {
                 </div>
               </DialogContent>
               <DialogActions className="m-footer">
-                <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button>
+                
               </DialogActions>
             </Dialog>}
           </div>

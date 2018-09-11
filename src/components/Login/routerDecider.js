@@ -9,6 +9,7 @@ const routerDeciderHoc = (WrappedComponent) => {
         render() {
             console.log("In the route decider", this.props.customerStatus);
             localStorage.setItem('id',this.props.id);
+            localStorage.setItem('customerStatus',this.props.customerStatus)
             if(this.props.role&&this.props.role=="customer")
             localStorage.setItem('role','customer')
             else
