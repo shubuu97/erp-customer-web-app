@@ -16,6 +16,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { get } from 'lodash';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import asyncValidate from './validate.js';
+import { logout } from '../../../action/loginAction';
 
 const styles = theme => ({
   failure: {
@@ -91,6 +92,8 @@ class SetPassword extends Component {
           if (success.data && success.data.code == 202) {
             this.setState({ errorMessage: 'Password updated successfully', isSuccess: true, isLoading: false });
             setTimeout(() => {
+              this.props.dispatch(logout());
+              localStorage.clear();
               this.props.history.push('/');
             }, 3000);
             setTimeout(() => {
@@ -114,9 +117,9 @@ class SetPassword extends Component {
     } else {
       let errMsg = !formData.newPassword ? 'Please enter password' : 'Please enter confirm password';
       this.setState({ errorMessage: errMsg, isSuccess: false });
-          setTimeout(() => {
-            this.setState({ errorMessage: '' });
-          }, 6000);
+      setTimeout(() => {
+        this.setState({ errorMessage: '' });
+      }, 6000);
     }
   }
   handleSubmitEmail = (formData) => {

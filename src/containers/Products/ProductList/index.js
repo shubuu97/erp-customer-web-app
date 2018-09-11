@@ -155,7 +155,7 @@ class ProductsContainer extends React.Component {
                     </div>
                     <div className="descriptionContent">
                       <div className="namePriceDiv">
-                        <h2 className="p-name">{popupItemInfo.itemName}</h2>
+                        <h2 className="p-name">{popupItemInfo.aliasName || popupItemInfo.itemName}</h2>
                         <p className="ic text-uppercase">Item Code: <span>{popupItemInfo.itemNo}</span></p>
                         {/* <p className="ic">Unit Count: <span>{popupItemInfo.unitCount}</span></p> */}
                         <h3 className="p-price">$ {popupItemInfo.price}</h3>
