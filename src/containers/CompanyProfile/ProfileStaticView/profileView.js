@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button'
 import profileSideBar from '../../../components/profileSideBarHoc';
 import {fetchLicenseDetailsData} from '../../../action/getLicenseInfo';
 import { fetchSiteDetailsData } from '../../../action/getSiteInfo';
+import LicenseView from './licence'
+import SiteView from './site'
 
 
 class ProfileView extends Component
@@ -33,9 +35,6 @@ routeChanger(tab)
     }
     else
     {
-
-    if(tab==1)
-    tab=3
     this.props.history.push(`/companyProfile?tab=${tab}`)
     }
 
@@ -59,6 +58,25 @@ routeChanger(tab)
             </div>
             <div style={{marginTop:'10px'}}>
 
+           
+           <div>
+            <LicenseView 
+            companyName={_get(this.props.licenseDetails,'companyName','')}
+            licenseNumber={_get(this.props.licenseDetails,'companyInfo.licenseNumber','')}
+            licenseType={_get(this.props.licenseDetails,'companyInfo.licenseType','')}
+           companyAddress={_get(this.props.licenseDetails,'companyInfo.companyAddressInfo','')}
+           contactNumbers={_get(this.props.licenseDetails,'companyInfo.contactNumbers','')}
+           emailAddresses={_get(this.props.licenseDetails,'companyInfo.emailAddresses','')}
+           />
+            <div><Button color='primary' variant="contained" onClick={()=>this.routeChanger(1)}>Edit</Button></div>
+           </div>
+
+          <div>
+           <SiteView
+           siteDetails={this.props.siteDetails}
+           />  
+             <div><Button color='primary' variant="contained" onClick={()=>this.routeChanger(2)}>Edit</Button></div>
+           </div>
 
             <BankView
             accountNumber={_get(this.props.bankingDetails,'accountNumber','')}
@@ -71,7 +89,7 @@ routeChanger(tab)
             paymentTerms={_get(this.props.bankingDetails,'paymentTerms','')}
             preferredPaymentMethods={_get(this.props.bankingDetails,'preferredPaymentMethods','')}/>
             </div>
-            <div><Button color='primary' variant="contained"  onClick={()=>this.routeChanger(1)}>Edit</Button></div>
+            <div><Button color='primary' variant="contained"  onClick={()=>this.routeChanger(3)}>Edit</Button></div>
             </div>
         )
     }
@@ -82,8 +100,10 @@ function mapStateToProps(state)
     let urlLinks = _get(state,'urlLinks.formSearchData._links',{});
     let bankingDetails = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo',{});
     let accountDetails = _get(state,'basicInfodata.basicInfoData',{})
-
-    return {urlLinks,bankingDetails,accountDetails}
+    let licenseDetails = _get(state,'licenseDetailsData.lookUpData.data',{})
+    let siteDetails= _get(state,'siteDetailsData.lookUpData.data.siteInfo',[])
+    
+    return {urlLinks,bankingDetails,accountDetails, licenseDetails, siteDetails}
 }
 
 export default connect(mapStateToProps)(profileSideBar(ProfileView));

@@ -81,7 +81,7 @@ class MainLayout extends Component {
     this.setState({ anchorEl: null });
   };
   handleProfile = () => {
-    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/StaticProfileView');
+    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/ComapnyStaticProfileView');
     this.handleMenuClose();
   }
   goToProductList = (category) => {
@@ -192,9 +192,17 @@ class MainLayout extends Component {
           </div>
           {/* <Alert stack={{ limit: 3 }} /> */}
         </div>
-        {/* <div className="footer">
-              { `Copyright \u00A9 2018 All On Block Inc.` }
-        </div> */}
+        <div className="footer">
+        <div className="footer-left">
+              <div>Terms & Condition</div>
+              <div>Privacy Policy</div>
+              <div>Disclaimer</div>
+              <div>Leagal Policy</div>
+        </div>
+        <div className="footer-right">
+          { `\u00A9 2018 Cannablock. All rights reserved` }
+        </div>
+        </div>
       </div>
     );
   }
