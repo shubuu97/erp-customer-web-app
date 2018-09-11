@@ -48,4 +48,4 @@ function mapStateToProps(state) {
   return { trackData: state.TrackData.trackData };
 }
 
-export default connect(mapStateToProps)(TrackOrderContainer)
+export default connect(mapStateToProps)(profileSideBar(TrackOrderContainer))
