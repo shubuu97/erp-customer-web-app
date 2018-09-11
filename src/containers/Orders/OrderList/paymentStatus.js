@@ -25,7 +25,7 @@ class PaymentStatus extends Component {
   };
 
   render() {
-    console.log("props is here", this.props)
+    console.log("payment status props is here", this.props)
     return (
       <div>
        <a> <span style={{cursor:'pointer'}} onClick={this.handleClickOpen}>Payment Status</span></a>
