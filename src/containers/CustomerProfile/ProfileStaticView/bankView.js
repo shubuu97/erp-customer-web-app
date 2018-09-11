@@ -9,13 +9,15 @@ if(Array.isArray(props.bankDetails))
 {
     BankDetails =   props.bankDetails.map((bankDetail)=>
 {
-    return( <div className="row">
-       <div>Account Name -  {bankDetail.accountName}</div>
-       <div>Account Status -{bankDetail.accountStatus}</div>
-        <div>Bank Account Number-{bankDetail.bankAccountNumber}</div>
-        <div>Bank Name-{bankDetail.bankName}</div>
-        <div>Bank Routing Number-{bankDetail.bankRoutingNumber}</div>
-        <div>Branch Name-{bankDetail.branchName}</div>
+    return( <div className="col-sm-6 form-d">
+        <div className="alt-accounts">
+            <div className="row"><div className="col-xs-6 ac-main"><label>Account Name:</label></div> <div className="col-xs-6 ac-main">  {bankDetail.accountName}</div></div>
+            <div className="row"><div className="col-xs-6 ac-main"><label>Account Status:</label></div> <div className="col-xs-6 ac-main">{bankDetail.accountStatus}</div></div>
+            <div className="row"><div className="col-xs-6 ac-main"><label>Bank Account Number:</label></div> <div className="col-xs-6 ac-main">{bankDetail.bankAccountNumber}</div></div>
+            <div className="row"><div className="col-xs-6 ac-main"><label>Bank Name:</label></div> <div className="col-xs-6 ac-main">{bankDetail.bankName}</div></div>
+            <div className="row"><div className="col-xs-6 ac-main"><label>Bank Routing Number:</label></div> <div className="col-xs-6 ac-main">{bankDetail.bankRoutingNumber}</div></div>
+            <div className="row"><div className="col-xs-6 ac-main"><label>Branch Name:</label></div> <div className="col-xs-6 ac-main">{bankDetail.branchName}</div></div>
+       </div>
     </div>)
 })
 }
@@ -32,7 +34,7 @@ else{
         <div className="row"><div className="col-xs-6 ac-main"><label>Payment Terms:</label> {props.paymentTerms}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Preferred Payment Methods:</label></div> <div className="col-xs-6 ac-main"> {props.preferredPaymentMethods}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Account Number:</label></div> <div className="col-xs-6 ac-main"> {props.accountNumber}</div></div>
-        <div className="row"><div className="col-xs-6 ac-main"><label>Bank Details:</label></div> <div className="col-xs-6 ac-main"> {BankDetails}</div></div>
+        <div className="row ac-secondary-box d-flex"><div className="col-xs-12"><label className="s-title">Accounts Detail:</label></div> <div className="d-flex"> {BankDetails}</div></div>
 
     </div>
     )
