@@ -23,8 +23,9 @@ import asyncValidate from './validate.js';
 import { fetchCategory, selectedCategory } from '../../action/category';
 import { fetchCategoryTypeAndItems } from '../../action/categoryTypeAndItems';
 import { fetchProfileFormData } from '../../action/profileFormData';
-import {setSelectedCategoryType, applyFilter} from '../../containers/Products/action/product';
-import {get} from 'lodash';
+import { Link } from 'react-router-dom';
+import { setSelectedCategoryType, applyFilter } from '../../containers/Products/action/product';
+import { get } from 'lodash';
 
 const styles = theme => ({
   button: {
@@ -70,11 +71,11 @@ class Login extends Component {
       let menulength = data.data.menu.length;
       localStorage.setItem('authToken', data.data.authToken);
       localStorage.setItem('email', data.data.email)
-      localStorage.setItem('userLoginId',data.data.id)
+      localStorage.setItem('userLoginId', data.data.id)
 
       this.props.dispatch(postBasicInfoData({ email: values.email }, '', `${APPLICATION_BFF_URL}/user/logindata`))
         .then((data) => {
-          if(data.data.content.customerStatus) {
+          if (data.data.content.customerStatus) {
             this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/customer/register`));
           } else {
             this.props.dispatch(fetchProfileFormData(`${APPLICATION_BFF_URL}/businesscustomer/register`));
@@ -142,6 +143,9 @@ class Login extends Component {
           <div className="login-btn">
             <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Business Customer') }}><img src={companyIcon} />Company Sign Up</Button>
             <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Customer') }}><img src={customerIcon} />Individual Sign Up</Button>
+          </div>
+          <div className="sp">
+            <Link style={{textDecoration: 'underline'}} to='/forgot'>forgot password<br /></Link>
           </div>
           {this.state.message && <Snackbar
             anchorOrigin={{
