@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import moment from 'moment';
 import greenCheck from './../../../assets/images/green-check.png';
 import mapicon from './../../../assets/images/map-marker.png';
-import PaymentStatus from './paymentStatus'
+import PaymentStatus from './paymentStatus';
+import _get from 'lodash/get';
 
  
 export default class Order extends React.Component {
@@ -27,10 +28,10 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
   return ([<ItemList
   saleProduct = {saleProduct}
   key={index}
-  imgSrc={''}
+  imgSrc={_get(saleProduct, 'images[0].url', '')}
   name={saleProduct.itemName}
-  price={saleProduct.Price}
-  quantity={saleProduct.quantity}
+  price={_get(saleProduct, 'price.price', '')}
+  quantity={_get(saleProduct, 'quantity', '')}
   />,
   
 ])
