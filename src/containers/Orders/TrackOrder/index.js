@@ -6,6 +6,7 @@ import * as OPTIONS from '../constants/OrderList';
 import TrackOrders from './trackOrders';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { fetchTrackData } from '../action/getTrack';
+import profileSideBar from '../../../components/profileSideBarHoc';
 
 class TrackOrderContainer extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class TrackOrderContainer extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <TrackOrders
           trackData={this.props.trackData.data}
           orderDetails={this.state.item}

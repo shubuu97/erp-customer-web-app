@@ -32,7 +32,7 @@ class ProfileView extends Component {
   }
   render() {
     return (
-      <div className="col-sm-9">
+      <div >
         <div className="staticProfile-box">
           <h2 className="cart-heading">Profile Information <Button color='secondary' variant="contained" onClick={()=>this.props.history.push('/reset')}>Change Password</Button></h2>
           <div className="row d-flex">

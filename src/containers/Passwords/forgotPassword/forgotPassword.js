@@ -86,7 +86,7 @@ class ForgotPassword extends Component {
               <Button type='submit' variant="contained" color='primary' label="Submit">Submit </Button>
             </div>
             <div className="sp">
-              <Link style={{ textDecoration: 'underline' }} to='/'>back<br /></Link>
+              <Link style={{ textDecoration: 'underline' }} to='/'>Back<br /></Link>
             </div>
           </form>
           {this.state.message && <Snackbar

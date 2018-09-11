@@ -145,7 +145,7 @@ class Login extends Component {
             <Button className={classes.button} type={'submit'} onClick={() => { this.getSignUpToken('Customer') }}><img src={customerIcon} />Individual Sign Up</Button>
           </div>
           <div className="sp">
-            <Link style={{textDecoration: 'underline'}} to='/forgot'>forgot password<br /></Link>
+            <Link style={{textDecoration: 'underline'}} to='/forgot'>Forgot password<br /></Link>
           </div>
           {this.state.message && <Snackbar
             anchorOrigin={{

@@ -48,7 +48,7 @@ class OrderContainer extends React.Component {
 
   render() {
     return (
-      <div className="col-sm-9">
+      <div >
       <OrderDetails
       orderListData={this.props.orderListData}
       handleTrack={this.handleTrack} />

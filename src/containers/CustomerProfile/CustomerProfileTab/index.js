@@ -41,37 +41,35 @@ class CustomerProfileTab extends React.Component {
   state = {
     value: 0,
   };
-  componentDidMount()
-  {
-   let queryString =  qs.parse(this.props.location.search);
-     queryString.tab?this.handleTabSwitch(parseInt(queryString.tab)):null
+  componentDidMount() {
+    let queryString = qs.parse(this.props.location.search);
+    queryString.tab ? this.handleTabSwitch(parseInt(queryString.tab)) : null
 
   }
   handleChange = (event, value) => {
     this.setState({ value });
   };
-  handleTabSwitch=(tabNumber)=>
-  {
-    this.setState({ value:tabNumber });
+  handleTabSwitch = (tabNumber) => {
+    this.setState({ value: tabNumber });
   }
- 
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
 
     return (
-      <div>
-      <div className={classes.root + ' c-tabs'}>
-        <AppBar position="static">
-          <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD', boxShadow:'none'}} TabIndicatorProps={{color:'transparent'}}>
-            <Tab className={value==0?classes.tabActive:null} label="Account" />
-            <Tab className={value==1?classes.tabActive:null} label="Banking"/>
-          </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
-        
-        {value === 1 && <TabContainer><BankingInfo{...this.props}/></TabContainer>}
-      </div>
+      <div >
+        <div className={classes.root + ' c-tabs'}>
+          <AppBar position="static">
+            <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{ borderBottom: 'solid 1px #DDD', boxShadow: 'none' }} TabIndicatorProps={{ color: 'transparent' }}>
+              <Tab className={value == 0 ? classes.tabActive : null} label="Account" />
+              <Tab className={value == 1 ? classes.tabActive : null} label="Banking" />
+            </Tabs>
+          </AppBar>
+          {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
+
+          {value === 1 && <TabContainer><BankingInfo {...this.props} /></TabContainer>}
+        </div>
       </div>
     );
   }
@@ -81,7 +79,7 @@ CustomerProfileTab.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-CustomerProfileTab=withStyles(styles)(CustomerProfileTab);
+CustomerProfileTab = withStyles(styles)(CustomerProfileTab);
 
-export default (CustomerProfileTab);
+export default profileSideBar(CustomerProfileTab);
 

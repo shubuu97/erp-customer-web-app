@@ -68,7 +68,7 @@ class CompanyRegistration extends PureComponent {
             <img src={logologin} />
           </div>
           <form onSubmit={handleSubmit(this.submit)}>
-            <h2 className="forgot-text">Company SIgn up</h2>
+            <h2 className="forgot-text">Company Sign Up</h2>
             <CompanyRegister />
             <div className="btn-parent-full">
               <Button disabled={!this.props.anyTouched || this.props.invalid} variant="contained" color='primary' type='submit' label="Register">Register</Button>
