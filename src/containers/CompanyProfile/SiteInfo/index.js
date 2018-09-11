@@ -13,7 +13,9 @@ import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
 import { fetchSiteDetailsData } from '../../../action/getSiteInfo';
 import _get from 'lodash/get'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {receiveZip} from '../../../action/fetchFromZip'
+
 
 class SiteInfo extends Component
 {
@@ -58,6 +60,11 @@ if(!values.siteInfo[0].siteName||values.siteInfo[0].siteName=='')
         }
       });
   
+    }
+
+    componentWillUnmount()
+    {
+     this.props.dispatch(receiveZip(null,null,null,null))
     }
     render()
     {
