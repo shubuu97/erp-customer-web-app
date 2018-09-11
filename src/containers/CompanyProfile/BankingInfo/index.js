@@ -106,7 +106,9 @@ class BankingInfo extends Component
 
 const mapStateToProps=(state)=>
 {
-    let initialValues = state.bankDetailsData.lookUpData.data
+    let initialValues = state.bankDetailsData.lookUpData.data;
+    let imageUrl = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.voidCheckUrl','')
+
     let isLoading= state.bankDetailsData.isFetching;
  let    formValue = _get(state,'form.CompanyBankingInfo.values',{})
     let paymentTerms = _get(state,"bankDetailsData.lookUpData.data.paymentTerms.data",[{label:'',value:''}])
@@ -115,7 +117,7 @@ const mapStateToProps=(state)=>
     
     let paymentMethods   = _get(state,"bankDetailsData.lookUpData.data.paymentMethods.data",[{label:'',value:''}])
 
-    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods,formValue}
+    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods,formValue,imageUrl}
 
 }
 
