@@ -9,7 +9,7 @@ import orderImage from './../../../assets/images/waste-plant.png';
     {
         return (
             <div className="order-row">
-                <div className="order-image"><img src={`https://s3.ap-south-1.amazonaws.com/aob-deverp/${props.imgSrc}`} /></div>
+                <div className="order-image"><img src={props.imgSrc} /></div>
                 <div className="order-detail">
                     <span>
                         {props.name}
