@@ -36,12 +36,12 @@ import _get from 'lodash/get'
           className="dialogbox-ui"
         >
                 <DialogContent>
-                <h2 className="modal-title">Shipping Address</h2>
+                <h2 className="modal-title">Shipping Address <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
                 <DetailForm/>
             
                 </DialogContent>
                 <DialogActions className="m-footer">
-            <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button>
+            
             <Button variant="contained" onClick={this.handleClose} color="secondary">
               Save Address
             </Button>

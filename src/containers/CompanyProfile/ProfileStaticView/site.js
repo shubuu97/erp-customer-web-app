@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 import _get from     'lodash/get'
 
 
@@ -11,7 +10,7 @@ if(Array.isArray(props.siteLicense))
     licenseDetails = props.siteLicense.map((license)=>
 {
     return (<div>
-        <div>License Number- {_get(license,'licenseNumber','')}</div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>License Number:</label></div> <div className="col-xs-6 ac-main"> {_get(license,'licenseNumber','')}</div></div>
     
         </div>
     )
@@ -32,14 +31,12 @@ if(Array.isArray(props.addressInfo))
 {
     addressDetails = props.addressInfo.map((address)=>
 {
-    return (<div>
-        <div>Site Address- {_get(address,'siteAddress','')}</div>
-        <div>Zip Code-{_get(address,'zipCode','')}</div>
-        <div>Country-{_get(address,'country','')} </div>
-        <div>State-{_get(address,'state','')} </div>
-        <div>city-{_get(address,'city','')} </div>
-        <div>Email -{_get(address,'email','')} </div>
-        <div>Contact Number-{_get(address,'contactNumber','')} </div>
+    return (<div className="form-d">
+        
+        <div className="ac-main">{_get(address,'siteAddress','')}</div>
+        <div className="ac-main">{_get(address,'city','')}, {_get(address,'state','')} {_get(address,'zipCode','')}, <br />{_get(address,'country','')}</div>
+        <div className="ac-main">{_get(address,'email','')} </div>
+        <div className="ac-main">{_get(address,'contactNumber','')} </div>
         </div>
     )
 })
@@ -50,7 +47,7 @@ else
     addressDetails = null;
 }
 return (
-    <div>{addressDetails}</div>
+    <div className="site-box"><div><label className="s-title">Site Address-</label></div>{addressDetails}</div>
 )
 }
 
@@ -65,10 +62,10 @@ if(Array.isArray(props.siteDetails))
         return(
     
      <div>
-       <div> Site Name-  {_get(site,'siteName','')}</div>
-       <div>License Type- {_get(site,'licenseType','')}</div> 
+        <div className="row"><div className="col-xs-6 ac-main"><label> Site Name:</label></div> <div className="col-xs-6 ac-main">{_get(site,'siteName','')}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>License Type:</label></div> <div className="col-xs-6 ac-main">{_get(site,'licenseType','')}</div></div>
+        <SiteLicense siteLicense ={site.siteLicense}/>
         <AddressInfo addressInfo = {site.addressInfo}/>
-         <SiteLicense siteLicense ={site.siteLicense}/>
     </div>)
  })
 }
@@ -79,11 +76,11 @@ if(Array.isArray(props.siteDetails))
 
 
     return(
-    <Card>
+    <div>
           <div>{SiteInfo}</div>
 
 
-    </Card>
+    </div>
     )
 }
 

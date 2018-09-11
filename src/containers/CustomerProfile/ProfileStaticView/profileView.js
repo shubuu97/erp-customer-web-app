@@ -32,11 +32,11 @@ class ProfileView extends Component {
   }
   render() {
     return (
-      <div className="col-sm-9">
+      <div >
         <div className="staticProfile-box">
           <h2 className="cart-heading">Profile Information <Button color='secondary' variant="contained" onClick={()=>this.props.history.push('/reset')}>Change Password</Button></h2>
-          <div className="row d-flex">
-            <div className="col-md-4">
+          <div className="row">
+            <div className="col-md-5">
               <h4 className="ac-heading">Account Details</h4>
               <AccountView
                 addressInfo={_get(this.props.accountDetails, 'addressInfo', '')}
@@ -50,7 +50,7 @@ class ProfileView extends Component {
                 accountDetails={this.props.accountDetails} />
               <div className="top-gutter20"><Button color='secondary' variant="contained" onClick={() => this.routeChanger(0)}>Edit Info</Button></div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-7">
               <h4 className="ac-heading">Banking Details</h4>
               <BankView
                 accountNumber={_get(this.props.bankingDetails, 'accountNumber', '')}
