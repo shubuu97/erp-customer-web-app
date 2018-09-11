@@ -30,7 +30,7 @@ const profileSideBar = (WrappedComponent) => {
       
             return (
             <div className="container">
-            <h2 class="cart-heading">My Dashboard</h2>
+            <h2 class="cart-heading">My Account</h2>
             <div className="row">
             <div className="col-sm-3">
               <div className="profile-sidebar">

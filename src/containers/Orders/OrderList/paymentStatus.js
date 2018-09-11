@@ -33,17 +33,21 @@ class PaymentStatus extends Component {
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
-          className="dialogbox-ui"
+          className="dialogbox-ui small"
         >
           <DialogContent>
             <h2 className="modal-title">Payment Status</h2>
-            <div>
-                <div>Total Amount $130 </div>
-                <div>Paid Amount $43.33 </div>
-                <div>Due Amount $86.66 </div>
-                <div>Payment Method    {_get(this,'props.payment.method','')}  </div>
-                <div>Payment Term  {_get(this,'props.payment.paymentTerms','')}  </div>
-                </div>
+            <div className="ps-first-section">
+              <div className="ps-row"><label>Payment Date</label> <span>15th Aug, 2018</span> </div>
+              <div className="ps-row"><label>Payment Time</label> <span>12:30 PM</span> </div>
+              <div className="ps-row"><label>Payment Method</label> <span>{_get(this,'props.payment.method','')} </span> </div>
+            </div>
+            <div className="ps-second-section">               
+              <div className="ps-row"><label>Payment Term</label> <span>{_get(this,'props.payment.paymentTerms','')} </span> </div>
+              <div className="ps-row"><label>Total Amount</label> <span>$130</span> </div>
+              <div className="ps-row"><label>Paid Amount</label> <span>$120</span> </div>
+              <div className="ps-row"><label>Due Amount</label> <span>$10</span> </div>
+            </div>
 
 
           </DialogContent>
