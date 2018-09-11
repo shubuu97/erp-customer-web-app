@@ -66,7 +66,9 @@ if(!values.siteInfo[0].siteName||values.siteInfo[0].siteName=='')
             <div>
             <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
             <SiteInfoComponent  {...this.props}/>
-                <div className="form-btn-group 2"> 
+                <div className="form-btn-group 2">
+                <Button disabled={this.props.isSaving} color='primary' onClick={()=> this.props.handleTabSwitch(3)} variant="contained">Skip</Button>
+ 
                 <Button disabled={this.props.isSaving} variant="contained" type='submit' color='primary' disabled={this.props.isSaving}>{!this.props.isSaving && 'SAVE AND CONTINUE'}{this.props.isSaving && <CircularProgress size={24} />}</Button>
 
                 </div>

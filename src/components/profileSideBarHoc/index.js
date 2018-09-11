@@ -13,7 +13,7 @@ const profileSideBar = (WrappedComponent) => {
      }
    }
       handleMenuClick = () => {
-        localStorage.getItem('role') == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/StaticProfileView');
+        localStorage.getItem('role') == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/ComapnyStaticProfileView');
       }
       handleClick=(activeLi,route)=>
       {
