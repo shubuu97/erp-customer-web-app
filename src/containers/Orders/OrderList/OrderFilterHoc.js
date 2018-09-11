@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {filter} from 'lodash';
+import {filter, sortBy,reverse} from 'lodash';
 
 function FilterData(WrappedComponent)
 {
@@ -13,9 +13,19 @@ function FilterData(WrappedComponent)
         filterData(key)
         {
             if(key=='Nofilter')
-           return  this.setState({orderListData:this.props.orderListData})
+            {
+               let  orderListData= sortBy(this.props.orderListData, function(dateObj) {
+                    return new Date(dateObj.orderDate);
+                  });
+                 reverse(orderListData)
+           return  this.setState({orderListData})
+            }
         
        let orderListData =    filter(this.props.orderListData,['status',key]);
+        orderListData= sortBy(orderListData, function(dateObj) {
+            return new Date(dateObj.orderDate);
+          });
+         reverse(orderListData)
        this.setState({orderListData})
 
         }
