@@ -7,6 +7,7 @@ function FilterData(WrappedComponent)
     {
     constructor(props)
     {
+        debugger;
         super(props)
         this.state ={orderListData:props.orderListData}
     }
@@ -18,6 +19,10 @@ function FilterData(WrappedComponent)
        let orderListData =    filter(this.props.orderListData,['status',key]);
        this.setState({orderListData})
 
+        }
+        componentWillReceiveProps(nextProps)
+        {
+            this.setState({orderListData:nextProps  .orderListData})
         }
         render()
         {

@@ -79,7 +79,7 @@ formData.append('mediaTypeId','1234567')
 this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`,formData,'fileUpload'))
 .then((data)=>
 {
-    this.props.autofill('bankingDetailInfo.uploadVoidCheck',data.message.relativeURL)
+    this.props.autofill('bankingDetailInfo.voidCheckUrl',data.message.relativeURL)
     this.props.dispatch(showMessage({text:'Upload success',isSuccess:true}));
     setTimeout(()=>{
         this.props.dispatch(showMessage({text:'',isSuccess:true}));
@@ -131,7 +131,7 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
                     <div className="form-d col-md-4 col-sm-6 form-input">
                     <Field
     component={TextFieldInput}
-    name="uploadVoidCheck"
+    name="voidCheckUrl"
     type="hidden"
     style={{ height: '0', display:'none' }}
     
