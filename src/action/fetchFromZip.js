@@ -8,7 +8,7 @@ export const requestZip = subreddit => ({
     subreddit
 })
 export const receiveZip = (subreddit, json, id, resolve) => {
-    resolve(json);
+   json?resolve(json):null;
     return({
         type: ZIP_CONSTANTS.RECEIVED_ZIP,
         subreddit,

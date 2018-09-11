@@ -4,8 +4,9 @@ import TextField from '@material-ui/core/TextField';
 
 import SelectField from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import FileUpload from './fileUpload'
-
+import InputLabel from '@material-ui/core/InputLabel';
+import FileUpload from './fileUpload';
+import CheckBox from '@material-ui/core/Checkbox'
 
 const TextFieldInput = (props) =>
    
@@ -46,6 +47,17 @@ const TextFieldInput = (props) =>
     />
   )
 
+  const CheckBoxInput = ({ input,label }) => (
+    [
+    <InputLabel htmlFor={label}>{label}</InputLabel>,
+    <CheckBox
+      id={label}
+      checked={input.value ? true : false}
+      onChange={input.onChange}
+    />
+    ]
+  )
+
 
    
 
@@ -53,6 +65,7 @@ const TextFieldInput = (props) =>
       TextFieldInput,
       ReactSelectWrapper,
       SelectFieldInput,
-      FileUpload
+      FileUpload,
+      CheckBoxInput
 }
   

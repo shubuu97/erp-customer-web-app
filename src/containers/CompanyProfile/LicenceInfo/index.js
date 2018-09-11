@@ -16,7 +16,8 @@ import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
 import { LinearProgress } from 'material-ui';
 import _get from 'lodash/get';
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {receiveZip} from '../../../action/fetchFromZip'
 
 
 
@@ -56,6 +57,10 @@ class LicenseInfo extends Component
       });
   
     }
+    componentWillUnmount()
+    {
+     this.props.dispatch(receiveZip(null,null,null,null))
+    }
     render()
     {
         console.log("this is props",this.props)
@@ -76,12 +81,13 @@ class LicenseInfo extends Component
     }
 }
 
+
+
 LicenseInfo = reduxForm({
     form:'LicenseInfo',
     asyncValidate:asyncValidate,
     enableReinitialize:true,
  keepDirtyOnReinitialize:true
-
 })(LicenseInfo)
 
 const mapStateToProps=(state)=>
@@ -119,6 +125,7 @@ const mapStateToProps=(state)=>
         initialValues.country = country;
         initialValues.state = stateobj;
         initialValues.city = city;
+
       }
      }
     }
