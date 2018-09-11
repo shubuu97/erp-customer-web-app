@@ -1,10 +1,6 @@
 import React,{Component} from 'react';
-<<<<<<< HEAD
-import {filter, sortBy,reverse} from 'lodash';
-=======
-import {filter} from 'lodash';
+import {filter,sortBy,reverse} from 'lodash';
 import Button from '@material-ui/core/Button';
->>>>>>> 008eb8187174a2e55397432d349a31c2ccd3bef2
 
 function FilterData(WrappedComponent)
 {
@@ -37,7 +33,7 @@ function FilterData(WrappedComponent)
         }
         componentWillReceiveProps(nextProps)
         {
-            this.setState({orderListData:nextProps  .orderListData})
+            this.setState({orderListData:nextProps.orderListData})
         }
         render()
         {
