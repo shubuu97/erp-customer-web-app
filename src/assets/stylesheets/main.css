@@ -2397,7 +2397,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	background: #fbfbfb;
 	border-bottom: solid 1px #DDD;
 	padding: 10px;
-	border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    align-items: center;
 }
 .card-header-left {
 	display: flex;
@@ -2514,6 +2515,56 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .order-detail label {
 	display: block;
 	font-family: 'Roboto-Medium';
+}
+.order-tab-parent {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	border-bottom: solid 1px #b8b8b8;
+	margin-bottom: 20px;
+}
+.order-tab-ul {
+	display: flex;
+	padding: 0;
+	margin: 0;
+}
+.order-tab-ul li {
+	display: inline-flex;
+	padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.order-tab-ul li:hover {
+    background:#f9f9f9;
+}
+.order-tab-ul li.active {
+    background:#6d6d6d;
+    color:#FFF;
+}
+.order-tab-right {
+	margin-left: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+.order-search {
+	display: flex;
+	width: 320px;
+}
+.order-search input {
+	width: 190px;
+	height: 34px;
+    margin-right: 5px;
+    background: url('../images/input-search.png') no-repeat;
+    background-position: left 7px center;
+    background-size: 16px;
+}
+.order-search button {
+	height: 34px;
+	padding: 0 10px;
+	min-height: 34px;
+    width: 125px;
+    font-size: 1.3rem !important;
 }
 /* ==================================== ORDER PAGE CSS END ====================================== */
 
@@ -2817,7 +2868,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     padding-left:0;
     padding-right:0;
 }
-
+.card-header-right button {
+	padding: 5px 10px;
+	font-size: 1.3rem !important;
+	min-height: 32px;
+	height: 32px;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {

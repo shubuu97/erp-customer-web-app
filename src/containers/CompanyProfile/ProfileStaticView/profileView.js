@@ -42,7 +42,7 @@ routeChanger(tab)
     render()
     {
         return(
-            <div className="col-md-9 col-sm-8">
+            <div className="">
                 <div className="staticProfile-box">
                     <h2 className="cart-heading">Profile Information <Button color='secondary' variant="contained" onClick={()=>this.props.history.push('/reset')}>Change Password</Button></h2>
                     <div className="row">
