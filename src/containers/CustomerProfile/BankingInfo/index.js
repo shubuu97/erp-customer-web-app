@@ -92,13 +92,14 @@ CustomerBankingDetails=reduxForm({
 
 const mapStateToProps=(state)=>
 {
-    let initialValues = state.bankDetailsData.lookUpData.data
+    let initialValues = state.bankDetailsData.lookUpData.data;
+    let imageUrl = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.voidCheckUrl','')
     let isLoading= state.bankDetailsData.isFetching
     let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
     let paymentMethods   = _get(state,"bankDetailsData.lookUpData.data.paymentMethods.data",[{label:'',value:''}])
     let paymentTerms = _get(state,"bankDetailsData.lookUpData.data.paymentTerms.data",[{label:'',value:''}])
     let currencyCodes   = _get(state,"bankDetailsData.lookUpData.data.currencyCodes.data",[{label:'',value:''}])
-    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods}
+    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods,imageUrl}
 
 }
 

@@ -141,7 +141,8 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
 />
 <Dropzone
 onDrop={this.dropHandler}>
-<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:<div>Try dropping some files here, or click to select files to upload.</div>}</div>
+<div>{this.state.acceptedFile&&Array.isArray(this.state.acceptedFile)&&this.state.acceptedFile.length>0?<img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview}/>:{this.props.imageUrl?<img height={'200px'} width={'200px'} src={`https://s3.ap-south-1.amazonaws.com/aob-deverp/${this.props.imageUrl}`}/>:<div>Try dropping some files here, or click to select files to upload.</div>}}</div>
+
 </Dropzone>
 </div>
                 )
