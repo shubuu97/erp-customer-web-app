@@ -84,7 +84,9 @@ class CustomerBankingDetails extends Component
 }
 CustomerBankingDetails=reduxForm({
     form:'CustomerBankingInfo',
-    asyncValidate
+    asyncValidate,
+    enableReinitialize:true,
+    keepDirtyOnReinitialize:true
     
 })(CustomerBankingDetails)
 

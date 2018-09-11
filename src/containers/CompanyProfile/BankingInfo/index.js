@@ -93,7 +93,9 @@ class BankingInfo extends Component
 }
  BankingInfo=reduxForm({
     form:'CompanyBankingInfo',
-    asyncValidate
+    asyncValidate,
+    enableReinitialize:true,
+    keepDirtyOnReinitialize:true
 })(BankingInfo)
 
 const mapStateToProps=(state)=>

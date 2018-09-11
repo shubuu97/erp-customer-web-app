@@ -7,9 +7,8 @@ import profileSideBarHoc from '../../components/profileSideBarHoc'
 {
     render()
     {
-        return
-        (
-            <div>
+        return(
+            <div style={{display:'flex',justifyContent:'center'}}>
              <Progress/>
             </div>
         )
