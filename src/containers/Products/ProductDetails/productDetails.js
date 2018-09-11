@@ -8,7 +8,7 @@ export default (props) => {
       <ul className="breadcrumb">
         <li>Home</li>
         <li onClick={props.gotoList}>{props.selectedCategoryType.itemType || ''}</li>
-        <li>{props.detail.itemName}</li>
+        <li>{props.detail.aliasName || props.detail.itemName}</li>
       </ul>
       <div className="detailsContent">
         <div className="imageContent">
@@ -23,7 +23,7 @@ export default (props) => {
         </div>
         <div className="descriptionContent">
           <div className="namePriceDiv">
-            <h2 className="p-name">{props.detail.itemName}</h2>
+            <h2 className="p-name">{props.detail.aliasName || props.detail.itemName}</h2>
             <p className="ic text-uppercase">Item Code: <span>{props.detail.itemNo}</span></p>
             {/* <p className="ic">Unit Count: <span>{props.detail.unitCount}</span></p> */}
             <h3 className="p-price">$ {props.detail.price}</h3>
