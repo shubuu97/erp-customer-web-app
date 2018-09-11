@@ -16,7 +16,7 @@ import {getApprovalStatus} from '../../../action/submitForApproval';
 import _get from 'lodash/get'
 class CustomerBankingDetails extends Component
 {
-    componentDidMount()
+    componentWillMount()
     {
     
         this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`));
@@ -84,7 +84,9 @@ class CustomerBankingDetails extends Component
 }
 CustomerBankingDetails=reduxForm({
     form:'CustomerBankingInfo',
-    asyncValidate
+    asyncValidate,
+    enableReinitialize:true,
+    keepDirtyOnReinitialize:true
     
 })(CustomerBankingDetails)
 

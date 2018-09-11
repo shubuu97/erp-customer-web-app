@@ -68,7 +68,7 @@ class CustomerProfileTab extends React.Component {
             <Tab className={value==1?classes.tabActive:null} label="Banking"/>
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><AccountInfo/></TabContainer>}
+        {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
         
         {value === 1 && <TabContainer><BankingInfo{...this.props}/></TabContainer>}
       </div>
