@@ -27,7 +27,7 @@ export default (props) => {
     )
   } else {
     return (
-      <div className="col-sm-12">
+      <div className="col-sm-12 hidden-xs">
       <div className="product-list-box">
         <div className="product-list-img">
           <img className="img-responsive" src={props.image} alt={props.name} onClick={(e) => { props.click && props.click(props.detail)}}/>

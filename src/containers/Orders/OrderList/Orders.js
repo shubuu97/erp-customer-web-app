@@ -42,7 +42,6 @@ export default class Orders extends React.Component {
    console.log(OrderList,"zzz")
 return(
   <div>
-    <h2 className="reset-password">Your Orders</h2>
     {ordersList}
   </div>
 )
