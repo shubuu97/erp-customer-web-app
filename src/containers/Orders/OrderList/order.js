@@ -29,7 +29,7 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
   saleProduct = {saleProduct}
   key={index}
   imgSrc={_get(saleProduct, 'images[0].url', '')}
-  name={saleProduct.itemName}
+  name={saleProduct.aliasName || saleProduct.itemName}
   price={_get(saleProduct, 'price.price', '')}
   quantity={_get(saleProduct, 'quantity', '')}
   />,
