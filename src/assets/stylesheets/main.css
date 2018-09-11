@@ -1,9 +1,37 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@font-face {
+	font-family: 'Roboto-Bold';
+	src: url('fonts/Roboto-Bold.eot');
+	src: url('fonts/Roboto-Bold.woff') format('woff'), url('fonts/Roboto-Bold.ttf') format('truetype'), url('fonts/Roboto-Bold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Roboto-Light';
+	src: url('fonts/Roboto-Light.eot');
+	src: url('fonts/Roboto-Light.woff') format('woff'), url('fonts/Roboto-Light.ttf') format('truetype'), url('fonts/Roboto-Light.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Roboto-Medium';
+	src: url('fonts/Roboto-Medium.eot');
+	src: url('fonts/Roboto-Medium.woff') format('woff'), url('fonts/Roboto-Medium.ttf') format('truetype'), url('fonts/Roboto-Medium.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: url('fonts/Roboto-Regular.eot');
+	src: url('fonts/Roboto-Regular.woff') format('woff'), url('fonts/Roboto-Regular.ttf') format('truetype'), url('fonts/Roboto-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 html{
     font-size:62.5%;}
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto-Regular';
     background-color: #F9F9F9;
     margin:0;}
 body.product-list, body.product-details, body.cart-page, body.checkout-page, body.order-success-page, body.order-history-page, body.track-order-page {
@@ -310,7 +338,7 @@ textarea.form-control {
     color:red;
 }
 label.org-view-label.control-label {
-    font-weight: normal;
+    font-family: 'Roboto-Regular';
 }
 input.form-control[type="file"] {
 	padding: 0;
@@ -373,7 +401,7 @@ input[type="radio"], input[type="checkbox"]{vertical-align: sub}
 }
 .btn {
 	padding: 7px 10px;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 	border-radius: 2px;
     position: relative;
     display: inline-block;
@@ -408,7 +436,7 @@ input[type="radio"], input[type="checkbox"]{vertical-align: sub}
 }
 .btn.btn-xs {
     padding: 1px 5px;
-    font-weight:normal;
+    font-family: 'Roboto-Regular';
 }
 .btn span.glyphicon {
     margin-right: 5px;
@@ -599,7 +627,7 @@ pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
 }
 .workaround3 {
     font-size: 90%;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
     display:inline-block;
     margin-bottom: 10px;
   }
@@ -623,7 +651,7 @@ ul.user-name i {
 }
 li.logout {
     display: inline-block;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
     margin-top: 5px;
 }
 li.logout a {
@@ -661,7 +689,7 @@ li.logout a:hover, li.logout a:focus {
 	background: none;
 	margin: 0;
 	font-size:1.6rem;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 	color: #00598d;
 }
 .custom-chips > span:first-child {
@@ -762,16 +790,16 @@ li.logout a:hover, li.logout a:focus {
 }
 .sp a {
 	margin-left: 5px;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	color: #0e8c4d;
 }
 .forgot-text {
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 	font-size: 22px;
 	color: #0e8c4f;
 }
 .reset-password {
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 	font-size: 26px;
 	color: #0e8c4f;
 	margin-top: 0;
@@ -786,7 +814,7 @@ li.logout a:hover, li.logout a:focus {
 }
 label.form-check-label {
     margin-left: 5px;
-    font-weight: normal;
+    font-family: 'Roboto-Regular';
 }
 .react-drawer-drawer {
     z-index:9;
@@ -859,11 +887,11 @@ ul.h-profile {
 }
 .profile-dropup a:hover, .profile-dropup a:focus {
     background: #fff;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
 }
 .profile-dropup a:first-child {
     text-transform: uppercase;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
 }
 .settings-dropup {
     position: absolute;
@@ -886,7 +914,7 @@ ul.h-profile {
 }
 .settings-dropup a:hover, .settings-dropup a:focus {
     background: #fff;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
 }
 span.iicon {
     display: inline-block;
@@ -938,7 +966,7 @@ span.iicon img {
 }
 .box-heading {
     font-size:1.8rem;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
     margin-bottom: 10px;
 }
 img.icon_search {
@@ -972,16 +1000,16 @@ ul.breadcrumb {
 ul.breadcrumb li {
     display: inline-block;
     font-size:1.5rem;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
     padding-top: 4px;
     cursor: pointer;
 }
 ul.breadcrumb li + li {
 	color: #0e8c4f;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 }
 ul.breadcrumb li:last-child {
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 }
 ul.breadcrumb li+li:before {
     padding: 8px;
@@ -991,7 +1019,7 @@ ul.breadcrumb li+li:before {
 ul.breadcrumb li a {
     color:  #00598d;
     text-decoration: none;
-    font-weight: normal;
+    font-family: 'Roboto-Regular';
 }
 ul.breadcrumb li a:hover {
     color: #014166;    
@@ -1052,7 +1080,7 @@ ul.breadcrumb li a:hover {
 label.label-inline {
     margin-bottom: 2px;
     padding: 10px 15px 0 0;
-    font-weight: 500;
+    font-family: 'Roboto-Medium';
 }
 .wrap-block .react-bs-container-body, .wrap-block .react-bs-container-header {
     overflow: unset !important;
@@ -1142,7 +1170,7 @@ table .custom-input {
 /*========================================= GRAPH BOX CSS =======================================*/
 .box-heading h2 {
     font-size:2.6rem;
-    font-weight: 400;
+    font-family: 'Roboto-Regular';
 }
 .w-box div:nth-child(2) {
     width: 100%;
@@ -1173,7 +1201,7 @@ p.box-content {
 .units span {
 	display: block;
 	font-size:2rem;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 }
 span.syncup-close, span.syncup-panding, span.syncup-done {
     display: inline-block;
@@ -1402,7 +1430,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: inline-flex;
 	line-height: 18px;
 	padding: 5px 20px;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	cursor: pointer;
 	transition: ease-in-out all 0.6s;
 	-webkit-transition: ease-in-out all 0.6s;
@@ -1509,14 +1537,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-size: 18px;
 	margin-bottom: 0;
 	word-break: break-all;
-	font-weight: normal;
+	font-family: 'Roboto-Regular';
 	position: relative;
     padding-right: 10px;
     cursor: pointer;
 }
 .product-price {
 	font-size: 15px;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 	margin-top: 10px;
 }
 .product-code {
@@ -1525,7 +1553,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .product-code span {
 	font-size: 14px;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 }
 .message-alert {
 	position: absolute;
@@ -1557,7 +1585,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	margin-right: 10px;
 	font-size: 1.2em;
 	color: #0e8c4f;
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 }
 .user-avatar{
     align-items: center;
@@ -1597,7 +1625,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .cart-heading {
 	margin-top: 0;
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 	margin-bottom: 25px;
 	display: flex;
 	justify-content: space-between;
@@ -1617,7 +1645,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	line-height: 22px;
 }
 .ac-secondary-box {
-	margin: 20px 0 0;
+	margin-top: 30px;
 }
 .ac-main label {
 	margin: 0;
@@ -1625,6 +1653,10 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .top-gutter20{
     margin-top:20px;
+}
+.alt-accounts {
+	padding-bottom: 20px;
+	border-bottom: solid 1px #BBB;
 }
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
 
@@ -1648,16 +1680,16 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .p-name {
 	font-size: 40px;
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 	margin-top: 0;
 }
 .ic {
 	font-size: 15px;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 	margin-bottom: 4px;
 }
 .ic span {
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 }
 .mainImage {
 	padding-bottom: 15px;
@@ -1734,7 +1766,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .row-quantity-increase button {
 	height: 20px;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 	line-height: 14px;
 	background: #f9f9f9;
 	border: solid 1px #DDD;
@@ -1779,11 +1811,11 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	color: #333;
 }
 .row-name-code h4 {
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 	margin-top: 25px;
 }
 .row-price h4, .row-total h4 {
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 }
 .row-product {
 	display: table-cell;
@@ -1902,7 +1934,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .cart-total-total {
 	border-bottom: 1px solid #cacaca;
-	font-weight: bold;
+	font-family: 'Roboto-Bold';
 }
 .cart-empty{
     display: flex;
@@ -1934,7 +1966,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .apply-discount label {
 	font-size: 1.5rem;
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 }
 .apply-discount .d-flex input.form-control {
 	width: calc(100% - 80px);
@@ -2009,7 +2041,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .biling-address-title h4 {
 	font-size: 18px;
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 	border-bottom: solid 1px #666;
 	padding-bottom: 15px;
 	margin-bottom: 0;
@@ -2045,7 +2077,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .term-conditions {
     font-size: 0.8em;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
 }
 .item-button {
 	padding-left: 0 !important;
@@ -2068,7 +2100,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	padding: 0 20px 15px;
 }
 .modal-title {
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 	padding-bottom: 10px;
 	border-bottom: solid 1px #666;
 	margin-bottom: 10px;
@@ -2110,7 +2142,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	max-width: 100px;
 }
 .thankyou-order h1 {
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 	font-size: 30px;
 	color: #555;
 }
@@ -2199,7 +2231,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .miniCart-middle label {
 	margin: 0;
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 }
 .mini-qty input {
 	max-width: 40px;
@@ -2258,7 +2290,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     cursor: pointer;
 }
 .categoryName {
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 }
 .category-count {
 	border-radius: 25px;
@@ -2283,7 +2315,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .category-priceRange .term-conditions {
 	font-size: 1.3rem;
-	font-weight: 400;
+	font-family: 'Roboto-Regular';
 }
 /**************************************** LEFT SIDE BAR CSS END ***********************************/
 
@@ -2372,7 +2404,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .track-id {
 	color: #0E8C4F;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -2380,7 +2412,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: block;
 	width: 100%;
 	margin: 0;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	font-size: 1.3rem;
     line-height: 15px;
 }
@@ -2392,7 +2424,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .p-status {
 	padding-left: 20px;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	text-decoration: underline;
     cursor: pointer;
     color: #0e8c4f;
@@ -2416,7 +2448,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .o-status label {
 	display: block;
 	margin: 0;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	line-height: 16px;
 }
 .o-status span sup {
@@ -2454,12 +2486,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .order-detail span {
 	display: block;
-	font-weight: 300;
+	font-family: 'Roboto-Light';
 	margin-bottom: 5px;
 }
 .order-detail label {
 	display: block;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 }
 /* ==================================== ORDER PAGE CSS END ====================================== */
 
@@ -2480,7 +2512,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .track-d label {
 	margin-bottom: 0;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	margin-right: 10px;
 }
 .to-content-box {
@@ -2522,7 +2554,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 100%;
 	margin-bottom: 0;
 	text-transform: uppercase;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	font-size: 1.6rem;
 }
 .to-status span {
@@ -2538,7 +2570,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .track-order-desc p a {
 	color: #0e8c4f;
 	font-size: 1.4rem;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 }
 .ot-button button {
 	margin-right: 10px;
@@ -2591,7 +2623,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: -ms-flexbox;
 	display: flex;
 	color: #0E8C4F;
-	font-weight: 500;
+	font-family: 'Roboto-Medium';
 	min-height: 150px;
 	padding: 15px;
 	background: url('../images/photo-camera.png') no-repeat;
@@ -2702,13 +2734,21 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .verify-mail {
     text-align: left;
     color: #0e8c4f;
-    font-weight: bold;
+    font-family: 'Roboto-Bold';
 }
 
 /*************************************** STATIC PROFILE PAGE CSS START *****************************************/
 .staticProfile-box {
 	background: #fdfdfd;
 	padding: 25px;
+}
+.s-title {
+	font-size: 14px;
+	border-bottom: solid 1px #0e8c4f;
+	display: block;
+	padding-bottom: 5px;
+	color: #0e8c4f;
+	margin-bottom: 10px;
 }
 /*************************************** STATIC PROFILE PAGE CSS START *****************************************/
 
@@ -2843,7 +2883,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .form-d label.control-label {
         font-size:1.3rem;
-        font-weight: 400;
+        font-family: 'Roboto-Regular';
     }
 }
 @media (max-width:1199px) {
@@ -2897,7 +2937,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .app-navbar li {
         padding: 5px 8px;
-        font-weight: 400;
+        font-family: 'Roboto-Regular';
     }
     .navRight li {
         padding-right: 10px;
@@ -3301,7 +3341,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding-right: 10px;
         white-space: nowrap;
         text-align: right;
-        font-weight: bold;
+        font-family: 'Roboto-Bold';
         line-height: 54px;
         border-right: solid 1px #ddd;
         bottom: 0;
@@ -3334,7 +3374,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         width: 120px;
         padding-right: 10px;
         white-space: nowrap;
-        font-weight: bold;
+        font-family: 'Roboto-Bold';
         line-height: 38px;
         border-right: solid 1px #ddd;
         bottom: 0;
@@ -3545,14 +3585,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .user-name {
         font-size: 2.0rem;
         color: #FFF;
-        font-weight: bold;
+        font-family: 'Roboto-Bold';
         text-transform: capitalize;
         display: block;
         margin: 6px 0 0;
     }
     .hey {
         font-size: 1.5rem;
-        font-weight: normal;
+        font-family: 'Roboto-Regular';
     }
     .mobile-user {
         background: #EEE;
