@@ -5,20 +5,17 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import orderImage from './../../../assets/images/waste-plant.png';
 
-
-   
-
     export default (props)=>
     {
         return (
             <div className="order-row">
-                <div className="order-image"><img src={orderImage} /></div>
+                <div className="order-image"><img src={props.imgSrc} /></div>
                 <div className="order-detail">
                     <span>
                         {props.name}
                     </span>
                     <label>
-                        $143
+                        ${props.price}
                     </label>
                 </div>
                 <div className="order-detail">

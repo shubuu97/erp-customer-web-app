@@ -25,7 +25,7 @@ let BankDetailComponent = (props)=>
             (<div className="form-box">
             <div className="row d-flex">
             <div className="form-d col-md-4 col-sm-6 form-input">
-                <Field name={`${bank}.accountName`} label='Account Name' component={TextFieldInput} />
+                <Field name={`${bank}.accountName`} label='Account Name *' component={TextFieldInput} />
             </div>  
             <div className="form-d col-md-4 col-sm-6 form-input">
                 <Field name={`${bank}.bankName`} label='Bank Name *' component={TextFieldInput} />

@@ -43,7 +43,7 @@ class ProductsInCart extends React.Component {
         total={product.total}
         description={product.itemShortDesc}
         quantity={product.quantity || ''}
-        name={product.itemName}
+        name={product.aliasName || product.itemName}
         image={(product.images && product.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
         id={product.itemId}
         updateQuantity={this.updateQuantity}

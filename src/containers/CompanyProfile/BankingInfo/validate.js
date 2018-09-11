@@ -2,6 +2,7 @@ import  * as yup from 'yup';
 import expand from 'keypather/expand'
 var bankDetailsSchema = yup.object().shape({
     bankName:yup.string().required(),
+    accountName:yup.string().required(),
     bankRoutingNumber: yup.string().required(),
     bankAccountNumber:yup.string().required(),
     branchName:yup.string().required(),

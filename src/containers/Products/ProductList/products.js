@@ -12,7 +12,7 @@ class ProductsListClass extends React.Component {
                 code={product.itemNo}
                 price={product.price}
                 description={product.itemDesc}
-                name={product.itemName}
+                name={product.aliasName || product.itemName}
                 image={(product.images && product.images[0] && product.images[0].url) || productPlaceholder}
                 id={product.itemId}
                 click={this.props.onProductClick}
