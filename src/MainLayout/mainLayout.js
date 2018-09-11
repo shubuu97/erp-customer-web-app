@@ -151,6 +151,7 @@ class MainLayout extends Component {
                 <MenuItem onClick={this.handleLogOut} style={{ fontSize: "1.4rem" }}>Logout</MenuItem>
               </Menu>
             </div>
+            {this.state.showMiniCart && <div className="cart-backdrop" onClick={this.toggleMiniCartState}></div>}
             <div className="header-nav">
               <span className="visible-xs menu" onClick={this.toggleMenu}><img src={menuicon} /></span>
               <div className="main-logo">

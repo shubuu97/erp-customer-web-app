@@ -53,6 +53,12 @@ class BankingInfo extends Component
 
     submitForApproval=()=>
     {
+      let requestObj={
+        ...this.props.formValue,
+        businessCustomerId : localStorage.getItem('id')
+    }
+     this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`))
+    
      this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
         console.log("Data for company register", data);
         if(true) {
@@ -102,13 +108,14 @@ const mapStateToProps=(state)=>
 {
     let initialValues = state.bankDetailsData.lookUpData.data
     let isLoading= state.bankDetailsData.isFetching;
+ let    formValue = _get(state,'form.CompanyBankingInfo.values',{})
     let paymentTerms = _get(state,"bankDetailsData.lookUpData.data.paymentTerms.data",[{label:'',value:''}])
     let currencyCodes   = _get(state,"bankDetailsData.lookUpData.data.currencyCodes.data",[{label:'',value:''}])
     let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
     
     let paymentMethods   = _get(state,"bankDetailsData.lookUpData.data.paymentMethods.data",[{label:'',value:''}])
 
-    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods}
+    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods,formValue}
 
 }
 

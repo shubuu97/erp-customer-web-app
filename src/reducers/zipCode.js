@@ -1,4 +1,5 @@
-import * as ZIPCODE_CONSTANTS from '../../src/constants/zipCode'
+import * as ZIPCODE_CONSTANTS from '../../src/constants/zipCode';
+import _get from 'lodash/get'
 
 const zipCodeInfo = (state = {
     type: '',
@@ -21,7 +22,7 @@ const zipCodeInfo = (state = {
           isFetching: false,
           type: action.type,
           //didInvalidate: false,
-          lookUpData: action.data.data,
+          lookUpData: _get(action,'data.data',{}),
           meta:action.subreddit,
           lastUpdated: action.receivedAt,
         });

@@ -1,5 +1,10 @@
 import React,{Component} from 'react';
+<<<<<<< HEAD
 import {filter, sortBy,reverse} from 'lodash';
+=======
+import {filter} from 'lodash';
+import Button from '@material-ui/core/Button';
+>>>>>>> 008eb8187174a2e55397432d349a31c2ccd3bef2
 
 function FilterData(WrappedComponent)
 {
@@ -7,6 +12,7 @@ function FilterData(WrappedComponent)
     {
     constructor(props)
     {
+        debugger;
         super(props)
         this.state ={orderListData:props.orderListData}
     }
@@ -29,23 +35,39 @@ function FilterData(WrappedComponent)
        this.setState({orderListData})
 
         }
+        componentWillReceiveProps(nextProps)
+        {
+            this.setState({orderListData:nextProps  .orderListData})
+        }
         render()
         {
             return(
                 <div>
-                <div style={{display:'flex'}}>
-                <div onClick={()=>this.filterData('Nofilter')}>
-                Orders
-                </div>
-                <div onClick={()=>this.filterData('ACCEPTED')}>
-                 ACCEPTED
-                </div>
-                <div onClick={()=>this.filterData('IN_TRANSIT')}>
-                IN TRANSIT
-                </div>
-                <div onClick={()=>this.filterData('INCOMING')}>
-                 INCOMING
-                </div>
+                <h2 className="cart-heading">Your Orders</h2>
+                <div className="order-tab-parent">
+                    <ul className="order-tab-ul">
+                        <li className="active" onClick={()=>this.filterData('Nofilter')}>
+                            Orders
+                        </li>
+                        <li onClick={()=>this.filterData('ACCEPTED')}>
+                            Accepted
+                        </li>
+                        <li onClick={()=>this.filterData('IN_TRANSIT')}>
+                            In Transit
+                        </li>
+                        <li onClick={()=>this.filterData('INCOMING')}>
+                            Incoming
+                        </li>
+                    </ul>
+                    <div className="order-tab-right">
+                        <div className="order-search">
+                            <input className="form-control" placeholder="" />
+                            <Button variant="contained" color='primary'>Search Order</Button>
+                        </div>
+                        <div className="order-filter">
+
+                        </div>
+                    </div>
                 </div>
 
                 <WrappedComponent {...this.props} orderListData={this.state.orderListData} />

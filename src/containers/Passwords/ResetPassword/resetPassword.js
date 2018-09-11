@@ -81,7 +81,7 @@ class ResetPassword extends Component {
   render() {
     const { handleSubmit, classes, theme } = this.props;
     return (
-      <div className="col-sm-9">
+      <div>
         <h2 class="reset-password">Reset Password</h2>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
           <div className="row d-flex">
