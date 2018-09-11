@@ -1,6 +1,6 @@
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import React, { Component } from 'react';
-import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
+import { TextFieldInput, ReactSelectWrapper,CheckBoxInput } from '../../common/MaterialUiComponents';
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import withLoader from '../../LoaderHoc'
@@ -73,6 +73,9 @@ return (
 </div>
 <div className="form-d col-md-4 col-sm-6 form-input">
 <Field label='City *' name={`${address}.city`} component={TextFieldInput} />
+</div>
+<div className="form-d col-md-4 col-sm-6 form-input">
+<Field label='Primary' name={`${address}.addressType`} component={CheckBoxInput} />
 </div>
 
 
