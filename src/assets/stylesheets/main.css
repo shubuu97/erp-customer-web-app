@@ -275,8 +275,11 @@ nav.navbar {
     font-size:1.4rem;
 }
 .d-flex {
-    display: flex;
-    flex-wrap: wrap;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	width: 100%;
 }
 .form-d [class^="MuiInput-underline-"]:before {
     background-color:#DDD;
@@ -1627,8 +1630,16 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	margin-top: 0;
 	font-family: 'Roboto-Light';
 	margin-bottom: 25px;
+	/* display: -ms-flexbox; */
 	display: flex;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
+	font-size: 26px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.cart-heading button {
+    margin-left: auto;
 }
 .info-icon {
 	width: 24px;
@@ -1642,21 +1653,31 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     font-size:16px;
 }
 .ac-main {
-	line-height: 22px;
+	line-height: 20px;
+	font-family: 'Roboto-light';
+	margin-bottom: 6px;
 }
 .ac-secondary-box {
 	margin-top: 30px;
 }
 .ac-main label {
 	margin: 0;
-	line-height: 24px;
+	line-height: 20px;
+	font-family: 'Roboto-light';
 }
 .top-gutter20{
     margin-top:20px;
 }
 .alt-accounts {
-	padding-bottom: 20px;
-	border-bottom: solid 1px #BBB;
+	margin-bottom: 20px;
+	padding-right: 15px;
+}
+.site-box {
+	background: #F9F9F9;
+	padding: 20px;
+	margin-top: 20px;
+	display: inline-block;
+	width: 100%;
 }
 /******************************PRODUCT DETAILS PAGE CSS START***************************************/
 
@@ -2103,7 +2124,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-family: 'Roboto-Regular';
 	padding-bottom: 10px;
 	border-bottom: solid 1px #666;
-	margin-bottom: 10px;
+    margin-bottom: 10px;
+    display: flex;
 }
 .modal-close {
     background: transparent url('../images/close.png') no-repeat !important;
@@ -2111,9 +2133,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     background-position: center;
     -webkit-box-shadow: none;
     box-shadow: none !important;
-    position: absolute !important;
-    top: 28px;
-    right: 20px;
+    margin-top: auto !important; 
+    margin-left: auto !important;
+    background-position: center !important;
     min-width: 20px !important;
     padding: 0 !important;
     opacity: 0.7;
@@ -2743,24 +2765,35 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	padding: 25px;
 }
 .s-title {
-	font-size: 14px;
-	border-bottom: solid 1px #0e8c4f;
+	font-size: 16px;
 	display: block;
-	padding-bottom: 5px;
-	color: #0e8c4f;
-	margin-bottom: 10px;
+}
+.profile-detail-box {
+	margin-bottom: 50px;
 }
 /*************************************** STATIC PROFILE PAGE CSS START *****************************************/
 
 /*************************************** FOOTER CSS START *****************************************/
+.main-container {
+	position: relative;
+	padding-bottom: 40px;
+	display: inline-block;
+	width: 100%;
+}
 .footer {
+	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	padding: 10px 15px;
 	background: #EEE;
 	border-top: solid 1px #DDD;
+	-ms-flex-align: center;
 	align-items: center;
-	justify-content: center;
+	-ms-flex-pack: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 .footer ul {
 	padding: 0;
@@ -2769,10 +2802,21 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .footer ul li {
 	display: inline-flex;
-	padding: 0 20px;
-	/* font-family: 'Roboto-Regular'; */
+	padding:0 40px 0 0;
+	cursor: pointer;
+}
+.footer-right {
+	margin-left: auto;
 }
 /*************************************** FOOTER CSS END *****************************************/
+.mlr-0{
+    margin-left:0;
+    margin-right:0;
+}
+.plr-0{
+    padding-left:0;
+    padding-right:0;
+}
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
@@ -2793,7 +2837,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .tab-content {
         display: inline-block;
         width: 100%;
-    }    
+    }
 }
 @media (min-width:768px) and (max-width:1920px) {
     div[class^="EnhancedTable"] {
@@ -2965,9 +3009,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding-right: 10px;
         padding-left: 10px;
     }
-    .rel img {
-        width: 16px;
-    }
     .rel.offers-icon img {
         width: 21px;
     }
@@ -2996,6 +3037,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .footer {
         position: relative;
+        display: inline-block;
+        text-align:center;
+    }
+    .footer-right {
+        margin-left: auto;
+        margin-top: 10px;
+    }
+    .footer ul {
+        display: block;
     }
     .main-container {
         padding: 0;
@@ -3415,11 +3465,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .row-price h4, .row-total h4 {
         margin: 0;
     }
-    .cart-heading {
-        margin-bottom: 15px;
-        font-size: 26px;
+    .descriptionContent .row-quantity::before {
+        display: none;
     }
-    
     /* ============================= */
     .css-sourceMap-modules-importLoaders-1-localIdentName-ReactDrawer__drawer-right___h_uSC-sass {
         top: 62px !important;
@@ -3668,6 +3716,40 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .row-total {
         border-right:none;
     }
+    .footer ul li {
+        padding: 0 10px;
+    }
+    .left-sidebar {
+        margin-bottom: 20px;
+    }
+    .cart-heading {
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
+    .profile-sidebar {
+        margin-bottom: 20px;
+        max-width: 350px;
+    }
+    .profile-sidebar ul li {
+        padding: 12px 15px;
+        font-size: 1.4rem;
+    }
+    .cart-heading button {
+        margin-left: auto;
+        background: transparent;
+        box-shadow: none;
+        color: #000;
+        padding: 0;
+        font-size: 11px !important;
+        text-decoration: underline;
+    }
+    .cart-heading button:hover {
+        background: transparent;
+        text-decoration: underline;
+    }
+    .staticProfile-box {
+        padding: 10px 15px;
+    }
 }
 @media (min-width:480px) and (max-width:767px){
     .form-d {
@@ -3680,6 +3762,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .form-d-full {
         width: 100%;
+    }
+    .product-parent {
+        width: 50%;
     }
 }
 @media(max-width:479px){
@@ -3802,6 +3887,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .address-detail {
         width: 80%;
+    }
+    .footer ul li {
+        display: block;
+        font-family: 'Roboto-Light';
+        padding: 5px 0;
+    }
+    .footer ul {
+        display: block;
+        text-align: center;
     }
 }
 /*************************************** MEDIA QUERY CSS *****************************************/

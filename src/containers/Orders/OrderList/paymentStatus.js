@@ -36,7 +36,7 @@ class PaymentStatus extends Component {
           className="dialogbox-ui small"
         >
           <DialogContent>
-            <h2 className="modal-title">Payment Status</h2>
+            <h2 className="modal-title">Payment Status <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
             <div className="ps-first-section">
               <div className="ps-row"><label>Payment Date</label> <span>15th Aug, 2018</span> </div>
               <div className="ps-row"><label>Payment Time</label> <span>12:30 PM</span> </div>
@@ -52,7 +52,7 @@ class PaymentStatus extends Component {
 
           </DialogContent>
           <DialogActions className="m-footer">
-            <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button>
+            
             
           </DialogActions>
         </Dialog>

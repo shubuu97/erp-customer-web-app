@@ -32,7 +32,7 @@ const profileSideBar = (WrappedComponent) => {
             <div className="container">
             <h2 class="cart-heading">My Account</h2>
             <div className="row">
-            <div className="col-sm-3">
+            <div className="col-md-3 col-sm-4">
               <div className="profile-sidebar">
                 <ul>
                   <li onClick={()=>this.handleMenuClick()}>My Profile</li>
