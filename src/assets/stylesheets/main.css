@@ -2908,7 +2908,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	padding: 15px;
 	background: #f8f8f8;
 }
-
+.text-dialog {
+	font-size: 1.6rem;
+	color: #000;
+	margin: 0;
+}
+.dialog-btn {
+	margin: 0 !important;
+	padding: 0 15px 15px;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {

@@ -111,21 +111,22 @@ class OrderContainer extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
+          className="dialogbox-ui small"
         >
           <DialogTitle id="alert-dialog-slide-title">
-            {"Confirmation"}
+            <h2 className="modal-title">{"Confirmation"}</h2>
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">
-              Are you sure want to cancel order?
+              <p className="text-dialog">Are you sure want to cancel order?</p>
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Disagree
-            </Button>
-            <Button onClick={this.cancelOrder} color="primary">
+          <DialogActions className="col-sm-12 dialog-btn">
+            <Button onClick={this.cancelOrder} variant="contained" color="primary">
               Agree
+            </Button>
+            <Button onClick={this.handleClose} variant="contained" color="secondary">
+              Disagree
             </Button>
           </DialogActions>
         </Dialog>
