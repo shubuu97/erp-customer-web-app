@@ -210,7 +210,7 @@ class MainLayout extends Component {
             </ul>
           </div>
         <div className="footer-right">
-          { `\u00A9 2018 Cannablock. All rights reserved` }
+          { `\u00A9 2018 CANNAONBLOCK All Rights Reserved.` }
         </div>
         </div>
       </div>

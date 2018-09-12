@@ -9,7 +9,7 @@ if(Array.isArray(props.addressInfo))
 {
     AddressInfo =   props.addressInfo.map((address)=>
 {
-    return( <div>
+    return( <div className="ac-box">
        <div className="ac-main-inner">{address.address}, </div>
        <div className="ac-main-inner">{address.city}, {address.state}, {address.zipCode},</div>
        <div className="ac-main-inner">{address.country}</div>

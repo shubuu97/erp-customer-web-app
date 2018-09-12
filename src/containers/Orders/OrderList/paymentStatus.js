@@ -25,10 +25,9 @@ class PaymentStatus extends Component {
   };
 
   render() {
-    console.log("payment status props is here", this.props)
     return (
       <div>
-       <a> <span style={{cursor:'pointer'}} onClick={this.handleClickOpen}>Payment Status</span></a>
+        <a> <span style={{ cursor: 'pointer' }} onClick={this.handleClickOpen}>Payment Status</span></a>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -40,10 +39,10 @@ class PaymentStatus extends Component {
             <div className="ps-first-section">
               <div className="ps-row"><label>Payment Date</label> <span>15th Aug, 2018</span> </div>
               <div className="ps-row"><label>Payment Time</label> <span>12:30 PM</span> </div>
-              <div className="ps-row"><label>Payment Method</label> <span>{_get(this,'props.payment.method','')} </span> </div>
+              <div className="ps-row"><label>Payment Method</label> <span>{_get(this, 'props.payment.method', '')} </span> </div>
             </div>
-            <div className="ps-second-section">               
-              <div className="ps-row"><label>Payment Term</label> <span>{_get(this,'props.payment.paymentTerms','')} </span> </div>
+            <div className="ps-second-section">
+              <div className="ps-row"><label>Payment Term</label> <span>{_get(this, 'props.payment.paymentTerms', '')} </span> </div>
               <div className="ps-row"><label>Total Amount</label> <span>$130</span> </div>
               <div className="ps-row"><label>Paid Amount</label> <span>$120</span> </div>
               <div className="ps-row"><label>Due Amount</label> <span>$10</span> </div>
@@ -52,8 +51,8 @@ class PaymentStatus extends Component {
 
           </DialogContent>
           <DialogActions className="m-footer">
-            
-            
+
+
           </DialogActions>
         </Dialog>
       </div>
