@@ -10,9 +10,12 @@ function FilterData(WrappedComponent)
     {
         debugger;
         super(props)
-        this.state ={orderListData:props.orderListData}
+        this.state ={
+            orderListData:props.orderListData,
+            active:0
+        }
     }
-        filterData(key)
+        filterData(key,active)
         {
             if(key=='Nofilter')
             {
@@ -20,7 +23,7 @@ function FilterData(WrappedComponent)
                     return new Date(dateObj.orderDate);
                   });
                  reverse(orderListData)
-           return  this.setState({orderListData})
+           return  this.setState({orderListData,active})
             }
         
        let orderListData =    filter(this.props.orderListData,['status',key]);
@@ -28,12 +31,16 @@ function FilterData(WrappedComponent)
             return new Date(dateObj.orderDate);
           });
          reverse(orderListData)
-       this.setState({orderListData})
+       this.setState({orderListData,active})
 
         }
         componentWillReceiveProps(nextProps)
         {
-            this.setState({orderListData:nextProps.orderListData})
+           let  orderListData= sortBy(nextProps.orderListData, function(dateObj) {
+                return new Date(dateObj.orderDate);
+              });
+             reverse(orderListData)
+            this.setState({orderListData})
         }
         render()
         {
@@ -51,16 +58,16 @@ function FilterData(WrappedComponent)
                         </div>
                     </div>
                     <ul className="order-tab-ul">
-                        <li className="active" onClick={()=>this.filterData('Nofilter')}>
+                        <li className={this.state.active==0?'active':null} onClick={()=>this.filterData('Nofilter',0)}>
                             Orders
                         </li>
-                        <li onClick={()=>this.filterData('ACCEPTED')}>
+                        <li className={this.state.active==1?'active':null} onClick={()=>this.filterData('ACCEPTED',1)}>
                             Accepted
                         </li>
-                        <li onClick={()=>this.filterData('IN_TRANSIT')}>
+                        <li className={this.state.active==2?'active':null} onClick={()=>this.filterData('IN_TRANSIT',2)}>
                             In Transit
                         </li>
-                        <li onClick={()=>this.filterData('INCOMING')}>
+                        <li className={this.state.active==3?'active':null} onClick={()=>this.filterData('INCOMING',3)}>
                             Incoming
                         </li>
                     </ul>                   
