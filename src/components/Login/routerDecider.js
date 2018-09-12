@@ -14,6 +14,7 @@ const routerDeciderHoc = (WrappedComponent) => {
             localStorage.setItem('role','customer')
             else
             localStorage.setItem('role','company')
+            
             switch (this.props.customerStatus) {
                 case 'In Approval':
                this.props.history.push('/approval')
@@ -36,7 +37,7 @@ const routerDeciderHoc = (WrappedComponent) => {
                 return null
                 break;
                 case 'Cancelled':
-                this.props.history.push('/approval')
+                this.props.history.push('/rejected')
                 return null
                 break;
 
