@@ -34,7 +34,7 @@ const profileSideBar = (WrappedComponent) => {
                 <div className="profile-sidebar">
                   <ul>
                     <li className={`${(this.props.location.pathname == '/ComapnyStaticProfileView' || this.props.location.pathname == '/StaticProfileView') ? 'active' : ''}`} onClick={() => this.handleMenuClick()}>My Profile</li>
-                    <li className={`${this.props.location.pathname == '/orders' ? 'active' : ''}`} onClick={() => this.handleClick(2, '/orders')}>My Orders</li>
+                    <li className={`${(this.props.location.pathname == '/orders' || this.props.location.pathname == '/track') ? 'active' : ''}`} onClick={() => this.handleClick(2, '/orders')}>My Orders</li>
                     <li className={`${this.props.location.pathname == '/AddressBook' ? 'active' : ''}`} onClick={() => this.handleClick(3, '/AddressBook')}>Address Book</li>
                     <li className={`${this.props.location.pathname == '/myOffers' ? 'active' : ''}`} onClick={() => this.handleClick(4, '/myOffers')}>My Offers</li>
                     <li className={`${this.props.location.pathname == '/Notifications' ? 'active' : ''}`} onClick={() => this.handleClick(5, '/Notifications')}>Notifications</li>
