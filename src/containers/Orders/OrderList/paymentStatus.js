@@ -37,15 +37,15 @@ class PaymentStatus extends Component {
           <DialogContent>
             <h2 className="modal-title">Payment Status <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
             <div className="ps-first-section">
-              <div className="ps-row"><label>Payment Date</label> <span>15th Aug, 2018</span> </div>
-              <div className="ps-row"><label>Payment Time</label> <span>12:30 PM</span> </div>
+              <div className="ps-row"><label>Payment Date</label> <span>...</span> </div>
+              <div className="ps-row"><label>Payment Time</label> <span>...</span> </div>
               <div className="ps-row"><label>Payment Method</label> <span>{_get(this, 'props.payment.method', '')} </span> </div>
             </div>
             <div className="ps-second-section">
               <div className="ps-row"><label>Payment Term</label> <span>{_get(this, 'props.payment.paymentTerms', '')} </span> </div>
-              <div className="ps-row"><label>Total Amount</label> <span>$130</span> </div>
-              <div className="ps-row"><label>Paid Amount</label> <span>$120</span> </div>
-              <div className="ps-row"><label>Due Amount</label> <span>$10</span> </div>
+              <div className="ps-row"><label>Total Amount</label> <span>{this.props.orderTotal}</span> </div>
+              <div className="ps-row"><label>Paid Amount</label> <span>...</span> </div>
+              <div className="ps-row"><label>Due Amount</label> <span>...</span> </div>
             </div>
 
 
