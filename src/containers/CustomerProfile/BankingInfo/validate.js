@@ -1,6 +1,6 @@
 import  * as yup from 'yup';
 import expand from 'keypather/expand'
-
+import replace from 'lodash/replace';
 var bankDetailsSchema = yup.object().shape({
     bankName:yup.string().required(),
     accountName:yup.string().required(),
@@ -49,7 +49,8 @@ const asyncValidate = values => {
                     let errorMsg = messageArr[messageArr.length -1]
                     let result = errorMsg.replace( /([A-Z])/g, " $1" );
                     let finalResult = result.charAt(0).toUpperCase() + result.slice(1);
-                     expandObj[error.path] = finalResult;
+                    finalResult = replace(finalResult, /Cheque/g, "Check");
+                    expandObj[error.path] = finalResult;
                     })
 
                 //redux form will now understand the errors that yup has thrown
