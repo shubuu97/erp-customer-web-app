@@ -37,21 +37,25 @@ class ProfileView extends Component {
           <h2 className="cart-heading">Profile Information <Button color='secondary' variant="contained" onClick={()=>this.props.history.push('/reset')}>Change Password</Button></h2>
           <div className="row">
             <div className="col-md-5">
-              <h4 className="ac-heading">Account Details</h4>
-              <AccountView
-                addressInfo={_get(this.props.accountDetails, 'addressInfo', '')}
-                contactNumber={_get(this.props.accountDetails, 'contactNumber', '')}
-                email={_get(this.props.accountDetails, 'email', '')}
-                firstName={_get(this.props.accountDetails, 'firstName', '')}
-                lastName={_get(this.props.accountDetails, 'lastName', '')}
-                licenseNumber={_get(this.props.accountDetails, 'licenseNumber', '')}
+              
+                <h4 className="ac-heading">Account Details</h4>
+                <div className="seperator-box">
+                <AccountView
+                  addressInfo={_get(this.props.accountDetails, 'addressInfo', '')}
+                  contactNumber={_get(this.props.accountDetails, 'contactNumber', '')}
+                  email={_get(this.props.accountDetails, 'email', '')}
+                  firstName={_get(this.props.accountDetails, 'firstName', '')}
+                  lastName={_get(this.props.accountDetails, 'lastName', '')}
+                  licenseNumber={_get(this.props.accountDetails, 'licenseNumber', '')}
 
 
-                accountDetails={this.props.accountDetails} />
-              <div className="top-gutter20"><Button color='secondary' variant="contained" onClick={() => this.routeChanger(0)}>Edit Info</Button></div>
+                  accountDetails={this.props.accountDetails} />
+                <div className="top-gutter20"><Button color='secondary' variant="contained" onClick={() => this.routeChanger(0)}>Edit Info</Button></div>
+              </div>
             </div>
             <div className="col-md-7">
               <h4 className="ac-heading">Banking Details</h4>
+              <div className="seperator-box">
               <BankView
                 accountNumber={_get(this.props.bankingDetails, 'accountNumber', '')}
                 bankingDetails={this.props.bankingDetails}
@@ -63,6 +67,7 @@ class ProfileView extends Component {
                 paymentTerms={_get(this.props.bankingDetails, 'paymentTerms', '')}
                 preferredPaymentMethods={_get(this.props.bankingDetails, 'preferredPaymentMethods', '')} />
               <div className="top-gutter20"><Button color='secondary' variant="contained" onClick={() => this.routeChanger(1)}>Edit info</Button></div>
+            </div>
             </div>
 
           </div>

@@ -41,6 +41,15 @@ function FilterData(WrappedComponent)
                 <div>
                 <h2 className="cart-heading">Your Orders</h2>
                 <div className="order-tab-parent">
+                    <div className="order-tab-right">
+                        <div className="order-search">
+                            <input className="form-control" placeholder="" />
+                            <Button variant="contained" color='primary'>Search Order</Button>
+                        </div>
+                        <div className="order-filter">
+
+                        </div>
+                    </div>
                     <ul className="order-tab-ul">
                         <li className="active" onClick={()=>this.filterData('Nofilter')}>
                             Orders
@@ -54,16 +63,7 @@ function FilterData(WrappedComponent)
                         <li onClick={()=>this.filterData('INCOMING')}>
                             Incoming
                         </li>
-                    </ul>
-                    <div className="order-tab-right">
-                        <div className="order-search">
-                            <input className="form-control" placeholder="" />
-                            <Button variant="contained" color='primary'>Search Order</Button>
-                        </div>
-                        <div className="order-filter">
-
-                        </div>
-                    </div>
+                    </ul>                   
                 </div>
 
                 <WrappedComponent {...this.props} orderListData={this.state.orderListData} />
