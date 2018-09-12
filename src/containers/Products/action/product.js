@@ -54,17 +54,17 @@ export const applyFilter = (list, filterObj) => {
     filterObj: filterObj
   }
   if (filterObj.lessThan50) {
-    filter(list, (item) => item.price < 50).map((product) => {
+    filter(list, (item) => item.price <= 50).map((product) => {
       dataObj.filteredData.push(product);
     });
   }
   if (filterObj.from50To100) {
-    filter(list, (item) => (item.price > 50 && item.price < 100)).map((product) => {
+    filter(list, (item) => (item.price > 50 && item.price <= 100)).map((product) => {
       dataObj.filteredData.push(product);
     });
   }
   if (filterObj.from100To200) {
-    filter(list, (item) => (item.price > 100 && item.price < 200)).map((product) => {
+    filter(list, (item) => (item.price > 100 && item.price <= 200)).map((product) => {
       dataObj.filteredData.push(product);
     });
   }
