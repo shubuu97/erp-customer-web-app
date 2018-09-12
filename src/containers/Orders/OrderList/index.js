@@ -72,7 +72,9 @@ class OrderContainer extends React.Component {
       success: 'RECEIVED_CANCEL_ORDER',
       error: 'RECEIVED_CANCEL_ORDER_ERROR'
     }
-    this.props.dispatch(postData(`${APPLICATION_BFF_URL}/customer/orders/reject/${this.state.readyForCancel.id}`, null, null, options, 'PATCH')).then((cancelSuccess) => {
+    let cancelUrl = _get(this.state, 'readyForCancel._links.cancelOrder.href', '');
+    let verb = _get(this.state, 'readyForCancel._links.cancelOrder.verb', 'PATCH');
+    this.props.dispatch(postData(cancelUrl, null, null, options, verb)).then((cancelSuccess) => {
       console.log("cancelSuccess", cancelSuccess);
       this.setState({ openCancelOrder: false });
       let options = {
