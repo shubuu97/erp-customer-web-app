@@ -48,18 +48,20 @@ routeChanger(tab)
                     <div className="row">
                         <div className="col-md-5 profile-detail-box">
                             <h4 className="ac-heading">Account Details</h4>
-                            <AccountView 
-                            addressInfo={_get(this.props.accountDetails,'addressInfo','')}
-                            contactNumber={_get(this.props.accountDetails,'contactNumber','')}
-                            email={_get(this.props.accountDetails,'email','')}
-                            firstName={_get(this.props.accountDetails,'firstName','')}
-                            lastName={_get(this.props.accountDetails,'lastName','')}
-                            licenseNumber={_get(this.props.accountDetails,'licenseNumber','')}                    
-                            accountDetails={this.props.accountDetails}/>
-                            
-                            <div className="top-gutter20">
-                                <Button color='secondary' variant="contained" onClick={()=>this.routeChanger(0)}>Edit Info</Button>
-                            </div>
+                            <div className="seperator-box">
+                                <AccountView 
+                                addressInfo={_get(this.props.accountDetails,'addressInfo','')}
+                                contactNumber={_get(this.props.accountDetails,'contactNumber','')}
+                                email={_get(this.props.accountDetails,'email','')}
+                                firstName={_get(this.props.accountDetails,'firstName','')}
+                                lastName={_get(this.props.accountDetails,'lastName','')}
+                                licenseNumber={_get(this.props.accountDetails,'licenseNumber','')}                    
+                                accountDetails={this.props.accountDetails}/>
+                                
+                                <div className="top-gutter20">
+                                    <Button color='secondary' variant="contained" onClick={()=>this.routeChanger(0)}>Edit Info</Button>
+                                </div>
+                            </div>                            
                         </div>
                     
                     
@@ -67,6 +69,7 @@ routeChanger(tab)
                 
                         <div className="col-md-7 profile-detail-box">
                             <h4 className="ac-heading">License Details</h4>
+                            <div className="seperator-box">
                             <LicenseView 
                             companyName={_get(this.props.licenseDetails,'companyName','')}
                             licenseNumber={_get(this.props.licenseDetails,'companyInfo.licenseNumber','')}
@@ -78,20 +81,24 @@ routeChanger(tab)
                             <div className="top-gutter20">
                                 <Button color='secondary' variant="contained" onClick={()=>this.routeChanger(1)}>Edit Info</Button>
                             </div>
+                            </div>
                         </div>
 
                         <div className="col-md-5 profile-detail-box">
                             <h4 className="ac-heading">Site Details</h4>
+                            <div className="seperator-box">
                             <SiteView
                             siteDetails={this.props.siteDetails}
                             />  
                             <div className="top-gutter20">
                                 <Button color='secondary' variant="contained" onClick={()=>this.routeChanger(2)}>Edit Info</Button>
                             </div>
+                            </div>
                         </div>
 
                         <div className="col-md-7 profile-detail-box">
                             <h4 className="ac-heading">Banking Details</h4>
+                            <div className="seperator-box">
                             <BankView
                             accountNumber={_get(this.props.bankingDetails,'accountNumber','')}
                             bankingDetails={this.props.bankingDetails}
@@ -102,8 +109,9 @@ routeChanger(tab)
                             nameOnCheque={_get(this.props.bankingDetails,'nameOnCheque','')}
                             paymentTerms={_get(this.props.bankingDetails,'paymentTerms','')}
                             preferredPaymentMethods={_get(this.props.bankingDetails,'preferredPaymentMethods','')}/>                    
-                            <div className="">
+                            <div className="top-gutter20">
                                 <Button color='secondary' variant="contained"  onClick={()=>this.routeChanger(3)}>Edit Info</Button>
+                            </div>
                             </div>
                         </div>
                     </div>
