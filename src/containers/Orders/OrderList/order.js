@@ -57,7 +57,7 @@ let itemLists =  this.props.saleProducts.map((saleProduct,index)=>
               </div>
             </div> */}
             <Button color='secondary' variant='contained'>Cancel Order</Button>
-    <Button color='secondary' onClick={()=>this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+  {this.props.status!='INCOMING' ?<Button color='secondary' onClick={()=>this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>:null}
           </div>
         </div>
         <div className="order-card-content">        
