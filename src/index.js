@@ -51,6 +51,7 @@ import CompanyStaticProfileView from './containers/CompanyProfile/ProfileStaticV
 import Notification from './containers/Notifications';
 import AddressBook from './containers/AddressBook';
 import MyOffers from './containers/MyOffers'
+import AfterRejected from './containers/AfterRejected/afterRejected';
 
 const theme = createMuiTheme({
   
@@ -123,6 +124,7 @@ ReactDOM.render(
 <Route exact path="/CompanyBankingInfo" component={CompanyBankingInfo}/>
 <Route exact path="/CustomerBankingInfo" component={CustomerBankingInfo}/>
 <Route exact path='/approval' component={AfterApproval}/>
+<Route exact path='/rejected' component={AfterRejected}/>
 <Route exact path='/register' component={AfterRegister}/>
 <RouterWithMainLayout layout={MainLayout} exact path='/orderSuccess' component={AfterCheckout}/>
 
