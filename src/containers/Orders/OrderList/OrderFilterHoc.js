@@ -8,7 +8,6 @@ function FilterData(WrappedComponent)
     {
     constructor(props)
     {
-        debugger;
         super(props)
         this.state ={
             orderListData:props.orderListData,
@@ -48,6 +47,15 @@ function FilterData(WrappedComponent)
                 <div>
                 <h2 className="cart-heading">Your Orders</h2>
                 <div className="order-tab-parent">
+                    <div className="order-tab-right">
+                        <div className="order-search">
+                            <input className="form-control" placeholder="" />
+                            <Button variant="contained" color='primary'>Search Order</Button>
+                        </div>
+                        <div className="order-filter">
+
+                        </div>
+                    </div>
                     <ul className="order-tab-ul">
                         <li className={this.state.active==0?'active':null} onClick={()=>this.filterData('Nofilter',0)}>
                             Orders
@@ -61,16 +69,7 @@ function FilterData(WrappedComponent)
                         <li className={this.state.active==3?'active':null} onClick={()=>this.filterData('INCOMING',3)}>
                             Incoming
                         </li>
-                    </ul>
-                    <div className="order-tab-right">
-                        <div className="order-search">
-                            <input className="form-control" placeholder="" />
-                            <Button variant="contained" color='primary'>Search Order</Button>
-                        </div>
-                        <div className="order-filter">
-
-                        </div>
-                    </div>
+                    </ul>                   
                 </div>
 
                 <WrappedComponent {...this.props} orderListData={this.state.orderListData} />

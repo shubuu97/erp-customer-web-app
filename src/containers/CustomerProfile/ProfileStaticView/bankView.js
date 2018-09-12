@@ -9,7 +9,7 @@ if(Array.isArray(props.bankDetails))
 {
     BankDetails =   props.bankDetails.map((bankDetail)=>
 {
-    return( <div className="col-sm-6 plr-0">
+    return( <div className="col-lg-6 plr-0">
         <div className="alt-accounts">
             <div className="row"><div className="col-xs-6 ac-main"><label>Account Name:</label></div> <div className="col-xs-6 ac-main">  {bankDetail.accountName}</div></div>
             <div className="row"><div className="col-xs-6 ac-main"><label>Account Status:</label></div> <div className="col-xs-6 ac-main">{bankDetail.accountStatus}</div></div>
