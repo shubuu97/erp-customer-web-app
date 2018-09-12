@@ -30,7 +30,7 @@ class ProductsContainer extends React.Component {
         lessThan50: false,
         from50To100: false,
         from100To200: false,
-        above200: false 
+        above200: false
       },
       filteredData: [],
       isGridView: true
@@ -47,8 +47,8 @@ class ProductsContainer extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove('product-list');
   }
-  componentWillReceiveProps(nextProps){
-    console.log("In product list recieve props",nextProps);
+  componentWillReceiveProps(nextProps) {
+    console.log("In product list recieve props", nextProps);
   }
   handleClose = () => {
     this.setState({ openItemInfo: false });
@@ -74,11 +74,11 @@ class ProductsContainer extends React.Component {
     const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
     let priceFilterObject = this.state.priceFilterObject;
     priceFilterObject[type] = value;
-    this.setState({priceFilterObject: priceFilterObject});
+    this.setState({ priceFilterObject: priceFilterObject });
     this.props.dispatch(applyFilter(productDataList, priceFilterObject));
   }
   changeView() {
-    this.setState({isGridView: !this.state.isGridView});
+    this.setState({ isGridView: !this.state.isGridView });
   }
   addToCart = (productInfo) => {
     const { cartProductList, dispatch } = this.props;
@@ -92,7 +92,7 @@ class ProductsContainer extends React.Component {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);
   }
-  
+
   render() {
     const { categoryTypeAndItems, selectedCategoryType, filteredDataSet } = this.props;
     console.log("Product Data with type", selectedCategoryType);
@@ -115,8 +115,8 @@ class ProductsContainer extends React.Component {
           <div className="col-md-9 col-sm-8">
             <div className="filter-bar">
               <ul className="list-grid hidden-xs">
-                <li className={isGridView ? `active`: ''} onClick={()=>this.changeView()}><img src={grid} /></li>
-                <li className={!isGridView ? `active`: ''} onClick={()=>this.changeView()}><img src={list} /></li>
+                <li className={isGridView ? `active` : ''} onClick={() => this.changeView()}><img src={grid} /></li>
+                <li className={!isGridView ? `active` : ''} onClick={() => this.changeView()}><img src={list} /></li>
               </ul>
               <div className="sort-by">
                 <span>Sort By</span>
@@ -127,9 +127,9 @@ class ProductsContainer extends React.Component {
                 </select>
               </div>
             </div>
-            {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData} 
-            isLoading={this.props.isLoading} showInfo={this.showInfo} 
-            onProductClick={(item) => this.productDetails(item)} isGridView={isGridView} addToCart={this.addToCart}/> : null}
+            {filteredDataSet.filteredData && filteredDataSet.filteredData.length ? <ProductList productsList={filteredDataSet.filteredData}
+              isLoading={this.props.isLoading} showInfo={this.showInfo}
+              onProductClick={(item) => this.productDetails(item)} isGridView={isGridView} addToCart={this.addToCart} /> : null}
             {filteredDataSet.filteredData && !filteredDataSet.filteredData.length &&
               <NoProduct />
             }
@@ -158,7 +158,9 @@ class ProductsContainer extends React.Component {
                         <h2 className="p-name">{popupItemInfo.aliasName || popupItemInfo.itemName}</h2>
                         <p className="ic text-uppercase">Item Code: <span>{popupItemInfo.itemNo}</span></p>
                         {/* <p className="ic">Unit Count: <span>{popupItemInfo.unitCount}</span></p> */}
-                        <h3 className="p-price">$ {popupItemInfo.price}</h3>
+                        <div className="price-text-css">
+                          <h3 className="p-price">$ {popupItemInfo.price}</h3><p>Per Quantity</p>
+                        </div>
                       </div>
                       <div className="addToCartButtonDiv">
                         <p className="p-desc"><b>Description</b>{popupItemInfo.itemDesc} </p>
@@ -168,7 +170,7 @@ class ProductsContainer extends React.Component {
                 </div>
               </DialogContent>
               <DialogActions className="m-footer">
-                
+
               </DialogActions>
             </Dialog>}
           </div>
