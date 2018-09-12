@@ -53,7 +53,7 @@ export default class Order extends React.Component {
               </div>
             </div> */}
             {this.props.status == 'INCOMING' ? <Button color='secondary' variant='contained' onClick={()=>this.props.onCancelOrder(this.props.order)}>Cancel Order</Button>: null}
-            {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button> : null}
+            <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
           </div>
         </div>
         <div className="order-card-content">

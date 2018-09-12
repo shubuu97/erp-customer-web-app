@@ -149,7 +149,7 @@ class ProductsContainer extends React.Component {
                       </div>
                       <div className="subImages">
                         {popupItemInfo.images && popupItemInfo.images.map((image, key) => (
-                          <img key={key} onClick={() => this.updateMainImage(image)} className="img-responsive" src={image.url || productPlaceholder} alt={popupItemInfo.itemName} />
+                          <img key={key} onClick={() => this.updateMainImage(image)} className={`img-responsive ${popupItemInfo.mainImageUrl.url == image.url ? 'active': ''}`} src={image.url || productPlaceholder} alt={popupItemInfo.itemName} />
                         ))}
                       </div>
                     </div>

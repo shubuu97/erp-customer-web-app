@@ -17,7 +17,7 @@ export default (props) => {
           </div>
           <div className="subImages">
             {props.detail.images && props.detail.images.map((image, key) => (
-              <img key={key} onClick={()=>props.updateMainImage(image)} className="img-responsive" src={image.url || productPlaceholder} alt={props.detail.itemName} />
+              <img key={key} onClick={()=>props.updateMainImage(image)} className={`img-responsive ${props.mainImageUrl.url == image.url ? 'active': ''}`} src={image.url || productPlaceholder} alt={props.detail.itemName} />
             ))}
           </div>
         </div>
