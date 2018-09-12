@@ -25,7 +25,7 @@ export default function RFReactSelect({ input ,meta:{touched,error,pristine}, op
     <Select
       valueKey="value"
       name={name}
-      placeholder={placeholder}
+      placeholder={'Select'}
       value={transformedValue}
       multi={multi}
       options={options}
