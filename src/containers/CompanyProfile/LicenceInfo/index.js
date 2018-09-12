@@ -30,7 +30,6 @@ class LicenseInfo extends Component
     }
     updateSubmitHandler=(values)=>
     {
-  
 
     let requestObj={
         ...values,

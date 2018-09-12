@@ -9,9 +9,9 @@ class AfterApproval extends Component {
     handleSwitch=()=>
     {
         if (this.props.role=="customer")
-        this.props.history.push('/customerProfile');
+        this.props.history.push('/StaticProfileView');
         else
-        this.props.history.push('/companyProfile');
+        this.props.history.push('/ComapnyStaticProfileView');
     }
     render() {
         return (<div className="message-alert">

@@ -31,7 +31,7 @@ export default (props) => {
             </div>
             <div className="d-flex wq-bar">
               <label>Weight</label>
-              <span>{props.detail.unitCount} Grams</span>
+              <span>{props.detail.unitCount} {(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams'}</span>
             </div>
             <div className="d-flex wq-bar align-center">
               <label>Quantity</label>
@@ -53,7 +53,8 @@ export default (props) => {
           </div>
         </div>
       </div>
-      <div className="table-responsive table-product-detail">
+      {/* For FURTURE ADDITIONAL INFORMATION */}
+      {/* <div className="table-responsive table-product-detail">
         <table className="table">
           <thead>
             <tr>
@@ -71,7 +72,7 @@ export default (props) => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   )
 }

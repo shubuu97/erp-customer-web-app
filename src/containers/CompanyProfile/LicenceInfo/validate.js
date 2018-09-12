@@ -1,5 +1,6 @@
 import * as yup from 'yup';
-import expand from 'keypather/expand'
+import expand from 'keypather/expand';
+import _get from 'lodash/get'
 var contact = yup.object().shape({
     contact: yup.string().required()
 });
@@ -7,24 +8,64 @@ var email = yup.object().shape({
     email: yup.string().email().required()
 });
 
+let licenInfoSchema  = yup.object().shape({
+    licenseType: yup.string().required(),
+    category: yup.string().required(),
+    companyAddressInfo: yup.object().shape({
+        companyAddress: yup.string().required(),
+        zipCode: yup.number().min(3).required(),
+        country: yup.string().required(),
+        state: yup.string().required(),
+        city: yup.string().required()
+    }),
+    organizationInfo:yup.object().shape({
+        name:yup.string().required(),
+        address:yup.string().required(),
+        zipCode: yup.number().min(3).required(),
+        country: yup.string().required(),
+        state: yup.string().required(),
+        city: yup.string().required()
+
+    }),
+    contactNumbers: yup.array(contact),
+    emailAddresses: yup.array(email)
+
+})
+var optionalLicenInfoSchema = yup.object().shape({
+    licenseType: yup.string().required(),
+    category: yup.string().required(),
+    companyAddressInfo: yup.object().shape({
+        companyAddress: yup.string().required(),
+        zipCode: yup.number().min(3).required(),
+        country: yup.string().required(),
+        state: yup.string().required(),
+        city: yup.string().required()
+    }),
+    contactNumbers: yup.array(contact),
+    emailAddresses: yup.array(email)
+
+})
 var schema = yup.object().shape(
     {
-        companyInfo: yup.object().shape({
-            licenseType: yup.string().required(),
-            category: yup.string().required(),
-            companyAddressInfo: yup.object().shape({
-                companyAddress: yup.string().required(),
-                zipCode: yup.number().min(3).required(),
-                country: yup.string().required(),
-                state: yup.string().required(),
-                city: yup.string().required()
-            }),
-            contactNumbers: yup.array(contact),
-            emailAddresses: yup.array(email)
 
-
-
-        })
+        companyInfo:yup.lazy(value=>{
+           
+           if(_get(value,'organizationInfo.address',null))
+           return licenInfoSchema
+           if(_get(value,'organizationInfo.city',null))
+           return licenInfoSchema
+           if(_get(value,'organizationInfo.country',null))
+           return licenInfoSchema
+           if(_get(value,'organizationInfo.name',null))
+           return licenInfoSchema
+           if(_get(value,'organizationInfo.state',null))
+           return licenInfoSchema
+           if(_get(value,'organizationInfo.zipCode',null))
+           return licenInfoSchema
+           
+        
+          return optionalLicenInfoSchema
+      })  
 
     });
 const asyncValidate = values => {
@@ -35,7 +76,7 @@ const asyncValidate = values => {
 
         
         //Validate our form values against our schema! Also dont abort the validate early.
-        schema.validate(values, { abortEarly: false })
+        schema.validate({companyInfo:values.companyInfo}, { abortEarly: false })
             .then(() => {
                 //form is valid happy days!
                 resolve();
