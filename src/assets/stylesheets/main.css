@@ -1647,15 +1647,18 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .ac-heading {
 	margin-top: 0;
-	padding-bottom: 10px;
-	border-bottom: solid 1px #000;
-    margin-bottom: 10px;
-    font-size:16px;
+	border-bottom: solid 0px #DDDD;
+	margin-bottom: 0;
+	font-size: 16px;
+	background: #0e8c4f;
+	color: #FFF;
+	padding: 10px 15px;
 }
 .ac-main {
-	line-height: 20px;
-	font-family: 'Roboto-light';
-	margin-bottom: 6px;
+    line-height: 20px;
+    font-family: Roboto-light;
+    margin-bottom: 6px;
+    word-break: break-all;
 }
 .ac-secondary-box {
 	margin-top: 30px;
@@ -1669,12 +1672,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     margin-top:20px;
 }
 .alt-accounts {
-	margin-bottom: 20px;
-	padding-right: 15px;
+	margin: 3px;
+	padding: 15px;
+    background: #FFF;
+    border-left:solid 4px #EEE;
 }
 .site-box {
-	background: #F9F9F9;
-	padding: 20px;
 	margin-top: 20px;
 	display: inline-block;
 	width: 100%;
@@ -1797,6 +1800,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .cart-stock {
 	color: #0ed10e;
+}
+.price-text-css{
+    display: flex;
+    align-items: center;
+}
+.price-text-css p{
+    margin-left: 10px;
+    padding-top: 20px;
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
@@ -2523,6 +2534,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	flex-wrap: wrap;
 	border-bottom: solid 1px #b8b8b8;
 	margin-bottom: 20px;
+	flex-direction: row-reverse;
 }
 .order-tab-ul {
 	display: flex;
@@ -2558,6 +2570,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     background: url('../images/input-search.png') no-repeat;
     background-position: left 7px center;
     background-size: 16px;
+    padding-left: 30px;
 }
 .order-search button {
 	height: 34px;
@@ -2874,16 +2887,26 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	min-height: 32px;
 	height: 32px;
 }
-.cart-backdrop{
-    background: transparent;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: fixed;
-    z-index: 8;
+.ac-box {
+	position: relative;
+	counter-increment: esum;
+	padding: 10px 10px 10px 40px;
+	margin-top: 20px;
+	background: #FFF;
+	border-left: solid 4px #EEE;
+	/* border-right: solid 4px #DDD; */
+}
+.ac-box::before {
+	content: counter(esum) ".";
+	position: absolute;
+	top: 12px;
+	left: 10px;
+	font-family: 'Roboto-Medium';
+	font-size: 20px;
+}
+.seperator-box {
+	padding: 15px;
+	background: #f8f8f8;
 }
 
 /*************************************** MEDIA QUERY CSS *****************************************/
@@ -3096,6 +3119,25 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .address-detail {
         width: 35%;
     }
+    .order-tab-ul li {
+        padding: 8px 15px;
+        font-size: 1.3rem;
+    }
+    .order-search {
+        width: 280px;
+    }
+    .order-search input {
+        width: 160px;
+        height: 30px;
+    }
+    .order-search button {
+        height: 30px;
+        min-height: 30px;
+        width: 115px;
+    }
+    .col-lg-6{
+        width:100%;
+    }
 }
 @media (max-width:991px){
     .navbar-collapse .nav > li > a {
@@ -3205,6 +3247,48 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         max-width: 300px;
         width: 100%;
         margin: auto;
+    }
+    .order-tab-ul {
+        margin: 10px auto 0 0;
+    }
+    .track-item {
+        max-width: 185px;
+    }
+    .track-status, .order-track-date {
+        font-size: 1.2rem;
+    }
+    .track-id {
+        font-size: 1.3rem;
+    }
+    .p-status {
+        padding-left: 10px;
+        font-size: 1.2rem;
+    }
+    .card-header-right button {
+        padding: 3px 8px;
+        font-size: 1.2rem !important;
+        min-height: 30px;
+        height: 30px;
+    }
+    .cart-heading {
+        margin-bottom: 15px;
+    }
+    .order-tab-right {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .order-card-header {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .card-header-right {
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .card-header-right button {
+        margin-left: 0;
+        margin-top: 6px;
+        margin-right: 10px
     }
 }
 @media(max-width:799px){
@@ -3818,6 +3902,12 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .staticProfile-box {
         padding: 10px 15px;
     }
+    .p-status {
+        padding-left: 20px;
+    }
+    .track-item:last-child {
+        min-width: 170px;
+    }
 }
 @media (min-width:480px) and (max-width:767px){
     .form-d {
@@ -3964,6 +4054,49 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .footer ul {
         display: block;
         text-align: center;
+    }
+    .order-tab-ul li {
+        padding: 8px 10px;
+        font-size: 1.2rem;
+    }
+    .track-item:last-child {
+        min-width: auto;
+    }
+    .p-status {
+        padding-left: 0px;
+    }
+    .order-row {
+        flex-wrap: wrap;
+    }
+    .order-image {
+        padding-right: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .order-image img {
+        width: 160px;
+    }
+    .order-detail {
+        width: 50%;
+        padding-right: 20px;
+    }
+    .card-header-left {
+        flex-wrap: wrap;
+    }
+    .track-item {
+        max-width: 50%;
+        border-bottom: solid 1px #DDD;
+        padding-bottom: 6px;
+        height: 44px;
+    }
+    .track-item:nth-child(2) {
+        border-right: none;
+    }
+    .track-item:last-child {
+        min-width: auto;
+        padding-left: 0;
+        padding-top: 10px;
+        height: 50px;
     }
 }
 /*************************************** MEDIA QUERY CSS *****************************************/

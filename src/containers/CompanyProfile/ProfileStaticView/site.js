@@ -31,7 +31,7 @@ if(Array.isArray(props.addressInfo))
 {
     addressDetails = props.addressInfo.map((address)=>
 {
-    return (<div className="form-d">
+    return (<div className="alt-accounts">
         
         <div className="ac-main">{_get(address,'siteAddress','')}</div>
         <div className="ac-main">{_get(address,'city','')}, {_get(address,'state','')} {_get(address,'zipCode','')}, <br />{_get(address,'country','')}</div>

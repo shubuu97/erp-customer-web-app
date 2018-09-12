@@ -15,6 +15,7 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { postData } from './../../../action/common/post.js';
 import Snackbar from '@material-ui/core/Snackbar';
 import { withStyles, withTheme } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   failure: {
@@ -78,6 +79,9 @@ class ResetPassword extends Component {
   handleOpen = () => {
     return true;
   };
+  goBack() {
+    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/ComapnyStaticProfileView');
+  }
   render() {
     const { handleSubmit, classes, theme } = this.props;
     return (
@@ -97,7 +101,7 @@ class ResetPassword extends Component {
           </div>
 
           <div className="btn-group-margin">
-            <Button type='button' variant="contained" color='secondary' label="Back">Back</Button>
+            <Button type='button' variant="contained" color='secondary' label="Back" onClick={() => this.goBack()}>Back</Button>
             <Button type='submit' variant="contained" color='primary' label="Submit">Save & Continue</Button>
           </div>
         </form>
@@ -129,5 +133,8 @@ const ResetPasswordForm = reduxForm(
   }
 )(ResetPassword)
 
-
-export default profileSideBar(withStyles(styles)(ResetPasswordForm));
+const mapStateToProps = state => {
+  let role = state.basicInfodata && state.basicInfodata.role;
+  return { role }
+}
+export default connect(mapStateToProps)(profileSideBar(withStyles(styles)(ResetPasswordForm)));
