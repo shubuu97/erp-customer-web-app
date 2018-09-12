@@ -8,7 +8,6 @@ function FilterData(WrappedComponent)
     {
     constructor(props)
     {
-        debugger;
         super(props)
         this.state ={
             orderListData:props.orderListData,
