@@ -1801,6 +1801,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .cart-stock {
 	color: #0ed10e;
 }
+.price-text-css{
+    display: flex;
+    align-items: center;
+}
+.price-text-css p{
+    margin-left: 10px;
+    padding-top: 20px;
+}
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
 .cart-table {

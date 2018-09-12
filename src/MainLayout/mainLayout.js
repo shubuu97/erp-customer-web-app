@@ -21,6 +21,7 @@ import { selectedCategory } from '../action/category';
 import { APPLICATION_BFF_URL } from '../constants/urlConstants';
 import { setSelectedCategoryType, applyFilter } from '../containers/Products/action/product';
 import { get } from 'lodash';
+import { showMessage } from '../action/common';
 
 const styles = theme => ({
   failure: {
@@ -73,7 +74,7 @@ class MainLayout extends Component {
     localStorage.clear();
     this.props.history.push('/');
     this.handleMenuClose();
-    this.setState({isMenuOpen: false});
+    this.setState({ isMenuOpen: false });
   }
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -84,7 +85,7 @@ class MainLayout extends Component {
   handleProfile = () => {
     this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/ComapnyStaticProfileView');
     this.handleMenuClose();
-    this.setState({isMenuOpen: false});
+    this.setState({ isMenuOpen: false });
   }
   goToProductList = (category) => {
     this.props.dispatch(selectedCategory(category));
@@ -97,18 +98,25 @@ class MainLayout extends Component {
     });
     switch (this.props.customerStatus) {
       case 'In Approval':
-        this.props.history.push('/approval')
+        this.showMessageOnNavClick("Your profile is under approval, After approval you can see products");
         break;
       case 'New':
-        this.props.history.push('/approval')
+        this.showMessageOnNavClick("Please submit your profile to see products");
         break;
       case 'Approved':
         this.props.history.push('/productList')
         break;
-      case 'Rejected':
-        this.props.history.push('/approval')
+      case 'Cancelled':
+        this.showMessageOnNavClick("Sorry, Your profile has been rejected, Please resubmit your profile to see products");
         break;
     }
+    this.setState({ isMenuOpen: false });
+  }
+  showMessageOnNavClick = (message) => {
+    this.props.dispatch(showMessage({text: message, isSuccess: false}));
+    setTimeout(()=>{
+      this.props.dispatch(showMessage({text: '', isSuccess: false}));
+    }, 6000);
   }
   toggleMiniCartState = () => {
     this.setState({ showMiniCart: !this.state.showMiniCart })
@@ -119,7 +127,7 @@ class MainLayout extends Component {
   }
   toggleMenu = () => {
     console.log('toggleMenu', this.state.isMenuOpen);
-    this.setState({isMenuOpen : !this.state.isMenuOpen});
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
   }
   render() {
     console.log('this is props', this.props);
@@ -158,12 +166,12 @@ class MainLayout extends Component {
                 <img src={logo} />
               </div>
               {isMenuOpen && <div className="backdrop visible-xs" onClick={this.toggleMenu}></div>}
-              <NavBar selectedCategory={selectedCategory} 
-              userInfo={userInfo} isMenuOpen={isMenuOpen} 
-              handleClick={this.goToProductList} 
-              categories={categories.itemCategories} 
-              handleProfile = {this.handleProfile}
-              handleLogOut={this.handleLogOut}/>
+              <NavBar selectedCategory={selectedCategory}
+                userInfo={userInfo} isMenuOpen={isMenuOpen}
+                handleClick={this.goToProductList}
+                categories={categories.itemCategories}
+                handleProfile={this.handleProfile}
+                handleLogOut={this.handleLogOut} />
               <ul className="navRight">
                 <li className="hidden-xs"><span className="rel"><img src={search} /></span></li>
                 <li><span className="rel offers-icon"><img src={offers} /></span></li>
@@ -209,9 +217,9 @@ class MainLayout extends Component {
               <li>Legal Policy</li>
             </ul>
           </div>
-        <div className="footer-right">
-          { `\u00A9 2018 CANNAONBLOCK All Rights Reserved.` }
-        </div>
+          <div className="footer-right">
+            {`\u00A9 2018 CANNAONBLOCK All Rights Reserved.`}
+          </div>
         </div>
       </div>
     );
