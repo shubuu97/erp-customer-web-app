@@ -1375,14 +1375,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: -ms-flexbox;
 	display: flex;
 	padding: 0 15px 10px;
-	max-width: 100%;
+	width: 100%;
 	-ms-flex: 0 0 100%;
 	flex: 0 0 100%;
 	-ms-flex-pack: justify;
 	justify-content: flex-start;
 	align-items: flex-end;
 	margin: auto;
-	max-width: 1200px;
+	max-width: 1400px;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	margin-top: -30px;
@@ -1408,7 +1408,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	justify-content: flex-end;
 	margin: auto;
 	width: 100%;
-	max-width: 1200px;
+	max-width: 1400px;
 }
 .app-navbar {
 	color: #000;
@@ -1510,29 +1510,31 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	cursor: pointer;
 	margin-bottom: 30px;
 	width: 100%;
-	border: solid 1px #e9e9e9;
-	background: #f9f9f9;
+	/* border: solid 1px #e9e9e9; */
+	/* background: #f9f9f9; */
 	/* box-shadow: 0px 2px 9px 0px #DDD; */
 }
 .product-image {
-	border-bottom: solid 1px #e9e9e9;
-	padding: 10px;
-	background: #FFF;
-	height: 260px;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-ms-flex-align: center;
-	align-items: center;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 10px 0;
+    background: #fff;
+    height: 200px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 .product-image img {
-    height: 100%;
+    height: auto;
     max-height: 100%;
 }
 .product-content {
-	padding: 13px;
+	padding: 10px 0;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
 .product-name {
@@ -3039,7 +3041,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         width:16.66%;
     }
     .container {
-        width: 1200px;
+        width: 1400px;
     }
 }
 @media(max-width:1250px){
