@@ -18,7 +18,7 @@ export default class Orders extends React.Component {
         return (<Order
           key={index}
           placedDate={order.orderDate}
-          id={order.id}
+          id={order.displayId  || order.id}
           handleTrack={this.props.handleTrack}
           onCancelOrder={this.props.onCancelOrder}
           trackingNumber={_get(order, 'trackingNumber', '')}

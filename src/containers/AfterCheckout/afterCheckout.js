@@ -38,7 +38,7 @@ class AfterCheckout extends Component {
         <img src={thankyouCart} className="thankyoucart"/>
             <h1>{line1}</h1>
             <div className="thankyou-box">
-                <div className="d-flex justify-content-between"><label>Order Number: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.orderId }</span></div>
+                <div className="d-flex justify-content-between"><label>Order Number: </label><span>{this.props.orderData && this.props.orderData.data && (this.props.orderData.data.displayId || this.props.orderData.data.orderId) }</span></div>
                 <div className="d-flex justify-content-between"><label>Order Date: </label><span>{this.props.orderData && this.props.orderData.data && moment(this.props.orderData.data.orderDate).format('MMM Do YY')}</span></div>
                 <div className="d-flex justify-content-between"><label>Order Total: </label><span>$ {this.state.total}</span></div>
                 <div className="d-flex justify-content-between"><label>Payment Method: </label><span>{this.props.orderData && this.props.orderData.data && this.props.orderData.data.paymentInfo && this.props.orderData.data.paymentInfo.method}</span></div>
