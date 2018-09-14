@@ -19,16 +19,6 @@ export default class Order extends React.Component {
 
     }
   }
-  calucualtePrice=()=>
-  {
-   let salesProducts =  _get(this.props.order,'saleProducts',[]);
-   let orderTotal = 0
-   salesProducts.map((salesProduct)=>
-  {
-  orderTotal = orderTotal  + _get(salesProduct,'quantity',0)*_get(salesProduct,'price.price',0)
-  })
-  return orderTotal
-  }
 
   render() {
     let itemLists = this.props.saleProducts.map((saleProduct, index) => {
@@ -48,7 +38,7 @@ export default class Order extends React.Component {
           <div style={{ width: '100%' }} className="card-header-left">
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
-            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">{this.calucualtePrice()}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.calucualtePrice()} /></div></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">$123</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} /></div></div>
 
             {/* <div className="track-item"><label className="track-status">Logistics Partner</label><span className="track-id">{this.props.shipper}</span></div>
           <div className="track-item"><label className="track-status">Tracking Number</label><span className="track-id">{this.props.trackingNumber}</span></div> */}
@@ -63,7 +53,7 @@ export default class Order extends React.Component {
               </div>
             </div> */}
             {this.props.status == 'INCOMING' ? <Button color='secondary' variant='contained' onClick={()=>this.props.onCancelOrder(this.props.order)}>Cancel Order</Button>: null}
-            <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button>
+            {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button> : null}
           </div>
         </div>
         <div className="order-card-content">
