@@ -8,7 +8,7 @@ if(process.env.NODE_ENV !== 'production')
 }
 else
 {
-APPLICATION_BFF_URL = process.env.REACT_APP_APPLICATION_BFF_URL;
+APPLICATION_BFF_URL = "https://deverp.allonblock.com/customer-bff";
 }
 
 export {APPLICATION_BFF_URL};
