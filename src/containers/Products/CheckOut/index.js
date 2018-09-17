@@ -10,6 +10,7 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import {find} from 'lodash';
+import Payment from '../payment'
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -153,6 +154,8 @@ class CheckOut extends Component {
 				paymentTerms={paymentTerms} paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
 				collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} 
 				orderTotal={orderTotal} subTotal={subTotal} showError={showError} {...this.props}/>
+			
+			<Payment/>
 			</div>
 		)
 	}

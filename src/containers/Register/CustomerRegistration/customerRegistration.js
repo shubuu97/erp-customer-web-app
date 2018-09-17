@@ -46,6 +46,7 @@ class CustomerRegistration extends Component {
     }
   }
   handleSubmit = (formData) => {
+    console.log(formData,"formData")
     let postData = {};
     postData.basicInfo = {};
     postData.basicInfo.firstName = formData.firstName;
@@ -95,7 +96,7 @@ class CustomerRegistration extends Component {
             <h2 className="forgot-text">Individual Customer Sign Up</h2>
             <CustomerRegister {...this.props} />
             <div className="btn-parent-full">
-              <Button variant="contained" color='primary' type='submit' disabled={!this.props.anyTouched || this.props.invalid}>Register</Button>
+              <Button variant="contained" color='primary' type='submit' disabled={ this.props.invalid}>Register</Button>
               <div className="sp"><span>Already have an account?</span><Link to='/'>Sign In<br /></Link> Join as <Link to='/companyRegister'>Company</Link>
               </div>
             </div>
