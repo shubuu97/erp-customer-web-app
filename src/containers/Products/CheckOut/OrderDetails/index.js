@@ -4,7 +4,7 @@ import { Collapse } from 'reactstrap';
 import Select from 'react-select';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default (props) => {
+ const orderDetails = (props) => {
   return (
     <div className="cart-total-container col-md-3">
       <div className="cart-total-title">
@@ -63,3 +63,6 @@ export default (props) => {
     </div>
   )
 }
+
+
+export default orderDetails
