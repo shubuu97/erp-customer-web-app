@@ -1,4 +1,6 @@
 import * as CATEGORY_TYPE_ITEMS_CONSTANTS from '../../src/constants/categoryTypeAndItems'
+//import  productData from '../containers/Products/ProductList/productData'
+
 
 const categoryTypeAndItems = (state = {
     type: '',
@@ -15,6 +17,7 @@ const categoryTypeAndItems = (state = {
                 lastUpdated: action.receivedAt,
             });
         case CATEGORY_TYPE_ITEMS_CONSTANTS.RECEIVED_CATEGORY_TYPE_AND_ITEMS:
+        
             return Object.assign({}, state, {
                 error: '',
                 isFetching: false,
