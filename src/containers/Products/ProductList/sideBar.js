@@ -1,4 +1,5 @@
 import React from 'react';
+import _get from 'lodash/get'
 
 const sideBar =  (props) => {
     return (
@@ -15,7 +16,7 @@ const sideBar =  (props) => {
             <div className="left-sidebar-category">
                 <h4>By Price</h4>
 
-                 { props.selectedType.priceFilter.map((filter,index)=>
+                 { _get(props,'selectedType.priceFilter',[]).map((filter,index)=>
                 {
                 return (
                     <div key={index} className="category-priceRange checkbox-custom">
