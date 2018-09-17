@@ -34,6 +34,7 @@ export default class Payment extends Component {
 
 
   componentDidMount() {
+    new_script("https://jstest.authorize.net/v3/AcceptUI.js");
     new_script("https://jstest.authorize.net/v1/Accept.js").then((data) => {
       console.log("chal gai", data);
       this.setState({})
@@ -78,11 +79,17 @@ export default class Payment extends Component {
       } else {
         console.log("Success data", response);
         // paymentFormUpdate(response.opaqueData);
+        axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
+          console.log(data, "data is here");
+        })
+          .catch((err) => {
+            console.log(err, "error is here")
+          })
       }
     }
   }
   showBankForm() {
-    this.setState({showBankForm: !this.state.showBankForm});
+    this.setState({ showBankForm: !this.state.showBankForm });
   }
   render() {
     const { showBankForm } = this.state;
