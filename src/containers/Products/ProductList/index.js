@@ -26,12 +26,7 @@ class ProductsContainer extends React.Component {
       openItemInfo: false,
       popupItemInfo: {},
       mainImageUrl: {},
-      priceFilterObject: {
-        lessThan50: false,
-        from50To100: false,
-        from100To200: false,
-        above200: false
-      },
+      priceFilterObject: {},
       filteredData: [],
       isGridView: true
     }
