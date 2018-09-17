@@ -6,4 +6,4 @@ WORKDIR /customer-web-app
 ADD . /customer-web-app
 RUN npm install -g http-server
 RUN npm run build
-CMD http-server build
+CMD sh cmd.sh
