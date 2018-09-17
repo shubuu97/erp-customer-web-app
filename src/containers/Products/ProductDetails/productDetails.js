@@ -27,7 +27,7 @@ export default (props) => {
             <p className="ic text-uppercase">Item Code: <span>{props.detail.itemNo}</span></p>
             {/* <p className="ic">Unit Count: <span>{props.detail.unitCount}</span></p> */}
             <div className="price-text-css">
-            <h3 className="p-price">$ {props.detail.price}</h3><p>Per Quantity</p>
+            <h3 className="p-price">${props.detail.price}</h3><p>Per Quantity</p>
             </div>
             <div className="d-flex wq-bar">
               <label>Weight</label>
