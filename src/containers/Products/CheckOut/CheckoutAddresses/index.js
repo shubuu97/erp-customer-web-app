@@ -5,20 +5,29 @@ import ShippingAddress from './ShippingAddress'
 import addressEdit from '../../../../assets/images/edit.png';
 import checkGreen from '../../../../assets/images/check-green.jpg';
 
-export default (props) => {
+ const  checkoutAddress =  (props) => {
+
+ let address = 
+ 
+ props.address.map((address,index)=>
+{
+return (
+  <div key={index} onClick={()=>props.addressSelect(index)} className="address-detail selected">
+  <h5>{props.name}</h5>
+  <p>{address.companyAddress || address.address}, {address.city}, {address.state}, {address.country}- {address.zipCode}</p>
+  <img src={index==props.selectedAddress?checkGreen:null}  className="address-select-img" />
+  <img src={addressEdit} className="address-edit-img" />
+</div>
+)
+})
+
   return (
-    <div className="billing-address">
+    <div  className="billing-address">
       <div className="biling-address-title">
         <h4> {props.type}</h4>
       </div>
       <div className="address-content">
-        <div className="address-detail selected">
-          <h5>{props.name}</h5>
-          <p>{props.address.companyAddress || props.address.address}, {props.address.city}, {props.address.state}, {props.address.country}- {props.address.zipCode}</p>
-          <img src={checkGreen} className="address-select-img" />
-          <img src={addressEdit} className="address-edit-img" />
-          <Button variant="contained" size='large' color="secondary">Ship Here</Button>
-        </div>
+       {address}
         <div className="addToCartButtonDiv">
           {props.type=="Billing Address"?<BillingAddress/>:<ShippingAddress/>}
         </div>
@@ -27,3 +36,5 @@ export default (props) => {
 
     </div>)
 }
+
+export default checkoutAddress;

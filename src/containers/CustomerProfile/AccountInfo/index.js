@@ -24,7 +24,7 @@ class CustomerInfo extends Component
     updateSubmitHandler=(values)=>
     {
   
-
+     
     let requestObj={
         basicInfo:values,
         _id:localStorage.getItem('id')
@@ -99,7 +99,8 @@ function mapStateToProps(state)
 
       let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
       let expandObj = {};
-      expandObj = flatten(state.form.CustomerInfo.values)
+      expandObj = flatten(state.form.CustomerInfo.values);
+      debugger
       expandObj[`${fieldValue}.country`] = country;
       expandObj[`${fieldValue}.state`] = stateobj;
       expandObj[`${fieldValue}.city`] = city;

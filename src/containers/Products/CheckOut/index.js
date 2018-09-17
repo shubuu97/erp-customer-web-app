@@ -10,20 +10,32 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import {find} from 'lodash';
+import Payment from '../payment'
 
 class CheckOut extends Component {
 	constructor(props) {
 		super();
 		this.state = {
 			subTotal: null,
+			billingSelectedAddress:0,
+			shippingSelctedAddress:0,
 			orderTotal: null,
-			address: {},
+			address: [],
 			toggle: false,
 			paymentTerm: '',
 			termCondition: false,
 			showError: false,
 			paymentTerms:[{ label: 'Current', value: 'current' }]
 		};
+	}
+
+	billingAddressSelect=(index)=>
+	{
+		this.setState({billingSelectedAddress:index})
+	}
+	shippingAddressSelect=(index)=>
+	{
+		this.setState({shippingSelctedAddress:index})
 	}
 	componentDidMount() {
 		let subTotal = null;
@@ -36,13 +48,14 @@ class CheckOut extends Component {
 		this.setState({ subTotal, orderTotal });
 		let address = {};
 		if(this.props.role == 'customer') {
-			address = this.props.userInfo.addressInfo[0];
+			address = this.props.userInfo.addressInfo;
 			this.setState({ address });
 		} else {
 			this.props.dispatch(fetchLicenseDetailsData(`${this.props.urlLinks.getCompanyInfo.href}?_id=${localStorage.getItem("id")}`)).then((companyInfoData)=>{
 				console.log("companyInfoData in did mount",companyInfoData);
 				address = _get(companyInfoData, 'data.companyInfo.companyAddressInfo', {});
-				this.setState({ address });
+				this.state.address.push(address);
+				this.setState({ address:this.state.address });
 			});
 		}
 		this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`)).then((bankingData)=>{
@@ -60,7 +73,9 @@ class CheckOut extends Component {
 	}
 	placeOrder = () => {
 		const { userBasicInfo, role } = this.props;
-		const { address, paymentTerm } = this.state;
+		const {  paymentTerm } = this.state;
+		const shippingAddress = this.state.address[this.state.shippingSelctedAddress]
+		let billingAddress = this.state.address[this.state.billingSelectedAddress]
 		let items = [];
 		if(!this.state.termCondition) {
 			this.setState({showError: 'Please accept terms and conditions.'});
@@ -90,19 +105,19 @@ class CheckOut extends Component {
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				billingAddress: {
-					address: address.companyAddress || address.address,
-					city: address.city,
-					country: address.country,
-					state: address.state,
-					zipCode: address.zipCode,
+					address: billingAddress.companyAddress || billingAddress.address,
+					city: billingAddress.city,
+					country: billingAddress.country,
+					state: billingAddress.state,
+					zipCode: billingAddress.zipCode,
 					addressType: false
 				},
 				shippingAddress: {
-					address: address.companyAddress || address.address,
-					city: address.city,
-					country: address.country,
-					state: address.state,
-					zipCode: address.zipCode,
+					address: shippingAddress.companyAddress || shippingAddress.address,
+					city: shippingAddress.city,
+					country: shippingAddress.country,
+					state: shippingAddress.state,
+					zipCode: shippingAddress.zipCode,
 					addressType: false
 				}
 			}
@@ -144,15 +159,17 @@ class CheckOut extends Component {
 				<div className="col-md-9 cart-table-parent">
 					<div className="address-order-details">
 						<div className="address-container">
-							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address} />
-							<CheckoutAddresses name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address} />
+							<CheckoutAddresses addressSelect={this.billingAddressSelect} selectedAddress={this.state.billingSelectedAddress} name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address} />
+							<CheckoutAddresses  addressSelect={this.shippingAddressSelect} selectedAddress={this.state.shippingSelctedAddress} name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address} />
 						</div>
 					</div>
 				</div>
-				<OrderDetails termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
+				<OrderDetails  termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
 				paymentTerms={paymentTerms} paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
 				collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} 
 				orderTotal={orderTotal} subTotal={subTotal} showError={showError} {...this.props}/>
+			
+			<Payment/>
 			</div>
 		)
 	}
