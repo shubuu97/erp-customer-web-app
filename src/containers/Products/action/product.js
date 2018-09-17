@@ -53,29 +53,30 @@ export const applyFilter = (list, filterObj) => {
     filteredData : [],
     filterObj: filterObj
   }
-  if (filterObj.lessThan50) {
-    filter(list, (item) => item.price <= 50).map((product) => {
+  
+  let allFalse = true;
+
+Object.keys(filterObj).map((filterRange)=>
+{
+  if (filterObj[filterRange]) {
+    allFalse = false;
+   let range =  filterRange.split('-');
+   let min = range[0];
+   let max = range[1];
+    filter(list, (item) => (item.price >=min && item.price <=max )).map((product) => {
+
       dataObj.filteredData.push(product);
     });
   }
-  if (filterObj.from50To100) {
-    filter(list, (item) => (item.price > 50 && item.price <= 100)).map((product) => {
-      dataObj.filteredData.push(product);
-    });
-  }
-  if (filterObj.from100To200) {
-    filter(list, (item) => (item.price > 100 && item.price <= 200)).map((product) => {
-      dataObj.filteredData.push(product);
-    });
-  }
-  if (filterObj.above200) {
-    filter(list, (item) => (item.price > 200)).map((product) => {
-      dataObj.filteredData.push(product);
-    });
-  }
-  if (!filterObj.lessThan50 && !filterObj.from50To100 && !filterObj.from100To200 && !filterObj.above200) {
-    dataObj.filteredData = list;
-  }
+  
+})
+
+if(Object.keys(filterObj).length==0||allFalse)
+{
+  dataObj.filteredData = list;
+}
+
+
   return {
     type: INVENTORY_CONSTANTS.APPLY_FILTER,
     data: dataObj,
