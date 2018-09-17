@@ -8,7 +8,7 @@ if(process.env.NODE_ENV !== 'production')
 }
 else
 {
-APPLICATION_BFF_URL = "https://erp.allonblock.com/customer-bff";
+APPLICATION_BFF_URL = process.env.APPLICATION_BFF_URL;
 }
 
 export {APPLICATION_BFF_URL};
