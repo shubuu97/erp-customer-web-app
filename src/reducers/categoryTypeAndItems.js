@@ -1,5 +1,5 @@
 import * as CATEGORY_TYPE_ITEMS_CONSTANTS from '../../src/constants/categoryTypeAndItems'
-//import  productData from '../containers/Products/ProductList/productData'
+import  productData from '../containers/Products/ProductList/productData'
 
 
 const categoryTypeAndItems = (state = {
@@ -22,7 +22,7 @@ const categoryTypeAndItems = (state = {
                 error: '',
                 isFetching: false,
                 type: action.type,
-                categoryTypeAndItems: action.data.data,
+                categoryTypeAndItems: productData.data,
                 meta: action.subreddit,
                 lastUpdated: action.receivedAt,
             });

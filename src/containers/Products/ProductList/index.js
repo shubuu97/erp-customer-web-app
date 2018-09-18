@@ -18,6 +18,7 @@ import { isEmpty } from 'lodash';
 import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
+import _orderBy from 'lodash/orderBy'
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -28,7 +29,8 @@ class ProductsContainer extends React.Component {
       mainImageUrl: {},
       priceFilterObject: {},
       filteredData: [],
-      isGridView: true
+      isGridView: true,
+      sortingKey:'numerical'
     }
   }
   productDetails(item) {
@@ -63,7 +65,7 @@ class ProductsContainer extends React.Component {
     console.log("Show selected type", data);
     this.props.dispatch(setSelectedCategoryType(data));
     this.state.priceFilterObject = {}
-    this.props.dispatch(applyFilter(data.products, this.state.priceFilterObject));
+    this.props.dispatch(applyFilter(data.products, this.state.priceFilterObject,this.state.sortingKey));
     this.setState({priceFilterObject:this.state.priceFilterObject})
   }
   applyPriceRangeFilter = (type, value) => {
@@ -72,7 +74,7 @@ class ProductsContainer extends React.Component {
     let priceFilterObject = this.state.priceFilterObject;
     priceFilterObject[type] = value;
     this.setState({ priceFilterObject: priceFilterObject });
-    this.props.dispatch(applyFilter(productDataList, priceFilterObject));
+    this.props.dispatch(applyFilter(productDataList, priceFilterObject,this.state.sortingKey));
   }
   changeView() {
     this.setState({ isGridView: !this.state.isGridView });
@@ -89,7 +91,31 @@ class ProductsContainer extends React.Component {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);
   }
+  handleSorting=(e)=>
+  {
+    const { categoryTypeAndItems, selectedCategoryType } = this.props;
+    const productDataList = (selectedCategoryType && !isEmpty(selectedCategoryType) && selectedCategoryType.products) || (categoryTypeAndItems.itemTypes && categoryTypeAndItems.itemTypes[0] && categoryTypeAndItems.itemTypes[0].products) || [];
 
+
+  if(e.target.value=='a-z')
+  {
+
+    this.props.dispatch(applyFilter(productDataList, this.state.priceFilterObject,'a-z'));
+    this.setState({sortingKey:'a-z'});
+  }
+  if(e.target.value=="z-a")
+  {
+    this.props.dispatch(applyFilter(productDataList, this.state.priceFilterObject,'z-a'));
+    this.setState({sortingKey:'z-a'});
+
+  }
+  if(e.target.value=="numerical")
+  {
+    this.props.dispatch(applyFilter(productDataList, this.state.priceFilterObject,'numerical'));
+    this.setState({sortingKey:'numerical'});
+
+  }
+  }
   render() {
     const { categoryTypeAndItems, selectedCategoryType, filteredDataSet } = this.props;
     console.log("Product Data with type", selectedCategoryType);
@@ -117,10 +143,10 @@ class ProductsContainer extends React.Component {
               </ul>
               <div className="sort-by">
                 <span>Sort By</span>
-                <select className="form-control">
-                  <option>Alphabetically, A-Z</option>
-                  <option>Alphabetically, Z-A</option>
-                  <option>Numerical</option>
+                <select value={this.state.sortingKey} className="form-control" onChange={this.handleSorting}>
+                  <option value="a-z">Alphabetically, A-Z</option>
+                  <option value="z-a">Alphabetically, Z-A</option>
+                  <option value="numerical">Numerical</option>
                 </select>
               </div>
             </div>
