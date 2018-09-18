@@ -1811,6 +1811,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     margin-left: 10px;
     padding-top: 20px;
 }
+.product-weight-select {
+    width: 85px;
+}
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
 .cart-table {
@@ -2301,6 +2304,10 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	margin-top: auto;
     margin-left: 8px;
     cursor: pointer;
+}
+.mc-qty{
+    display: flex;
+    border-bottom: none;
 }
 /**************************************** MINI CART CSS END ***********************************/
 

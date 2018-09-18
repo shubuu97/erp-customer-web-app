@@ -14,7 +14,8 @@ class ProductDetailsContainer extends React.Component {
     this.state = {
       productInfo: {},
       mainImageUrl: {},
-      updatedPrice:''
+      updatedPrice:'',
+      selectedWeight:''
     }
   }
   componentDidMount() {
@@ -61,9 +62,10 @@ class ProductDetailsContainer extends React.Component {
   buyProduct() {
   }
 
-  weightChanger=(e)=>
+  weightChanger=(val)=>
   {
-    this.setState({updatedPrice:e.target.value});
+    console.log("On weight change", val);
+    this.setState({updatedPrice:val.value, selectedWeight: val});
   }
   updateQuantity = (type) => {
     const { productInfo } = this.state;
@@ -83,7 +85,7 @@ class ProductDetailsContainer extends React.Component {
   }
 
   render() {
-    const { productInfo, mainImageUrl } = this.state;
+    const { productInfo, mainImageUrl, selectedWeight, updatedPrice } = this.state;
     const { selectedCategoryType } = this.props;
     return (
       <div>
@@ -92,7 +94,8 @@ class ProductDetailsContainer extends React.Component {
           addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()}
           updateQuantity={this.updateQuantity} gotoList={this.gotoList}
           weightChanger={this.weightChanger}
-          updatedPrice={this.state.updatedPrice} />}
+          updatedPrice={updatedPrice}
+          selectedWeight={selectedWeight} />}
       </div>
     )
   }
