@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
-
-export default (props) => {
+import _get from 'lodash/get';
+const productDetails =  (props) => {
   return (
     <div className="productDetails-container container">
       <ul className="breadcrumb">
@@ -25,13 +25,26 @@ export default (props) => {
           <div className="namePriceDiv">
             <h2 className="p-name">{props.detail.aliasName || props.detail.itemName}</h2>
             <p className="ic text-uppercase">Item Code: <span>{props.detail.itemNo}</span></p>
+          
+            
             {/* <p className="ic">Unit Count: <span>{props.detail.unitCount}</span></p> */}
             <div className="price-text-css">
-            <h3 className="p-price">$ {props.detail.price}</h3><p>Per Quantity</p>
+            <h3 className="p-price">$ {props.updatedPrice||props.detail.price}</h3><p>Per Quantity</p>
             </div>
             <div className="d-flex wq-bar">
               <label>Weight</label>
-              <span>{props.detail.unitCount} {(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams'}</span>
+              <select onChange={(e)=>props.weightChanger(e)}>
+             {_get(props,'selectedCategoryType.products[0]priceDetails',[]).map((price)=>
+             {
+               
+              return (<option value={price.price}>{price.unitCount}</option>)
+             
+             })
+            }
+            </select>
+              {/* <span>{props.detail.unitCount}  */}
+           <span> {(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams'}</span> 
+           
             </div>
             <div className="d-flex wq-bar align-center">
               <label>Quantity</label>
@@ -76,3 +89,5 @@ export default (props) => {
     </div>
   )
 }
+
+export default productDetails;

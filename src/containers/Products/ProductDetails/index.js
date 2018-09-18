@@ -6,13 +6,15 @@ import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
+import { debug } from 'util';
 
 class ProductDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productInfo: {},
-      mainImageUrl: {}
+      mainImageUrl: {},
+      updatedPrice:''
     }
   }
   componentDidMount() {
@@ -31,19 +33,37 @@ class ProductDetailsContainer extends React.Component {
     document.body.classList.remove('product-details');
   }
   addToCart() {
+    debugger;
     const { cartProductList, dispatch } = this.props;
-    const { productInfo } = this.state;
+    let { productInfo } = this.state;
+    productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.price);
+    
     let cartList = cartProductList || [];
     if (findIndex(cartList, { itemId: productInfo.itemId }) == -1) {
       cartList.push(productInfo);
       dispatch(addToCart(cartList));
     }
+    // else
+    // {
+    //   let index = findIndex(cartList, { itemId: productInfo.itemId });
+    //  if(cartList[index].price!=this.state.updatedPrice)
+    //  { 
+    //    cartList.push(productInfo); 
+    //   dispatch(addToCart(cartList))
+    //  }
+    
+    // }
     this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);
   }
   buyProduct() {
+  }
+
+  weightChanger=(e)=>
+  {
+    this.setState({updatedPrice:e.target.value});
   }
   updateQuantity = (type) => {
     const { productInfo } = this.state;
@@ -70,7 +90,9 @@ class ProductDetailsContainer extends React.Component {
         {productInfo && <ProductDetails selectedCategoryType={selectedCategoryType} detail={productInfo}
           mainImageUrl={mainImageUrl} updateMainImage={this.updateMainImage}
           addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()}
-          updateQuantity={this.updateQuantity} gotoList={this.gotoList} />}
+          updateQuantity={this.updateQuantity} gotoList={this.gotoList}
+          weightChanger={this.weightChanger}
+          updatedPrice={this.state.updatedPrice} />}
       </div>
     )
   }
