@@ -62,7 +62,9 @@ class ProductsContainer extends React.Component {
   selectCategoryType = (data) => {
     console.log("Show selected type", data);
     this.props.dispatch(setSelectedCategoryType(data));
+    this.state.priceFilterObject = {}
     this.props.dispatch(applyFilter(data.products, this.state.priceFilterObject));
+    this.setState({priceFilterObject:this.state.priceFilterObject})
   }
   applyPriceRangeFilter = (type, value) => {
     const { categoryTypeAndItems, selectedCategoryType } = this.props;
