@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import PaymentCard from '../../payment/payWithCard';
 import PaymentCheck from '../../payment/payWithCheck'
 import PaypalPayment from '../../payment/paypal'
+import paymentIinfo from './../../../../assets/images/info.png';
 
  const orderDetails = (props) => {
   return (
@@ -60,6 +61,16 @@ import PaypalPayment from '../../payment/paypal'
       {props.showError && <div className="text-input error">
         <p>* {props.showError}</p>
       </div>}
+      <div className="d-flex">
+        <div className="pay-now checkbox-custom">
+          <label>
+            <input type="checkbox" />
+            <span className="">Pay Now</span>
+          </label>
+        </div>
+        <span className="p-info"><img src={paymentIinfo} /></span>
+      </div>
+      
       <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>
