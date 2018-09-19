@@ -26,6 +26,7 @@ export default (props) => {
       <div className="row-total" data-title="Sub Total">
         <div className="d-flex">
           <h4>{props.total || props.price || '0'}</h4>
+          {/* <img src={cartedit} onClick={()=>{}}/> */}
           <img src={trash} onClick={()=>props.remove(props.id)}/>
         </div>
       </div>

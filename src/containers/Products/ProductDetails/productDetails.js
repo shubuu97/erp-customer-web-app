@@ -2,7 +2,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import _get from 'lodash/get';
-const productDetails =  (props) => {
+import Select from 'react-select';
+const productDetails = (props) => {
   return (
     <div className="productDetails-container container">
       <ul className="breadcrumb">
@@ -17,7 +18,7 @@ const productDetails =  (props) => {
           </div>
           <div className="subImages">
             {props.detail.images && props.detail.images.map((image, key) => (
-              <img key={key} onClick={()=>props.updateMainImage(image)} className={`img-responsive ${props.mainImageUrl.url == image.url ? 'active': ''}`} src={image.url || productPlaceholder} alt={props.detail.itemName} />
+              <img key={key} onClick={() => props.updateMainImage(image)} className={`img-responsive ${props.mainImageUrl.url == image.url ? 'active' : ''}`} src={image.url || productPlaceholder} alt={props.detail.itemName} />
             ))}
           </div>
         </div>
@@ -25,26 +26,25 @@ const productDetails =  (props) => {
           <div className="namePriceDiv">
             <h2 className="p-name">{props.detail.aliasName || props.detail.itemName}</h2>
             <p className="ic text-uppercase">Item Code: <span>{props.detail.itemNo}</span></p>
-          
-            
+
+
             {/* <p className="ic">Unit Count: <span>{props.detail.unitCount}</span></p> */}
             <div className="price-text-css">
-            <h3 className="p-price">$ {props.updatedPrice||props.detail.price}</h3><p>Per Quantity</p>
+              <h3 className="p-price">$ {props.updatedPrice || props.detail.basePrice}</h3><p>Per {props.selectedWeight.label || (props.detail.baseUnitCount + ' ' +(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</p>
             </div>
             <div className="d-flex wq-bar">
               <label>Weight</label>
-              <select onChange={(e)=>props.weightChanger(e)}>
-             {_get(props,'selectedCategoryType.products[0]priceDetails',[]).map((price)=>
-             {
-               
-              return (<option value={price.price}>{price.unitCount}</option>)
-             
-             })
-            }
-            </select>
+              <Select
+                name={'weight'}
+                placeholder='Weight'
+                className="product-weight-select"
+                value={props.selectedWeight || _get(props, 'selectedCategoryType.products[0]priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))[0]}
+                options={_get(props, 'selectedCategoryType.products[0]priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))}
+                onChange={props.weightChanger}
+              />
               {/* <span>{props.detail.unitCount}  */}
-           <span> {(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams'}</span> 
-           
+              {/* <span> {(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams'}</span> */}
+
             </div>
             <div className="d-flex wq-bar align-center">
               <label>Quantity</label>

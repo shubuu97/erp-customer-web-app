@@ -10,7 +10,7 @@ class ProductsListClass extends React.Component {
             <Product
                 key={product._id}
                 code={product.itemNo}
-                price={product.price}
+                price={product.basePrice}
                 description={product.itemDesc}
                 name={product.aliasName || product.itemName}
                 image={(product.images && product.images[0] && product.images[0].url) || productPlaceholder}
