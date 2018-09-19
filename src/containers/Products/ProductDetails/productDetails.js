@@ -8,6 +8,7 @@ const productDetails = (props) => {
     <div className="productDetails-container container">
       <ul className="breadcrumb">
         <li>Home</li>
+        <li>{props.selectedCategory}</li>
         <li onClick={props.gotoList}>{props.selectedCategoryType.itemType || ''}</li>
         <li>{props.detail.aliasName || props.detail.itemName}</li>
       </ul>

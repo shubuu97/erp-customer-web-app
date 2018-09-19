@@ -18,7 +18,8 @@ import { isEmpty } from 'lodash';
 import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
-import _orderBy from 'lodash/orderBy'
+import _orderBy from 'lodash/orderBy';
+import _get from 'lodash/get'
 
 class ProductsContainer extends React.Component {
   constructor() {
@@ -117,7 +118,7 @@ class ProductsContainer extends React.Component {
   }
   }
   render() {
-    const { categoryTypeAndItems, selectedCategoryType, filteredDataSet } = this.props;
+    const { categoryTypeAndItems, selectedCategoryType, filteredDataSet,selectedCategory } = this.props;
     console.log("Product Data with type", selectedCategoryType);
     const { openItemInfo, popupItemInfo, filteredData, isGridView } = this.state;
     console.log("filteredDataSet==", filteredDataSet);
@@ -129,6 +130,7 @@ class ProductsContainer extends React.Component {
       <div className="container">
         <ul className="breadcrumb">
           <li>Home</li>
+          <li> {selectedCategory||''} </li>
           {selectedCategoryType.itemType && <li>{selectedCategoryType.itemType || ''}</li>}
         </ul>
         <div className="row">
@@ -207,11 +209,12 @@ const mapStateToProps = state => {
   let products = state.productData.inventoryItemList.data
   let isLoading = state.productData.isFetching;
   let cartProductList = state.productData.cartProductList;
+  let selectedCategory = _get(state,'categoryData.selectedCategory.displayName','')
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
   let categoryTypeAndItems = state.categoryTypeAndItems && state.categoryTypeAndItems.categoryTypeAndItems;
   let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
   let filteredDataSet = (state.productData && state.productData.filteredDataSet) || {};
-  return { products, isLoading, customerStatus, categoryTypeAndItems, selectedCategoryType, filteredDataSet, cartProductList }
+  return { products, isLoading,selectedCategory, customerStatus, categoryTypeAndItems, selectedCategoryType, filteredDataSet, cartProductList }
 }
 
 export default connect(mapStateToProps)(ProductsContainer)
