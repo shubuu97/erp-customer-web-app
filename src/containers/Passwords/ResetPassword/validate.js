@@ -44,7 +44,6 @@ const asyncValidate = values => {
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
                 let reduxFormErrors = {};
-                debugger;
                 console.log(values,"values is here")
                 if(!passwordSchema.validate(_get(values,'newPassword','')))
                 {

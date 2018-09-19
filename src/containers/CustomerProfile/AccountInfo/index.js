@@ -23,7 +23,9 @@ class CustomerInfo extends Component
 {
     updateSubmitHandler=(values)=>
     {
-  
+   let addressInfo =   _get(values,'addressInfo',[]);
+     values.addressInfo = addressInfo.filter(Boolean);
+
      
     let requestObj={
         basicInfo:values,
@@ -100,7 +102,6 @@ function mapStateToProps(state)
       let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
       let expandObj = {};
       expandObj = flatten(state.form.CustomerInfo.values);
-      debugger
       expandObj[`${fieldValue}.country`] = country;
       expandObj[`${fieldValue}.state`] = stateobj;
       expandObj[`${fieldValue}.city`] = city;

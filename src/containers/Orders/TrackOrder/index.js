@@ -38,6 +38,7 @@ class TrackOrderContainer extends React.Component {
         <TrackOrders
           trackData={this.props.trackData.data}
           orderDetails={this.state.item}
+          history={this.props.history}
         />
       </div>
     )
