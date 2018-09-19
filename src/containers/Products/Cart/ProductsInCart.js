@@ -8,14 +8,13 @@ class ProductsInCart extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      productsData:[]
+      productsData:[],
     }
     this.updateQuantity = this.updateQuantity.bind(this);
   }
   componentDidMount() {
     const {productsList} = this.props;    
-    this.setState({productsData:productsList}, ()=>{
-    });
+    this.setState({productsData:productsList});
   }
   updateQuantity(productId, type) {
     const {productsData} = this.state;
@@ -32,15 +31,32 @@ class ProductsInCart extends React.Component {
     this.setState({productsData: productList});
     this.props.updateProductList(productList);
   }
+  weightChanger=(val, productId)=>
+  {
+    console.log("On weight change", val);
+    if(val && val.value) {
+      const {productsData} = this.state;
+      let productIndex = findIndex(productsData, {itemId:productId});
+      let productList = productsData;
+      let productLocal = productList[productIndex];
+      productLocal.weight = val;
+      productLocal.price = val.value;
+      productLocal.total = productLocal.quantity * productLocal.price;
+      productList[productIndex] = productLocal;
+      this.setState({productsData: productList});
+      this.props.updateProductList(productList);
+    }
+  }
   render() {
     const {productsList, removeProduct} = this.props;
-    const {productsData} = this.state;
+    const {productsData, selectedWeight} = this.state;
     const products = Array.isArray(productsData) && productsData.length &&
     productsData.map(product =>
       <ProductRow
         key={product.itemId}
         code={product.itemNo}
         price={product.price}
+        weight={product.weight}
         total={product.total}
         description={product.itemShortDesc}
         quantity={product.quantity || 1}
@@ -48,6 +64,7 @@ class ProductsInCart extends React.Component {
         image={(product.images && product.images[0].url) || 'https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg'}
         id={product.itemId}
         updateQuantity={this.updateQuantity}
+        weightChanger={this.weightChanger}
         detail={product}
         remove={removeProduct}
       />);
@@ -56,6 +73,7 @@ class ProductsInCart extends React.Component {
     <div className="cart-table">
     <div className="cart-table-head">
       <div className="cart-table-head-item first-col">Product Name</div>
+      <div className="cart-table-head-item">Weight</div>
       <div className="cart-table-head-item">Price</div>
       <div className="cart-table-head-item">Quantity</div>
       <div className="cart-table-head-item">Sub Total</div>
