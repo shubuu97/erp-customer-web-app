@@ -30,7 +30,7 @@ const productDetails = (props) => {
 
             {/* <p className="ic">Unit Count: <span>{props.detail.unitCount}</span></p> */}
             <div className="price-text-css">
-              <h3 className="p-price">$ {props.updatedPrice || (props.detail.basePrice && props.detail.basePrice.unitPrice)}</h3><p>Per {props.selectedWeight.label || ((props.detail.basePrice && props.detail.basePrice.unitCount) + ' ' +(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</p>
+              <h3 className="p-price">$ {props.updatedPrice || (props.detail.basePrice && props.detail.basePrice.price)}</h3><p>Per {props.selectedWeight.label || ((props.detail.basePrice && props.detail.basePrice.unitCount) + ' ' +(props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</p>
             </div>
             <div className="d-flex wq-bar">
               <label>Weight</label>
