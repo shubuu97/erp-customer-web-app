@@ -30,7 +30,6 @@ class LicenseInfo extends Component
     }
     updateSubmitHandler=(values)=>
     {
-debugger;
     let requestObj={
         ...values,
         businessCustomerId:localStorage.getItem('id')
