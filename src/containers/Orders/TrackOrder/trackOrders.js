@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TrackOrder from './trackOrder';
+import Button from '@material-ui/core/Button'
 
 export default class TrackOrders extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class TrackOrders extends React.Component {
     }
     return (
       <div>
+        <Button color="primary" variant="contained" onClick={()=>this.props.history.push('/orders')}>Back</Button>
         <h2 className="cart-heading">Track Order</h2>
         <div>
           <TrackOrder orderDetails={orderDetails}/>

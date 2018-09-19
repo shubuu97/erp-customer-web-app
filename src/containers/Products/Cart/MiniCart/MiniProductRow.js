@@ -4,7 +4,7 @@ import cartedit from './../../../../assets/images/edit.png';
 
 export default (props) => {
 
-    console.log(props,"props is here")
+  console.log(props, "props is here")
   return (
     <div className="miniCart-parent">
       <div className="miniCart-img">
@@ -14,19 +14,24 @@ export default (props) => {
         <label>{props.name}</label>
         <h4 className="mini-price">
           {/* {props.price} */}
-          $ {props.total || props.price || '0'}
+          $ {props.price || '0'}
         </h4>
         <div className="mini-qty">
           <span>Qty</span>
-          <input type="textbox"
-          value = {props.quantity}
-          onChange={(e)=>props.updateQuantity(props.id,e.target.value)}
-          />
+          <div className="row-quantity mc-qty">
+            <button onClick={() => props.updateQuantity(props.id, 'sub')}>-</button>
+            <div className="row-quantity-item">{props.quantity}</div>
+            <button onClick={() => props.updateQuantity(props.id, 'add')}>+</button>
+          </div>
+          {/* <input type="textbox"
+            value={props.quantity}
+            onChange={(e) => props.updateQuantity(props.id, e.target.value)}
+          /> */}
         </div>
       </div>
       <div className="mini-cartAction">
         {/* <img src={cartedit} /> */}
-        <img src={trash} onClick={()=>props.remove(props.id)}/>
+        <img src={trash} onClick={() => props.remove(props.id)} />
       </div>
     </div>
   )

@@ -101,7 +101,7 @@ class MainLayout extends Component {
         this.showMessageOnNavClick("Your profile is under approval, After approval you can see products");
         break;
       case 'New':
-        this.showMessageOnNavClick("Please submit your profile to see products");
+        this.showMessageOnNavClick("Please submit your details to proceed further");
         break;
       case 'Approved':
         this.props.history.push('/productList')
