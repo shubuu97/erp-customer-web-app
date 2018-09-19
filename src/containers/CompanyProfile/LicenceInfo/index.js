@@ -17,7 +17,7 @@ import flatten from 'keypather/flatten'
 import { LinearProgress } from 'material-ui';
 import _get from 'lodash/get';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {receiveZip} from '../../../action/fetchFromZip'
+import {receiveZip} from '../../../action/fetchFromZip';
 
 
 
@@ -30,10 +30,26 @@ class LicenseInfo extends Component
     }
     updateSubmitHandler=(values)=>
     {
-
+debugger;
     let requestObj={
         ...values,
         businessCustomerId:localStorage.getItem('id')
+    };
+    let organizationInfo = _get(requestObj,'companyInfo.organizationInfo',null);
+   if(organizationInfo)
+    {
+    let allnullCount = 0;
+     Object.keys(organizationInfo).forEach((key,index)=>
+    {
+    if(organizationInfo[key]==''||organizationInfo[key]==undefined)
+    {
+      allnullCount++;
+    }
+    })
+    if (allnullCount==Object.keys(organizationInfo).length)
+    {
+      delete requestObj.companyInfo.organizationInfo
+    }
     }
      this.props.dispatch(postLicenseData(requestObj,'',`${this.props.urlLinks.updateOrCreateCompanyInfo.href}`)).then((data)=>{
         if(data.data.message) {

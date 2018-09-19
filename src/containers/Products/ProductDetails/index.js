@@ -34,7 +34,6 @@ class ProductDetailsContainer extends React.Component {
     document.body.classList.remove('product-details');
   }
   addToCart() {
-    debugger;
     const { cartProductList, dispatch } = this.props;
     let { productInfo } = this.state;
     productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.price);
@@ -44,16 +43,11 @@ class ProductDetailsContainer extends React.Component {
       cartList.push(productInfo);
       dispatch(addToCart(cartList));
     }
-    // else
-    // {
-    //   let index = findIndex(cartList, { itemId: productInfo.itemId });
-    //  if(cartList[index].price!=this.state.updatedPrice)
-    //  { 
-    //    cartList.push(productInfo); 
-    //   dispatch(addToCart(cartList))
-    //  }
-    
-    // }
+    else
+    {
+      let index = findIndex(cartList, { itemId: productInfo.itemId });
+      cartList[index].quantity =  cartList[index].quantity+productInfo.quantity;
+     }
     this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
