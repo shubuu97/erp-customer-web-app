@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import {TextFieldInput} from '../../../components/common/MaterialUiComponents';
 import {Field,reduxForm,FormSection} from 'redux-form';
+import orIcon from './../../../assets/images/or-icon.png';
 
 
 function new_script(src) {
@@ -92,8 +93,9 @@ function new_script(src) {
     return (
       <div>
        
-
-        <button onClick={() => this.showBankForm()}>Pay Using Bank</button>
+        <div className="or-seperator"><img src={orIcon} /></div>
+        <button className="AcceptUI2" onClick={() => this.showBankForm()}>Pay Using Bank</button>
+        <div className="or-seperator"><img src={orIcon} /></div>
         <Dialog
           open={showBankForm}
           onClose={this.handleClose}
@@ -101,24 +103,34 @@ function new_script(src) {
           className="dialogbox-ui small"
         >
           <DialogContent>
-            <h2 className="modal-title">Billing Address <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
+            <h2 className="modal-title">Pay Using Bank <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
             <form onSubmit={handleSubmit(this.sendPaymentDataToAnet)} >
                <FormSection name="bankData">
-              <Field name="accountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput}/>
-              <Field name="routingNumber" placeholder="Routing Number" label="Routing Number" component={TextFieldInput}/>
-              <Field name="nameOnAccount" placeholder="Name On Account" label="Name On Account" component={TextFieldInput}/>
-              <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput}/>
-              <Field name="dataValue"  type="hidden" component={TextFieldInput}/>
+              <div className="form-d">
+                <Field name="accountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput}/>
+              </div>
+              <div className="form-d">
+                <Field name="routingNumber" placeholder="Routing Number" label="Routing Number" component={TextFieldInput}/>
+              </div>
+              <div className="form-d">
+                <Field name="nameOnAccount" placeholder="Name On Account" label="Name On Account" component={TextFieldInput}/>
+              </div>
+              <div className="form-d">
+                <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput}/>
+              </div>
+              
+              <Field name="dataValue"  type="hidden" component={TextFieldInput}/>            
+            
               <Field name="dataDescriptor"  type="hidden"  component={TextFieldInput}/>
+              
               </FormSection>
             </form>
 
           </DialogContent>
           <DialogActions className="m-footer">
-
-            <Button variant="contained" type="submit"  color="secondary">
-              Pay
-                  </Button>
+            <Button variant="contained" type="submit"  color="primary">
+              Pay Now
+            </Button>
           </DialogActions>
         </Dialog>
 

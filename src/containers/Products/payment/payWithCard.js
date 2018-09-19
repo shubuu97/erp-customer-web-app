@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import orIcon from './../../../assets/images/or-icon.png';
 
 import axios from 'axios';
 function new_script(src) {
@@ -49,6 +50,7 @@ method="POST"
 action="https://YourServer/PathToExistingPaymentProcessingScript">
 <input type="hidden" name="dataValue" id="dataValue" />
 <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+<div className="or-seperator"><img src={orIcon} /></div>
 <button type="button"
   className="AcceptUI"
   data-billingAddressOptions='{"show":true, "required":true}'
@@ -56,7 +58,7 @@ action="https://YourServer/PathToExistingPaymentProcessingScript">
   data-clientKey="8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32"
   data-acceptUIFormBtnTxt="Submit"
   data-acceptUIFormHeaderTxt="Card Information"
-  data-responseHandler="response">Pay
+  data-responseHandler="response">Pay Using Card
 </button>
 </form>
         )
