@@ -7,6 +7,7 @@ import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import { debug } from 'util';
+import _get from 'lodash/get';
 
 class ProductDetailsContainer extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ class ProductDetailsContainer extends React.Component {
 
   render() {
     const { productInfo, mainImageUrl, selectedWeight, updatedPrice } = this.state;
-    const { selectedCategoryType } = this.props;
+    const { selectedCategoryType,selectedCategory } = this.props;
     return (
       <div>
         {productInfo && <ProductDetails selectedCategoryType={selectedCategoryType} detail={productInfo}
@@ -88,6 +89,7 @@ class ProductDetailsContainer extends React.Component {
           updateQuantity={this.updateQuantity} gotoList={this.gotoList}
           weightChanger={this.weightChanger}
           updatedPrice={updatedPrice}
+          selectedCategory={selectedCategory}
           selectedWeight={selectedWeight} />}
       </div>
     )
@@ -97,8 +99,9 @@ class ProductDetailsContainer extends React.Component {
 const mapStateToProps = state => {
   let selectedProduct = state.productData.selectedProduct;
   let cartProductList = state.productData.cartProductList;
+  let selectedCategory = _get(state,'categoryData.selectedCategory.displayName','')
   let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
-  return { selectedProduct, cartProductList, selectedCategoryType }
+  return { selectedProduct, cartProductList, selectedCategoryType,selectedCategory }
 }
 
 export default connect(mapStateToProps)(ProductDetailsContainer)
