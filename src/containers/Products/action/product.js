@@ -75,7 +75,6 @@ if(Object.keys(filterObj).length==0||allFalse)
 {
   dataObj.filteredData = list;
 }
-debugger;
 if(orderKey=='a-z')
 {
   console.log(dataObj.filteredData,"ff");
