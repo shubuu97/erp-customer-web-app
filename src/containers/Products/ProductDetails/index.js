@@ -36,7 +36,7 @@ class ProductDetailsContainer extends React.Component {
   addToCart() {
     const { cartProductList, dispatch } = this.props;
     let { productInfo } = this.state;
-    productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.basePrice && productInfo.basePrice.unitPrice);
+    productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.basePrice && productInfo.basePrice.price);
     let cartList = Object.assign([],cartProductList);
     if (findIndex(cartList, { itemId: productInfo.itemId }) == -1) {
       cartList.push(productInfo);
