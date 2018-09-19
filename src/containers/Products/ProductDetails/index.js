@@ -7,6 +7,7 @@ import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import { debug } from 'util';
+import _get from 'lodash/get';
 
 class ProductDetailsContainer extends React.Component {
   constructor(props) {
@@ -14,8 +15,8 @@ class ProductDetailsContainer extends React.Component {
     this.state = {
       productInfo: {},
       mainImageUrl: {},
-      updatedPrice:'',
-      selectedWeight:''
+      updatedPrice: '',
+      selectedWeight: ''
     }
   }
   componentDidMount() {
@@ -35,18 +36,18 @@ class ProductDetailsContainer extends React.Component {
   }
   addToCart() {
     const { cartProductList, dispatch } = this.props;
-    let { productInfo } = this.state;
-    productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.basePrice && productInfo.basePrice.price);
-    let cartList = Object.assign([],cartProductList);
+    let { productInfo, selectedWeight } = this.state;
+    productInfo.price = parseFloat(this.state.updatedPrice) || parseFloat(productInfo.basePrice && productInfo.basePrice.price);
+    productInfo.weight = selectedWeight || { label: productInfo.basePrice && (productInfo.basePrice.unitCount + ' ' + (productInfo.primaryUomCode && productInfo.primaryUomCode.name)), value: productInfo.basePrice && productInfo.basePrice.price };
+    let cartList = Object.assign([], cartProductList);
     if (findIndex(cartList, { itemId: productInfo.itemId }) == -1) {
       cartList.push(productInfo);
       dispatch(addToCart(cartList));
     }
-    else
-    {
+    else {
       let index = findIndex(cartList, { itemId: productInfo.itemId });
-      cartList[index].quantity =  cartList[index].quantity+productInfo.quantity;
-     }
+      cartList[index].quantity = cartList[index].quantity + productInfo.quantity;
+    }
     this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
@@ -55,10 +56,11 @@ class ProductDetailsContainer extends React.Component {
   buyProduct() {
   }
 
-  weightChanger=(val)=>
-  {
+  weightChanger = (val) => {
     console.log("On weight change", val);
-    this.setState({updatedPrice:val.value, selectedWeight: val});
+    if (val && val.value) {
+      this.setState({ updatedPrice: val.value, selectedWeight: val });
+    }
   }
   updateQuantity = (type) => {
     const { productInfo } = this.state;
@@ -79,7 +81,7 @@ class ProductDetailsContainer extends React.Component {
 
   render() {
     const { productInfo, mainImageUrl, selectedWeight, updatedPrice } = this.state;
-    const { selectedCategoryType } = this.props;
+    const { selectedCategoryType,selectedCategory } = this.props;
     return (
       <div>
         {productInfo && <ProductDetails selectedCategoryType={selectedCategoryType} detail={productInfo}
@@ -88,6 +90,7 @@ class ProductDetailsContainer extends React.Component {
           updateQuantity={this.updateQuantity} gotoList={this.gotoList}
           weightChanger={this.weightChanger}
           updatedPrice={updatedPrice}
+          selectedCategory={selectedCategory}
           selectedWeight={selectedWeight} />}
       </div>
     )
@@ -97,8 +100,9 @@ class ProductDetailsContainer extends React.Component {
 const mapStateToProps = state => {
   let selectedProduct = state.productData.selectedProduct;
   let cartProductList = state.productData.cartProductList;
+  let selectedCategory = _get(state,'categoryData.selectedCategory.displayName','')
   let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
-  return { selectedProduct, cartProductList, selectedCategoryType }
+  return { selectedProduct, cartProductList, selectedCategoryType,selectedCategory }
 }
 
 export default connect(mapStateToProps)(ProductDetailsContainer)
