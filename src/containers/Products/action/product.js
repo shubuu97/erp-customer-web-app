@@ -1,6 +1,6 @@
 import * as INVENTORY_CONSTANTS from '../constants/product';
 import dynamicActionWrapper from '../../../utills/actionHelpers'
-import {filter} from 'lodash';
+import {filter,orderBy} from 'lodash';
 
 export const requestInventoryData = subreddit => ({
   type: INVENTORY_CONSTANTS.REQUEST_INVENTORY_ITEM,
@@ -48,7 +48,7 @@ export const addToCart = (data) => ({
   data: data,
 });
 
-export const applyFilter = (list, filterObj) => {
+export const applyFilter = (list, filterObj,orderKey) => {
   let dataObj = {
     filteredData : [],
     filterObj: filterObj
@@ -75,7 +75,20 @@ if(Object.keys(filterObj).length==0||allFalse)
 {
   dataObj.filteredData = list;
 }
-
+if(orderKey=='a-z')
+{
+  console.log(dataObj.filteredData,"ff");
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.aliasName.toLowerCase()], ['asc']);
+}
+if(orderKey=='z-a')
+{
+  console.log(dataObj.filteredData,"ff");
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.aliasName.toLowerCase()], ['desc']);
+}
+if(orderKey=="numerical")
+{
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.price], ['asc']);
+}
 
   return {
     type: INVENTORY_CONSTANTS.APPLY_FILTER,
