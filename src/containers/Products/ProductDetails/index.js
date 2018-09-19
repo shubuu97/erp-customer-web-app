@@ -15,8 +15,8 @@ class ProductDetailsContainer extends React.Component {
     this.state = {
       productInfo: {},
       mainImageUrl: {},
-      updatedPrice:'',
-      selectedWeight:''
+      updatedPrice: '',
+      selectedWeight: ''
     }
   }
   componentDidMount() {
@@ -36,18 +36,18 @@ class ProductDetailsContainer extends React.Component {
   }
   addToCart() {
     const { cartProductList, dispatch } = this.props;
-    let { productInfo } = this.state;
-    productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.basePrice && productInfo.basePrice.price);
-    let cartList = Object.assign([],cartProductList);
+    let { productInfo, selectedWeight } = this.state;
+    productInfo.price = parseFloat(this.state.updatedPrice) || parseFloat(productInfo.basePrice && productInfo.basePrice.price);
+    productInfo.weight = selectedWeight || { label: productInfo.basePrice && (productInfo.basePrice.unitCount + ' ' + (productInfo.primaryUomCode && productInfo.primaryUomCode.name)), value: productInfo.basePrice && productInfo.basePrice.price };
+    let cartList = Object.assign([], cartProductList);
     if (findIndex(cartList, { itemId: productInfo.itemId }) == -1) {
       cartList.push(productInfo);
       dispatch(addToCart(cartList));
     }
-    else
-    {
+    else {
       let index = findIndex(cartList, { itemId: productInfo.itemId });
-      cartList[index].quantity =  cartList[index].quantity+productInfo.quantity;
-     }
+      cartList[index].quantity = cartList[index].quantity + productInfo.quantity;
+    }
     this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
@@ -56,10 +56,11 @@ class ProductDetailsContainer extends React.Component {
   buyProduct() {
   }
 
-  weightChanger=(val)=>
-  {
+  weightChanger = (val) => {
     console.log("On weight change", val);
-    this.setState({updatedPrice:val.value, selectedWeight: val});
+    if (val && val.value) {
+      this.setState({ updatedPrice: val.value, selectedWeight: val });
+    }
   }
   updateQuantity = (type) => {
     const { productInfo } = this.state;
