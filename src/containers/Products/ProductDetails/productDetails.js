@@ -39,8 +39,8 @@ const productDetails = (props) => {
                 name={'weight'}
                 placeholder='Weight'
                 className="product-weight-select"
-                value={props.selectedWeight || _get(props, 'selectedCategoryType.products[0]priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))[0]}
-                options={_get(props, 'selectedCategoryType.products[0]priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))}
+                value={props.selectedWeight || _get(props, 'detail.priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))[0]}
+                options={_get(props, 'detail.priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))}
                 onChange={props.weightChanger}
               />
               {/* <span>{props.detail.unitCount}  */}
