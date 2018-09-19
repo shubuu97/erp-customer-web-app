@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import { Collapse } from 'reactstrap';
 import Select from 'react-select';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Payment from '../../payment';
+import PaymentCard from '../../payment/payWithCard';
+import PaymentCheck from '../../payment/payWithCheck'
 import PaypalPayment from '../../payment/paypal'
 
  const orderDetails = (props) => {
@@ -62,7 +63,8 @@ import PaypalPayment from '../../payment/paypal'
       <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>
-      <Payment/>
+      <PaymentCard/>
+      <PaymentCheck/>
 			<PaypalPayment/>
     </div>
   )

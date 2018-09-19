@@ -169,7 +169,7 @@ class CheckOut extends Component {
 				collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} 
 				orderTotal={orderTotal} subTotal={subTotal} showError={showError} {...this.props}/>
 			
-			
+		
 			</div>
 		)
 	}
