@@ -2934,6 +2934,31 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	margin: 0 !important;
 	padding: 0 15px 15px;
 }
+.cart-item.checkbox-custom {
+	margin-bottom: 6px;
+}
+.pay-now.checkbox-custom {
+	border: solid 1px #c0c0c0;
+    padding: 6px 10px 9px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.pay-now.checkbox-custom span::before {
+	left: 12px;
+	top: 8px;
+}
+.pay-now.checkbox-custom label {
+    margin-bottom:0;
+    cursor: pointer;
+}
+.p-info {
+	margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+}
+.p-info img {
+	width: 22px;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
