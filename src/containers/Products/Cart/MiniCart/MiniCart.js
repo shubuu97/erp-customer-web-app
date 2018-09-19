@@ -17,15 +17,17 @@ class ProductsInCart extends React.Component {
     this.setState({productsData:productsList}, ()=>{
     });
   }
-  updateQuantity(productId, quantity) {
+  updateQuantity(productId, type) {
     
     const {productsData} = this.state;
     let productIndex = findIndex(productsData, {itemId:productId});
     let productList = productsData;
     let productLocal = productList[productIndex];
-    
-      productLocal.quantity = quantity
-   
+    if(type === 'add') {
+      productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
+    } else if(type === 'sub') {
+      productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
+    }
     productLocal.total = productLocal.quantity * productLocal.price;
     productList[productIndex] = productLocal;
     this.setState({productsData: productList});

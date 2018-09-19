@@ -6,13 +6,16 @@ import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
+import { debug } from 'util';
 
 class ProductDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productInfo: {},
-      mainImageUrl: {}
+      mainImageUrl: {},
+      updatedPrice:'',
+      selectedWeight:''
     }
   }
   componentDidMount() {
@@ -32,18 +35,31 @@ class ProductDetailsContainer extends React.Component {
   }
   addToCart() {
     const { cartProductList, dispatch } = this.props;
-    const { productInfo } = this.state;
+    let { productInfo } = this.state;
+    productInfo.price = parseFloat(this.state.updatedPrice)||parseFloat(productInfo.price);
+    
     let cartList = cartProductList || [];
     if (findIndex(cartList, { itemId: productInfo.itemId }) == -1) {
       cartList.push(productInfo);
       dispatch(addToCart(cartList));
     }
+    else
+    {
+      let index = findIndex(cartList, { itemId: productInfo.itemId });
+      cartList[index].quantity =  cartList[index].quantity+productInfo.quantity;
+     }
     this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);
   }
   buyProduct() {
+  }
+
+  weightChanger=(val)=>
+  {
+    console.log("On weight change", val);
+    this.setState({updatedPrice:val.value, selectedWeight: val});
   }
   updateQuantity = (type) => {
     const { productInfo } = this.state;
@@ -63,14 +79,17 @@ class ProductDetailsContainer extends React.Component {
   }
 
   render() {
-    const { productInfo, mainImageUrl } = this.state;
+    const { productInfo, mainImageUrl, selectedWeight, updatedPrice } = this.state;
     const { selectedCategoryType } = this.props;
     return (
       <div>
         {productInfo && <ProductDetails selectedCategoryType={selectedCategoryType} detail={productInfo}
           mainImageUrl={mainImageUrl} updateMainImage={this.updateMainImage}
           addToCart={() => this.addToCart()} buyProduct={() => this.buyProduct()}
-          updateQuantity={this.updateQuantity} gotoList={this.gotoList} />}
+          updateQuantity={this.updateQuantity} gotoList={this.gotoList}
+          weightChanger={this.weightChanger}
+          updatedPrice={updatedPrice}
+          selectedWeight={selectedWeight} />}
       </div>
     )
   }

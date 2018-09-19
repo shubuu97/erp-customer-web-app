@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// var Accept;
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import {TextFieldInput} from '../../../components/common/MaterialUiComponents';
+import {Field} from 'redux-form';
+
+
 function new_script(src) {
   return new Promise(function (resolve, reject) {
     var script = document.createElement('script');
@@ -91,6 +98,9 @@ export default class Payment extends Component {
   showBankForm() {
     this.setState({ showBankForm: !this.state.showBankForm });
   }
+  handleClose = () => {
+    this.setState({ showBankForm: false });
+  };
   render() {
     const { showBankForm } = this.state;
     return (
@@ -112,8 +122,35 @@ export default class Payment extends Component {
         </form>
 
         <button onClick={() => this.showBankForm()}>Pay Using bank</button>
+        <Dialog
+          open={showBankForm}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+          className="dialogbox-ui small"
+        >
+          <DialogContent>
+            <h2 className="modal-title">Billing Address <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
+            <form id="paymentForm"
+              method="POST"
+              action="https://YourServer/PathToExistingPaymentProcessingScript" >
+              <input type="text" name="accountNumber" id="accountNumber" placeholder="accountNumber" /> <br />
+              <input type="text" name="routingNumber" id="routingNumber" placeholder="routingNumber" /> <br />
+              <input type="text" name="nameOnAccount" id="nameOnAccount" placeholder="nameOnAccount" /> <br />
+              <input type="text" name="accountType" id="accountType" placeholder="accountType" /> <br />
+              <input type="hidden" name="dataValue" id="dataValue" />
+              <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+            </form>
 
-        {showBankForm ? <form id="paymentForm"
+          </DialogContent>
+          <DialogActions className="m-footer">
+
+            <Button variant="contained" onClick={() => this.sendPaymentDataToAnet()} color="secondary">
+              Pay
+                  </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* {showBankForm ? <form id="paymentForm"
           method="POST"
           action="https://YourServer/PathToExistingPaymentProcessingScript" >
           <input type="text" name="accountNumber" id="accountNumber" placeholder="accountNumber" /> <br />
@@ -123,7 +160,7 @@ export default class Payment extends Component {
           <input type="hidden" name="dataValue" id="dataValue" />
           <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
           <button type="button" onClick={() => this.sendPaymentDataToAnet()}>Pay</button>
-        </form> : null}
+        </form> : null} */}
       </div>
     );
   }
