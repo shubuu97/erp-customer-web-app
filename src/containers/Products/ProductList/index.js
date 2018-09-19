@@ -182,7 +182,7 @@ class ProductsContainer extends React.Component {
                         <p className="ic text-uppercase">Item Code: <span>{popupItemInfo.itemNo}</span></p>
                         {/* <p className="ic">Unit Count: <span>{popupItemInfo.unitCount}</span></p> */}
                         <div className="price-text-css">
-                          <h3 className="p-price">$ {popupItemInfo.price}</h3><p>Per Quantity</p>
+                          <h3 className="p-price">${popupItemInfo.price}</h3><p>Per Quantity</p>
                         </div>
                       </div>
                       <div className="addToCartButtonDiv">

@@ -76,6 +76,12 @@ class ResetPassword extends Component {
       console.log("Error in set password", error);
     })
   }
+  componentDidMount() {
+    document.body.classList.add('reset-password-page');
+  }
+  componentWillUnmount() {
+    document.body.classList.remove('reset-password-page');
+  }
   handleOpen = () => {
     return true;
   };
@@ -89,13 +95,17 @@ class ResetPassword extends Component {
         <h2 class="reset-password">Reset Password</h2>
         <form onSubmit={handleSubmit(this.handleSubmit)}>
           <div className="row d-flex">
-            <div className="form-d col-sm-12">
+            <div className="form-d col-md-5">
               <Field name={'password'} type="password" label={'Password'} placeholder={'Password'} component={TextFieldInput} />
             </div>
-            <div className="form-d col-sm-12">
+            </div>
+            <div className="row d-flex">
+            <div className="form-d col-md-5">
               <Field name={'newPassword'} type="password" label={'New Password'} placeholder={'New Password'} component={TextFieldInput} />
             </div>
-            <div className="form-d col-sm-12">
+            </div>
+            <div className="row d-flex">
+            <div className="form-d col-md-5">
               <Field name={'confirmNewPassword'} type="password" label={'Confirm New Password'} placeholder={'Confirm New Password'} component={TextFieldInput} />
             </div>
           </div>
