@@ -1,5 +1,5 @@
 let APPLICATION_BFF_URL
-
+console.log("ENV ++", process.env);
 if(process.env.NODE_ENV !== 'production')
 
 {
@@ -8,7 +8,7 @@ if(process.env.NODE_ENV !== 'production')
 }
 else
 {
-APPLICATION_BFF_URL = "https://deverp.allonblock.com/customer-bff";
+APPLICATION_BFF_URL = process.env.APPLICATION_BFF_URL;
 }
 
 export {APPLICATION_BFF_URL};

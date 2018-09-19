@@ -2,7 +2,6 @@ import * as CATEGORY_TYPE_ITEMS_CONSTANTS from '../constants/categoryTypeAndItem
 import dynamicActionWrapper from '../utills/actionHelpers';
 
 
-
 export const requestCategoryTypeAndItems = subreddit => ({
     type: CATEGORY_TYPE_ITEMS_CONSTANTS.REQUEST_CATEGORY_TYPE_AND_ITEMS,
     subreddit

@@ -1,6 +1,7 @@
 import React from 'react';
+import _get from 'lodash/get'
 
-export default (props) => {
+const sideBar =  (props) => {
     return (
         <div className="left-sidebar">
             <div className="left-sidebar-category">
@@ -14,31 +15,22 @@ export default (props) => {
             </div>
             <div className="left-sidebar-category">
                 <h4>By Price</h4>
-                <div className="category-priceRange checkbox-custom">
+
+                 { _get(props,'selectedType.priceFilter',[]).map((filter,index)=>
+                {
+                return (
+                    <div key={index} className="category-priceRange checkbox-custom">
                     <label>
-                        <input checked={props.filteredDataSet.filterObj.lessThan50} type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('lessThan50', e.target.checked)}/>
-                        <span className="term-conditions">Under $50</span>
+                        <input checked={props.filteredDataSet.filterObj[`${filter.minPrice}-${filter.maxPrice}`]} type="checkbox" onChange={(e)=>props.applyPriceRangeFilter(`${filter.minPrice}-${filter.maxPrice}`, e.target.checked)}/>
+                        <span className="term-conditions">{'$'+filter.minPrice}-{'$'+filter.maxPrice}</span>
                     </label>
                 </div>
-                <div className="category-priceRange checkbox-custom">
-                    <label>
-                        <input checked={props.filteredDataSet.filterObj.from50To100} type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('from50To100', e.target.checked)}/>
-                        <span className="term-conditions">$50 - $100</span>
-                    </label>
-                </div>
-                <div className="category-priceRange checkbox-custom">
-                    <label>
-                        <input checked={props.filteredDataSet.filterObj.from100To200} type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('from100To200', e.target.checked)}/>
-                        <span className="term-conditions">$100 - $200</span>
-                    </label>
-                </div>
-                <div className="category-priceRange checkbox-custom">
-                    <label>
-                        <input checked={props.filteredDataSet.filterObj.above200} type="checkbox" onChange={(e)=>props.applyPriceRangeFilter('above200', e.target.checked)}/>
-                        <span className="term-conditions">Above $200</span>
-                    </label>
-                </div>
+                )
+                })
+            }
             </div>
         </div>
     )
 }
+
+export default sideBar;
