@@ -140,8 +140,8 @@ class ProductsContainer extends React.Component {
           <div className="col-md-9 col-sm-8">
             <div className="filter-bar">
               <ul className="list-grid hidden-xs">
-                <li className={isGridView ? `active` : ''} onClick={() => this.changeView()}><img src={grid} /></li>
-                <li className={!isGridView ? `active` : ''} onClick={() => this.changeView()}><img src={list} /></li>
+                <li className={isGridView ? `active` : ''} onClick={() => this.changeView()}><span title="Grid View"><img src={grid} /></span></li>
+                <li className={!isGridView ? `active` : ''} onClick={() => this.changeView()}><span title="List View"><img src={list} /></span></li>
               </ul>
               <div className="sort-by">
                 <span>Sort By</span>
@@ -184,7 +184,7 @@ class ProductsContainer extends React.Component {
                         <p className="ic text-uppercase">Item Code: <span>{popupItemInfo.itemNo}</span></p>
                         {/* <p className="ic">Unit Count: <span>{popupItemInfo.unitCount}</span></p> */}
                         <div className="price-text-css">
-                          <h3 className="p-price">${popupItemInfo.price}</h3><p>Per Quantity</p>
+                          <h3 className="p-price">${popupItemInfo.basePrice && popupItemInfo.basePrice.price || ''}</h3><p>Per {popupItemInfo.basePrice && popupItemInfo.basePrice.unitCount + ' ' + (popupItemInfo.primaryUomCode && popupItemInfo.primaryUomCode.name) || ''}</p>
                         </div>
                       </div>
                       <div className="addToCartButtonDiv">

@@ -31,16 +31,16 @@ class ProductsInCart extends React.Component {
     this.setState({productsData: productList});
     this.props.updateProductList(productList);
   }
-  weightChanger=(val, productId)=>
+  weightChanger=(index, item, productId)=>
   {
-    console.log("On weight change", val);
-    if(val && val.value) {
+    let selectedWeight = item.priceDetails[index];
+    if(selectedWeight) {
       const {productsData} = this.state;
       let productIndex = findIndex(productsData, {itemId:productId});
       let productList = productsData;
       let productLocal = productList[productIndex];
-      productLocal.weight = val;
-      productLocal.price = val.value;
+      productLocal.weight = {label: selectedWeight.unitCount +' '+((item.primaryUomCode && item.primaryUomCode.name) || 'Grams'), value: selectedWeight.price};
+      productLocal.price = selectedWeight.price;
       productLocal.total = productLocal.quantity * productLocal.price;
       productList[productIndex] = productLocal;
       this.setState({productsData: productList});

@@ -12,6 +12,76 @@ export default class extends Component {
                 <span className="user-name"><span className="hey">Hey,</span> {this.props.userInfo.firstName || 'Guest'}</span>
               </div>
             <ul>
+                <li className="drop-menu">Browse Categories &nbsp; <i className="fa fa-angle-down"></i>
+                <div className="drop-categories">
+                    <div className="col category-flex-column">
+                        <ul className="drop-category-box">
+                            <li className="category">Cannabis &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li>Cones</li>
+                            <li>Pre Roll</li>
+                            <li>Seed</li>
+                            <li>Shake</li>
+                        </ul>
+                        <ul className="drop-category-box">
+                            <li className="category">Topicals &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li>Balms</li>
+                            <li>Lotionn</li>
+                            <li>Lubricants & Oils</li>
+                            <li>Sprays</li>
+                            <li>Transdermal Patches</li>
+                        </ul>
+                    </div>
+                    <div className="col category-flex-column">
+                        <ul className="drop-category-box">
+                            <li className="category">Concentrates &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li>Cartridges</li>
+                            <li>Ingestible</li>
+                            <li>Solvent</li>
+                            <li>Solventless</li>
+                            <li>Tarpenes</li>
+                        </ul>
+                        <ul className="drop-category-box">
+                            <li className="category">Flowers &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li>Indica</li>
+                            <li>Sativa</li>
+                        </ul>
+                    </div>
+                    <div className="col category-flex-column">
+                        <ul className="drop-category-box">
+                            <li className="category">Herm CBD Products &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li>Cartridges</li>
+                            <li>Ingestible</li>
+                            <li>Solvent</li>
+                            <li>Solventless</li>
+                            <li>Tarpenes</li>
+                        </ul>
+                        <ul className="drop-category-box">
+                            <li className="category">Gear &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li className="category">Hash &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li className="category">Extract &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li className="category">Others &nbsp; <i className="fa fa-caret-right"></i></li>
+                        </ul>
+                    </div>
+                    <div className="col category-flex-column">
+                        <ul className="drop-category-box">
+                            <li className="category">Edibles &nbsp; <i className="fa fa-caret-right"></i></li>
+                            <li>Beverages</li>
+                            <li>Breakfast</li>
+                            <li>Brownies</li>
+                            <li>Solventless</li>
+                            <li>Tarpenes</li>
+                            <li>Cartridges</li>
+                            <li>Ingestible</li>
+                            <li>Solvent</li>
+                            <li>Beverages</li>
+                            <li>Breakfast</li>
+                            <li>Brownies</li>
+                            <li>Solventless</li>
+                            <li>Tarpenes</li>
+                        </ul>
+                    </div>
+                </div>
+                </li>
                 {this.props.categories && this.props.categories.map((category)=>(
                     <li className={category.id == this.props.selectedCategory.id ? 'active' : '' } onClick={()=>this.props.handleClick(category)}>{category.displayName}</li>
                 ))}

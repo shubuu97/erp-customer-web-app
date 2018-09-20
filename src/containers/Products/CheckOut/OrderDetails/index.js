@@ -3,9 +3,7 @@ import Button from '@material-ui/core/Button';
 import { Collapse } from 'reactstrap';
 import Select from 'react-select';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import PaymentCard from '../../payment/payWithCard';
-import PaymentCheck from '../../payment/payWithCheck'
-import PaypalPayment from '../../payment/paypal'
+import Payment from '../../payment';
 import paymentIinfo from './../../../../assets/images/info.png';
 
  const orderDetails = (props) => {
@@ -38,14 +36,16 @@ import paymentIinfo from './../../../../assets/images/info.png';
       <div className="cart-total-total cart-item">
         Order Total <span>$ {props.orderTotal}</span>
       </div>
-      <div>
-        <Select
+      <div className="cart-total-subtotal cart-item payment-term">
+        <label>Payment Terms</label>
+        <span>{props.paymentTerm.value}</span>
+        {/* <Select
           name={'payment-term'}
           placeholder='Payment Terms'
           value={props.paymentTerm}
           options={props.paymentTerms}
           onChange={props.paymentTermUpdate}
-        />
+        /> */}
       </div>
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,
@@ -62,21 +62,30 @@ import paymentIinfo from './../../../../assets/images/info.png';
         <p>* {props.showError}</p>
       </div>}
       <div className="d-flex">
+      
         <div className="pay-now checkbox-custom">
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={()=>props.handlePay()} />
             <span className="">Pay Now</span>
           </label>
         </div>
+      
         <span className="p-info"><img src={paymentIinfo} /></span>
       </div>
-      
-      <div className="col-sm-12 cart-item-button">
-        <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
+      <div className="p-method">
+       { props.payNow? <Select
+          name={'payment-Method'}
+          placeholder='Payment Method'
+          value={props.paymentMethod}
+          options={props.paymentMethods}
+          onChange={props.paymentMethodUpdate}
+        />:null
+       }
       </div>
-      <PaymentCard/>
-      <PaymentCheck/>
-			<PaypalPayment/>
+     {!props.payNow? <div className="col-sm-12 cart-item-button">
+        <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
+      </div>:null}
+      {props.payNow?<Payment paymentConfig={props.paymentConfig}/>:null}
     </div>
   )
 }

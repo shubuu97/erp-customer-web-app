@@ -161,7 +161,7 @@ class MainLayout extends Component {
             </div>
             {this.state.showMiniCart && <div className="cart-backdrop" onClick={this.toggleMiniCartState}></div>}
             <div className="header-nav">
-              <span className="visible-xs menu" onClick={this.toggleMenu}><img src={menuicon} /></span>
+              <span  className="visible-xs menu" onClick={this.toggleMenu}><img src={menuicon} /></span>
               <div className="main-logo">
                 <img src={logo} />
               </div>
@@ -173,10 +173,10 @@ class MainLayout extends Component {
                 handleProfile={this.handleProfile}
                 handleLogOut={this.handleLogOut} />
               <ul className="navRight">
-                <li className="hidden-xs"><span className="rel"><img src={search} /></span></li>
-                <li><span className="rel offers-icon"><img src={offers} /></span></li>
-                <li><span className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
-                <li style={this.props.customerStatus != 'Approved' ? { pointerEvents: 'none', opacity: 0.6 } : null} onClick={this.toggleMiniCartState}><span className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
+                <li className="hidden-xs"><span title="Search" className="rel"><img src={search} /></span></li>
+                <li><span title="Offers" className="rel offers-icon"><img src={offers} /></span></li>
+                <li><span title="Notification" className="rel"><img src={bell} /><span className="bell-round">2</span></span></li>
+                <li style={this.props.customerStatus != 'Approved' ? { pointerEvents: 'none', opacity: 0.6 } : null} onClick={this.toggleMiniCartState}><span title='Cart' className="rel"><img src={cart} /><span className="cart-round">{cartData.length || 0}</span></span></li>
                 <div>
                   {this.state.showMiniCart ? <MiniCart toggleMiniCartState={this.toggleMiniCartState} {...this.props} /> : null}
                 </div>

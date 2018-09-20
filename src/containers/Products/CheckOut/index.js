@@ -6,11 +6,11 @@ import { postCheckoutData } from '../action/checkout';
 import { CHECKOUT_URL } from '../constants/checkout';
 import { fetchLicenseDetailsData } from '../../../action/getLicenseInfo';
 import {fetchBankingDetailsData} from '../../../action/getBankingDetails';
+import {postData} from '../../../action/common/post';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import {find} from 'lodash';
-
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -25,7 +25,10 @@ class CheckOut extends Component {
 			paymentTerm: '',
 			termCondition: false,
 			showError: false,
-			paymentTerms:[{ label: 'Current', value: 'current' }]
+			payNow:false,
+			paymentMethod:'',
+			paymentTerms:[{ label: 'Current', value: 'current' }],
+			paymentConfig: []
 		};
 	}
 
@@ -62,11 +65,20 @@ class CheckOut extends Component {
 			console.log("bankingData in did mount",bankingData);
 			let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
 			let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
-			let paymentTerms = [{ label: 'Current', value: 'current' }];
-			paymentTerms.push(selectedPaymentTerms);
-			this.setState({paymentTerms});
+			this.setState({paymentTerm: selectedPaymentTerms});
 		});
-		document.body.classList.add('checkout-page')
+		document.body.classList.add('checkout-page');
+		let options = {
+			init: "REQUEST_PAYMENT_CONFIG",
+			success: "RECEIVED_PAYMENT_CONFIG",
+			error: "RECEIVED_PAYMENT_CONFIG_ERROR"
+		  }
+		  this.props.dispatch(postData(`${APPLICATION_BFF_URL}/order/checkout`, null, null, options)).then((paymentConfig) => {
+			console.log('paymentConfig', paymentConfig);
+			this.setState({paymentConfig: _get(paymentConfig, "data.paymentVendors", [])});
+		  }, (error) => {
+			console.log(error);
+		  });
 	}
 	componentWillUnmount() {
 		document.body.classList.remove('checkout-page');
@@ -146,10 +158,19 @@ class CheckOut extends Component {
 		console.log(this.state.termCondition);
 		this.setState({ termCondition: !this.state.termCondition, showError: '' })
 	}
+	handlePay=()=>
+	{
+
+		this.setState({payNow:!this.state.payNow})
+	}
+	paymentMethodUpdate=(val)=>
+	{
+	this.setState({paymentMethod:val})
+	}
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
-		const { subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms } = this.state;
-		const { companyinfo, userInfo } = this.props;
+		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms } = this.state;
+		const { companyinfo, userInfo,paymentMethods } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
 			<div className="checkout-container container">
@@ -164,10 +185,14 @@ class CheckOut extends Component {
 						</div>
 					</div>
 				</div>
-				<OrderDetails  termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
-				paymentTerms={paymentTerms} paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
+				<OrderDetails
+				handlePay={this.handlePay}
+				paymentMethods={paymentMethods}
+				payNow={this.state.payNow}
+				termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
+				paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
 				collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} 
-				orderTotal={orderTotal} subTotal={subTotal} showError={showError} {...this.props}/>
+				orderTotal={orderTotal} subTotal={subTotal} showError={showError} paymentConfig={paymentConfig} {...this.props}/>
 			
 		
 			</div>
@@ -177,11 +202,12 @@ class CheckOut extends Component {
 const mapStateToPtops = (state) => {
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo = state.licenseDetailsData.lookUpData.data;
+	let paymentMethods = _get(state,'bankDetailsData.lookUpData.data.paymentMethods.data',[])
 	let userBasicInfo = state.basicInfodata;
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
 	let role = state.basicInfodata && state.basicInfodata.role;
 	let isLoading= state.orderData.isFetching;
 	let urlLinks = _get(state,'urlLinks.formSearchData._links',{})
-	return { cartProductList, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks };
+	return { cartProductList, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks,paymentMethods };
 }
 export default connect(mapStateToPtops)(CheckOut);
