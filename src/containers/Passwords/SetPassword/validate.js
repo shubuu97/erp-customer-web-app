@@ -1,29 +1,54 @@
+import passwordValidator from 'password-validator';
 import  * as yup from 'yup';
+import _get from 'lodash/get';
 var schema = yup.object().shape({
+    
     newPassword: yup.string().required(),
     confirmNewPassword: yup.mixed().test('match', 'Passwords do not match', function (password) {
         return password === this.parent.newPassword
       }).required('Password confirm is required'),
   });
+
+  var passwordSchema = new passwordValidator();
+ 
+// Add properties to it
+passwordSchema
+.is().min(8)                                    // Minimum length 8
+.is().max(100)                                  // Maximum length 100
+.has().uppercase()                              // Must have uppercase letters
+.has().lowercase()                              // Must have lowercase letters
+.has().digits()                                 // Must have digits
+.has().not().spaces()                           // Should not have spaces
+.is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 const asyncValidate = values => {
 
 
     return new Promise((resolve, reject) => {
-        
 
 
         //Validate our form values against our schema! Also dont abort the validate early.
         schema.validate(values, {abortEarly: false})
             .then(() => {
                 //form is valid happy days!
+                if(passwordSchema.validate(values.newPassword))
                 resolve();
+                else
+                {
+                    let reduxFormErrors = {};
+                    reduxFormErrors['newPassword'] = "Enter a strong password"
+                    reject(reduxFormErrors)
+                }
             })
-            .catch(errors => {
+            .catch((errors) => {
 
                 //form is not valid, yup has given us errors back. Lets transform them into something redux can understand.
 
                 let reduxFormErrors = {};
-
+                console.log(values,"values is here")
+                if(!passwordSchema.validate(_get(values,'newPassword','')))
+                {
+                      reduxFormErrors['newPassword'] = "Enter a strong password"
+                  }
                 errors.inner.forEach(error => {
                     errors.inner.forEach(error => {
                         let messageArr = error.message.split('.');
@@ -33,7 +58,6 @@ const asyncValidate = values => {
                         reduxFormErrors[error.path] = finalResult;
                         })
                 })
-
                 //redux form will now understand the errors that yup has thrown
                 reject(reduxFormErrors);
 
