@@ -71,12 +71,12 @@ class PaymentWithCheck extends Component {
         console.log("Success data", response);
         this.props.onPay(response);
         // paymentFormUpdate(response.opaqueData);
-        axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
-          console.log(data, "data is here");
-        })
-          .catch((err) => {
-            console.log(err, "error is here")
-          })
+        // axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
+        //   console.log(data, "data is here");
+        // })
+        //   .catch((err) => {
+        //     console.log(err, "error is here")
+        //   })
       }
     }
   }

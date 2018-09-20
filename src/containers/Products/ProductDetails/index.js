@@ -58,7 +58,6 @@ class ProductDetailsContainer extends React.Component {
 
   weightChanger = (index, item) => {
     console.log("On weight change", index);
-    debugger;
     console.log("item", item);
     let selectedWeight = item.priceDetails[index];
     if (selectedWeight) {
