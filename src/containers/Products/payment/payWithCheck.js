@@ -44,7 +44,6 @@ class Payment extends Component {
   }
 
   sendPaymentDataToAnet = (bankData) => {
-    debugger;
     var authData = {};
     authData.clientKey = "8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32";
     authData.apiLoginID = "7Eu6Q6YbMx";
