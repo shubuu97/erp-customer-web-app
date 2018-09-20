@@ -22,7 +22,7 @@ function new_script(src) {
 export default class Payment extends Component {
  
 
-showPayPalButton()
+showPayPalButton=()=>
 {
   window.paypal.Button.render({
 
@@ -55,7 +55,7 @@ showPayPalButton()
     // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 
     client: {
-        sandbox:    'AQiDQ3GsA3afvvAANKU9QBTP2M3sMFmxDYbg6uLDgjmVI2Ux75WjlPTxyBsLv2auG_fI9rhNw8Rwp02G',
+        sandbox:    this.props.detail.clientKey,
         production: '<insert production client id>'
     },
 
