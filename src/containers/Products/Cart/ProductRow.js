@@ -16,14 +16,19 @@ export default (props) => {
         </div>
       </div>
       <div className="row-price" data-title="Price">
-        <Select
+        {/* <Select
           name={'weight'}
           placeholder='Weight'
           className="product-weight-select"
           value={props.weight}
           options={_get(props, 'detail.priceDetails', []).map((price) => ({ value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams') }))}
           onChange={(val)=> props.weightChanger(val, props.id)}
-        />
+        /> */}
+        <select className="form-control product-weight-select" onChange={(e)=>props.weightChanger({label: e.target.text, value: e.target.value}, props.id)}>
+          {_get(props, 'detail.priceDetails', []).map((price)=>(
+            <option value={price.price}>{price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</option>
+          ))}
+        </select>
       </div>
       <div className="row-price" data-title="Price">
         <h4>{props.price}</h4>
