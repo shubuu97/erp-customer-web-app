@@ -19,7 +19,7 @@ function new_script(src) {
 };
 
 
-export default class Payment extends Component {
+export default class PaymentWithPaypal extends Component {
  
 
 showPayPalButton=()=>

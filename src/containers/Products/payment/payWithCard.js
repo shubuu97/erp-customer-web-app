@@ -15,16 +15,7 @@ function new_script(src) {
     document.body.appendChild(script);
   })
 };
-const response = (data) => {
-  //loader....
-  axios.post('http://localhost:3000/chargeByNonce', data).then((data) => {
-    console.log(data, "data is here");
-  })
-    .catch((err) => {
-      console.log(err, "error is here")
-    })
-}
-window.response = response;
+
 export default class PayWithCard extends Component {
   constructor(props) {
     super(props)
@@ -55,6 +46,18 @@ export default class PayWithCard extends Component {
     else {
       this.setState({});
     }
+    window.response = this.response;
+  }
+
+  response = (data) => {
+    //loader....
+    this.props.onPay(data);
+    axios.post('http://localhost:3000/chargeByNonce', data).then((data) => {
+      console.log(data, "data is here");
+    })
+      .catch((err) => {
+        console.log(err, "error is here")
+      })
   }
 
   render() {
@@ -64,7 +67,7 @@ export default class PayWithCard extends Component {
         action="https://YourServer/PathToExistingPaymentProcessingScript">
         <input type="hidden" name="dataValue" id="dataValue" />
         <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
-       {this.props.payNow ?<div className="or-seperator"><img src={orIcon} /></div>:null}
+        {this.props.payNow ? <div className="or-seperator"><img src={orIcon} /></div> : null}
         <button type="button"
           className="AcceptUI"
           data-billingAddressOptions='{"show":true, "required":true}'
