@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { TextFieldInput } from '../../../components/common/MaterialUiComponents';
 import { Field, reduxForm, FormSection } from 'redux-form';
 import orIcon from './../../../assets/images/or-icon.png';
+import _find from 'lodash/find';
 
 
 function new_script(src) {
