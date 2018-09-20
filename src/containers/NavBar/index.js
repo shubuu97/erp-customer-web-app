@@ -12,6 +12,21 @@ export default class extends Component {
                 <span className="user-name"><span className="hey">Hey,</span> {this.props.userInfo.firstName || 'Guest'}</span>
               </div>
             <ul>
+                <li className="drop-menu">Browse Categories &nbsp; <i className="fa fa-angle-down"></i>
+                <div className="drop-categories">
+                    <div className="row d-flex">
+                        <div className="col category-flex-column">
+                            <ul className="drop-category-box">
+                                <li className="category">Cannabis <i className="fa fa-caret-right"></i></li>
+                                <li>Cones</li>
+                                <li>Pre Roll</li>
+                                <li>Seed</li>
+                                <li>Shake</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </li>
                 {this.props.categories && this.props.categories.map((category)=>(
                     <li className={category.id == this.props.selectedCategory.id ? 'active' : '' } onClick={()=>this.props.handleClick(category)}>{category.displayName}</li>
                 ))}
