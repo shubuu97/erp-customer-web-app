@@ -40,8 +40,8 @@ export default class Payment extends Component {
     return (
       <div>
         {authorizeNet.show && <PayWithCard detail={authorizeNet} onPay={this.props.onPay}/>}
-        {authorizeNet.show && <PayWithCheck detail={authorizeNet} onPay={this.props.onPay}/>}
-        {paypal.show && <Paypal detail={paypal} />}
+        {/* {authorizeNet.show && <PayWithCheck detail={authorizeNet} onPay={this.props.onPay}/>} */}
+        {/* {paypal.show && <Paypal detail={paypal} />} */}
 
       </div>
     )
