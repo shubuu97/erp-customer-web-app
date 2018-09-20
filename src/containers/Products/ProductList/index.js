@@ -140,8 +140,8 @@ class ProductsContainer extends React.Component {
           <div className="col-md-9 col-sm-8">
             <div className="filter-bar">
               <ul className="list-grid hidden-xs">
-                <li className={isGridView ? `active` : ''} onClick={() => this.changeView()}><img src={grid} /></li>
-                <li className={!isGridView ? `active` : ''} onClick={() => this.changeView()}><img src={list} /></li>
+                <li className={isGridView ? `active` : ''} onClick={() => this.changeView()}><span title="Grid View"><img src={grid} /></span></li>
+                <li className={!isGridView ? `active` : ''} onClick={() => this.changeView()}><span title="List View"><img src={list} /></span></li>
               </ul>
               <div className="sort-by">
                 <span>Sort By</span>

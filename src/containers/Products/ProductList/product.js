@@ -18,7 +18,7 @@ export default (props) => {
               {/* <span className="quick-view" title="View Details"></span> */}
             </div>
             <div className="pc-2">
-              <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)} />
+             <span title="Product Detail"> <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)} /></span>
             </div>
           </div>
 
@@ -36,7 +36,7 @@ export default (props) => {
           <div className="pro-head">
             <h4 className="product-name" onClick={(e) => { props.click && props.click(props.detail)}}>{props.name}</h4>
             <div className="pc-2">
-              <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)}/>
+            <span title="Product Info">  <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)}/></span>
             </div>
           </div>
           <div className="product-price">${props.price}</div>
