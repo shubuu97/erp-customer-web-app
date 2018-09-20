@@ -1806,6 +1806,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-size: 15px;
 	padding-right: 20px;
 	width: 110px;
+	line-height: 38px;
 }
 .wq-bar {
 	margin-bottom: 15px;
@@ -1853,7 +1854,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     padding-top: 20px;
 }
 .product-weight-select {
-    width: 85px;
+    width: 110px;
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
