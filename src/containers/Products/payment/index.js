@@ -14,6 +14,7 @@ export default class Payment extends Component {
   }
   componentDidMount() {
     const { paymentConfig } = this.props;
+    console.log("IN THIS PAYMENT MOUNT", this.props);
     paymentConfig.forEach((vendor) => {
       if (_get(vendor, 'vendor') == "Pay-Pal" && _get(vendor, 'status') == "Active" && _get(vendor, 'clientKey')) {
         let paypal = {
@@ -38,8 +39,8 @@ export default class Payment extends Component {
     const { paypal, authorizeNet } = this.state;
     return (
       <div>
-        {authorizeNet.show && <PayWithCard detail={authorizeNet} />}
-        {authorizeNet.show && <PayWithCheck detail={authorizeNet} />}
+        {authorizeNet.show && <PayWithCard detail={authorizeNet} onPay={this.props.onPay}/>}
+        {authorizeNet.show && <PayWithCheck detail={authorizeNet} onPay={this.props.onPay}/>}
         {paypal.show && <Paypal detail={paypal} />}
 
       </div>

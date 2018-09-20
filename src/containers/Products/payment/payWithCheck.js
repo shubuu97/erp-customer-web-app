@@ -24,7 +24,7 @@ function new_script(src) {
   })
 };
 
-class Payment extends Component {
+class PaymentWithCheck extends Component {
   constructor() {
     super();
     this.state = {
@@ -69,6 +69,7 @@ class Payment extends Component {
         }
       } else {
         console.log("Success data", response);
+        this.props.onPay(response);
         // paymentFormUpdate(response.opaqueData);
         axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
           console.log(data, "data is here");
@@ -157,7 +158,7 @@ class Payment extends Component {
 
 export default reduxForm({
   form: 'payWithCard'
-})(Payment)
+})(PaymentWithCheck)
 
 
 
