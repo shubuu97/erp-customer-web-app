@@ -63,9 +63,7 @@ class CheckOut extends Component {
 			console.log("bankingData in did mount",bankingData);
 			let paymentTermsArray = _get(bankingData,'data.paymentTerms.data', [])
 			let selectedPaymentTerms = find(paymentTermsArray, {value:_get(bankingData,'data.bankingDetailInfo.paymentTerms', '')});
-			let paymentTerms = [{ label: 'Current', value: 'current' }];
-			paymentTerms.push(selectedPaymentTerms);
-			this.setState({paymentTerms});
+			this.setState({paymentTerm: selectedPaymentTerms});
 		});
 		document.body.classList.add('checkout-page')
 	}
@@ -179,7 +177,7 @@ class CheckOut extends Component {
 				paymentMethods={paymentMethods}
 				payNow={this.state.payNow}
 				termCondition={termCondition} selectTermCondition={this.selectTermCondition} 
-				paymentTerms={paymentTerms} paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
+				paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate} 
 				collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList} 
 				orderTotal={orderTotal} subTotal={subTotal} showError={showError} {...this.props}/>
 			
