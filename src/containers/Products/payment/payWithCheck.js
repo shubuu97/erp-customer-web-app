@@ -4,27 +4,27 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import {TextFieldInput} from '../../../components/common/MaterialUiComponents';
-import {Field,reduxForm,FormSection} from 'redux-form';
+import { TextFieldInput } from '../../../components/common/MaterialUiComponents';
+import { Field, reduxForm, FormSection } from 'redux-form';
 import orIcon from './../../../assets/images/or-icon.png';
 import _find from 'lodash/find';
 
 
 function new_script(src) {
-    return new Promise(function (resolve, reject) {
-      var script = document.createElement('script');
-      script.src = src;
-      script.addEventListener('load', function () {
-        resolve();
-      });
-      script.addEventListener('error', function (e) {
-        reject(e);
-      });
-      document.body.appendChild(script);
-    })
-  };
+  return new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.src = src;
+    script.addEventListener('load', function () {
+      resolve();
+    });
+    script.addEventListener('error', function (e) {
+      reject(e);
+    });
+    document.body.appendChild(script);
+  })
+};
 
- class Payment extends Component {
+class Payment extends Component {
   constructor() {
     super();
     this.state = {
@@ -44,6 +44,7 @@ function new_script(src) {
   }
 
   sendPaymentDataToAnet = (bankData) => {
+    debugger;
     var authData = {};
     authData.clientKey = "8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32";
     authData.apiLoginID = "7Eu6Q6YbMx";
@@ -85,18 +86,19 @@ function new_script(src) {
   handleClose = () => {
     this.setState({ showBankForm: false });
   };
- 
+
 
 
   render() {
     const { showBankForm } = this.state;
-    const {handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
     return (
       <div>
-       
+
         <div className="or-seperator"><img src={orIcon} /></div>
         <button className="AcceptUI2" onClick={() => this.showBankForm()}>Pay Using Bank</button>
         <div className="or-seperator"><img src={orIcon} /></div>
+
         <Dialog
           open={showBankForm}
           onClose={this.handleClose}
@@ -106,53 +108,41 @@ function new_script(src) {
           <DialogContent>
             <h2 className="modal-title">Pay Using Bank <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
             <form onSubmit={handleSubmit(this.sendPaymentDataToAnet)} >
-               <FormSection name="bankData">
-              <div className="form-d">
-                <Field name="accountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput}/>
-              </div>
-              <div className="form-d">
-                <Field name="routingNumber" placeholder="Routing Number" label="Routing Number" component={TextFieldInput}/>
-              </div>
-              <div className="form-d">
-                <Field name="nameOnAccount" placeholder="Name On Account" label="Name On Account" component={TextFieldInput}/>
-              </div>
-              <div className="form-d">
-                <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput}/>
-              </div>
-              
-              <Field name="dataValue"  type="hidden" component={TextFieldInput}/>            
-            
-              <Field name="dataDescriptor"  type="hidden"  component={TextFieldInput}/>
-              
+              <FormSection name="bankData">
+                <div className="form-d">
+                  <Field name="accountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput} />
+                </div>
+                <div className="form-d">
+                  <Field name="routingNumber" placeholder="Routing Number" label="Routing Number" component={TextFieldInput} />
+                </div>
+                <div className="form-d">
+                  <Field name="nameOnAccount" placeholder="Name On Account" label="Name On Account" component={TextFieldInput} />
+                </div>
+                <div className="form-d">
+                  <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput} />
+                </div>
+
+                <Field name="dataValue" type="hidden" component={TextFieldInput} />
+
+                <Field name="dataDescriptor" type="hidden" component={TextFieldInput} />
+
               </FormSection>
-            </form>
 
-          </DialogContent>
-          <DialogActions className="m-footer">
-            <Button variant="contained" type="submit"  color="primary">
-              Pay Now
+              <DialogActions className="m-footer">
+                <Button variant="contained" type="submit" color="primary">
+                  Pay Now
             </Button>
-          </DialogActions>
+              </DialogActions>
+            </form>
+          </DialogContent>
         </Dialog>
-
-        {/* {showBankForm ? <form id="paymentForm"
-          method="POST"
-          action="https://YourServer/PathToExistingPaymentProcessingScript" >
-          <input type="text" name="accountNumber" id="accountNumber" placeholder="accountNumber" /> <br />
-          <input type="text" name="routingNumber" id="routingNumber" placeholder="routingNumber" /> <br />
-          <input type="text" name="nameOnAccount" id="nameOnAccount" placeholder="nameOnAccount" /> <br />
-          <input type="text" name="accountType" id="accountType" placeholder="accountType" /> <br />
-          <input type="hidden" name="dataValue" id="dataValue" />
-          <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
-          <button type="button" onClick={() => this.sendPaymentDataToAnet()}>Pay</button>
-        </form> : null} */}
       </div>
     );
   }
 }
 
 export default reduxForm({
-    form:'payWithCard'
+  form: 'payWithCard'
 })(Payment)
 
 
