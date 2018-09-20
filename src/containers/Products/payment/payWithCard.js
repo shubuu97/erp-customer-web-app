@@ -50,14 +50,18 @@ export default class PayWithCard extends Component {
   }
 
   response = (data) => {
-    //loader....
-    this.props.onPay(data);
-    axios.post('http://localhost:3000/chargeByNonce', data).then((data) => {
-      console.log(data, "data is here");
-    })
-      .catch((err) => {
-        console.log(err, "error is here")
-      })
+    if (data.messages.resultCode === "Error") {
+      var i = 0;
+      while (i < data.messages.message.length) {
+        console.log(
+          data.messages.message[i].code + ": " +
+          data.messages.message[i].text
+        );
+        i = i + 1;
+      }
+    } else {
+      this.props.onPay(data);
+    }
   }
 
   render() {

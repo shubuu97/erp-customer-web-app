@@ -16,6 +16,7 @@ class CheckOut extends Component {
 	constructor(props) {
 		super();
 		this.state = {
+			isPaying: false,
 			subTotal: null,
 			billingSelectedAddress: 0,
 			shippingSelctedAddress: 0,
@@ -103,7 +104,8 @@ class CheckOut extends Component {
 				pricePerUnit: item.price,
 				weight: {
 					weightPerUnit: _get(item.weight, 'label', '').split(' ') && parseFloat(_get(item.weight, 'label', '').split(' ')[0]),
-					uom: _get(item.weight, 'label', '').split(' ') && _get(item.weight, 'label', '').split(' ')[1]
+					uom: 'g'
+					// uom: _get(item.weight, 'label', '').split(' ') && _get(item.weight, 'label', '').split(' ')[1]
 				}
 			};
 			items.push(itemObj);
@@ -147,7 +149,7 @@ class CheckOut extends Component {
 
 	}
 
-	makePayment= (paymentObj) => {
+	makePayment = (paymentObj) => {
 		const { userBasicInfo, role } = this.props;
 		const { paymentTerm } = this.state;
 		console.log("paymentObj==", paymentObj);
@@ -170,7 +172,8 @@ class CheckOut extends Component {
 				pricePerUnit: item.price,
 				weight: {
 					weightPerUnit: _get(item.weight, 'label', '').split(' ') && parseFloat(_get(item.weight, 'label', '').split(' ')[0]),
-					uom: _get(item.weight, 'label', '').split(' ') && _get(item.weight, 'label', '').split(' ')[1]
+					uom: 'g'
+					// uom: _get(item.weight, 'label', '').split(' ') && _get(item.weight, 'label', '').split(' ')[1]
 				}
 			};
 			items.push(itemObj);
@@ -186,6 +189,11 @@ class CheckOut extends Component {
 				paymentMethod: "CASH",
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
+				opaqueData: paymentObj.opaqueData,
+				messages: {
+					statusCode: _get(paymentObj.messages, 'message[0].code',''),
+					encryptedCardData: paymentObj.encryptedCardData
+				},
 				billingAddress: {
 					address: billingAddress.companyAddress || billingAddress.address,
 					city: billingAddress.city,
@@ -204,12 +212,15 @@ class CheckOut extends Component {
 				}
 			}
 		}
-		this.props.dispatch(postCheckoutData(CHECKOUT_URL, orderData)).then((data) => {
+		this.setState({isPaying: true});
+		this.props.dispatch(postCheckoutData(`${APPLICATION_BFF_URL}/order/makepayment`, orderData)).then((data) => {
 			console.log("ORDER PLACED SUCCESSFULLY", data);
 			this.props.dispatch(addToCart([]));
 			this.props.history.push('/orderSuccess');
+			this.setState({isPaying: false});
 		}, (err) => {
 			console.log("Error in order place", err);
+			this.setState({isPaying: false});
 		});
 
 	}
@@ -262,7 +273,18 @@ class CheckOut extends Component {
 					collapse={toggle} toggle={this.toggle} placeOrder={this.placeOrder} cartProductList={this.props.cartProductList}
 					orderTotal={orderTotal} subTotal={subTotal} showError={showError} paymentConfig={paymentConfig} makePayment={this.makePayment} {...this.props} />
 
-
+				{this.state.isPaying && <div className="payment-loader">
+					<div>
+						<div className="pl-text">Payment Processing</div>
+						<div className="spinner">
+							<div className="rect1"></div>
+							<div className="rect2"></div>
+							<div className="rect3"></div>
+							<div className="rect4"></div>
+							<div className="rect5"></div>
+						</div>
+					</div>
+				</div>}
 			</div>
 		)
 	}
