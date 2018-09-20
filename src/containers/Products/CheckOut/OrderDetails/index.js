@@ -36,8 +36,8 @@ import paymentIinfo from './../../../../assets/images/info.png';
       <div className="cart-total-total cart-item">
         Order Total <span>$ {props.orderTotal}</span>
       </div>
-      <div>
-        <div>Payment Terms</div>
+      <div className="cart-total-subtotal cart-item payment-term">
+        <label>Payment Terms</label>
         <span>{props.paymentTerm.value}</span>
         {/* <Select
           name={'payment-term'}

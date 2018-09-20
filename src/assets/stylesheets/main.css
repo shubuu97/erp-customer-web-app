@@ -2024,13 +2024,13 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 500px;
+    height: 250px;
     font-size: 2em;
 }
 .cart-empty button {
 	margin-top: 20px;
 	font-size: 2rem !important;
-	height: 50px;
+	height: 41px;
 }
 .cart-item-button {
 	text-align: center;
@@ -2155,8 +2155,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: block;
 }
 .privacy-text {
-    font-size: 1.2rem;
-    margin-top: 20px;
+    font-size: 1.0rem;
+    margin-top: 10px;
 }
 .term-conditions {
     font-size: 0.8em;
@@ -3114,7 +3114,13 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     margin-bottom:6px;
 }
 /*************************************** MEGA MENU CSS END *****************************************/
-
+.cart-total-subtotal.cart-item.payment-term {
+    font-size: 1.4rem;
+    border-bottom: solid 1px #DDD;
+}
+.cart-total-subtotal.cart-item.payment-term label {
+    margin-bottom: 0;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
