@@ -22,7 +22,7 @@ const sideBar =  (props) => {
                     <div key={index} className="category-priceRange checkbox-custom">
                     <label>
                         <input checked={props.filteredDataSet.filterObj[`${filter.minPrice}-${filter.maxPrice}`]} type="checkbox" onChange={(e)=>props.applyPriceRangeFilter(`${filter.minPrice}-${filter.maxPrice}`, e.target.checked)}/>
-                        <span className="term-conditions">{'$'+filter.minPrice}-{'$'+filter.maxPrice}</span>
+                        <span className="term-conditions">{'$'+filter.minPrice} - {'$'+filter.maxPrice}</span>
                     </label>
                 </div>
                 )

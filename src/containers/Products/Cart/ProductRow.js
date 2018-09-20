@@ -24,7 +24,7 @@ export default (props) => {
           options={_get(props, 'detail.priceDetails', []).map((price) => ({ value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams') }))}
           onChange={(val)=> props.weightChanger(val, props.id)}
         /> */}
-        <select className="form-control product-weight-select" onChange={(e)=>props.weightChanger({label: e.target.text, value: e.target.value}, props.id)}>
+        <select className="form-control product-weight-select" value={props.weight.value}  onChange={(e)=>props.weightChanger(e.target.selectedIndex, props.detail, props.id)}>
           {_get(props, 'detail.priceDetails', []).map((price)=>(
             <option value={price.price}>{price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</option>
           ))}
