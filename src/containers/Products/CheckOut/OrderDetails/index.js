@@ -36,14 +36,16 @@ import paymentIinfo from './../../../../assets/images/info.png';
       <div className="cart-total-total cart-item">
         Order Total <span>$ {props.orderTotal}</span>
       </div>
-      <div>
-        <Select
+      <div className="cart-total-subtotal cart-item payment-term">
+        <label>Payment Terms</label>
+        <span>{props.paymentTerm.value}</span>
+        {/* <Select
           name={'payment-term'}
           placeholder='Payment Terms'
           value={props.paymentTerm}
           options={props.paymentTerms}
           onChange={props.paymentTermUpdate}
-        />
+        /> */}
       </div>
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,

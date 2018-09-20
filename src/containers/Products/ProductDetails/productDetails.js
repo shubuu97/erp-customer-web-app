@@ -43,9 +43,9 @@ const productDetails = (props) => {
                 options={_get(props, 'detail.priceDetails', []).map((price)=>({value: price.price, label: price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}))}
                 onChange={props.weightChanger}
               /> */}
-              <select className="form-control product-weight-select" onChange={(e)=>props.weightChanger({label: e.target.text, value: e.target.value})}>
+              <select className="form-control product-weight-select" onChange={(e)=>props.weightChanger(e.target.selectedIndex, props.detail)}>
               {_get(props, 'detail.priceDetails', []).map((price)=>(
-                <option value={price.price}>{price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</option>
+                <option value={price.price} label={price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}>{price.unitCount + ' ' + ((props.detail.primaryUomCode && props.detail.primaryUomCode.name) || 'Grams')}</option>
               ))}
               </select>
               {/* <span>{props.detail.unitCount}  */}
