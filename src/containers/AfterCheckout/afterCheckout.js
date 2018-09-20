@@ -18,7 +18,7 @@ class AfterCheckout extends Component {
     componentDidMount() {
         const {orderData} = this.props;
         let total=0;
-        _get(orderData, 'data.salesOrder.saleProducts', []).map((item)=>{
+        (_get(orderData, 'data.salesOrder.saleProducts') || _get(orderData, 'data.items', [])).map((item)=>{
             total = total + (item.quantity * item.price.price);
         });
         this.setState({total});
@@ -39,11 +39,11 @@ class AfterCheckout extends Component {
         <img src={thankyouCart} className="thankyoucart"/>
             <h1>{line1}</h1>
             <div className="thankyou-box">
-                <div className="d-flex justify-content-between"><label>Order Number: </label><span>{_get(this.props.orderData, 'data.salesOrder.displayId', '')}</span></div>
+                <div className="d-flex justify-content-between"><label>Order Number: </label><span>{_get(this.props.orderData, 'data.salesOrder.displayId', '') || _get(this.props.orderData, 'data.displayId', '')}</span></div>
                 <div className="d-flex justify-content-between"><label>Order Date: </label><span>{moment().format('MMM Do YY')}</span></div>
                 <div className="d-flex justify-content-between"><label>Order Total: </label><span>$ {this.state.total}</span></div>
-                <div className="d-flex justify-content-between"><label>Payment Method: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.method', '')}</span></div>
-                <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.transactionId', '')}</span></div>
+                <div className="d-flex justify-content-between"><label>Payment Method: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.method', '') || _get(this.props.orderData, 'data.paymentInfo.method', '')}</span></div>
+                <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.transactionId', '') || _get(this.props.orderData, 'data.paymentInfo.transactionId', '')}</span></div>
             </div>
             <Button onClick={this.handleSwitch} size="large" variant="contained" color='primary'>Continue Shopping</Button>
         </div>
