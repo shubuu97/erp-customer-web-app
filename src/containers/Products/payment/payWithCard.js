@@ -16,6 +16,7 @@ function new_script(src) {
   })
 };
 const response = (data) => {
+  //loader....
   axios.post('http://localhost:3000/chargeByNonce', data).then((data) => {
     console.log(data, "data is here");
   })
@@ -67,8 +68,8 @@ export default class PayWithCard extends Component {
         <button type="button"
           className="AcceptUI"
           data-billingAddressOptions='{"show":true, "required":true}'
-          data-apiLoginID="7Eu6Q6YbMx"
-          data-clientKey="8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32"
+          data-apiLoginID={this.props.detail.apiLoginKey}
+          data-clientKey={this.props.detail.clientKey}
           data-acceptUIFormBtnTxt="Submit"
           data-acceptUIFormHeaderTxt="Card Information"
           data-responseHandler="response">Pay Using Card

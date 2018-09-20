@@ -99,6 +99,21 @@ class Payment extends Component {
         <button className="AcceptUI2" onClick={() => this.showBankForm()}>Pay Using Bank</button>
         <div className="or-seperator"><img src={orIcon} /></div>
 
+        {/* LOADER CODE START */}
+        {/* <div className="payment-loader">
+          <div>
+            <div className="pl-text">Payment Processing</div>
+            <div className="spinner">
+              <div className="rect1"></div>
+              <div className="rect2"></div>
+              <div className="rect3"></div>
+              <div className="rect4"></div>
+              <div className="rect5"></div>
+            </div>
+          </div>
+        </div> */}
+        {/* LOADER CODE END */}
+
         <Dialog
           open={showBankForm}
           onClose={this.handleClose}
