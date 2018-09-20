@@ -56,10 +56,13 @@ class ProductDetailsContainer extends React.Component {
   buyProduct() {
   }
 
-  weightChanger = (val) => {
-    console.log("On weight change", val);
-    if (val && val.value) {
-      this.setState({ updatedPrice: val.value, selectedWeight: val });
+  weightChanger = (index, item) => {
+    console.log("On weight change", index);
+    debugger;
+    console.log("item", item);
+    let selectedWeight = item.priceDetails[index];
+    if (selectedWeight) {
+      this.setState({ updatedPrice: selectedWeight.price, selectedWeight: {label: selectedWeight.unitCount +' '+((item.primaryUomCode && item.primaryUomCode.name) || 'Grams'), value: selectedWeight.price} });
     }
   }
   updateQuantity = (type) => {
