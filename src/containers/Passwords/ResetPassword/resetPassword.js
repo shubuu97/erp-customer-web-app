@@ -16,6 +16,7 @@ import { postData } from './../../../action/common/post.js';
 import Snackbar from '@material-ui/core/Snackbar';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import paymentIinfo from './../../../assets/images/info.png';
 
 const styles = theme => ({
   failure: {
@@ -102,8 +103,8 @@ class ResetPassword extends Component {
             <div className="row d-flex">
             <div className="form-d col-md-5">
               <Field name={'newPassword'} type="password" label={'New Password'} placeholder={'New Password'} component={TextFieldInput} />
-              <span title="A strong password must contain a Capital a small and numeric and  length should be greater than 8 and must be less than 16">ii</span>
-
+              {/* <span title="A strong password must contain a Capital a small and numeric and  length should be greater than 8 and must be less than 16">ii</span> */}
+              <span className="p-info password-info" title="A strong password must contain a Capital a small and numeric and  length should be greater than 8 and must be less than 16"><img src={paymentIinfo} /></span>
             </div>
             </div>
             <div className="row d-flex">
