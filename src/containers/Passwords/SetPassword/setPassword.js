@@ -139,6 +139,8 @@ class SetPassword extends Component {
             {userInfoFromToken.data && userInfoFromToken.data.userInfo && <div className="verify-mail">{userInfoFromToken.data.userInfo.email}</div>}
             <div className="form-d">
               <Field name={'newPassword'} label={'New Password'} type="password" placeholder={'New Password'} component={TextFieldInput} />
+            <span title="A strong password must contain a Capital a small and numeric and  length should be greater than 8 and must be less than 16"></span>
+            
             </div>
             <div className="form-d">
               <Field name={'confirmNewPassword'} label={'Confirm New Password'} type="password" placeholder={'Confirm New Password'} component={TextFieldInput} />
