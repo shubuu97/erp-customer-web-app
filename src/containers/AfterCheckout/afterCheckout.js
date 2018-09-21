@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { line1 } from '../../components/common/AfterCheckout/afterCheckout'
+import { line1, line2 } from '../../components/common/AfterCheckout/afterCheckout'
 import logo from './../../assets/images/logo-main.png';
 import thankyouCart from './../../assets/images/thankyou-cart-icon.png';
 import Button from '@material-ui/core/Button';
@@ -12,16 +12,18 @@ class AfterCheckout extends Component {
     constructor(props){
         super();
         this.state = {
-            total:null
+            total:null,
+            paymentStatus:''
         }
     }
     componentDidMount() {
         const {orderData} = this.props;
         let total=0;
+       let paymentStatus =  _get(orderData,'data.paymentDetails.data.status','PLACE_ORDER');
         (_get(orderData, 'data.salesOrder.saleProducts') || _get(orderData, 'data.items', [])).map((item)=>{
             total = total + (item.quantity * item.price.price);
         });
-        this.setState({total});
+        this.setState({total,paymentStatus});
         document.body.classList.add('order-success-page')
     }
     componentWillUnmount(){
@@ -34,16 +36,19 @@ class AfterCheckout extends Component {
        
     }
     render() {
-        console.log("After checkout",this.props.orderData);
+       let  styleOfPaymentFailed = this.state.paymentStatus=="PAYMENT_SUCCESS"?{color:"green"}:(this.state.paymentStatus=="PAYMENT_FAILED"?{color:'red'}:null)
+        console.log("After checkout",this.state);
         return (<div className="thankyou-order">
         <img src={thankyouCart} className="thankyoucart"/>
-            <h1>{line1}</h1>
+           {this.state.paymentStatus == 'PAYMENT_SUCCESS' || this.state.paymentStatus== 'PLACE_ORDER' ? <h1>{line1}</h1> : <h1 style={{color:'red'}}>{line2}</h1>}
             <div className="thankyou-box">
                 <div className="d-flex justify-content-between"><label>Order Number: </label><span>{_get(this.props.orderData, 'data.salesOrder.displayId', '') || _get(this.props.orderData, 'data.displayId', '')}</span></div>
                 <div className="d-flex justify-content-between"><label>Order Date: </label><span>{moment().format('MMM Do YY')}</span></div>
                 <div className="d-flex justify-content-between"><label>Order Total: </label><span>$ {this.state.total}</span></div>
-                <div className="d-flex justify-content-between"><label>Payment Method: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.method', '') || _get(this.props.orderData, 'data.paymentInfo.method', '')}</span></div>
+                {/* <div className="d-flex justify-content-between"><label>Payment Method: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.method', '') || _get(this.props.orderData, 'data.paymentInfo.method', '')}</span></div> */}
                 <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.transactionId', '') || _get(this.props.orderData, 'data.paymentInfo.transactionId', '')}</span></div>
+               { this.state.paymentStatus!="PLACE_ORDER"? <div className="d-flex justify-content-between"><label>Payment Status: </label><span style={styleOfPaymentFailed} >{this.state.paymentStatus}</span></div>:null}
+
             </div>
             <Button onClick={this.handleSwitch} size="large" variant="contained" color='primary'>Continue Shopping</Button>
         </div>

@@ -105,7 +105,7 @@ class PaymentWithCheck extends Component {
 
         <div className="or-seperator"><img src={orIcon} /></div>
         <button className="AcceptUI2" onClick={() => this.showBankForm()}>Pay Using Bank</button>
-        <div className="or-seperator"><img src={orIcon} /></div>
+        {/* <div className="or-seperator"><img src={orIcon} /></div> */}
 
         {/* LOADER CODE START */}
         {/* <div className="payment-loader">
