@@ -809,6 +809,11 @@ li.logout a:hover, li.logout a:focus {
 	margin-top: 0;
 	margin-bottom: 15px;
 }
+.password-info{
+    position: absolute;
+    right: -20px;
+    top: 20px;
+}
 /*=================================== LOGIN CONTAINER CSS================================== */ 
 
 .form-check.form-check-inline {
