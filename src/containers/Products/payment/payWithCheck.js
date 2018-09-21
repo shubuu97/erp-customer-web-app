@@ -9,7 +9,6 @@ import { Field, reduxForm, FormSection } from 'redux-form';
 import orIcon from './../../../assets/images/or-icon.png';
 import _find from 'lodash/find';
 
-
 function new_script(src) {
   return new Promise(function (resolve, reject) {
     var script = document.createElement('script');
@@ -43,7 +42,8 @@ class PaymentWithCheck extends Component {
       })
   }
 
-  sendPaymentDataToAnet = (bankData) => {
+  sendPaymentDataToAnet = (values) => {
+    debugger;
     var authData = {};
     authData.clientKey = "8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32";
     authData.apiLoginID = "7Eu6Q6YbMx";
@@ -53,11 +53,12 @@ class PaymentWithCheck extends Component {
     var secureData = {};
     secureData.authData = authData;
 
-    secureData.bankData = bankData;
+    secureData.bankData = values.bankData;
 
     window.Accept.dispatchData(secureData, responseHandler);
 
     function responseHandler(response) {
+      console.log(response,"error")
       if (response.messages.resultCode === "Error") {
         var i = 0;
         while (i < response.messages.message.length) {
@@ -125,13 +126,13 @@ class PaymentWithCheck extends Component {
             <form onSubmit={handleSubmit(this.sendPaymentDataToAnet)} >
               <FormSection name="bankData">
                 <div className="form-d">
-                  <Field name="accountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput} />
+                  <Field name="bankAccountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput} />
                 </div>
                 <div className="form-d">
-                  <Field name="routingNumber" placeholder="Routing Number" label="Routing Number" component={TextFieldInput} />
+                  <Field name="bankRoutingNumber" placeholder="Routing Number" label="Routing Number" component={TextFieldInput} />
                 </div>
                 <div className="form-d">
-                  <Field name="nameOnAccount" placeholder="Name On Account" label="Name On Account" component={TextFieldInput} />
+                  <Field name="accountName" placeholder="Name On Account" label="Name On Account" component={TextFieldInput} />
                 </div>
                 <div className="form-d">
                   <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput} />
@@ -142,11 +143,12 @@ class PaymentWithCheck extends Component {
                 <Field name="dataDescriptor" type="hidden" component={TextFieldInput} />
 
               </FormSection>
-
-              <DialogActions className="m-footer">
-                <Button variant="contained" type="submit" color="primary">
+              <Button variant="contained" type="submit" color="primary">
                   Pay Now
             </Button>
+
+              <DialogActions className="m-footer">
+                
               </DialogActions>
             </form>
           </DialogContent>
@@ -156,10 +158,11 @@ class PaymentWithCheck extends Component {
   }
 }
 
-export default reduxForm({
+PaymentWithCheck =  reduxForm({
   form: 'payWithCard'
-})(PaymentWithCheck)
+})(PaymentWithCheck);
 
+export default PaymentWithCheck;
 
 
 
