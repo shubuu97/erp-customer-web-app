@@ -68,15 +68,14 @@ class PaymentWithCheck extends Component {
   }
 
   sendPaymentDataToAnet = () => {
-    debugger;
     let bankData = {};
     bankData.accountNumber = this.props.paymenyWithCheckValues.bankData.bankAccountNumber;
     bankData.routingNumber = this.props.paymenyWithCheckValues.bankData.bankRoutingNumber;
     bankData.nameOnAccount = this.props.paymenyWithCheckValues.bankData.accountName;
     bankData.accountType = this.props.paymenyWithCheckValues.bankData.accountType;
     var authData = {};
-    authData.clientKey = "8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32";
-    authData.apiLoginID = "7Eu6Q6YbMx";
+    authData.clientKey = this.props.detail.clientKey
+    authData.apiLoginID = this.props.detail.apiLoginKey;
 
     // If using banking information instead of card information,
     // build a bankData object instead of a cardData object.
