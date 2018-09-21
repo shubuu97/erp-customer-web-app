@@ -19,6 +19,11 @@ function new_script(src) {
 export default class PayWithCard extends Component {
   constructor(props) {
     super(props)
+    window.response = this.response;
+    this.state = {
+      count:0
+    }
+
   }
 
   componentDidMount() {
@@ -38,18 +43,15 @@ export default class PayWithCard extends Component {
     if (!acceptUiV1Found)
       new_script("https://jstest.authorize.net/v1/Accept.js").then((data) => {
         console.log("chal gai", data);
-        this.setState({})
       })
         .catch((err) => {
           console.log(err)
         })
-    else {
-      this.setState({});
-    }
-    window.response = this.response;
+   
   }
 
   response = (data) => {
+    this.state.count=this.state.count+1
     if (data.messages.resultCode === "Error") {
       var i = 0;
       while (i < data.messages.message.length) {
@@ -60,15 +62,15 @@ export default class PayWithCard extends Component {
         i = i + 1;
       }
     } else {
+      if(this.state.count%2==0)
       this.props.onPay(data);
     }
   }
+  
 
   render() {
     return (
-      <form id="paymentForm"
-        method="POST"
-        action="https://YourServer/PathToExistingPaymentProcessingScript">
+      <form>
         <input type="hidden" name="dataValue" id="dataValue" />
         <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
         {this.props.payNow ? <div className="or-seperator"><img src={orIcon} /></div> : null}
