@@ -8,6 +8,7 @@ import { TextFieldInput } from '../../../components/common/MaterialUiComponents'
 import { Field, reduxForm, FormSection } from 'redux-form';
 import orIcon from './../../../assets/images/or-icon.png';
 import _find from 'lodash/find';
+import asyncValidate from './validate.js';
 
 function new_script(src) {
   return new Promise(function (resolve, reject) {
@@ -42,13 +43,37 @@ class PaymentWithCheck extends Component {
       })
   }
 
-  sendPaymentDataToAnet = (values) => {
+   responseHandler=(response)=> {
+    console.log(response,"error")
+    if (response.messages.resultCode === "Error") {
+      var i = 0;
+      while (i < response.messages.message.length) {
+        console.log(
+          response.messages.message[i].code + ": " +
+          response.messages.message[i].text
+        );
+        i = i + 1;
+      }
+    } else {
+      console.log("Success data", response);
+      this.props.onPay(response);
+      // paymentFormUpdate(response.opaqueData);
+      // axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
+      //   console.log(data, "data is here");
+      // })
+      //   .catch((err) => {
+      //     console.log(err, "error is here")
+      //   })
+    }
+  }
+
+  sendPaymentDataToAnet = () => {
     debugger;
     let bankData = {};
-    bankData.accountNumber = values.bankData.bankAccountNumber;
-    bankData.routingNumber = values.bankData.bankRoutingNumber;
-    bankData.nameOnAccount = values.bankData.accountName;
-    bankData.accountType = values.bankData.accountType;
+    bankData.accountNumber = this.props.paymenyWithCheckValues.bankData.bankAccountNumber;
+    bankData.routingNumber = this.props.paymenyWithCheckValues.bankData.bankRoutingNumber;
+    bankData.nameOnAccount = this.props.paymenyWithCheckValues.bankData.accountName;
+    bankData.accountType = this.props.paymenyWithCheckValues.bankData.accountType;
     var authData = {};
     authData.clientKey = "8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32";
     authData.apiLoginID = "7Eu6Q6YbMx";
@@ -60,31 +85,9 @@ class PaymentWithCheck extends Component {
 
     secureData.bankData = bankData;
 
-    window.Accept.dispatchData(secureData, responseHandler);
+    window.Accept.dispatchData(secureData, this.responseHandler);
 
-    function responseHandler(response) {
-      console.log(response,"error")
-      if (response.messages.resultCode === "Error") {
-        var i = 0;
-        while (i < response.messages.message.length) {
-          console.log(
-            response.messages.message[i].code + ": " +
-            response.messages.message[i].text
-          );
-          i = i + 1;
-        }
-      } else {
-        console.log("Success data", response);
-        this.props.onPay(response);
-        // paymentFormUpdate(response.opaqueData);
-        // axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
-        //   console.log(data, "data is here");
-        // })
-        //   .catch((err) => {
-        //     console.log(err, "error is here")
-        //   })
-      }
-    }
+  
   }
   showBankForm() {
     this.setState({ showBankForm: !this.state.showBankForm });
@@ -128,7 +131,7 @@ class PaymentWithCheck extends Component {
         >
           <DialogContent>
             <h2 className="modal-title">Pay Using Bank <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
-            <form onSubmit={handleSubmit(this.sendPaymentDataToAnet)} >
+            <form  >
               <FormSection name="bankData">
                 <div className="form-d">
                   <Field name="bankAccountNumber" placeholder="Account Number" label="Account Number" component={TextFieldInput} />
@@ -148,7 +151,7 @@ class PaymentWithCheck extends Component {
                 <Field name="dataDescriptor" type="hidden" component={TextFieldInput} />
 
               </FormSection>
-              <Button variant="contained" type="submit" color="primary">
+              <Button variant="contained"  onClick={this.sendPaymentDataToAnet} color="primary">
                   Pay Now
             </Button>
 
@@ -164,7 +167,8 @@ class PaymentWithCheck extends Component {
 }
 
 PaymentWithCheck =  reduxForm({
-  form: 'payWithCard'
+  form: 'payWithCard',
+  asyncValidate
 })(PaymentWithCheck);
 
 export default PaymentWithCheck;
