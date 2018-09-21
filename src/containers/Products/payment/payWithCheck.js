@@ -44,6 +44,11 @@ class PaymentWithCheck extends Component {
 
   sendPaymentDataToAnet = (values) => {
     debugger;
+    let bankData = {};
+    bankData.accountNumber = values.bankData.bankAccountNumber;
+    bankData.routingNumber = values.bankData.bankRoutingNumber;
+    bankData.nameOnAccount = values.bankData.accountName;
+    bankData.accountType = values.bankData.accountType;
     var authData = {};
     authData.clientKey = "8ZMyKqM535uy2Hp3gH3gweJHUSB5Sc9sV6d4v88Sq5nhzx8T2NhSe7DPztp5qq32";
     authData.apiLoginID = "7Eu6Q6YbMx";
@@ -53,7 +58,7 @@ class PaymentWithCheck extends Component {
     var secureData = {};
     secureData.authData = authData;
 
-    secureData.bankData = values.bankData;
+    secureData.bankData = bankData;
 
     window.Accept.dispatchData(secureData, responseHandler);
 
