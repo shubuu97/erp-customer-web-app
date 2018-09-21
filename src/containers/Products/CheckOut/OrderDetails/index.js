@@ -85,7 +85,7 @@ import paymentIinfo from './../../../../assets/images/info.png';
      {!props.payNow? <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>:null}
-      {props.payNow?<Payment bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
+      {props.payNow?<Payment paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
     </div>
   )
 }

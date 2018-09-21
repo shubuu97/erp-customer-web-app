@@ -87,7 +87,7 @@ if(orderKey=='z-a')
 }
 if(orderKey=="numerical")
 {
-  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.price], ['asc']);
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.basePrice.price], ['asc']);
 }
 
   return {
