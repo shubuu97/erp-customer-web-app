@@ -249,7 +249,7 @@ class CheckOut extends Component {
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
 		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms } = this.state;
-		const { companyinfo, userInfo, paymentMethods,bankingData } = this.props;
+		const { companyinfo, userInfo,paymenyWithCheckValues, paymentMethods,bankingData } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
 			<div className="checkout-container container">
@@ -266,6 +266,7 @@ class CheckOut extends Component {
 				</div>
 				<OrderDetails
 					handlePay={this.handlePay}
+					paymenyWithCheckValues={paymenyWithCheckValues}
 					bankingData={bankingData}
 					paymentMethods={paymentMethods}
 					payNow={this.state.payNow}
@@ -299,7 +300,8 @@ const mapStateToPtops = (state) => {
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
 	let role = state.basicInfodata && state.basicInfodata.role;
 	let isLoading = state.orderData.isFetching;
+	let paymenyWithCheckValues = _get(state,'form.payWithCard.values')
 	let urlLinks = _get(state, 'urlLinks.formSearchData._links', {})
-	return { bankingData,cartProductList, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods };
+	return { bankingData,cartProductList,paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods };
 }
 export default connect(mapStateToPtops)(CheckOut);
