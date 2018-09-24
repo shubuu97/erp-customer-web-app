@@ -53,20 +53,23 @@ export default class PayWithCard extends Component {
 
   render() {
     return (
-      <form>
-        <input type="hidden" name="dataValue" id="dataValue" />
-        <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
-        {this.props.payNow ? <div className="or-seperator"><img src={orIcon} /></div> : null}
-        <button type="button"
-          className="AcceptUI"
-          data-billingAddressOptions='{"show":true, "required":true}'
-          data-apiLoginID={this.props.detail.apiLoginKey}
-          data-clientKey={this.props.detail.clientKey}
-          data-acceptUIFormBtnTxt="Submit"
-          data-acceptUIFormHeaderTxt="Card Information"
-          data-responseHandler="response">Pay Using Card
-</button>
-      </form>
+      <div onClick={(e) => { e.preventDefault(); console.log("Defauklt") }}>
+        <form>
+          <input type="hidden" name="dataValue" id="dataValue" />
+          <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+          {this.props.payNow ? <div className="or-seperator"><img src={orIcon} /></div> : null}
+
+          <button type="button"
+            className="AcceptUI"
+            data-billingAddressOptions='{"show":true, "required":true}'
+            data-apiLoginID={this.props.detail.apiLoginKey}
+            data-clientKey={this.props.detail.clientKey}
+            data-acceptUIFormBtnTxt="Submit"
+            data-acceptUIFormHeaderTxt="Card Information"
+            data-responseHandler="response">Pay Using Card
+        </button>
+        </form>
+      </div>
     )
   }
 

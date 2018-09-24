@@ -3088,6 +3088,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .app-navbar li.drop-menu:hover .drop-categories{
     display: flex;
+    flex-wrap: wrap;
 }
 .col {
 	padding: 0 15px;
