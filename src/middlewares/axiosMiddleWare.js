@@ -83,7 +83,7 @@ requestObject.headers={...headers,Authorization: `${authToken}`,'Content-Type':'
       .catch((error)=>
       {
         if (error.response) {
-          
+
      return  dispatch(failureHandler(subreddit, error.response.data, error.response.code, reject,constants))
         
         } else if (error.request) {

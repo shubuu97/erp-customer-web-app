@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import _get from 'lodash/get';
 import Select from 'react-select';
+import ReactImageMagnify from 'react-image-magnify';
 const productDetails = (props) => {
   return (
     <div className="productDetails-container container">
@@ -15,7 +16,19 @@ const productDetails = (props) => {
       <div className="detailsContent">
         <div className="imageContent">
           <div className="mainImage">
-            <img className="img-responsive" src={props.mainImageUrl.url} alt={props.detail.itemName} />
+          <ReactImageMagnify enlargedImagePosition='over'  {...{
+                smallImage: {
+                    alt: props.detail.itemName,
+                    isFluidWidth: true,
+                    src: props.mainImageUrl.url
+                },
+                largeImage: {
+                    src: props.mainImageUrl.url,
+                    width: 1200,
+                    height: 1800
+                }
+            }} />
+            {/* <img className="img-responsive" src={props.mainImageUrl.url} alt={props.detail.itemName} /> */}
           </div>
           <div className="subImages">
             {props.detail.images && props.detail.images.map((image, key) => (

@@ -12,26 +12,36 @@ export default class extends Component {
           <span className="user-name"><span className="hey">Hey,</span> {this.props.userInfo.firstName || 'Guest'}</span>
         </div>
         <ul>
-          {/* <li className="drop-menu">Browse Categories &nbsp; <i className="fa fa-angle-down"></i>
+          <li className="drop-menu">Browse Categories &nbsp; <i className="fa fa-angle-down"></i>
             <div className="drop-categories">
-              <div className="col category-flex-column">
-                <ul className="drop-category-box">
+              {this.props.categories && this.props.categories.map((category) => (
+                <div className="col category-flex-column">
+                  <ul className="drop-category-box" onClick={() => this.props.handleClick(category)}>
+                    <li className="category">{category.displayName} &nbsp; <i className="fa fa-caret-right"></i></li>
+                    {category.itemTypes && category.itemTypes.map((itemType) => (
+                      <li>{itemType.type}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              {/* <ul className="drop-category-box">
                   <li className="category">Cannabis &nbsp; <i className="fa fa-caret-right"></i></li>
                   <li>Cones</li>
                   <li>Pre Roll</li>
                   <li>Seed</li>
                   <li>Shake</li>
-                </ul>
-                <ul className="drop-category-box">
+                </ul> */}
+              {/* <ul className="drop-category-box">
                   <li className="category">Topicals &nbsp; <i className="fa fa-caret-right"></i></li>
                   <li>Balms</li>
                   <li>Lotionn</li>
                   <li>Lubricants & Oils</li>
                   <li>Sprays</li>
                   <li>Transdermal Patches</li>
-                </ul>
-              </div>
-              <div className="col category-flex-column">
+                </ul> */}
+
+              {/* <div className="col category-flex-column">
                 <ul className="drop-category-box">
                   <li className="category">Concentrates &nbsp; <i className="fa fa-caret-right"></i></li>
                   <li>Cartridges</li>
@@ -79,9 +89,9 @@ export default class extends Component {
                   <li>Solventless</li>
                   <li>Tarpenes</li>
                 </ul>
-              </div>
+              </div> */}
             </div>
-          </li> */}
+          </li>
           {this.props.categories && this.props.categories.map((category) => (
             <li className={category.id == this.props.selectedCategory.id ? 'active' : ''} onClick={() => this.props.handleClick(category)}>{category.displayName}</li>
           ))}

@@ -117,13 +117,13 @@ this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`
                         <Field name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
                     </div>
                     <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
-                        <Field name='invoiceCurrencyCode' label='Invoice Currency *' placeholder='Currency Code' options={this.props.currencyCodes} component={ReactSelectWrapper} />
+                        <Field name='invoiceCurrencyCode' label='Invoice Currency Code *' placeholder='Invoice Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name='nameOnCheque' label='Print Name On Check As *' component={TextFieldInput} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input">
-                        <Field name='currencyCode' label='CurrencyCode *' component={TextFieldInput} />
+                        <Field name='currencyCode' label='Currency Code *' component={TextFieldInput} />
                     </div>   
                     <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                         <Field name='preferredPaymentMethods' placeholder='Preferred Payment Method *' options={this.props.paymentMethods} component={ReactSelectWrapper} />

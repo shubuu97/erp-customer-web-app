@@ -5,8 +5,9 @@ import Select from 'react-select';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Payment from '../../payment';
 import paymentIinfo from './../../../../assets/images/info.png';
+import _get from 'lodash/get'
 
- const orderDetails = (props) => {
+const orderDetails = (props) => {
   return (
     <div className="cart-total-container col-md-3">
       <div className="cart-total-title">
@@ -62,30 +63,31 @@ import paymentIinfo from './../../../../assets/images/info.png';
         <p>* {props.showError}</p>
       </div>}
       <div className="d-flex">
-      
+
         <div className="pay-now checkbox-custom">
           <label>
-            <input type="checkbox" onChange={()=>props.handlePay()} />
+            <input type="checkbox" checked={props.payNow} onChange={() => props.handlePay()} />
             <span className="">Pay Now</span>
           </label>
         </div>
-      
+
         <span className="p-info"><img src={paymentIinfo} /></span>
       </div>
       <div className="p-method">
-       { props.payNow? <Select
+        {props.payNow ? <Select
           name={'payment-Method'}
           placeholder='Payment Method'
           value={props.paymentMethod}
           options={props.paymentMethods}
           onChange={props.paymentMethodUpdate}
-        />:null
-       }
+        /> : null
+        }
       </div>
-     {!props.payNow? <div className="col-sm-12 cart-item-button">
+   
+     {!props.payNow ||_get(props,'paymentMethod.value','')=="Cash"? <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>:null}
-      {props.payNow?<Payment paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
+      {props.payNow&&_get(props,'paymentMethod.value','')!="Cash"?<Payment paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
     </div>
   )
 }

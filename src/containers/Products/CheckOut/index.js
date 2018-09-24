@@ -4,6 +4,7 @@ import OrderDetails from './OrderDetails';
 import { connect } from 'react-redux';
 import { postCheckoutData } from '../action/checkout';
 import { CHECKOUT_URL } from '../constants/checkout';
+import { showMessage } from '../../../action/common';
 import { fetchLicenseDetailsData } from '../../../action/getLicenseInfo';
 import { fetchBankingDetailsData } from '../../../action/getBankingDetails';
 import { postData } from '../../../action/common/post';
@@ -27,7 +28,8 @@ class CheckOut extends Component {
 			termCondition: false,
 			showError: false,
 			payNow: false,
-			paymentMethod: '',
+			paymentMethod: {value:props.preferedPaymentMethod,
+			label:props.preferedPaymentMethod},
 			paymentTerms: [{ label: 'Current', value: 'current' }],
 			paymentConfig: []
 		};
@@ -145,6 +147,10 @@ class CheckOut extends Component {
 			this.props.history.push('/orderSuccess');
 		}, (err) => {
 			console.log("Error in order place", err);
+			this.props.dispatch(showMessage({ text: err.message || 'Something went wrong with payment', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
 		});
 
 	}
@@ -191,7 +197,7 @@ class CheckOut extends Component {
 				isShippingSameAsBilling: false,
 				opaqueData: paymentObj.opaqueData,
 				messages: {
-					statusCode: _get(paymentObj.messages, 'message[0].code',''),
+					statusCode: _get(paymentObj.messages, 'message[0].code', ''),
 					encryptedCardData: paymentObj.encryptedCardData
 				},
 				billingAddress: {
@@ -212,15 +218,19 @@ class CheckOut extends Component {
 				}
 			}
 		}
-		this.setState({isPaying: true});
+		this.setState({ isPaying: true });
 		this.props.dispatch(postCheckoutData(`${APPLICATION_BFF_URL}/order/makepayment`, orderData)).then((data) => {
 			console.log("ORDER PLACED SUCCESSFULLY", data);
 			this.props.dispatch(addToCart([]));
 			this.props.history.push('/orderSuccess');
-			this.setState({isPaying: false});
+			this.setState({ isPaying: false });
 		}, (err) => {
 			console.log("Error in order place", err);
-			this.setState({isPaying: false});
+			this.props.dispatch(showMessage({ text: err.message || 'Something went wrong with payment', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
+			this.setState({ isPaying: false });
 		});
 
 	}
@@ -240,16 +250,21 @@ class CheckOut extends Component {
 		this.setState({ termCondition: !this.state.termCondition, showError: '' })
 	}
 	handlePay = () => {
-
-		this.setState({ payNow: !this.state.payNow })
+		if (!this.state.termCondition) {
+			this.setState({ showError: 'Please accept terms and conditions.', payNow: false });
+			return;
+		} else {
+			this.setState({ payNow: !this.state.payNow })
+		}
 	}
 	paymentMethodUpdate = (val) => {
 		this.setState({ paymentMethod: val })
 	}
+	
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
-		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms } = this.state;
-		const { companyinfo, userInfo,paymenyWithCheckValues, paymentMethods,bankingData } = this.props;
+		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms,paymentMethod } = this.state;
+		const { companyinfo, userInfo,paymenyWithCheckValues, paymentMethods,bankingData,preferedPaymentMethod } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
 			<div className="checkout-container container">
@@ -268,7 +283,9 @@ class CheckOut extends Component {
 					handlePay={this.handlePay}
 					paymenyWithCheckValues={paymenyWithCheckValues}
 					bankingData={bankingData}
+					paymentMethod={paymentMethod}
 					paymentMethods={paymentMethods}
+					paymentMethodUpdate={this.paymentMethodUpdate}
 					payNow={this.state.payNow}
 					termCondition={termCondition} selectTermCondition={this.selectTermCondition}
 					paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate}
@@ -294,14 +311,15 @@ class CheckOut extends Component {
 const mapStateToPtops = (state) => {
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo = state.licenseDetailsData.lookUpData.data;
+	let preferedPaymentMethod = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.preferredPaymentMethods','')
 	let bankingData = _get(state,'bankDetailsData.lookUpData.data')
 	let paymentMethods = _get(state, 'bankDetailsData.lookUpData.data.paymentMethods.data', [])
 	let userBasicInfo = state.basicInfodata;
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
 	let role = state.basicInfodata && state.basicInfodata.role;
 	let isLoading = state.orderData.isFetching;
-	let paymenyWithCheckValues = _get(state,'form.payWithCard.values')
+	let paymenyWithCheckValues = _get(state, 'form.payWithCard.values')
 	let urlLinks = _get(state, 'urlLinks.formSearchData._links', {})
-	return { bankingData,cartProductList,paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods };
+	return { bankingData,cartProductList,paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods,preferedPaymentMethod };
 }
 export default connect(mapStateToPtops)(CheckOut);
