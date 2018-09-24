@@ -23,7 +23,7 @@ export default class TrackOrders extends React.Component {
     }
     return (
       <div>
-        <Button color="primary" variant="contained" onClick={()=>this.props.history.push('/orders')}>Back</Button>
+        <a className="back-history" onClick={()=>this.props.history.push('/orders')}><i class="fa fa-reply"></i> Back to History</a>
         <h2 className="cart-heading">Track Order</h2>
         <div>
           <TrackOrder orderDetails={orderDetails}/>

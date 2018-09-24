@@ -63,11 +63,22 @@ export default class Order extends React.Component {
               </div>
             </div> */}
             {this.props.status == 'INCOMING' ? <Button color='secondary' variant='contained' onClick={()=>this.props.onCancelOrder(this.props.order)}>Cancel Order</Button>: null}
-            {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;Track</Button> : null}
+            {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;History Details</Button> : null}
           </div>
         </div>
         <div className="order-card-content">
-          {itemLists}
+          <div className="order-box">
+            <div className="order-left">
+              {itemLists}
+            </div>
+            <div className="order-right">
+              <div>
+                <div className="package-id">Package Id : <label>#ABC123456</label></div>
+                <div className="track-order-desc"><p>You can track your order from <a href="#" target="_blank">Fedex</a> website with your tracking number.</p></div>
+                <div className="tracking-number">Tracking Number <label>#ABC123456ACDD</label></div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

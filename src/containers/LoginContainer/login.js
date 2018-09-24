@@ -26,6 +26,8 @@ import { fetchProfileFormData } from '../../action/profileFormData';
 import { Link } from 'react-router-dom';
 import { setSelectedCategoryType, applyFilter } from '../../containers/Products/action/product';
 import { get } from 'lodash';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const styles = theme => ({
   button: {
@@ -137,7 +139,7 @@ class Login extends Component {
           <form onSubmit={handleSubmit(this.loginSubmitHandler)}>
             <LoginView />
             <div className="btn-parent-full">
-              <Button className={classes.buttonLogin} type='submit' variant="contained" color='primary'>Sign In</Button>
+              <Button className={classes.buttonLogin} type='submit' variant="contained" color='primary' disabled={this.props.isFetching}>{this.props.isFetching?<CircularProgress size={24}/>:'Sign In'}</Button>
             </div>
           </form>
           <div className="login-btn">
@@ -179,14 +181,16 @@ Login = reduxForm(
 
 function mapStateToProps(state) {
 
-  let isLoading = state.loginReducer.isFetching
+  let isFetchingLogin = state.loginReducer.isFetching
   let loginData = state.loginReducer;
   let lookUpData = state.loginReducer.lookUpData;
+  let isFetchingCustomerStatus = get(state,'basicInfodata.isFetching','');
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus
   let role = state.basicInfodata && state.basicInfodata.role;
   let id = state.basicInfodata && state.basicInfodata.id;
+  let isFetching = isFetchingLogin||isFetchingCustomerStatus
 
-  return { isLoading, loginData, lookUpData, customerStatus, role, id }
+  return { isFetching,loginData, lookUpData, customerStatus, role, id }
 }
 
 export default connect(mapStateToProps)(withTheme()(withStyles(styles)(routeDeciderHoc(Login))))
