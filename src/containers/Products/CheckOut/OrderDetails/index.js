@@ -7,7 +7,7 @@ import Payment from '../../payment';
 import paymentIinfo from './../../../../assets/images/info.png';
 import _get from 'lodash/get'
 
- const orderDetails = (props) => {
+const orderDetails = (props) => {
   return (
     <div className="cart-total-container col-md-3">
       <div className="cart-total-title">
@@ -63,25 +63,25 @@ import _get from 'lodash/get'
         <p>* {props.showError}</p>
       </div>}
       <div className="d-flex">
-      
+
         <div className="pay-now checkbox-custom">
           <label>
-            <input type="checkbox" onChange={()=>props.handlePay()} />
+            <input type="checkbox" checked={props.payNow} onChange={() => props.handlePay()} />
             <span className="">Pay Now</span>
           </label>
         </div>
-      
+
         <span className="p-info"><img src={paymentIinfo} /></span>
       </div>
       <div className="p-method">
-       { props.payNow? <Select
+        {props.payNow ? <Select
           name={'payment-Method'}
           placeholder='Payment Method'
           value={props.paymentMethod}
           options={props.paymentMethods}
           onChange={props.paymentMethodUpdate}
-        />:null
-       }
+        /> : null
+        }
       </div>
    
      {!props.payNow ||_get(props,'paymentMethod.value','')=="Cash"? <div className="col-sm-12 cart-item-button">
