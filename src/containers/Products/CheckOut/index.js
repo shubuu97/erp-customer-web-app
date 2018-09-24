@@ -248,7 +248,7 @@ class CheckOut extends Component {
 	}
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
-		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms } = this.state;
+		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms,paymentMethod } = this.state;
 		const { companyinfo, userInfo,paymenyWithCheckValues, paymentMethods,bankingData } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
@@ -268,7 +268,9 @@ class CheckOut extends Component {
 					handlePay={this.handlePay}
 					paymenyWithCheckValues={paymenyWithCheckValues}
 					bankingData={bankingData}
+					paymentMethod={paymentMethod}
 					paymentMethods={paymentMethods}
+					paymentMethodUpdate={this.paymentMethodUpdate}
 					payNow={this.state.payNow}
 					termCondition={termCondition} selectTermCondition={this.selectTermCondition}
 					paymentTerm={paymentTerm} paymentTermUpdate={this.paymentTermUpdate}
