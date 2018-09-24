@@ -97,7 +97,7 @@ class ResetPassword extends Component {
         <form onSubmit={handleSubmit(this.handleSubmit)}>
           <div className="row d-flex">
             <div className="form-d col-md-5">
-              <Field name={'password'} type="password" label={'Password'} placeholder={'Password'} component={TextFieldInput} />
+              <Field name={'password'} type="password" label={'Current Password'} placeholder={'Password'} component={TextFieldInput} />
             </div>
             </div>
             <div className="row d-flex">
