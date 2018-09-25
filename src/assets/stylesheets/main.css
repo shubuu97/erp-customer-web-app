@@ -2354,6 +2354,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: flex;
 	margin-left: auto;
 }
+.mini-cartAction span {
+    margin-top:auto;
+}
 .mini-cartAction img {
 	width: 20px;
 	height: 20px;
@@ -3166,6 +3169,13 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .rect3 { -webkit-animation-delay: -1.0s; animation-delay: -1.0s;}
 .rect4 { -webkit-animation-delay: -0.9s; animation-delay: -0.9s;}
 .rect5 { -webkit-animation-delay: -0.8s;  animation-delay: -0.8s; }
+.tb-auto{
+    margin: auto;
+}
+.cart-remove{
+    align-items: center;
+    display: flex;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {

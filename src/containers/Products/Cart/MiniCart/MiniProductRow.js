@@ -19,9 +19,9 @@ export default (props) => {
         <div className="mini-qty">
           <span>Qty</span>
           <div className="row-quantity mc-qty">
-            <button onClick={() => props.updateQuantity(props.id, 'sub')}>-</button>
+            <button title="Decrease" onClick={() => props.updateQuantity(props.id, 'sub')}>-</button>
             <div className="row-quantity-item">{props.quantity}</div>
-            <button onClick={() => props.updateQuantity(props.id, 'add')}>+</button>
+            <button title="Increase" onClick={() => props.updateQuantity(props.id, 'add')}>+</button>
           </div>
           {/* <input type="textbox"
             value={props.quantity}
@@ -31,7 +31,7 @@ export default (props) => {
       </div>
       <div className="mini-cartAction">
         {/* <img src={cartedit} /> */}
-        <img src={trash} onClick={() => props.remove(props.id)} />
+        <span title="Delete"><img src={trash} onClick={() => props.remove(props.id)} /></span>
       </div>
     </div>
   )

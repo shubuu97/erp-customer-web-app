@@ -35,16 +35,16 @@ export default (props) => {
       </div>
       <div className="row-quantity" data-title="Quantity">
         <div className="d-flex">
-          <button onClick={() => props.updateQuantity(props.id, 'sub')}>-</button>
+          <button title="Decrease" onClick={() => props.updateQuantity(props.id, 'sub')}>-</button>
           <div className="row-quantity-item">{props.quantity}</div>
-          <button onClick={() => props.updateQuantity(props.id, 'add')}>+</button>
+          <button title="Increase" onClick={() => props.updateQuantity(props.id, 'add')}>+</button>
         </div>
       </div>
       <div className="row-total" data-title="Sub Total">
-        <div className="d-flex">
+        <div className="d-flex justify-content-between">
           <h4>{props.total || props.price || '0'}</h4>
           {/* <img src={cartedit} onClick={()=>{}}/> */}
-          <img src={trash} onClick={() => props.remove(props.id)} />
+         <span className="cart-remove" title="Delete"> <img src={trash} onClick={() => props.remove(props.id)} /> </span>
         </div>
       </div>
 
