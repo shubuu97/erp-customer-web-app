@@ -148,7 +148,7 @@ class ProductsContainer extends React.Component {
                 <select value={this.state.sortingKey} className="form-control" onChange={this.handleSorting}>
                   <option value="a-z">Alphabetically, A-Z</option>
                   <option value="z-a">Alphabetically, Z-A</option>
-                  <option value="numerical">Numerical</option>
+                  <option value="numerical">By Price</option>
                 </select>
               </div>
             </div>
