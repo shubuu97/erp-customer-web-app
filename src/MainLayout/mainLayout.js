@@ -56,8 +56,8 @@ class MainLayout extends Component {
       if (get(data, 'data.itemCategories[0]', null)) {
         this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: get(data, 'data.itemCategories[0].categoryId', null).toString() })).then((typeData) => {
           console.log("In Main Layout Component did mount", typeData);
-          this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
-          this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
+         // this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
+          //this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
         }, (err) => {
           console.log(err);
         });
@@ -91,8 +91,8 @@ class MainLayout extends Component {
     this.props.dispatch(selectedCategory(category));
     this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: category.categoryId.toString() })).then((data) => {
       console.log("Product Data", data);
-      this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
-      this.props.dispatch(applyFilter(get(data, 'data.itemTypes[0].products', []), priceFilterObject));
+      //this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
+      //this.props.dispatch(applyFilter(get(data, 'data.itemTypes[0].products', []), priceFilterObject));
     }, (err) => {
       console.log(err);
     });
@@ -167,6 +167,7 @@ class MainLayout extends Component {
               </div>
               {isMenuOpen && <div className="backdrop visible-xs" onClick={this.toggleMenu}></div>}
               <NavBar selectedCategory={selectedCategory}
+                dispatch={this.props.dispatch}
                 userInfo={userInfo} isMenuOpen={isMenuOpen}
                 handleClick={this.goToProductList}
                 categories={categories.itemCategories}
