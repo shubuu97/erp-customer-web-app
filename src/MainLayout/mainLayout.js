@@ -20,9 +20,10 @@ import { fetchCategoryTypeAndItems } from '../action/categoryTypeAndItems';
 import { selectedCategory } from '../action/category';
 import { APPLICATION_BFF_URL } from '../constants/urlConstants';
 import { setSelectedCategoryType, applyFilter } from '../containers/Products/action/product';
-import { get } from 'lodash';
+import { get,findIndex } from 'lodash';
 import { showMessage } from '../action/common';
 
+ 
 const styles = theme => ({
   failure: {
     background: 'red',
@@ -56,6 +57,7 @@ class MainLayout extends Component {
       if (get(data, 'data.itemCategories[0]', null)) {
         this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: get(data, 'data.itemCategories[0].categoryId', null).toString() })).then((typeData) => {
           console.log("In Main Layout Component did mount", typeData);
+
          // this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
           //this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
         }, (err) => {
@@ -87,12 +89,15 @@ class MainLayout extends Component {
     this.handleMenuClose();
     this.setState({ isMenuOpen: false });
   }
+  
   goToProductList = (category) => {
     this.props.dispatch(selectedCategory(category));
     this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: category.categoryId.toString() })).then((data) => {
       console.log("Product Data", data);
+     let indexOfItem = findIndex( get(data,'data.itemTypes',[]),{'id':get(this.props,'selectedCategoryType.id','')})||0
       //this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
-      //this.props.dispatch(applyFilter(get(data, 'data.itemTypes[0].products', []), priceFilterObject));
+      debugger;
+      this.props.dispatch(applyFilter(get(data, `data.itemTypes[${indexOfItem}].products`, []), priceFilterObject));
     }, (err) => {
       console.log(err);
     });
@@ -236,7 +241,9 @@ const mapStateToProps = state => {
   let role = state.basicInfodata && state.basicInfodata.role;
   let categories = state.categoryData && state.categoryData.categories;
   let selectedCategory = state.categoryData && state.categoryData.selectedCategory;
-  return { message, isLoading, customerStatus, role, userInfo, cartData, categories, selectedCategory }
+  let selectedCategoryType = (state.productData && state.productData.selectedCategoryType) || {};
+
+  return { message, isLoading, customerStatus, role, userInfo, cartData, categories, selectedCategory ,selectedCategoryType}
 }
 
 export default connect(mapStateToProps)((withStyles(styles)(MainLayout)))
