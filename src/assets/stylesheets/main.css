@@ -3166,7 +3166,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	color: #FFF;
 	text-decoration: none;
 }
-<<<<<<< HEAD
 .rect2 { -webkit-animation-delay: -1.1s;animation-delay: -1.1s;}
 .rect3 { -webkit-animation-delay: -1.0s; animation-delay: -1.0s;}
 .rect4 { -webkit-animation-delay: -0.9s; animation-delay: -0.9s;}
@@ -3178,8 +3177,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     align-items: center;
     display: flex;
 }
-=======
->>>>>>> eff4b6d69a19a11c4863fa3adf3b8a58f7832849
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
