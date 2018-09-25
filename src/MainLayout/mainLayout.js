@@ -94,9 +94,10 @@ class MainLayout extends Component {
     this.props.dispatch(selectedCategory(category));
     this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: category.categoryId.toString() })).then((data) => {
       console.log("Product Data", data);
+     let indexOfItem = findIndex( get(data,'data.itemTypes',[]),{'id':get(this.props,'selectedCategoryType.id','')})||0
       //this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
-      
-      this.props.dispatch(applyFilter(get(data, 'data.itemTypes[0].products', []), priceFilterObject));
+      debugger;
+      this.props.dispatch(applyFilter(get(data, `data.itemTypes[${indexOfItem}].products`, []), priceFilterObject));
     }, (err) => {
       console.log(err);
     });
