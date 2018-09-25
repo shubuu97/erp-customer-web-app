@@ -96,8 +96,7 @@ class MainLayout extends Component {
       console.log("Product Data", data);
      let indexOfItem = findIndex( get(data,'data.itemTypes',[]),{'id':get(this.props,'selectedCategoryType.id','')})||0
       //this.props.dispatch(setSelectedCategoryType(get(data, 'data.itemTypes[0]', null)));
-      debugger;
-      this.props.dispatch(applyFilter(get(data, `data.itemTypes[${indexOfItem}].products`, []), priceFilterObject));
+      this.props.dispatch(applyFilter(get(data, `data.itemTypes[${indexOfItem}].products`, []), {}));
     }, (err) => {
       console.log(err);
     });
