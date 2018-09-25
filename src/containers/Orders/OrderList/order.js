@@ -62,8 +62,9 @@ export default class Order extends React.Component {
                 <span>Sun, Apr 8<sup>th</sup> 2018</span>
               </div>
             </div> */}
+            {this.props.status == 'CANCELLED' ? null: null}
             {this.props.status == 'INCOMING' ? <Button color='secondary' variant='contained' onClick={()=>this.props.onCancelOrder(this.props.order)}>Cancel Order</Button>: null}
-            {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;History Details</Button> : null}
+            {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED' && this.props.status != 'CANCELLED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;History Details</Button> : null}
           </div>
         </div>
         <div className="order-card-content">
