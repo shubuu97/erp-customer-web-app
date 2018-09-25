@@ -45,8 +45,8 @@ class ProductDetailsContainer extends React.Component {
       dispatch(addToCart(cartList));
     }
     else {
-      let index = findIndex(cartList, { itemId: productInfo.itemId });
-      cartList[index].quantity = cartList[index].quantity + productInfo.quantity;
+      // let index = findIndex(cartList, { itemId: productInfo.itemId });
+      // cartList[index].quantity = cartList[index].quantity + productInfo.quantity;
     }
     this.props.dispatch(showMessage({ text: "Product successfully added to cart", isSuccess: true }));
     setTimeout(() => {
