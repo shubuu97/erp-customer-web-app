@@ -18,7 +18,7 @@ export default (props) => {
               {/* <span className="quick-view" title="View Details"></span> */}
             </div>
             <div className="pc-2">
-             <span title="Product Detail"> <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)} /></span>
+             <span data-toggle="tooltip" data-placement="bottom" title="Hooray!"> <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)} /></span>
             </div>
           </div>
 
