@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import usergreen from '../../assets/images/user-green.png';
 import account from '../../assets/images/account.png';
 import logout from '../../assets/images/logout.png';
+import {setSelectedCategoryType} from '../Products/action/product'
 
 export default class extends Component {
+  handleLiClick = (itemType)=>
+  {
+    console.log("Item type is here",itemType)
+    let data = {id:itemType.id,itemType:itemType.type}
+    this.props.dispatch(setSelectedCategoryType(data));
+  }
   render() {
     return (
       <div className={`app-navbar ${this.props.isMenuOpen ? 'menuOpen' : ''}`}>
@@ -19,8 +26,8 @@ export default class extends Component {
                   <ul className="drop-category-box" onClick={() => this.props.handleClick(category)}>
                     <li className="category">{category.displayName} &nbsp; <i className="fa fa-caret-right"></i></li>
                     {category.itemTypes && category.itemTypes.map((itemType) => (
-                      <li>{itemType.type}</li>
-                    ))}
+                      <li onClick={()=>this.handleLiClick(itemType)}>{itemType.type}</li>
+                    ))}c
                   </ul>
                 </div>
               ))}
