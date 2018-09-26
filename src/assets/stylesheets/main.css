@@ -3139,16 +3139,18 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .app-navbar > ul li ul.drop-category-box li {
 	display: block;
 	color: #000;
-    text-transform: capitalize;
-    padding: 3px 0;
-    font-weight: 300;
+	text-transform: capitalize;
+	padding: 3px 0;
+	font-weight: 400;
+	font-size: 1.4rem;
 }
 .app-navbar > ul li ul.drop-category-box li:hover, .app-navbar > ul li ul.drop-category-box li:focus, .app-navbar > ul li ul.drop-category-box li.active {
 	color: #0E8C4D;
 }
 .app-navbar > ul li ul.drop-category-box li.category {
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom:6px;
+    font-size: 1.4rem;
 }
 /*************************************** MEGA MENU CSS END *****************************************/
 .back-history {

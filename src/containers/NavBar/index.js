@@ -27,7 +27,7 @@ export default class extends Component {
                     <li className="category">{category.displayName} &nbsp; <i className="fa fa-caret-right"></i></li>
                     {category.itemTypes && category.itemTypes.map((itemType) => (
                       <li onClick={()=>this.handleLiClick(itemType)}>{itemType.type}</li>
-                    ))}c
+                    ))}
                   </ul>
                 </div>
               ))}
