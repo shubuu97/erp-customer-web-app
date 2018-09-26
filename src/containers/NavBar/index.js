@@ -7,9 +7,10 @@ import {setSelectedCategoryType} from '../Products/action/product'
 export default class extends Component {
   handleLiClick = (itemType)=>
   {
-    console.log("Item type is here",itemType)
-    let data = {id:itemType.id,itemType:itemType.type}
+    console.log("Item type is here",itemType);
+    let data = {id:itemType._id,itemType:itemType.type};
     this.props.dispatch(setSelectedCategoryType(data));
+    
   }
   render() {
     return (

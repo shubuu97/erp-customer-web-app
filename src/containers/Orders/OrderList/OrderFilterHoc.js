@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {filter,sortBy,reverse} from 'lodash';
+import {filter,sortBy,reverse,find, includes} from 'lodash';
 import Button from '@material-ui/core/Button';
+
 
 function FilterData(WrappedComponent)
 {
@@ -13,6 +14,18 @@ function FilterData(WrappedComponent)
             orderListData:props.orderListData,
             active:0
         }
+    }
+    handleSearch =(event)=>{
+            let orderListData=filter(this.props.orderListData,function(item) {
+                let isFilter = false;
+                item.saleProducts.map((product)=>{
+                    if(includes(item.displayId, event.target.value) || includes((product.itemName || '').toLowerCase(), (event.target.value || '').toLowerCase())) {
+                        isFilter = true;
+                    }
+                })
+                return isFilter
+            })
+            this.setState({orderListData})
     }
         filterData(key,active)
         {
@@ -49,7 +62,7 @@ function FilterData(WrappedComponent)
                 <div className="order-tab-parent">
                     <div className="order-tab-right">
                         <div className="order-search">
-                            <input className="form-control" placeholder="" />
+                            <input className="form-control" placeholder="" name="search" onChange={this.handleSearch}/>
                             <Button variant="contained" color='primary'>Search Order</Button>
                         </div>
                         <div className="order-filter">
