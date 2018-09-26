@@ -81,7 +81,7 @@ const productDetails = (props) => {
           <div className="addToCartButtonDiv">
             <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={() => props.addToCart()}>ADD TO CART</Button>
             {/* <Button variant="contained" size='large' color="inherit" classes={{ root: 'buy-cart-button' }} onClick={() => props.buyProduct()}>BUY NOW</Button> */}
-            <p className="p-desc"><b>Description</b>{props.detail.itemDesc} </p>
+            <p className="p-desc"><b>Description</b>{_get(props,'detail.itemDesc','No Description Available')} </p>
           </div>
         </div>
       </div>
