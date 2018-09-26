@@ -26,14 +26,13 @@ else{
 }
     return(
     <div>
-        <div className="row"><div className="col-xs-6 ac-main"><label>Company Account Number:</label></div> <div className="col-xs-6 ac-main">{props.accountNumber}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Account Number:</label></div> <div className="col-xs-6 ac-main">{props.accountNumber}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Credit Limit:</label></div> <div className="col-xs-6 ac-main"> {props.creditLimit}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Currency Code:</label></div> <div className="col-xs-6 ac-main"> {props.currencyCode}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Invoice Currency Code:</label></div> <div className="col-xs-6 ac-main"> {props.invoiceCurrencyCode}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Name On Cheque:</label></div> <div className="col-xs-6 ac-main"> {props.nameOnCheque}</div></div>
-        <div className="row"><div className="col-xs-6 ac-main"><label>Payment Terms:</label> {props.paymentTerms}</div></div>
+        <div className="row"><div className="col-xs-6 ac-main"><label>Payment Terms:</label></div>  <div className="col-xs-6 ac-main">{props.paymentTerms}</div></div>
         <div className="row"><div className="col-xs-6 ac-main"><label>Preferred Payment Methods:</label></div> <div className="col-xs-6 ac-main"> {props.preferredPaymentMethods}</div></div>
-        <div className="row"><div className="col-xs-6 ac-main"><label>Account Number:</label></div> <div className="col-xs-6 ac-main"> {props.accountNumber}</div></div>
         <div className="row ac-secondary-box d-flex mlr-0"><div className="col-xs-12 plr-0"><label className="s-title">Accounts Detail:</label></div> <div className="d-flex"> {BankDetails}</div></div>
 
     </div>

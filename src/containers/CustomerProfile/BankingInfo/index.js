@@ -48,7 +48,15 @@ class CustomerBankingDetails extends Component {
       ...this.props.formValue,
       customerId: localStorage.getItem('id')
     }
-    this.props.dispatch(postBankingData(requestObj, '', `${this.props.urlLinks.updateOrCreateBankingDetails.href}`));
+  // if(_get(this.props,'bankDetailsData.bankDetails',[]).length==0)
+  //  {
+  //   this.props.dispatch(showMessage({ text: "Please Submit your bank details", isSuccess: false }));
+  //   setTimeout(() => {
+  //     this.props.dispatch(showMessage({ text: "", isSuccess: false }));
+  //   }, 6000);
+  //   return;
+  //  }
+    //this.props.dispatch(postBankingData(requestObj, '', `${this.props.urlLinks.updateOrCreateBankingDetails.href}`));
     this.props.dispatch(getApprovalStatus('submit for apporvall', `${APPLICATION_BFF_URL}/customer/approval?_id=${localStorage.getItem('id')}`)).then((data) => {
       if (true) {
         this.props.history.push("./approval")
@@ -95,11 +103,12 @@ const mapStateToProps = (state) => {
   let imageUrl = _get(state, 'bankDetailsData.lookUpData.data.bankingDetailInfo.voidCheckUrl', '')
   let isLoading = state.bankDetailsData.isFetching
   let formValue = _get(state,'form.CustomerBankingInfo.values',{});
-  let urlLinks = _get(state, 'urlLinks.formSearchData._links', {})
+  let urlLinks = _get(state, 'urlLinks.formSearchData._links', {});
+  let bankDetailsData = _get(state,'bankDetailsData.lookUpData.data');
   let paymentMethods = _get(state, "bankDetailsData.lookUpData.data.paymentMethods.data", [{ label: '', value: '' }])
   let paymentTerms = _get(state, "bankDetailsData.lookUpData.data.paymentTerms.data", [{ label: '', value: '' }])
   let currencyCodes = _get(state, "bankDetailsData.lookUpData.data.currencyCodes.data", [{ label: '', value: '' }])
-  return { initialValues, isLoading, urlLinks, currencyCodes, paymentTerms, paymentMethods, imageUrl, formValue }
+  return { initialValues,bankDetailsData, isLoading, urlLinks, currencyCodes, paymentTerms, paymentMethods, imageUrl, formValue }
 
 }
 
