@@ -2700,21 +2700,59 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 100%;
 	max-width: 450px;
 	margin: auto;
-    background: url('../images/v-border.png');
-    background-repeat: repeat-y;
-    background-position: left 50px top;
 }
 .to-content-row {
 	display: flex;
 	width: 100%;
 	align-items: center;
-	margin-bottom: 40px;
+    padding-bottom: 40px;
+    background: url('../images/v-border.png');
+    background-repeat: repeat-y;
+    background-position: left 50px top;
+    position: relative;
+}
+.to-content-row.active{
+    background:transparent;
+}
+.to-content-row.active::after {
+	content: "";
+	position: absolute;
+	background: #0e8c4f;
+	width: 5px;
+	bottom: 0;
+	height: 100%;
+	left: 48px;
+	z-index: -1;
+}
+.to-content-box .active:last-child::after {
+	display: none;
+}
+.to-content-row:last-child {
+	display: flex;
+	width: 100%;
+	align-items: center;
+    padding-bottom: 40px;
+    background: none;
 }
 .to-content-img {
 	width: 100px;
+	height: 100px;
+	background: #FFF;
+	border: solid 2px #000;
+	border-radius: 50%;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
 }
 .to-content-img img {
-	width: 100%;
+	width: auto;
+	max-width: 80px;
+	max-height: 54px;
+}
+.to-content-row.active .to-content-img {
+	border: solid 6px #0E8C4F;
 }
 .to-border {
     background: url('../images/dotted.png');
@@ -2738,11 +2776,19 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-weight:500;
 	font-size: 1.6rem;
 }
+.to-content-row.active .to-status label {
+	background: #0E8C4F;
+	padding: 0 4px;
+	color: #FFF;
+}
 .to-status span {
 	text-transform: uppercase;
 	color: #666;
 	font-size: 1.5rem;
 	margin-bottom: 0px;
+}
+.to-content-row.active .to-status span {
+	color: #000;
 }
 .track-order-desc p {
 	margin: 6px 0;
@@ -3139,16 +3185,18 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .app-navbar > ul li ul.drop-category-box li {
 	display: block;
 	color: #000;
-    text-transform: capitalize;
-    padding: 3px 0;
-    font-weight: 300;
+	text-transform: capitalize;
+	padding: 3px 0;
+	font-weight: 400;
+	font-size: 1.4rem;
 }
 .app-navbar > ul li ul.drop-category-box li:hover, .app-navbar > ul li ul.drop-category-box li:focus, .app-navbar > ul li ul.drop-category-box li.active {
 	color: #0E8C4D;
 }
 .app-navbar > ul li ul.drop-category-box li.category {
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom:6px;
+    font-size: 1.4rem;
 }
 /*************************************** MEGA MENU CSS END *****************************************/
 .back-history {
