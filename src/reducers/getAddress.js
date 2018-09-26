@@ -1,5 +1,5 @@
 import * as CONSTANTS from '../constants/GetAddress'
-export const   bankDetailsData = (state = {
+   const AddressData = (state = {
     type: '',
     error: '',
     isFetching: false,
@@ -34,3 +34,5 @@ export const   bankDetailsData = (state = {
             return state
     }
 }
+
+export default AddressData
