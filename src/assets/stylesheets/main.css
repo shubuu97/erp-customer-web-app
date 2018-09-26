@@ -1244,8 +1244,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .lotdetails-bs:after{content: ""; display: block; clear: both;}
 
 /*========================================= SPINNER CSS =======================================*/
-.spinner {width: 50px; height: 40px; text-align: center; font-size:1rem; }  
-.spinner > div {background-color: #000 ;height: 100%;width: 7px; margin: 0 3px 0 0; display: inline-block;-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out; animation: sk-stretchdelay 1.2s infinite ease-in-out;  }
+.spinner {width: 50px; height: 40px; text-align: center; font-size:1rem;margin:auto; }  
+.spinner > div {background-color: #FFF ;height: 100%;width: 7px; margin: 0 3px 0 0; display: inline-block;-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out; animation: sk-stretchdelay 1.2s infinite ease-in-out;  }
 .spinner .rect2 { -webkit-animation-delay: -1.1s;animation-delay: -1.1s;  }
 .spinner .rect3 { -webkit-animation-delay: -1.0s; animation-delay: -1.0s;  }
 .spinner .rect4 { -webkit-animation-delay: -0.9s; animation-delay: -0.9s;  }
@@ -3168,16 +3168,29 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	color: #FFF;
 	text-decoration: none;
 }
-.rect2 { -webkit-animation-delay: -1.1s;animation-delay: -1.1s;}
-.rect3 { -webkit-animation-delay: -1.0s; animation-delay: -1.0s;}
-.rect4 { -webkit-animation-delay: -0.9s; animation-delay: -0.9s;}
-.rect5 { -webkit-animation-delay: -0.8s;  animation-delay: -0.8s; }
 .tb-auto{
     margin: auto;
 }
 .cart-remove{
     align-items: center;
     display: flex;
+}
+.payment-loader{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+}
+.pl-text {
+    font-size: 18px;
+    color: #FFF;
+    font-weight: 500;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
