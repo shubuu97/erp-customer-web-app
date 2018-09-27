@@ -6,23 +6,28 @@ import _find from 'lodash/find';
 export default class PayWithCard extends Component {
   constructor(props) {
     super(props)
-
-    window.response = (data) => {
-      console.log("Authorize.net load called");
-      if (data.messages.resultCode === "Error") {
-        var i = 0;
-        while (i < data.messages.message.length) {
-          console.log(
-            data.messages.message[i].code + ": " +
-            data.messages.message[i].text
-          );
-          i = i + 1;
-        }
-      } else {
+    this.state = {
+      authorizeCalled: false
+    }
+    window.response = this.response.bind(this);
+  }
+  response = (data) => {
+    console.log("Authorize.net load called");
+    if (data.messages.resultCode === "Error") {
+      var i = 0;
+      while (i < data.messages.message.length) {
+        console.log(
+          data.messages.message[i].code + ": " +
+          data.messages.message[i].text
+        );
+        i = i + 1;
+      }
+    } else {
+      if(!this.state.authorizeCalled) {
+        this.setState({authorizeCalled: true});
         this.props.onPay(data);
       }
     }
-
   }
   removeJS(filename) {
     var tags = document.getElementsByTagName('script');
@@ -43,6 +48,7 @@ export default class PayWithCard extends Component {
       script.addEventListener('error', function (e) {
         reject(e);
       });
+      // document.body.appendChild(script);
     })
   };
 

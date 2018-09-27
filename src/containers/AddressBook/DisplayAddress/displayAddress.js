@@ -2,9 +2,15 @@ import React from 'react';
 import { SIGABRT } from 'constants';
 
 const displayAddress = (props) => {
+    const addType = ''
+    if(props.addressType === 'shipping') {
+        addType = "Shipping Address"
+    } else if(props.addressType === 'billing') {
+        addType = "Billing Address"
+    }
     return (
         <div>
-        <h3 style={addressTypeStyle}>ShippingAddress</h3>
+        <h3 style={addressTypeStyle}>{addType}</h3>
             <div style={addressContainerStyle}>
                 <div style={defaultBoxStyle}>
                     Default:&nbsp;&nbsp;&nbsp;<span style={brandName}>Amazon</span>

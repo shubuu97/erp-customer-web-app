@@ -101,10 +101,12 @@ class ResetPassword extends Component {
             </div>
             </div>
             <div className="row d-flex">
-            <div className="form-d col-md-5">
+            <div className="form-d col-md-5 email-flex">
               <Field name={'newPassword'} type="password" label={'New Password'} placeholder={'New Password'} component={TextFieldInput} />
               {/* <span title="A strong password must contain a Capital a small and numeric and  length should be greater than 8 and must be less than 16">ii</span> */}
-              <span className="p-info password-info" title="Password must contain one capital, one small, one special character and one numeric letter. The length of password must be greater than 8 and must be less than 16."><img src={paymentIinfo} /></span>
+              <span className="p-info password-info" title="Valid passwords must:
+- include between 8 and 50 characters
+- include uppercase, lowercase,numeric,special characters"><img src={paymentIinfo} /></span>
             </div>
             </div>
             <div className="row d-flex">

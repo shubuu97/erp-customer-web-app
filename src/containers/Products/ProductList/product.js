@@ -41,7 +41,7 @@ export default (props) => {
           </div>
           <div className="product-price">${props.price}</div>
           <p class="p-desc">{props.description}</p>
-          <Button color='primary' variant='contained' onClick={()=>props.addToCart(props.detail)}>Add to Cart</Button>
+          {/* <Button color='primary' variant='contained' onClick={()=>props.addToCart(props.detail)}>Add to Cart</Button> */}
         </div>
       </div>
       </div>

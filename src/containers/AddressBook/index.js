@@ -1,6 +1,5 @@
 import React,{Component} from "react";
-import {connect} from 'react-redux'
-import Progress from '../../components/common/Progress'
+import {connect} from 'react-redux';
 import profileSideBarHoc from '../../components/profileSideBarHoc'
 import {getData} from '../../action/common/get'
 import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../constants/GetAddress'
@@ -12,7 +11,8 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
  class AddressBook extends Component
 {
     componentDidMount()
-    {let url=''
+    {
+        let url=''
         let options = {
 			init: REQUEST_ADDRESS_DATA,
 			success: RECEIVED_ADDRESS_DATA,
@@ -31,19 +31,20 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
 
     addressBox = _get(this.props,'shippingAddress',[]).map(addField => {
         return <DisplayAddress 
-        key={addField.id}
-        address={addField.address}
-        city={addField.city}
-        state={addField.state}
-        country={addField.country}
-        zip={addField.zipCode} />
+            key={addField.id}
+            addressType={addField.addressType}
+            address={addField.address}
+            city={addField.city}
+            state={addField.state}
+            country={addField.country}
+            zip={addField.zipCode} />
     })
 
     render() {
         return(
             <div style={{display:'flex',justifyContent:'center'}}>
-             <BillingAddress/>
-             {this.addressBox}
+              <BillingAddress/>
+              {this.addressBox}
             </div>
         )
     }
