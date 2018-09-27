@@ -71,7 +71,7 @@ class CustomerProfileTab extends React.Component {
           <AppBar position="static">
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{ borderBottom: 'solid 1px #DDD', boxShadow: 'none' }} TabIndicatorProps={{ color: 'transparent' }}>
               <Tab  className={value == 0 ? classes.tabActive : null} label="Account" />
-              <Tab disabled={this.state.disabled} className={value == 1 ? classes.tabActive : null} label="Banking" />
+              <Tab className={value == 1 ? classes.tabActive : null} label="Banking" />
             </Tabs>
           </AppBar>
           {value === 0 && <TabContainer><AccountInfo handleDisable={this.handleDisable} handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
