@@ -1434,7 +1434,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	line-height: 18px;
-	padding: 10px 20px;
+	padding: 10px 15px;
 	font-weight: 400;
 	cursor: pointer;
     text-transform: uppercase;
@@ -1509,7 +1509,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 25px;
 }
 .rel.offers-icon img{
-    width:25px;
+    width:27px;
 }
 .bell-round {
 	display: inline-block;
@@ -3434,8 +3434,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding: 0 10px;
         font-size: 1.3rem;
     }
-    .app-navbar li {
-        padding: 5px 8px;
+    .app-navbar > ul li {
+        padding: 5px 12px;
         font-weight:400;
     }
     .navRight li {
@@ -3443,7 +3443,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding-left: 10px;
     }
     .rel.offers-icon img {
-        width: 21px;
+        width: 26px;
     }
     .user-avatar img {
         width: 22px;
@@ -3483,6 +3483,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .order-image {
         padding-right: 10px;
         width: 100px;
+    }
+    .app-navbar > ul li.drop-menu:hover::after {
+        width: 169px;
     }
 }
 @media (max-width:991px){
@@ -3654,6 +3657,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .package-id label, .tracking-number label {
         color: #FFF;
+    }
+    .rel img {
+        width: 23px;
+    }
+    .rel.offers-icon img {
+        width: 24px;
+    }
+    .app-navbar > ul li.drop-menu:hover::after {
+        width: 158px;
     }
 }
 @media(max-width:799px){
@@ -4282,6 +4294,19 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .order-search button {
         width: 130px;
+    }
+    .category-flex-column {
+        min-width: 100%;
+    }
+    .app-navbar > ul li.drop-menu:hover::after {
+        display: none;
+    }
+    .app-navbar > ul li ul.drop-category-box li {
+        padding: 5px 0;
+    }
+    .app-navbar > ul .drop-category-box li:hover, .app-navbar > ul .drop-category-box li:focus, .app-navbar > ul .drop-category-box li.active {
+        color: #0E8C4D;
+        background: transparent;
     }
 }
 @media (min-width:480px) and (max-width:767px){
