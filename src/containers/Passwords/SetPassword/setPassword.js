@@ -139,9 +139,12 @@ class SetPassword extends Component {
           <form onSubmit={handleSubmit(this.handleSubmit)}>
             {userInfoFromToken.data && userInfoFromToken.data.userInfo && <div className="verify-mail">{userInfoFromToken.data.userInfo.email}</div>}
             <div className="form-d">
-              <Field name={'newPassword'} label={'New Password'} type="password" placeholder={'New Password'} component={TextFieldInput} />
-          <span className="p-info password-info" title="Password must contain one capital, one small, one special character and one numeric letter. The length of password must be greater than 8 and must be less than 16."><img src={paymentIinfo} /></span>
-            
+              <div className="email-flex">
+                <Field name={'newPassword'} label={'New Password'} type="password" placeholder={'New Password'} component={TextFieldInput} />
+                <span className="p-info password-info" title="Valid passwords must:
+- include between 8 and 50 characters
+- include uppercase, lowercase, and numeric characters"><img src={paymentIinfo} /></span>
+              </div>
             </div>
             <div className="form-d">
               <Field name={'confirmNewPassword'} label={'Confirm New Password'} type="password" placeholder={'Confirm New Password'} component={TextFieldInput} />
