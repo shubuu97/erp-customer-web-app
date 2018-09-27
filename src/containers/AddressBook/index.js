@@ -6,6 +6,8 @@ import {getData} from '../../action/common/get'
 import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../constants/GetAddress'
 import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
 import _get from 'lodash/get';
+import DisplayAddress from './DisplayAddress/displayAddress';
+import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddress';
 
  class AddressBook extends Component
 {
@@ -26,11 +28,22 @@ import _get from 'lodash/get';
         }
         this.props.dispatch(getData(url, "",options))
     }
-    render()
-    {
+
+    addressBox = _get(this.props,'shippingAddress',[]).map(addField => {
+        return <DisplayAddress 
+        key={addField.id}
+        address={addField.address}
+        city={addField.city}
+        state={addField.state}
+        country={addField.country}
+        zip={addField.zipCode} />
+    })
+
+    render() {
         return(
             <div style={{display:'flex',justifyContent:'center'}}>
-             <Progress/>
+             {this.addressBox}
+             <BillingAddress/>
             </div>
         )
     }
