@@ -42,8 +42,8 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
     render() {
         return(
             <div style={{display:'flex',justifyContent:'center'}}>
-             {this.addressBox}
              <BillingAddress/>
+             {this.addressBox}
             </div>
         )
     }
