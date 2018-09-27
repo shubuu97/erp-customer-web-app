@@ -9,6 +9,8 @@ import AccountInfo from '../AccountInfo';
 import BankingInfo from '../BankingInfo';
 import profileSideBar from '../../../components/profileSideBarHoc';
 import * as qs from 'query-string'
+import { connect } from 'react-redux';
+import _get from 'lodash/get'
 
 function TabContainer(props) {
   return (
@@ -40,6 +42,7 @@ const styles = theme => ({
 class CustomerProfileTab extends React.Component {
   state = {
     value: 0,
+    disabled:false
   };
   componentDidMount() {
     let queryString = qs.parse(this.props.location.search);
@@ -53,6 +56,11 @@ class CustomerProfileTab extends React.Component {
     this.setState({ value: tabNumber });
   }
 
+  handleDisable=(disabled)=>
+  {
+    this.setState({disabled})
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -62,13 +70,13 @@ class CustomerProfileTab extends React.Component {
         <div className={classes.root + ' c-tabs'}>
           <AppBar position="static">
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{ borderBottom: 'solid 1px #DDD', boxShadow: 'none' }} TabIndicatorProps={{ color: 'transparent' }}>
-              <Tab className={value == 0 ? classes.tabActive : null} label="Account" />
-              <Tab className={value == 1 ? classes.tabActive : null} label="Banking" />
+              <Tab  className={value == 0 ? classes.tabActive : null} label="Account" />
+              <Tab disabled={this.state.disabled} className={value == 1 ? classes.tabActive : null} label="Banking" />
             </Tabs>
           </AppBar>
-          {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
+          {value === 0 && <TabContainer><AccountInfo handleDisable={this.handleDisable} handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
 
-          {value === 1 && <TabContainer><BankingInfo {...this.props} /></TabContainer>}
+          {value === 1 && <TabContainer><BankingInfo {...this.props}  /></TabContainer>}
         </div>
       </div>
     );
@@ -81,5 +89,9 @@ CustomerProfileTab.propTypes = {
 
 CustomerProfileTab = withStyles(styles)(CustomerProfileTab);
 
-export default profileSideBar(CustomerProfileTab);
+CustomerProfileTab =  profileSideBar(CustomerProfileTab);
+
+export default CustomerProfileTab;
+
+
 
