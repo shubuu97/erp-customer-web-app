@@ -106,7 +106,7 @@ class ResetPassword extends Component {
               {/* <span title="A strong password must contain a Capital a small and numeric and  length should be greater than 8 and must be less than 16">ii</span> */}
               <span className="p-info password-info" title="Valid passwords must:
 - include between 8 and 50 characters
-- include uppercase, lowercase, and numeric characters"><img src={paymentIinfo} /></span>
+- include uppercase, lowercase,numeric,special characters"><img src={paymentIinfo} /></span>
             </div>
             </div>
             <div className="row d-flex">
