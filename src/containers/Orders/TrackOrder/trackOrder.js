@@ -36,7 +36,7 @@ export default class TrackOrders extends React.Component {
             </div>
             <div className="to-content">
                 <div className="to-content-box">
-                    <div className="to-content-row">
+                    <div className="to-content-row active">
                         <div className="to-content-img">
                             <img src={placedOn} />
                         </div>
@@ -46,7 +46,7 @@ export default class TrackOrders extends React.Component {
                             <span>{moment(orderDetails.orderDate).format('DD MMMM YYYY')}</span>
                         </div>
                     </div>
-                    <div className="to-content-row">
+                    <div className="to-content-row active">
                         <div className="to-content-img">
                             <img src={confirmationStatus} />
                         </div>
