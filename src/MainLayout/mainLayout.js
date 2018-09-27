@@ -233,7 +233,7 @@ class MainLayout extends Component {
 
 const mapStateToProps = state => {
   let message = state.commonData && state.commonData.message ? state.commonData.message : {};
-  let isLoading = state.registerReducer.isFetching;
+  let isLoading = get(state,"registerReducer.isFetching", false);
   let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
   let cartData = (state.productData && state.productData.cartProductList) || [];
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
