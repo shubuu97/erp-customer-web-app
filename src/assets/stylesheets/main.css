@@ -1437,10 +1437,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	padding: 10px 20px;
 	font-weight: 400;
 	cursor: pointer;
-	transition: ease-in-out all 0.6s;
-	-webkit-transition: ease-in-out all 0.6s;
-	-moz-transition: ease-in-out all 0.6s;
-	-o-transition: ease-in-out all 0.6s;
     text-transform: uppercase;
     border-top: solid 1px transparent;
     border-left: solid 1px transparent;
@@ -1854,7 +1850,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     padding-top: 20px;
 }
 .product-weight-select {
-    width: 110px;
+    width: 130px;
 }
 /******************************PRODUCT DETAILS PAGE CSS END*****************************************/
 /******************************CART PAGE CSS STRT***************************************************/
@@ -2705,7 +2701,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: flex;
 	width: 100%;
 	align-items: center;
-    padding-bottom: 40px;
+    padding-top: 40px;
     background: url('../images/v-border.png');
     background-repeat: repeat-y;
     background-position: left 50px top;
@@ -2724,15 +2720,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	left: 48px;
 	z-index: -1;
 }
-.to-content-box .active:last-child::after {
-	display: none;
-}
-.to-content-row:last-child {
-	display: flex;
-	width: 100%;
-	align-items: center;
-    padding-bottom: 40px;
-    background: none;
+.to-content-row:first-child {
+	padding-top: 0;
 }
 .to-content-img {
 	width: 100px;
@@ -2767,6 +2756,23 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     background: url('../images/v-dotted.png');
     background-repeat:repeat-y;
     width: 250px;
+    position: relative;
+}
+.to-content-row.active .to-status {
+	padding-left: 50px;
+}
+.to-content-row.active .to-status::before {
+	position: absolute;
+	content: "\F058";
+	left: 12px;
+	top: auto;
+	width: 20px;
+	height: 20px;
+	color: #0E8C4F;
+	font-family: 'FontAwesome';
+	font-size: 30px;
+	bottom: auto;
+	margin: auto;
 }
 .to-status label {
 	display: block;
@@ -2777,9 +2783,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-size: 1.6rem;
 }
 .to-content-row.active .to-status label {
-	background: #0E8C4F;
-	padding: 0 4px;
-	color: #FFF;
+	color: #0E8C4F;
 }
 .to-status span {
 	text-transform: uppercase;
@@ -3237,6 +3241,26 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     font-size: 18px;
     color: #FFF;
     font-weight: 500;
+}
+.no-order {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 200px;
+	font-size: 26px;
+	color: #0E8C4F;
+	font-weight: 500;
+}
+.email-flex {
+    position: relative;
+}
+.email-flex > div {
+    width: 100%;
+}
+.email-flex span.p-info.password-info {
+    position: absolute;
+    right: 0;
+    top: 16px;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){

@@ -17,7 +17,8 @@ passwordSchema
 .is().max(100)                                  // Maximum length 100
 .has().uppercase()                              // Must have uppercase letters
 .has().lowercase()                              // Must have lowercase letters
-.has().digits()                                 // Must have digits
+.has().digits()
+.has().symbols()	
 .has().not().spaces()                           // Should not have spaces
 .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 const asyncValidate = values => {
@@ -35,7 +36,12 @@ const asyncValidate = values => {
                 else
                 {
                     let reduxFormErrors = {};
-                    reduxFormErrors['newPassword'] = "Enter a strong password"
+                    if(_get(values,'newPassword.length',null)<8)
+                    reduxFormErrors['newPassword'] = "Length should be greater than 8"
+                    else
+                    {
+                     reduxFormErrors['newPassword'] = "Please choose a stronger password. Try a mix of capital,small,number and symbol"
+                    }
                     reject(reduxFormErrors)
                 }
             })
@@ -47,7 +53,12 @@ const asyncValidate = values => {
                 console.log(values,"values is here")
                 if(!passwordSchema.validate(_get(values,'newPassword','')))
                 {
-                      reduxFormErrors['newPassword'] = "Enter a strong password"
+                    if(_get(values,'newPassword.length',null)<8)
+                    reduxFormErrors['newPassword'] = "Password must be 8 character long"
+                    else
+                    {
+                     reduxFormErrors['newPassword'] = "Please choose a stronger password. Try a mix of capital,small,number and symbol"
+                    }
                   }
                 errors.inner.forEach(error => {
                     errors.inner.forEach(error => {

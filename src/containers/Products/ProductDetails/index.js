@@ -26,7 +26,7 @@ class ProductDetailsContainer extends React.Component {
       this.props.history.push('/productList');
       return;
     }
-    productInfo.quantity = 1;
+    productInfo.quantity = selectedProduct.minimumQuantityToBuy;
     let mainImageUrl = (selectedProduct.images && selectedProduct.images[0]) || { url: productPlaceholder };
     this.setState({ productInfo, mainImageUrl });
     document.body.classList.add('product-details')
@@ -44,6 +44,7 @@ class ProductDetailsContainer extends React.Component {
       cartList.push(productInfo);
       dispatch(addToCart(cartList));
     }
+ 
     else {
       // let index = findIndex(cartList, { itemId: productInfo.itemId });
       // cartList[index].quantity = cartList[index].quantity + productInfo.quantity;
@@ -70,7 +71,18 @@ class ProductDetailsContainer extends React.Component {
     if (type === 'add') {
       productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
     } else if (type === 'sub') {
+      debugger;
+      console.log(this.props.selectedProduct.minimumQuantityToBuy);
+      console.log(productLocal.quantity)
+      if(this.props.selectedProduct.minimumQuantityToBuy<productLocal.quantity)
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
+    else
+    {
+      this.props.dispatch(showMessage({ text: "Can not Buy less than Minimum quantity", isSuccess: true }));
+    setTimeout(() => {
+      this.props.dispatch(showMessage({ text: "", isSuccess: true }));
+    }, 6000);
+    }
     }
     this.setState({ productInfo: productLocal });
   }

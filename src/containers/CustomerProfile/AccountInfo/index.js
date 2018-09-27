@@ -59,7 +59,11 @@ class CustomerInfo extends Component
       this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
 
     }
-   
+   componentWillReceiveProps(nextProps)
+   {
+    nextProps.handleDisable(!nextProps.enableBanking);
+
+   }
     render()
     {
         const {handleSubmit} = this.props;
@@ -118,7 +122,12 @@ function mapStateToProps(state)
     }
    }
   }
- return {initialValues, isLoading,urlLinks}
+  let addressInfo = _get(state,'basicInfodata.basicInfoData.addressInfo',[]);
+  let licenceNumber = _get(state,'basicInfodata.basicInfoData.licenceNumber',false);
+  let contactNumber = _get(state,'basicInfodata.basicInfoData.contactNumber',false);
+  let enableBanking = addressInfo.lenght>0||licenceNumber||contactNumber;
+
+ return {initialValues, isLoading,urlLinks,enableBanking}
 }
 
 export default connect(mapStateToProps)(CustomerInfo)

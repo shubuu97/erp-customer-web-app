@@ -108,7 +108,7 @@ const mapStateToProps = (state) => {
   let paymentMethods = _get(state, "bankDetailsData.lookUpData.data.paymentMethods.data", [{ label: '', value: '' }])
   let paymentTerms = _get(state, "bankDetailsData.lookUpData.data.paymentTerms.data", [{ label: '', value: '' }])
   let currencyCodes = _get(state, "bankDetailsData.lookUpData.data.currencyCodes.data", [{ label: '', value: '' }])
-  return { initialValues,bankDetailsData, isLoading, urlLinks, currencyCodes, paymentTerms, paymentMethods, imageUrl, formValue }
+  return { initialValues,bankDetailsData,isLoading, urlLinks, currencyCodes, paymentTerms, paymentMethods, imageUrl, formValue }
 
 }
 
