@@ -97,7 +97,7 @@ class CartContainer extends React.Component {
         </div>
         <Button variant="contained" size='large' color="primary" onClick={this.goToCheckout} classes={{ root: 'add-cart-button' }}>Proceed to Checkout</Button>
       <div className="mini-cart-container">      
-        <CartProductList  updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
+        <CartProductList dispatch={this.props.dispatch}  updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
         </div>
         
       </div> : 

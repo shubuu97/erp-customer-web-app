@@ -79,7 +79,7 @@ class CartContainer extends React.Component {
         <h2 className="cart-heading">Shopping Cart</h2>
       <div className="cart-container">
       
-        <CartProductList updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
+        <CartProductList dispatch={this.props.dispatch} updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
         <CartTotal goToCheckout={this.goToCheckout} details={details}/>
         </div>
         
