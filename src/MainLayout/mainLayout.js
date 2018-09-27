@@ -58,8 +58,8 @@ class MainLayout extends Component {
         this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: get(data, 'data.itemCategories[0].categoryId', null).toString() })).then((typeData) => {
           console.log("In Main Layout Component did mount", typeData);
 
-         // this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
-          //this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
+         this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
+         this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), {}));
         }, (err) => {
           console.log(err);
         });

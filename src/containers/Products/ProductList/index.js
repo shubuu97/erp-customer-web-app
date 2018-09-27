@@ -45,9 +45,6 @@ class ProductsContainer extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove('product-list');
   }
-  componentWillReceiveProps(nextProps) {
-    console.log("In product list recieve props", nextProps);
-  }
   handleClose = () => {
     this.setState({ openItemInfo: false });
   }
