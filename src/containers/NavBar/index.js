@@ -100,9 +100,13 @@ export default class extends Component {
               </div> */}
             </div>
           </li>
-          {this.props.categories && this.props.categories.map((category) => (
-            <li className={category.id == this.props.selectedCategory.id ? 'active' : ''} onClick={() => this.props.handleClick(category)}>{category.displayName}</li>
-          ))}
+   
+            <li className={''}>Most Viewed Items</li>
+            <li className={''}>Top Sellers</li>
+            <li className={''}>Today's Deal</li>
+            
+
+         
         </ul>
         <ul className="visible-xs mobile-user">
           <li onClick={this.props.handleProfile}><span><img src={account} /></span>My Account</li>

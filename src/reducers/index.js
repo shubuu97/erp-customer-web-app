@@ -20,7 +20,8 @@ import categoryTypeAndItems from './categoryTypeAndItems';
 import * as Log from '../constants/login';
 import OrderListData from '../containers/Orders/reducer/orderList';
 import TrackData from '../containers/Orders/reducer/TrackOrder';
-import  uploadVoidCheck from './checkUpload'
+import  uploadVoidCheck from './checkUpload';
+import AddressBookData from './getAddress'
 let appReducer = combineReducers(
     {
         //reducer code will come here
@@ -44,7 +45,8 @@ let appReducer = combineReducers(
         OrderListData,
         categoryTypeAndItems,
         TrackData,
-        uploadVoidCheck
+        uploadVoidCheck,
+        AddressBookData
     }
 );
 const rootReducer = (state, action) => {
