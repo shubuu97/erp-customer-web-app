@@ -9,6 +9,7 @@ import { Field, reduxForm, FormSection } from 'redux-form';
 import orIcon from './../../../assets/images/or-icon.png';
 import _find from 'lodash/find';
 import asyncValidate from './validate.js';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function new_script(src) {
   return new Promise(function (resolve, reject) {
@@ -28,7 +29,8 @@ class PaymentWithCheck extends Component {
   constructor() {
     super();
     this.state = {
-      showBankForm: false
+      showBankForm: false,
+      isLoading: false
     };
   }
 
@@ -45,6 +47,7 @@ class PaymentWithCheck extends Component {
 
    responseHandler=(response)=> {
     console.log(response,"error")
+    this.setState({isLoading: false});
     if (response.messages.resultCode === "Error") {
       var i = 0;
       while (i < response.messages.message.length) {
@@ -57,13 +60,7 @@ class PaymentWithCheck extends Component {
     } else {
       console.log("Success data", response);
       this.props.onPay(response);
-      // paymentFormUpdate(response.opaqueData);
-      // axios.post('http://localhost:3000/chargeByNonce', response).then((data) => {
-      //   console.log(data, "data is here");
-      // })
-      //   .catch((err) => {
-      //     console.log(err, "error is here")
-      //   })
+      this.setState({showBankForm: false});
     }
   }
 
@@ -83,7 +80,7 @@ class PaymentWithCheck extends Component {
     secureData.authData = authData;
 
     secureData.bankData = bankData;
-
+    this.setState({isLoading: true});
     window.Accept.dispatchData(secureData, this.responseHandler);
 
   
@@ -98,7 +95,7 @@ class PaymentWithCheck extends Component {
 
 
   render() {
-    const { showBankForm } = this.state;
+    const { showBankForm, isLoading } = this.state;
     const { handleSubmit } = this.props;
     return (
       <div>
@@ -150,10 +147,7 @@ class PaymentWithCheck extends Component {
                 <Field name="dataDescriptor" type="hidden" component={TextFieldInput} />
 
               </FormSection>
-              <Button variant="contained"  onClick={this.sendPaymentDataToAnet} color="primary">
-                  Pay Now
-            </Button>
-
+              <Button variant="contained" color="primary" classes={{ root: 'add-cart-button' }} onClick={this.sendPaymentDataToAnet} disabled={isLoading}>{!isLoading && 'Pay Now'}{isLoading && <CircularProgress size={24} />}</Button>
               <DialogActions className="m-footer">
                 
               </DialogActions>

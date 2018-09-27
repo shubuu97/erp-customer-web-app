@@ -31,7 +31,7 @@ export default class Orders extends React.Component {
       })
     }
     else {
-      ordersList = <div>No orders Yet...</div>
+      ordersList = <div className="no-order">No orders Yet...</div>
     }
     return (
       <div>
