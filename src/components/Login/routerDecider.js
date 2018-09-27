@@ -36,6 +36,10 @@ const routerDeciderHoc = (WrappedComponent) => {
                 this.props.history.push('/productList')
                 return null
                 break;
+                case 'Rejected':
+                this.props.history.push('/rejected')
+                return null
+                break;
                 case 'Cancelled':
                 this.props.history.push('/rejected')
                 return null

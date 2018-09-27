@@ -6,6 +6,7 @@ import _get from 'lodash/get';
 import {showMessage} from '../../../../action/common';
 
 
+
 class ProductsInCart extends React.Component {
   
   constructor(props){
@@ -29,7 +30,7 @@ class ProductsInCart extends React.Component {
     if(type === 'add') {
       productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
     } else if(type === 'sub') {
-      if(this.props.selectedProduct.minimumQuantityToBuy<productLocal.quantity)
+      if(productLocal.minimumQuantityToBuy<productLocal.quantity)
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
     else
     {
