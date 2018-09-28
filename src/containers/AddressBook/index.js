@@ -61,9 +61,11 @@ import withLoader from '../../components/LoaderHoc'
                 <h2 className="cart-heading">Address Book</h2>
                 <div className="row">
                     <div className="col-md-6">
+                    <h3 className="addressbook-title">Shipping Address</h3>
                         {ShippingAddressBox}
                     </div>
                     <div className="col-md-6">
+                    <h3 className="addressbook-title">Billing Address</h3>
                         {BillingAddressBox}
                     </div>
                 </div>
