@@ -1456,7 +1456,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .app-navbar > ul li.drop-menu:hover::after {
 	position: absolute;
 	content: "";
-	width: 208px;
+    width: 197px;
 	height: 1px;
 	background: #FFF;
 	left: 1px;
@@ -1711,7 +1711,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .alt-accounts {
 	margin: 3px;
-	padding: 15px;
+	padding: 10px;
     background: #FFF;
     border-left:solid 4px #EEE;
 }
@@ -2936,7 +2936,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 100%;
 }
 .product-list-content {
-	width: 76%;
+	width: 100%;
 }
 .pro-head {
 	display: flex;
