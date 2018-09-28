@@ -13,7 +13,6 @@ import withLoader from '../../components/LoaderHoc'
 {
     componentDidMount()
     {
-        debugger;
         let url=''
         let options = {
 			init: REQUEST_ADDRESS_DATA,
@@ -46,7 +45,7 @@ import withLoader from '../../components/LoaderHoc'
                 zip={addField.zipCode} />
         })
 
-        let BillingAddressBox = _get(this.props,'billingAddress',[]).map(addField => {
+        let BillingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
             return <DisplayAddress 
                 key={addField.id}
                 isLoading={this.props.isLoading}
@@ -58,10 +57,21 @@ import withLoader from '../../components/LoaderHoc'
                 zip={addField.zipCode} />
         })
         return(
-            <div style={{display:'flex',justifyContent:'center'}}>
-              <BillingAddress/>
-              {ShippingAddressBox}
-              {BillingAddressBox}
+            <div className="staticProfile-box">
+                <h2 className="cart-heading">Address Book</h2>
+                <div className="row">
+                    <div className="col-md-6">
+                        {ShippingAddressBox}
+                    </div>
+                    <div className="col-md-6">
+                        {BillingAddressBox}
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <BillingAddress/>
+                    </div>
+                </div>
             </div>
         )
     }

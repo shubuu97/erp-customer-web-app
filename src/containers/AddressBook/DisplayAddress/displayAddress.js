@@ -1,5 +1,7 @@
 import React from 'react';
-// import withLoader from '../../../components/LoaderHoc'
+// import withLoader from '../../../components/LoaderHoc';
+import addressEdit from '../../../assets/images/edit.png';
+import checkGreen from '../../../assets/images/check-green.jpg';
 
 
 const displayAddress = (props) => {
@@ -11,24 +13,12 @@ const displayAddress = (props) => {
     }
     return (
         <div>
-        <h3 style={addressTypeStyle}>{addType}</h3>
-            <div style={addressContainerStyle}>
-                <div style={defaultBoxStyle}>
-                    Default:&nbsp;&nbsp;&nbsp;<span style={brandName}>Amazon</span>
-                </div>
-                
-                <div style={addressBoxStyle}>
-                    <p style={addressFieldStyle}>{props.address}</p>
-                    <p style={addressFieldStyle}>{props.city}</p>
-                    <p style={addressFieldStyle}>{props.state}</p>
-                    <p style={addressFieldStyle}>{props.country}</p>
-                    <p style={addressFieldStyle}>{props.zip}</p>
-                </div>
-
-                <div style={buttonContainerStyle}>
-                    <a style={editButtonStyle} href="#">Edit</a>
-                    <a style={deleteButtonStyle} href="#">Delete</a>
-                </div>
+        <h3 className="addressbook-title">{addType}</h3>
+            <div className="address-detail selected">                
+                <h5>Idris Shaikh</h5>
+                <p>{props.address}, {props.city}, {props.state}, {props.country}, {props.zip}</p>
+                <img src={checkGreen}  className="address-select-img" />
+                <img src={addressEdit} className="address-edit-img" />            
             </div>
         </div>
     )
