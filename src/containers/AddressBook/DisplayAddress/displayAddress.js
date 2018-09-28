@@ -1,8 +1,9 @@
 import React from 'react';
-import { SIGABRT } from 'constants';
+// import withLoader from '../../../components/LoaderHoc'
+
 
 const displayAddress = (props) => {
-    const addType = ''
+    let addType = ''
     if(props.addressType === 'shipping') {
         addType = "Shipping Address"
     } else if(props.addressType === 'billing') {
