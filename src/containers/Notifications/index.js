@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import Progress from '../../components/common/Progress'
+import Notify from '../../components/Notification/index'
 import profileSideBarHoc from '../../components/profileSideBarHoc'
  class Notification extends Component
 {
@@ -7,7 +7,7 @@ import profileSideBarHoc from '../../components/profileSideBarHoc'
     {
         return(
             <div style={{display:'flex',justifyContent:'center'}}>
-             <Progress/>
+             <Notify/>
             </div>
         )
     }
