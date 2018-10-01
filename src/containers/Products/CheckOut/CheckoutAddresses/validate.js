@@ -3,7 +3,7 @@ var schema = yup.object().shape({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
     streetAddress: yup.string().required(),
-    email: yup.string().email().required(),
+    // email: yup.string().email().required(),
     zipCode:yup.number().required(),
     city:yup.string().required(),
     state:yup.string().required(),
