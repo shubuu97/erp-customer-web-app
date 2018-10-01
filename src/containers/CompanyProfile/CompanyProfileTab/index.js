@@ -11,6 +11,9 @@ import SiteInfo from '../SiteInfo';
 import BankingInfo from '../BankingInfo';
 import profileSideBar from '../../../components/profileSideBarHoc';
 import qs from 'query-string'
+import wc from './../../../assets/images/wc.png';
+import gc from './../../../assets/images/gc.png';
+import {connect} from 'react-redux';
 
 
 function TabContainer(props) {
@@ -49,14 +52,12 @@ class CompanyProfileTab extends React.Component {
     this.setState({ value });
   };
 
-  handleTabSwitch=(tabNumber)=>
-  {
-    this.setState({ value:tabNumber });
+  handleTabSwitch = (tabNumber) => {
+    this.setState({ value: tabNumber });
   }
-  componentDidMount()
-  {
-   let queryString =  qs.parse(this.props.location.search);
-     queryString.tab?this.handleTabSwitch(parseInt(queryString.tab)):null
+  componentDidMount() {
+    let queryString = qs.parse(this.props.location.search);
+    queryString.tab ? this.handleTabSwitch(parseInt(queryString.tab)) : null
 
   }
   render() {
@@ -66,17 +67,17 @@ class CompanyProfileTab extends React.Component {
     return (
       <div >
         <div className={classes.root + ' c-tabs'}>
-            <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{borderBottom:'solid 1px #DDD'}} TabIndicatorProps={{color:'transparent'}}>
-              <Tab className={value==0?classes.tabActive:null} label="Account" />
-              <Tab className={value==1?classes.tabActive:null} label="License" />
-              <Tab className={value==2?classes.tabActive:null} label="Site"  />
-              <Tab className={value==3?classes.tabActive:null} label="Banking"/>
-            </Tabs>
-        
-          {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
-          {value === 1 && <TabContainer><LicenceInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
-          {value === 2 && <TabContainer><SiteInfo handleTabSwitch={this.handleTabSwitch}/></TabContainer>}
-          {value === 3 && <TabContainer><BankingInfo {...this.props}/></TabContainer>}
+          <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{ borderBottom: 'solid 1px #DDD' }} TabIndicatorProps={{ color: 'transparent' }}>
+            <Tab className={value == 0 ? classes.tabActive : null} label={<span className="c-tabs-label">{this.props.userAccountData.accountStatus && (value == 0 ? <img className="c-tabs-img" src={wc} />:<img className="c-tabs-img" src={gc} />)}Account</span>} />
+            <Tab className={value == 1 ? classes.tabActive : null} label={<span className="c-tabs-label">{this.props.userAccountData.licenseStatus && (value == 1 ? <img className="c-tabs-img" src={wc} />:<img className="c-tabs-img" src={gc} />)}License</span>} />
+            <Tab className={value == 2 ? classes.tabActive : null} label={<span className="c-tabs-label">{this.props.userAccountData.siteStatus && (value == 2 ? <img className="c-tabs-img" src={wc} />:<img className="c-tabs-img" src={gc} />)}Site</span>} />
+            <Tab className={value == 3 ? classes.tabActive : null} label={<span className="c-tabs-label">{this.props.userAccountData.bankingDetailStatus && (value == 3 ? <img className="c-tabs-img" src={wc} />:<img className="c-tabs-img" src={gc} />)}Banking</span>} />
+          </Tabs>
+
+          {value === 0 && <TabContainer><AccountInfo handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
+          {value === 1 && <TabContainer><LicenceInfo handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
+          {value === 2 && <TabContainer><SiteInfo handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
+          {value === 3 && <TabContainer><BankingInfo {...this.props} /></TabContainer>}
         </div>
       </div>
     );
@@ -88,8 +89,13 @@ CompanyProfileTab.propTypes = {
 };
 
 CompanyProfileTab = withStyles(styles)(CompanyProfileTab);
+function mapStateToProps(state) {
+  let userAccountData = {};
+  userAccountData = state.basicInfodata && state.basicInfodata.userAccountData
+  console.log("In the Tab view", userAccountData);
+  return { userAccountData }
+}
 
+export default profileSideBar(connect(mapStateToProps)(CompanyProfileTab));
 
-
-export default profileSideBar(CompanyProfileTab);
 

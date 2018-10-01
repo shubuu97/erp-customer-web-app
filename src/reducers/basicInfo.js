@@ -16,6 +16,7 @@ export const   basicInfodata = (state = {
     customerStatus:'',
     didInvalidate: false,
     basicInfoData: [],
+    userAccountData: {}
 }, action) => {
     switch (action.type) {
 
@@ -32,6 +33,7 @@ export const   basicInfodata = (state = {
                 didInvalidate: false,
                 customerStatus:action.data.data.content.customerStatus||action.data.data.content.businessCustomerStatus,
                 basicInfoData: action.data &&action.data.data  &&action.data.data.content&&action.data.data.content.basicInfo,
+                userAccountData: action.data &&action.data.data  &&action.data.data.content,
                 role:action.data.data.content.customerStatus?'customer':'businessCustomer',
                 lastUpdated: action.receivedAt,
                 id:action.data.data.content._id
