@@ -120,7 +120,7 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: "CASH",
+				paymentMethod: "",
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				billingAddress: {
@@ -155,7 +155,7 @@ class CheckOut extends Component {
 
 	}
 
-	makePayment = (paymentObj) => {
+	makePayment = (paymentObj, paymentMethod) => {
 		const { userBasicInfo, role } = this.props;
 		const { paymentTerm } = this.state;
 		console.log("paymentObj==", paymentObj);
@@ -192,7 +192,7 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: "CASH",
+				paymentMethod: paymentMethod || "CASH",
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				opaqueData: paymentObj.opaqueData,

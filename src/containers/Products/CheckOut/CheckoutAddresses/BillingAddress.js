@@ -23,8 +23,14 @@ class BillingAddress extends Component {
     this.setState({ open: false });
   };
 
+  formSubmitHandler = (formData) => {
+    console.log(formData, "formData");
+    this.props.onSaveFormData(formData);
+  }   
+
   render() {
     console.log("props is here", this.props)
+    const {handleSubmit}=this.props;
     return (
       <div>
         <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.handleClickOpen}>New Address</Button>
@@ -34,17 +40,16 @@ class BillingAddress extends Component {
           aria-labelledby="form-dialog-title"
           className="dialogbox-ui"
         >
-          <DialogContent>
-            <h2 className="modal-title">Billing Address <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
-            <DetailForm />
+          <form onSubmit={handleSubmit(this.formSubmitHandler)}>
+            <DialogContent>
+              <h2 className="modal-title">Billing Address <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
+              <DetailForm hideEmail={this.props.hideEmail} addContact={this.props.addContactField} />
+            </DialogContent>
 
-          </DialogContent>
-          <DialogActions className="m-footer">
-            
-            <Button variant="contained" onClick={this.handleClose} color="secondary">
+            <Button variant="contained" type="submit" color="secondary">
               Save Address
-                  </Button>
-          </DialogActions>
+            </Button>
+          </form>
         </Dialog>
       </div>
     )
