@@ -26,7 +26,12 @@ class ProductDetailsContainer extends React.Component {
       this.props.history.push('/productList');
       return;
     }
-    productInfo.quantity = selectedProduct.minimumQuantityToBuy;
+    let selectedWeight = _get(productInfo, "priceDetails[0]", null);
+    if (selectedWeight) {
+    let minQyt = parseInt(productInfo.minimumQuantityToBuy/selectedWeight.unitCount) + (productInfo.minimumQuantityToBuy % selectedWeight.unitCount == 0 ? 0 : 1);
+      productInfo.quantity = minQyt;
+      productInfo.minQyt = minQyt;
+    }
     let mainImageUrl = (selectedProduct.images && selectedProduct.images[0]) || { url: productPlaceholder };
     this.setState({ productInfo, mainImageUrl });
     document.body.classList.add('product-details')
@@ -58,11 +63,16 @@ class ProductDetailsContainer extends React.Component {
   }
 
   weightChanger = (index, item) => {
+    const { productInfo } = this.state;
+    let productLocal = productInfo;
     console.log("On weight change", index);
     console.log("item", item);
     let selectedWeight = item.priceDetails[index];
     if (selectedWeight) {
-      this.setState({ updatedPrice: selectedWeight.price, selectedWeight: {label: selectedWeight.unitCount +' '+((item.primaryUomCode && item.primaryUomCode.name) || 'Grams'), value: selectedWeight.price} });
+      let minQyt = parseInt(item.minimumQuantityToBuy/selectedWeight.unitCount) + (item.minimumQuantityToBuy % selectedWeight.unitCount == 0 ? 0 : 1);
+      productLocal.quantity = minQyt;
+      productLocal.minQyt = minQyt;
+      this.setState({ productInfo: productLocal, updatedPrice: selectedWeight.price, selectedWeight: {label: selectedWeight.unitCount +' '+((item.primaryUomCode && item.primaryUomCode.name) || 'Grams'), value: selectedWeight.price} });
     }
   }
   updateQuantity = (type) => {
@@ -71,14 +81,13 @@ class ProductDetailsContainer extends React.Component {
     if (type === 'add') {
       productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
     } else if (type === 'sub') {
-      debugger;
-      console.log(this.props.selectedProduct.minimumQuantityToBuy);
+      console.log(this.props.selectedProduct.minQyt);
       console.log(productLocal.quantity)
-      if(this.props.selectedProduct.minimumQuantityToBuy<productLocal.quantity)
+      if(this.props.selectedProduct.minQyt<productLocal.quantity)
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
     else
     {
-      this.props.dispatch(showMessage({ text: "Can not Buy less than Minimum quantity", isSuccess: true }));
+      this.props.dispatch(showMessage({ text: "Can not buy less than minimum quantity", isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);
