@@ -1434,7 +1434,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	line-height: 18px;
-	padding: 10px 20px;
+	padding: 10px 15px;
 	font-weight: 400;
 	cursor: pointer;
     text-transform: uppercase;
@@ -1456,7 +1456,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .app-navbar > ul li.drop-menu:hover::after {
 	position: absolute;
 	content: "";
-	width: 208px;
+    width: 197px;
 	height: 1px;
 	background: #FFF;
 	left: 1px;
@@ -1509,7 +1509,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 25px;
 }
 .rel.offers-icon img{
-    width:25px;
+    width:27px;
 }
 .bell-round {
 	display: inline-block;
@@ -1711,7 +1711,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .alt-accounts {
 	margin: 3px;
-	padding: 15px;
+	padding: 10px;
     background: #FFF;
     border-left:solid 4px #EEE;
 }
@@ -2076,7 +2076,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	flex-wrap: wrap;
 }
 .address-detail {
-	width: 30%;
+	width: 260px;
 	border: 2px solid #ececec;
 	padding: 20px 15px 10px;
 	margin-right: 15px;
@@ -2085,7 +2085,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	margin-bottom: 20px;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	position: relative;
+    position: relative;
+    max-width:100%;
 }
 .address-detail.selected {
 	border-color: #138851;
@@ -2936,7 +2937,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 100%;
 }
 .product-list-content {
-	width: 76%;
+	width: 100%;
 }
 .pro-head {
 	display: flex;
@@ -3262,6 +3263,10 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     right: 0;
     top: 16px;
 }
+.addressbook-title {
+	font-size: 16px;
+	font-weight: 500;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -3445,8 +3450,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding: 0 10px;
         font-size: 1.3rem;
     }
-    .app-navbar li {
-        padding: 5px 8px;
+    .app-navbar > ul li {
+        padding: 5px 12px;
         font-weight:400;
     }
     .navRight li {
@@ -3454,7 +3459,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding-left: 10px;
     }
     .rel.offers-icon img {
-        width: 21px;
+        width: 26px;
     }
     .user-avatar img {
         width: 22px;
@@ -3468,9 +3473,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .add-cart-button {
         font-size: 14px !important;
         padding: 10px !important;
-    }
-    .address-detail {
-        width: 35%;
     }
     .order-tab-ul li {
         padding: 8px 15px;
@@ -3494,6 +3496,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .order-image {
         padding-right: 10px;
         width: 100px;
+    }
+    .app-navbar > ul li.drop-menu:hover::after {
+        width: 169px;
     }
 }
 @media (max-width:991px){
@@ -3665,6 +3670,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .package-id label, .tracking-number label {
         color: #FFF;
+    }
+    .rel img {
+        width: 23px;
+    }
+    .rel.offers-icon img {
+        width: 24px;
+    }
+    .app-navbar > ul li.drop-menu:hover::after {
+        width: 158px;
     }
 }
 @media(max-width:799px){
@@ -4239,9 +4253,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         height: 30px;
         line-height: 28px;
     }
-    .address-detail {
-        width: 45%;
-    }
     .row-total {
         border-right:none;
     }
@@ -4293,6 +4304,19 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .order-search button {
         width: 130px;
+    }
+    .category-flex-column {
+        min-width: 100%;
+    }
+    .app-navbar > ul li.drop-menu:hover::after {
+        display: none;
+    }
+    .app-navbar > ul li ul.drop-category-box li {
+        padding: 5px 0;
+    }
+    .app-navbar > ul .drop-category-box li:hover, .app-navbar > ul .drop-category-box li:focus, .app-navbar > ul .drop-category-box li.active {
+        color: #0E8C4D;
+        background: transparent;
     }
 }
 @media (min-width:480px) and (max-width:767px){
@@ -4428,9 +4452,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .p-name {
         font-size: 30px;
-    }
-    .address-detail {
-        width: 80%;
     }
     .footer ul li {
         display: block;

@@ -143,7 +143,7 @@ class SetPassword extends Component {
                 <Field name={'newPassword'} label={'New Password'} type="password" placeholder={'New Password'} component={TextFieldInput} />
                 <span className="p-info password-info" title="Valid passwords must:
 - include between 8 and 50 characters
-- include uppercase, lowercase, and numeric characters"><img src={paymentIinfo} /></span>
+- include uppercase, lowercase,numeric,special characters"><img src={paymentIinfo} /></span>
               </div>
             </div>
             <div className="form-d">

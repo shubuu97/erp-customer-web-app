@@ -58,8 +58,8 @@ class MainLayout extends Component {
         this.props.dispatch(fetchCategoryTypeAndItems(`${APPLICATION_BFF_URL}/inventory/items/bycategory`, { categoryId: get(data, 'data.itemCategories[0].categoryId', null).toString() })).then((typeData) => {
           console.log("In Main Layout Component did mount", typeData);
 
-         // this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
-          //this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), priceFilterObject));
+         this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
+         this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), {}));
         }, (err) => {
           console.log(err);
         });
@@ -233,7 +233,7 @@ class MainLayout extends Component {
 
 const mapStateToProps = state => {
   let message = state.commonData && state.commonData.message ? state.commonData.message : {};
-  let isLoading = state.registerReducer.isFetching;
+  let isLoading = get(state,"registerReducer.isFetching", false);
   let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
   let cartData = (state.productData && state.productData.cartProductList) || [];
   let customerStatus = state.basicInfodata && state.basicInfodata.customerStatus;
