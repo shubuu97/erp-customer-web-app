@@ -6,8 +6,9 @@ import profileSideBarHoc from '../../components/profileSideBarHoc'
     render()
     {
         return(
-            <div style={{display:'flex',justifyContent:'center'}}>
-             <Notify/>
+            <div className="staticProfile-box">
+                <h2 className="cart-heading">My Notifications</h2>
+                <Notify/>
             </div>
         )
     }
