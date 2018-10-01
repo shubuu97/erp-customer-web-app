@@ -71,16 +71,16 @@ function FilterData(WrappedComponent)
                     </div>
                     <ul className="order-tab-ul">
                         <li className={this.state.active==0?'active':null} onClick={()=>this.filterData('Nofilter',0)}>
-                            Orders
+                            All Orders
                         </li>
                         <li className={this.state.active==1?'active':null} onClick={()=>this.filterData('ACCEPTED',1)}>
                             Accepted
                         </li>
                         <li className={this.state.active==2?'active':null} onClick={()=>this.filterData('IN_TRANSIT',2)}>
-                            In Transit
+                            Dispatched
                         </li>
                         <li className={this.state.active==3?'active':null} onClick={()=>this.filterData('INCOMING',3)}>
-                            Incoming
+                            Delivered
                         </li>
                     </ul>                   
                 </div>

@@ -44,7 +44,7 @@ class PaymentStatus extends Component {
             <div className="ps-second-section">
               <div className="ps-row"><label>Payment Term</label> <span>{_get(this, 'props.payment.paymentTerms', '')} </span> </div>
               <div className="ps-row"><label>Total Amount</label> <span>{this.props.orderTotal}</span> </div>
-              <div className="ps-row"><label>Due Ammount</label> <span>{_get(this,'props.payment.paymentDetails[0].status',null)?0:this.props.orderTotal}</span> </div>
+              <div className="ps-row"><label>Due Amount</label> <span>{_get(this,'props.payment.paymentDetails[0].status',null)?0:this.props.orderTotal}</span> </div>
               <div className="ps-row"><label>Payment Status</label> <span>{_get(this,'props.payment.paymentDetails[0].status','Due')}</span> </div>
 
             </div>
