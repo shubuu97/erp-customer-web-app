@@ -7,7 +7,8 @@ import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
 import _get from 'lodash/get';
 import DisplayAddress from './DisplayAddress/displayAddress';
 import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddress';
-import withLoader from '../../components/LoaderHoc'
+import withLoader from '../../components/LoaderHoc';
+import {postData} from '../../action/common/post';
 
  class AddressBook extends Component
 {
@@ -30,7 +31,29 @@ import withLoader from '../../components/LoaderHoc'
         this.props.dispatch(getData(url, "",options))
     }
 
+    addressSaveHandler = (formData) => {
+        let data = {
+            fullName: formData.firstName + ' ' + formData.lastName,
+            address: formData.streetAddress + formData.streetAddress,
+            contactNumber: formData.contact,
+            city: formData.city,
+            state: formData.state,
+            addressType : "shipping",
+            zipCode: formData.zipCode, 
+            country: formData.country,
+            isPrimary: false
+        }
 
+        let options = {
+        init: 'INIT_SAVE_ADDRESS',
+        success: 'SUCCESSFULLY_SAVED_ADDRESS',
+        error: 'FAILED_SAVE_ADDRESS',  
+        }
+        console.log(this.props.updateAddressBook, 'updateAddressBook');
+        this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+        console.log("Address Saved Successfully", success);
+        })
+    }
 
     render() {
       let ShippingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
@@ -71,7 +94,8 @@ import withLoader from '../../components/LoaderHoc'
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <BillingAddress/>
+                        <BillingAddress 
+                            onSaveFormData = {this.addressSaveHandler} hideEmail={true} addContactField={true} />
                     </div>
                 </div>
             </div>
@@ -84,9 +108,10 @@ function mapStateToProps(state)
 {
    let billingAddress =  _get(state,'AddressBookData.lookUpData.data.billingAddress',[]);
    let shippingAddress = _get(state,'AddressBookData.lookUpData.data.shippingAddress',[]);
+   let updateAddressBook = _get(state, 'AddressBookData.lookUpData.data._links.updateAddressBook',{})
    let isLoading = _get(state,'AddressBookData.isFetching',false)
     return {
-        billingAddress,shippingAddress,isLoading
+        billingAddress,shippingAddress,isLoading, updateAddressBook
     };
 }
 
