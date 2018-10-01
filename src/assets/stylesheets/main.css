@@ -3307,6 +3307,10 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     margin-bottom:0;
 }
 /*************************************** My Notification Page CSS End *****************************************/
+.c-tabs-img {
+    width: 24px;
+    margin-right: 10px;
+}
 
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
