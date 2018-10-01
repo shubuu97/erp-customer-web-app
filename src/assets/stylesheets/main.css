@@ -1508,8 +1508,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .rel img {
 	width: 25px;
 }
-.rel.offers-icon img{
-    width:27px;
+.rel.offers-icon img {
+	width: 30px;
 }
 .bell-round {
 	display: inline-block;
@@ -2728,7 +2728,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 100px;
 	height: 100px;
 	background: #FFF;
-	border: solid 2px #000;
+	border: solid 2px #666;
 	border-radius: 50%;
 	overflow: hidden;
 	display: flex;
@@ -3180,7 +3180,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     flex-basis: 0;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    max-width: 100%;
+    max-width: 25%;
     min-width:25%;
 }
 .drop-category-box {
@@ -3267,6 +3267,47 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	font-size: 16px;
 	font-weight: 500;
 }
+/*************************************** My Notification Page CSS Start *****************************************/
+.day-notification {
+	margin-bottom: 80px;
+}
+.day-notification h5 {
+	font-size: 1.6rem;
+	margin-bottom: 0;
+	padding-bottom: 6px;
+	border-bottom: solid 1px #cacaca;
+}
+.day-notify-ul {
+	padding: 0;
+	margin: 0;
+}
+.day-notify-ul li {
+	display: flex;
+	padding: 15px;
+	border-top: solid 1px #cacaca;
+}
+.day-notify-ul li:nth-child(2n+2) {
+	background: #f9f9f9;
+}
+.day-notify-ul li span {
+	min-width: 30px;
+	margin-right: 20px;
+	max-width: 30px;
+}
+.day-notify-ul li span img {
+	width: 100%;
+}
+.day-notify-ul li p {
+	-ms-flex-preferred-size: 0;
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	min-width: 70%;
+    max-width: 100%;
+    margin-bottom:0;
+}
+/*************************************** My Notification Page CSS End *****************************************/
+
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -3459,7 +3500,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding-left: 10px;
     }
     .rel.offers-icon img {
-        width: 26px;
+        width: 28px;
     }
     .user-avatar img {
         width: 22px;
@@ -3673,9 +3714,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .rel img {
         width: 23px;
-    }
-    .rel.offers-icon img {
-        width: 24px;
     }
     .app-navbar > ul li.drop-menu:hover::after {
         width: 158px;
