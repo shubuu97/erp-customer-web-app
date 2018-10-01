@@ -2728,7 +2728,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 100px;
 	height: 100px;
 	background: #FFF;
-	border: solid 2px #000;
+	border: solid 2px #666;
 	border-radius: 50%;
 	overflow: hidden;
 	display: flex;
