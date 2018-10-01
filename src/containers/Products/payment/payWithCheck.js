@@ -59,7 +59,7 @@ class PaymentWithCheck extends Component {
       }
     } else {
       console.log("Success data", response);
-      this.props.onPay(response);
+      this.props.onPay(response, 'echeck');
       this.setState({showBankForm: false});
     }
   }
