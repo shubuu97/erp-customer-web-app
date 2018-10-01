@@ -1508,8 +1508,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .rel img {
 	width: 25px;
 }
-.rel.offers-icon img{
-    width:27px;
+.rel.offers-icon img {
+	width: 30px;
 }
 .bell-round {
 	display: inline-block;
@@ -3180,7 +3180,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     flex-basis: 0;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    max-width: 100%;
+    max-width: 25%;
     min-width:25%;
 }
 .drop-category-box {
@@ -3459,7 +3459,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         padding-left: 10px;
     }
     .rel.offers-icon img {
-        width: 26px;
+        width: 28px;
     }
     .user-avatar img {
         width: 22px;
@@ -3673,9 +3673,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .rel img {
         width: 23px;
-    }
-    .rel.offers-icon img {
-        width: 24px;
     }
     .app-navbar > ul li.drop-menu:hover::after {
         width: 158px;
