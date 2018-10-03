@@ -63,7 +63,7 @@ function Transition(props) {
     
       handleDelete=()=>
       { 
-          let data;
+          let objectToDelete;
         let options = {
             init: 'INIT_DELETE_ADDRESS',
             success: 'SUCCESSFULLY_DELETED_ADDRESS',
@@ -72,32 +72,19 @@ function Transition(props) {
 
           if(this.state.addressType=="billing")
           {
-         _get(this.props,'billingAddress',[]).map(address=>{
-             console.log(this.props.billingAddress, "billing address")
-                if(this.state.index==address.index)
-                {
-                    address.isActive=false
-                }
-                data=address;
-         })
+            objectToDelete =  _get(this.props,`billingAddress.${this.state.index}`,[]);
+            objectToDelete.isActive = false
         }
         else if(this.state.addressType=='shipping')
         {
-            _get(this.props,'shippingAddress',[]).map(address=>{
-                console.log(this.props.billingAddress, "billing address")
-                   if(this.state.index==address.index)
-                   {
-                    
-                       address.isActive=false
-                       
-                   }
-                   data=address;
-            })
+           objectToDelete =  _get(this.props,`shippingAddress.${this.state.index}`,[]);
+           objectToDelete.isActive = false
+           
             
-            this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
-                console.log("Address updated Successfully", success);
-            })
         }
+        this.props.dispatch(postData(this.props.updateAddressBook.href, objectToDelete, null, options, this.props.updateAddressBook.verb)).then((success) => {
+            console.log("Address updated Successfully", success);
+        })
         this.setState({openDeleteAddress: false, index:null, addressType:null})
       }
 
