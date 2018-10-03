@@ -13,7 +13,8 @@ class CartContainer extends React.Component {
     this.state = {
       cartProducts: [],
       details:{},
-      subTotal:0
+      subTotal:0,
+      currency: ''
     }
     this.removeProductFromCart = this.removeProductFromCart.bind(this);
     this.updateProductList = this.updateProductList.bind(this);
@@ -22,9 +23,12 @@ class CartContainer extends React.Component {
   }
 
   componentDidMount() {
+    let currency='';
     this.props.cartProductList && this.props.cartProductList.map((item)=>{
       item.total = (item.quantity || 1) * item.price;
+      currency = item.currency && item.currency.code;
     })
+    this.setState({currency});
     this.updateProductList(this.props.cartProductList);
     document.body.classList.add('cart-page')
   }
@@ -92,7 +96,7 @@ class CartContainer extends React.Component {
           </div>
           <div className="mc-top">
             <span>Cart Subtotal</span>
-            <label>{this.state.details.subTotal}</label>
+            <label>{this.state.currency} {this.state.details.subTotal}</label>
           </div>
         </div>
         <Button variant="contained" size='large' color="primary" onClick={this.goToCheckout} classes={{ root: 'add-cart-button' }}>Proceed to Checkout</Button>

@@ -14,7 +14,7 @@ export default (props) => {
         <label>{props.name}</label>
         <h4 className="mini-price">
           {/* {props.price} */}
-          $ {props.price || '0'} <span>Per {props.weight}</span>
+          {props.currency} {props.price || '0'} <span>Per {props.weight}</span>
         </h4>
         <div className="mini-qty">
           <span>Qty</span>
