@@ -13,7 +13,6 @@ export const receiveZip = (subreddit, json, id, resolve) => {
         type: ZIP_CONSTANTS.RECEIVED_ZIP,
         subreddit,
         data: json,
-        
         receivedAt: Date.now()
     });
 };
@@ -42,5 +41,14 @@ export const fetchZip = (url,subreddit) => dispatch => {
         wrapperActionType: 'FETCH_ZIP',
         redirect: 'follow'
     }));
+    })
+}
+
+export const resetZipToInitial = () => dispatch => {
+    dispatch({
+        type: ZIP_CONSTANTS.RECEIVED_ZIP,
+        subreddit:'',
+        data: {},
+        receivedAt: Date.now()
     })
 }

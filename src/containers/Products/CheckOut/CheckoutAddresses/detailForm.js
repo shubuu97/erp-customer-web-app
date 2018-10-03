@@ -14,17 +14,13 @@ render()
                 <img src={info} />
             </div>}
             <div className="form-d col-sm-6">
-                <Field name="firstName" label="First Name" component={TextFieldInput}/>
-            </div>
-            <div className="form-d col-sm-6">
-                <Field name="lastName" label="Last Name" component={TextFieldInput}/>
+                <Field name="fullName" label="Name" component={TextFieldInput}/>
             </div>
             {this.props.addContact ? <div className="form-d col-sm-6">
-                <Field name="contact" label="Contact No" component={TextFieldInput}/>
+                <Field name="contactNumber" label="Contact No" component={TextFieldInput}/>
             </div> : null}
             <div className="form-d col-md-12">
-                <Field name="streetAddress1" label="Street Address 1" component={TextFieldInput}/>
-                <Field name="streetAddress2" label="Street Address 2" component={TextFieldInput}/>
+                <Field name="address" label="Address" component={TextFieldInput}/>
             </div>
             <div className="form-d col-md-6">
                 <Field name="zipCode" label = "Zip/Postal Code" component={TextFieldInput}/>

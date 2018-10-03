@@ -13,7 +13,7 @@ import withLoader from '../../../components/LoaderHoc'
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
-import flatten from 'keypather/flatten'
+import flatten from 'keypather/flatten';
 import { LinearProgress } from 'material-ui';
 import _get from 'lodash/get';
 import CircularProgress from '@material-ui/core/CircularProgress';
