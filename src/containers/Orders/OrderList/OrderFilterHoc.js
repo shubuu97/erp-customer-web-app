@@ -79,7 +79,7 @@ function FilterData(WrappedComponent)
                         <li className={this.state.active==2?'active':null} onClick={()=>this.filterData('IN_TRANSIT',2)}>
                             Dispatched
                         </li>
-                        <li className={this.state.active==3?'active':null} onClick={()=>this.filterData('INCOMING',3)}>
+                        <li className={this.state.active==3?'active':null} onClick={()=>this.filterData('DELIVERED',3)}>
                             Delivered
                         </li>
                     </ul>                   

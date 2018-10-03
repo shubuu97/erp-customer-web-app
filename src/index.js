@@ -79,7 +79,7 @@ if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
   }
   const persistConfig = {
-    key: 'customerRoot',
+    key: 'customerroot',
     storage,
     stateReconciler: hardSet,
     blacklist: ['commonData', 'zipCodeData','form']

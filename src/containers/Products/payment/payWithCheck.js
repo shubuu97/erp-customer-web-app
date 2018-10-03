@@ -10,6 +10,7 @@ import orIcon from './../../../assets/images/or-icon.png';
 import _find from 'lodash/find';
 import asyncValidate from './validate.js';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Select from 'react-select';
 
 function new_script(src) {
   return new Promise(function (resolve, reject) {
@@ -30,7 +31,8 @@ class PaymentWithCheck extends Component {
     super();
     this.state = {
       showBankForm: false,
-      isLoading: false
+      isLoading: false,
+      accountType: {label: 'Checking', value: 'checking'}
     };
   }
 
@@ -45,9 +47,9 @@ class PaymentWithCheck extends Component {
       })
   }
 
-   responseHandler=(response)=> {
-    console.log(response,"error")
-    this.setState({isLoading: false});
+  responseHandler = (response) => {
+    console.log(response, "error")
+    this.setState({ isLoading: false });
     if (response.messages.resultCode === "Error") {
       var i = 0;
       while (i < response.messages.message.length) {
@@ -60,7 +62,7 @@ class PaymentWithCheck extends Component {
     } else {
       console.log("Success data", response);
       this.props.onPay(response, 'echeck');
-      this.setState({showBankForm: false});
+      this.setState({ showBankForm: false });
     }
   }
 
@@ -69,7 +71,7 @@ class PaymentWithCheck extends Component {
     bankData.accountNumber = this.props.paymenyWithCheckValues.bankData.bankAccountNumber;
     bankData.routingNumber = this.props.paymenyWithCheckValues.bankData.bankRoutingNumber;
     bankData.nameOnAccount = this.props.paymenyWithCheckValues.bankData.accountName;
-    bankData.accountType = this.props.paymenyWithCheckValues.bankData.accountType;
+    bankData.accountType = this.state.accountType.value;
     var authData = {};
     authData.clientKey = this.props.detail.clientKey
     authData.apiLoginID = this.props.detail.apiLoginKey;
@@ -80,10 +82,10 @@ class PaymentWithCheck extends Component {
     secureData.authData = authData;
 
     secureData.bankData = bankData;
-    this.setState({isLoading: true});
+    this.setState({ isLoading: true });
     window.Accept.dispatchData(secureData, this.responseHandler);
 
-  
+
   }
   showBankForm() {
     this.setState({ showBankForm: !this.state.showBankForm });
@@ -91,6 +93,11 @@ class PaymentWithCheck extends Component {
   handleClose = () => {
     this.setState({ showBankForm: false });
   };
+  updateType = (val) =>{
+    if(val) {
+      this.setState({accountType: val});
+    }
+  }
 
 
 
@@ -102,23 +109,6 @@ class PaymentWithCheck extends Component {
 
         <div className="or-seperator"><img src={orIcon} /></div>
         <button className="AcceptUI2" onClick={() => this.showBankForm()}>Pay Using Bank</button>
-        {/* <div className="or-seperator"><img src={orIcon} /></div> */}
-
-        {/* LOADER CODE START */}
-        {/* <div className="payment-loader">
-          <div>
-            <div className="pl-text">Payment Processing</div>
-            <div className="spinner">
-              <div className="rect1"></div>
-              <div className="rect2"></div>
-              <div className="rect3"></div>
-              <div className="rect4"></div>
-              <div className="rect5"></div>
-            </div>
-          </div>
-        </div> */}
-        {/* LOADER CODE END */}
-
         <Dialog
           open={showBankForm}
           onClose={this.handleClose}
@@ -139,7 +129,14 @@ class PaymentWithCheck extends Component {
                   <Field name="accountName" placeholder="Name On Account" label="Name On Account" component={TextFieldInput} />
                 </div>
                 <div className="form-d">
-                  <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput} />
+                  <Select
+                    name={'accountType'}
+                    placeholder='Account Type'
+                    value={this.state.accountType}
+                    options={[{label: 'Checking', value: 'checking'}, {label: 'Savings', value: 'savings'}, {label: 'Business Checking', value: 'businessChecking'}]}
+                    onChange={(val)=>this.updateType(val)}
+                  />
+                  {/* <Field name="accountType" placeholder="Account Type" label="Account Type" component={TextFieldInput} /> */}
                 </div>
 
                 <Field name="dataValue" type="hidden" component={TextFieldInput} />
@@ -149,7 +146,7 @@ class PaymentWithCheck extends Component {
               </FormSection>
               <Button variant="contained" color="primary" classes={{ root: 'add-cart-button' }} onClick={this.sendPaymentDataToAnet} disabled={isLoading}>{!isLoading && 'Pay Now'}{isLoading && <CircularProgress size={24} />}</Button>
               <DialogActions className="m-footer">
-                
+
               </DialogActions>
             </form>
           </DialogContent>
@@ -159,7 +156,7 @@ class PaymentWithCheck extends Component {
   }
 }
 
-PaymentWithCheck =  reduxForm({
+PaymentWithCheck = reduxForm({
   form: 'payWithCard',
   asyncValidate
 })(PaymentWithCheck);

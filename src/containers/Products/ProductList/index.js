@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import ProductList from './products';
 import SideBar from './sideBar';
 import { fetchInventoryItemData, setSelectedProduct, setSelectedCategoryType, applyFilter } from '../action/product';
-import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
@@ -12,13 +11,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import list from '../../../assets/images/list.png';
 import grid from '../../../assets/images/grid.png';
-import placehold from '../../../assets/images/waste-plant.png';
-import info from '../../../assets/images/info.png';
+
 import { isEmpty } from 'lodash';
 import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
 import { showMessage } from '../../../action/common';
-import _orderBy from 'lodash/orderBy';
 import _get from 'lodash/get'
 
 class ProductsContainer extends React.Component {

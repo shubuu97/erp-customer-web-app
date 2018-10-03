@@ -1,13 +1,7 @@
 import actionInterception from './actionInterception';
 
-import {APPLICATION_BFF_URL} from '../constants/urlConstants'
-import {fetchZip} from '../action/fetchFromZip';
 import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
-import _pickBy from 'lodash/pickBy';
-import { generateV1uuid } from '../utills/helper';
-import {setErrorMessage} from '../action/basicInfoActions';
-
 //import { onLogout } from '../actions/userRoles';
 
 // pure function
