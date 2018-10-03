@@ -85,7 +85,7 @@ class MainLayout extends Component {
     this.setState({ anchorEl: null });
   };
   handleProfile = () => {
-    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/ComapnyStaticProfileView');
+    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/CompanyStaticProfileView');
     this.handleMenuClose();
     this.setState({ isMenuOpen: false });
   }

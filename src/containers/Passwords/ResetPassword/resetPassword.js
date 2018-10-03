@@ -87,7 +87,7 @@ class ResetPassword extends Component {
     return true;
   };
   goBack() {
-    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/ComapnyStaticProfileView');
+    this.props.role == 'customer' ? this.props.history.push('/StaticProfileView') : this.props.history.push('/CompanyStaticProfileView');
   }
   render() {
     const { handleSubmit, classes, theme } = this.props;
