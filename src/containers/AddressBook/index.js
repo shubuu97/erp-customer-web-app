@@ -8,7 +8,6 @@ import _get from 'lodash/get';
 import DisplayAddress from './DisplayAddress/displayAddress';
 import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddress';
 
-
  class AddressBook extends Component
 {
     componentDidMount()
@@ -64,20 +63,30 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
                 <h2 className="cart-heading">Address Book</h2>
                 <div className="row">
                     <div className="col-md-6">
-                    <h3 className="addressbook-title">Shipping Address</h3>
+                        <h3 className="addressbook-title">Shipping Address</h3>
                         {ShippingAddressBox}
+                        <BillingAddress 
+                            onSaveFormData={this.addressSaveHandler} 
+                            hideEmail={true} 
+                            addContactField={true}
+                            addressType="Shipping Address" />
                     </div>
                     <div className="col-md-6">
-                    <h3 className="addressbook-title">Billing Address</h3>
+                        <h3 className="addressbook-title">Billing Address</h3>
                         {BillingAddressBox}
+                        <BillingAddress 
+                            onSaveFormData={this.addressSaveHandler} 
+                            hideEmail={true} 
+                            addContactField={true} 
+                            addressType="Billing Address" />
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-md-12">
                         <BillingAddress 
                             onSaveFormData = {this.addressSaveHandler} hideEmail={true} addContactField={true} />
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }
