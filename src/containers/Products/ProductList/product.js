@@ -13,7 +13,7 @@ export default (props) => {
           <div className="product-content">
             <div className="pc-1" onClick={(e) => { props.click && props.click(props.detail) }}>
               <h4 className="product-name">{props.name}</h4>
-              <div className="product-price">${props.price}</div>
+              <div className="product-price">{props.currency} {props.price}</div>
               {/* <div className="product-code">Item Code:<span> {props.code}</span></div> */}
               {/* <span className="quick-view" title="View Details"></span> */}
             </div>
@@ -39,7 +39,7 @@ export default (props) => {
             <span title="Product Info">  <img className="info-icon" src={info} onClick={() => props.showInfo(props.detail)}/></span>
             </div>
           </div>
-          <div className="product-price">${props.price}</div>
+          <div className="product-price">{props.currency} {props.price}</div>
           <p class="p-desc">{props.description}</p>
           {/* <Button color='primary' variant='contained' onClick={()=>props.addToCart(props.detail)}>Add to Cart</Button> */}
         </div>

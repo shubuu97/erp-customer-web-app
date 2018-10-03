@@ -19,23 +19,23 @@ const orderDetails = (props) => {
           <div>
             {props.cartProductList && props.cartProductList.map((item) => (
               <div key={item.itemId} className="cart-total-subtotal cart-item">
-                {item.aliasName || item.itemName} * {item.quantity || 1}  <span>$ {item.price * (item.quantity || 1)}</span>
+                {item.aliasName || item.itemName} * {item.quantity || 1}  <span>{item.currency && item.currency.code} {item.price * (item.quantity || 1)}</span>
               </div>
             ))}
           </div>
         </Collapse>
       </div>
       <div className="cart-total-subtotal cart-item">
-        Subtotal  <span>$ {props.subTotal}</span>
+        Subtotal  <span>{props.currency} {props.subTotal}</span>
       </div>
       <div className="cart-total-shipping cart-item">
-        Shipping Cost <span>$ 10</span>
+        Shipping Cost <span>{props.currency} 10</span>
       </div>
       <div className="cart-total-tax cart-item">
-        Tax <span>$ 8</span>
+        Tax <span>{props.currency} 8</span>
       </div>
       <div className="cart-total-total cart-item">
-        Order Total <span>$ {props.orderTotal}</span>
+        Order Total <span>{props.currency} {props.orderTotal}</span>
       </div>
       <div className="cart-total-subtotal cart-item payment-term">
         <label>Payment Terms</label>

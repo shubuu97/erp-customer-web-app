@@ -70,6 +70,7 @@ class ProductsInCart extends React.Component {
         key={product.itemId}
         code={product.itemNo}
         price={product.price}
+        currency={product.currency && product.currency.code || ''}
         weight={product.weight}
         total={product.total}
         description={product.itemShortDesc}

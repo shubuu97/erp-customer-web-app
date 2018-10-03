@@ -10,7 +10,7 @@ class AfterRejected extends Component {
         if (this.props.role=="customer")
         this.props.history.push('/StaticProfileView');
         else
-        this.props.history.push('/ComapnyStaticProfileView');
+        this.props.history.push('/CompanyStaticProfileView');
     }
     render() {
         return (<div className="message-alert">
