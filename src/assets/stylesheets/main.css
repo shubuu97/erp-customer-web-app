@@ -3547,6 +3547,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .app-navbar > ul li.drop-menu:hover::after {
         width: 169px;
     }
+    .col-lg-10{
+        width:100%;
+    }
 }
 @media (max-width:991px){
     .navbar-collapse .nav > li > a {

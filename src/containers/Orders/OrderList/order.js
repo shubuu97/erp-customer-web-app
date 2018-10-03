@@ -22,12 +22,14 @@ export default class Order extends React.Component {
   calucualtePrice=()=>
   {
    let salesProducts =  _get(this.props.order,'saleProducts',[]);
-   let orderTotal = 0
+   let orderTotal = 0;
+   let currency = ''
    salesProducts.map((salesProduct)=>
   {
   orderTotal = orderTotal  + _get(salesProduct,'quantity',0)*_get(salesProduct,'price.price',0)
-  })
-  return orderTotal
+  currency = _get(salesProduct,'price.currencyCode','')
+})
+  return  currency +' '+ orderTotal
   }
 
   render() {
@@ -37,6 +39,7 @@ export default class Order extends React.Component {
         key={index}
         imgSrc={_get(saleProduct, 'images[0].url', '')}
         name={saleProduct.aliasName || saleProduct.itemName}
+        currency={_get(saleProduct, 'price.currencyCode', '')}
         price={_get(saleProduct, 'price.price', '')}
         quantity={_get(saleProduct, 'quantity', '')}
       />
