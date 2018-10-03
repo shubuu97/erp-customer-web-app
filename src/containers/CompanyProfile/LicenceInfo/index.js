@@ -9,12 +9,10 @@ import { postLicenseData } from '../../../action/licenseInfo';
 import {fetchLicenseDetailsData} from '../../../action/getLicenseInfo';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
-import withLoader from '../../../components/LoaderHoc'
-import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
+
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'
-import { LinearProgress } from 'material-ui';
 import _get from 'lodash/get';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {receiveZip} from '../../../action/fetchFromZip';
