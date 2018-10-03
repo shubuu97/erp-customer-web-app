@@ -57,7 +57,7 @@ class BankingInfo extends Component
         ...this.props.formValue,
         businessCustomerId : localStorage.getItem('id')
     }
-    //  this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`))
+    // this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`))
     
      this.props.dispatch(getApprovalStatus('submit for apporvall',`${APPLICATION_BFF_URL}/businessCustomer/approval?_id=${localStorage.getItem('id')}`)).then((data)=>{
         console.log("Data for company register", data);
