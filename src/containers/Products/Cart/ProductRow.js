@@ -31,7 +31,7 @@ export default (props) => {
         </select>
       </div>
       <div className="row-price" data-title="Price">
-        <h4>{props.price}</h4>
+        <h4>{props.currency} {props.price}</h4>
       </div>
       <div className="row-quantity" data-title="Quantity">
         <div className="d-flex">
@@ -42,7 +42,7 @@ export default (props) => {
       </div>
       <div className="row-total" data-title="Sub Total">
         <div className="d-flex justify-content-between">
-          <h4>{props.total || props.price || '0'}</h4>
+          <h4>{props.currency} {props.total || props.price || '0'}</h4>
           {/* <img src={cartedit} onClick={()=>{}}/> */}
          <span className="cart-remove" title="Delete"> <img src={trash} onClick={() => props.remove(props.id)} /> </span>
         </div>

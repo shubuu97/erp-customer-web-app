@@ -20,6 +20,7 @@ class CheckOut extends Component {
 		super();
 		this.state = {
 			isPaying: false,
+			currency: '',
 			subTotal: null,
 			billingSelectedAddress: 0,
 			shippingSelctedAddress: 0,
@@ -47,11 +48,13 @@ class CheckOut extends Component {
 		let subTotal = null;
 		let shipping = 10;
 		let tax = 8;
+		let currency = ''
 		this.props.cartProductList && this.props.cartProductList.map((item) => {
 			subTotal = subTotal + item.total;
+			currency = item.currency && item.currency.code;
 		});
 		let orderTotal = subTotal + shipping + tax;
-		this.setState({ subTotal, orderTotal });
+		this.setState({ subTotal, orderTotal, currency });
 		let address = {};
 		if (this.props.role == 'customer') {
 			address = this.props.userInfo.addressInfo;
@@ -265,7 +268,7 @@ class CheckOut extends Component {
 	
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
-		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms,paymentMethod } = this.state;
+		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms,paymentMethod, currency } = this.state;
 		const { companyinfo, userInfo,paymenyWithCheckValues, paymentMethods,bankingData,preferedPaymentMethod } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
@@ -284,6 +287,7 @@ class CheckOut extends Component {
 				<OrderDetails
 					handlePay={this.handlePay}
 					paymenyWithCheckValues={paymenyWithCheckValues}
+					currency= {currency}
 					bankingData={bankingData}
 					paymentMethod={paymentMethod}
 					paymentMethods={paymentMethods}

@@ -2695,7 +2695,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .to-content-box {
 	width: 100%;
-	max-width: 450px;
+	max-width: 480px;
 	margin: auto;
 }
 .to-content-row {
@@ -2756,7 +2756,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     padding-left: 15px;
     background: url('../images/v-dotted.png');
     background-repeat:repeat-y;
-    width: 250px;
+    width: 280px;
     position: relative;
 }
 .to-content-row.active .to-status {
@@ -3544,6 +3544,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .app-navbar > ul li.drop-menu:hover::after {
         width: 169px;
+    }
+    .col-lg-10{
+        width:100%;
     }
 }
 @media (max-width:991px){
