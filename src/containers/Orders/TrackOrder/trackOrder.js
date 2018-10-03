@@ -43,7 +43,8 @@ export default class TrackOrders extends React.Component {
                         <div className="to-border"></div>
                         <div className="to-status">
                             <label>Placed On</label>
-                            <span>{moment(orderDetails.orderDate).format('DD MMMM YYYY')}</span>
+                            <span>{moment(orderDetails.orderDate).format('DD MMMM YYYY')}, 04:30 PM GMT</span>
+
                         </div>
                     </div>
                     <div className="to-content-row active">
