@@ -2135,11 +2135,13 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 22px;
 	height: 22px;
     margin-top: auto;
-    display:none;
     cursor: pointer;
 }
-.address-detail.selected .address-edit-img {
-    display:block;
+.address-custom {
+    margin-left: auto;
+}
+.address-custom .address-edit-img {
+    margin-left: 10px;
 }
 .address-select-img {
 	width: 20px;
