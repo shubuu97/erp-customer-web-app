@@ -12,6 +12,8 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import { find } from 'lodash';
+import {getData} from '../../../action/common/get';
+import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../../constants/GetAddress'
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -120,7 +122,7 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: "",
+				paymentMethod: "CASH",
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				billingAddress: {
@@ -155,7 +157,7 @@ class CheckOut extends Component {
 
 	}
 
-	makePayment = (paymentObj, paymentMethod) => {
+	makePayment = (paymentObj) => {
 		const { userBasicInfo, role } = this.props;
 		const { paymentTerm } = this.state;
 		console.log("paymentObj==", paymentObj);
@@ -192,7 +194,7 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: paymentMethod || "CASH",
+				paymentMethod: "CASH",
 				shippingAmt: 10,
 				isShippingSameAsBilling: false,
 				opaqueData: paymentObj.opaqueData,

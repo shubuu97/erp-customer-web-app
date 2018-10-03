@@ -7,8 +7,6 @@ import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
 import _get from 'lodash/get';
 import DisplayAddress from './DisplayAddress/displayAddress';
 import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddress';
-import withLoader from '../../components/LoaderHoc';
-import {postData} from '../../action/common/post';
 
  class AddressBook extends Component
 {
@@ -31,29 +29,7 @@ import {postData} from '../../action/common/post';
         this.props.dispatch(getData(url, "",options))
     }
 
-    addressSaveHandler = (formData) => {
-        let data = {
-            fullName: formData.firstName + ' ' + formData.lastName,
-            address: formData.streetAddress + formData.streetAddress,
-            contactNumber: formData.contact,
-            city: formData.city,
-            state: formData.state,
-            addressType : "shipping",
-            zipCode: formData.zipCode, 
-            country: formData.country,
-            isPrimary: false
-        }
-
-        let options = {
-        init: 'INIT_SAVE_ADDRESS',
-        success: 'SUCCESSFULLY_SAVED_ADDRESS',
-        error: 'FAILED_SAVE_ADDRESS',  
-        }
-        console.log(this.props.updateAddressBook, 'updateAddressBook');
-        this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
-        console.log("Address Saved Successfully", success);
-        })
-    }
+ 
 
     render() {
       let ShippingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
@@ -63,14 +39,17 @@ import {postData} from '../../action/common/post';
                 addressType={addField.addressType}
                 address={addField.address}
                 city={addField.city}
+                fullName={addField.fullName}
                 state={addField.state}
                 country={addField.country}
                 zip={addField.zipCode} />
         })
 
-        let BillingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
+        let BillingAddressBox = _get(this.props,'billingAddress',[]).map(addField => {
             return <DisplayAddress 
                 key={addField.id}
+                fullName={addField.fullName}
+
                 isLoading={this.props.isLoading}
                 addressType={addField.addressType}
                 address={addField.address}
@@ -84,20 +63,30 @@ import {postData} from '../../action/common/post';
                 <h2 className="cart-heading">Address Book</h2>
                 <div className="row">
                     <div className="col-md-6">
-                    <h3 className="addressbook-title">Shipping Address</h3>
+                        <h3 className="addressbook-title">Shipping Address</h3>
                         {ShippingAddressBox}
+                        <BillingAddress 
+                            onSaveFormData={this.addressSaveHandler} 
+                            hideEmail={true} 
+                            addContactField={true}
+                            addressType="Shipping Address" />
                     </div>
                     <div className="col-md-6">
-                    <h3 className="addressbook-title">Billing Address</h3>
+                        <h3 className="addressbook-title">Billing Address</h3>
                         {BillingAddressBox}
+                        <BillingAddress 
+                            onSaveFormData={this.addressSaveHandler} 
+                            hideEmail={true} 
+                            addContactField={true} 
+                            addressType="Billing Address" />
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-md-12">
                         <BillingAddress 
                             onSaveFormData = {this.addressSaveHandler} hideEmail={true} addContactField={true} />
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }
