@@ -9,7 +9,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import asyncValidate from './validate';
-import _get from 'lodash/get'
+import _get from 'lodash/get';
+import {postData} from '../../../../action/common/post';
+
 
  class ShipDetailsForm extends Component
 {
