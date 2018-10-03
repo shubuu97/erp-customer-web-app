@@ -140,7 +140,7 @@ ReactDOM.render(
 <RouterWithMainLayout layout={MainLayout} path="/track" component = {TrackOrder}/>
 <RouterWithMainLayout layout={MainLayout} path="/reset" component = {ResetPassword}/>
 <RouterWithMainLayout layout={MainLayout} path="/StaticProfileView" component = {StaticProfileView}/>
-<RouterWithMainLayout layout={MainLayout} path="/ComapnyStaticProfileView" component = {CompanyStaticProfileView}/>
+<RouterWithMainLayout layout={MainLayout} path="/CompanyStaticProfileView" component = {CompanyStaticProfileView}/>
 <RouterWithMainLayout layout={MainLayout} path="/Notifications" component = {Notification}/>
 <RouterWithMainLayout layout={MainLayout} path="/AddressBook" component = {AddressBook}/>
 <RouterWithMainLayout layout={MainLayout} path="/myOffers" component = {MyOffers}/>

@@ -11,6 +11,7 @@ var email = yup.object().shape({
 let licenInfoSchema  = yup.object().shape({
     licenseType: yup.string().required(),
     category: yup.string().required(),
+    licenseNumber:yup.string().required(),
     companyAddressInfo: yup.object().shape({
         companyAddress: yup.string().required(),
         zipCode: yup.number().min(3).required(),

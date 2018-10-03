@@ -8,14 +8,30 @@ import _get from 'lodash/get';
 import DisplayAddress from './DisplayAddress/displayAddress';
 import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddress';
 import {editAddress} from '../../action/editAddress'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import Button from '@material-ui/core/Button';
+import {postData} from '../../action/common/post'
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+  }
 
  class AddressBook extends Component
+
 {
 constructor(props)
 {
     super(props);
-    this.state = {editModeShipping:{open:false,index:null,addressType:'',initialValues:{}},
-    editModeBilling:{open:false,index:null,addressType:'',initialValues:{}}
+    this.state = {
+        editModeShipping:{open:false,index:null,addressType:'',initialValues:{}},
+    editModeBilling:{open:false,index:null,addressType:'',initialValues:{}},
+    openDeleteAddress: false,
+          index:null,
+          addressType:null
 }
 
 }
@@ -60,6 +76,12 @@ constructor(props)
         }
         this.props.dispatch(getData(url, "",options))
     }
+    deleteHandler=(index, addressType)=>
+    {
+        this.setState({ openDeleteAddress: true, index:index, addressType:addressType})
+    console.log(index,"index is here");
+    console.log(addressType,"addressType is here");
+    }
 
  setEditOff=()=>
  {
@@ -67,6 +89,37 @@ constructor(props)
      this.setState({editModeShipping:{open:false,initialValues:null,addressType:''}})
 
  }
+    
+    handleClose = () => {
+        this.setState({ openDeleteAddress: false, index:null, addressType:null });
+      };
+    
+      handleDelete=()=>
+      { 
+          let objectToDelete;
+        let options = {
+            init: 'INIT_DELETE_ADDRESS',
+            success: 'SUCCESSFULLY_DELETED_ADDRESS',
+            error: 'FAILED_DELETING_ADDRESS',  
+        }
+
+          if(this.state.addressType=="billing")
+          {
+            objectToDelete =  _get(this.props,`billingAddress.${this.state.index}`,[]);
+            objectToDelete.isActive = false
+        }
+        else if(this.state.addressType=='shipping')
+        {
+           objectToDelete =  _get(this.props,`shippingAddress.${this.state.index}`,[]);
+           objectToDelete.isActive = false
+           
+            
+        }
+        this.props.dispatch(postData(this.props.updateAddressBook.href, objectToDelete, null, options, this.props.updateAddressBook.verb)).then((success) => {
+            console.log("Address updated Successfully", success);
+        })
+        this.setState({openDeleteAddress: false, index:null, addressType:null})
+      }
 
     render() {
       let ShippingAddressBox = _get(this.props,'shippingAddress',[]).map((addField,index) => {
@@ -78,6 +131,7 @@ constructor(props)
                 city={addField.city}
                 index={index}
                 handleEdit={this.handleEdit}
+                deleteHandler={this.deleteHandler}
                 fullName={addField.fullName}
                 state={addField.state}
                 country={addField.country}
@@ -88,8 +142,9 @@ constructor(props)
             return <DisplayAddress 
                 key={addField.id}
                 fullName={addField.fullName}
-                index={index}
                 handleEdit={this.handleEdit}
+                deleteHandler={this.deleteHandler}
+                index={index}
                 isLoading={this.props.isLoading}
                 addressType={addField.addressType}
                 address={addField.address}
@@ -126,6 +181,32 @@ constructor(props)
                             addContactField={true} 
                             addressType="billing" />
                     </div>
+                    <Dialog
+          open={this.state.openDeleteAddress}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+          className="dialogbox-ui small"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <h2 className="modal-title">{"Confirmation"}</h2>
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              <p className="text-dialog">Are you sure want to delete Address?</p>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions className="col-sm-12 dialog-btn">
+            <Button onClick={this.handleDelete} variant="contained" color="primary">
+              Agree
+            </Button>
+            <Button onClick={this.handleClose} variant="contained" color="secondary">
+              Disagree
+            </Button>
+          </DialogActions>
+        </Dialog>
                 </div>
                 {/* <div className="row">
                     <div className="col-md-12">

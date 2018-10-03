@@ -7,7 +7,6 @@ import asyncValidate from './validate.js'
 import { postSiteData } from '../../../action/siteInfo';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
-import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
 import flatten from 'keypather/flatten'

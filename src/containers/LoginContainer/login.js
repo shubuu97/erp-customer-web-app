@@ -5,9 +5,6 @@ import RaiseButton from 'material-ui/RaisedButton';
 import Button from '@material-ui/core/Button';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 //import {SaveButtonV1} from '../../components/common/SaveButton'
-import MenuItem from 'material-ui/MenuItem'
-import { SelectFieldInput } from '../../components/common/MaterialUiComponents';
-import SignUpButton from '../../components/SignUpButton';
 import { postLogin } from '../../action/loginAction';
 import logologin from '../../assets/images/logo-main.png';
 import companyIcon from '../../assets/images/company-icon.png';
@@ -17,7 +14,7 @@ import { APPLICATION_BFF_URL } from '../../constants/urlConstants';
 import { postBasicInfoData } from '../../action/basicInfoActions';
 import { postRegisterTokenData } from '../../action/registerSignUpToken';
 import routeDeciderHoc from '../../components/Login/routerDecider';
-import { showMessage } from '../../action/common';
+
 import Snackbar from '@material-ui/core/Snackbar';
 import asyncValidate from './validate.js';
 import { fetchCategory, selectedCategory } from '../../action/category';

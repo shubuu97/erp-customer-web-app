@@ -14,7 +14,8 @@ class CartContainer extends React.Component {
     super(props);
     this.state = {
       cartProducts: [],
-      details:{}  
+      details:{},
+      currency:''
     }
     this.removeProductFromCart = this.removeProductFromCart.bind(this);
     this.updateProductList = this.updateProductList.bind(this);
@@ -22,9 +23,12 @@ class CartContainer extends React.Component {
     this.goToCheckout = this.goToCheckout.bind(this);
   }
   componentDidMount() {
+    let currency = ''
     this.props.cartProductList && this.props.cartProductList.map((item)=>{
       item.total = (item.quantity || 1) * item.price;
+      currency = item.currency && item.currency.code;
     })
+    this.setState({currency});
     this.updateProductList(this.props.cartProductList);
     document.body.classList.add('cart-page')
   }
@@ -71,7 +75,7 @@ class CartContainer extends React.Component {
     },6000);
   }
   render() {
-    const {cartProducts, details} = this.state;
+    const {cartProducts, details, currency} = this.state;
     return (
       <div className="container">
       {cartProducts.length ? 
@@ -80,7 +84,7 @@ class CartContainer extends React.Component {
       <div className="cart-container">
       
         <CartProductList dispatch={this.props.dispatch} updateProductList={this.updateProductList} backToList={this.backToList} clearCart={this.clearCart} productsList={cartProducts} removeProduct={this.removeProductFromCart}/>
-        <CartTotal goToCheckout={this.goToCheckout} details={details}/>
+        <CartTotal goToCheckout={this.goToCheckout} details={details} currency={currency}/>
         </div>
         
       </div> : 
