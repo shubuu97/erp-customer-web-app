@@ -8,16 +8,16 @@ export default (props) => {
         Summary
     </div>
     <div className="cart-total-subtotal cart-item">
-        Subtotal  <span>$ {props.details.subTotal}</span>
+        Subtotal  <span>{props.currency} {props.details.subTotal}</span>
     </div>
     <div className="cart-total-shipping cart-item">
-        Shipping Cost <span>$ {props.details.shipping}</span>
+        Shipping Cost <span>{props.currency} {props.details.shipping}</span>
     </div>
     <div className="cart-total-tax cart-item">
-        Tax <span>$ {props.details.tax}</span>
+        Tax <span>{props.currency} {props.details.tax}</span>
     </div>
     <div className="cart-total-total cart-item">
-        Order Total <span>$ {props.details.total}</span>
+        Order Total <span>{props.currency} {props.details.total}</span>
     </div>
     {/* <div className="apply-discount">
         <div className="d-flex justify-content-between">
