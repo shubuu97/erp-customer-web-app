@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 
 import {showMessage} from '../../../action/common';
 import expand from 'keypather/expand';
-import flatten from 'keypather/flatten'
+import flatten from 'keypather/flatten';
 import _get from 'lodash/get';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {receiveZip} from '../../../action/fetchFromZip';

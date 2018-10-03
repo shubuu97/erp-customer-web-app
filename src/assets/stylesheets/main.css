@@ -2135,21 +2135,26 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	width: 22px;
 	height: 22px;
     margin-top: auto;
-    display:none;
     cursor: pointer;
 }
-.address-detail.selected .address-edit-img {
-    display:block;
+.address-custom {
+    margin-left: auto;
+}
+.address-custom .address-edit-img {
+    margin-left: 10px;
 }
 .address-select-img {
 	width: 20px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    filter: grayscale(1);
+    opacity: 0.2;
+    cursor: pointer;
 }
 .address-detail.selected .address-select-img {
-	display: block;
+    opacity:1;
+    filter: grayscale(0);
 }
 .privacy-text {
     font-size: 1.2rem;
@@ -3311,7 +3316,11 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     width: 24px;
     margin-right: 10px;
 }
-
+.track-order-desc a {
+    color: #0e8c4f;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
@@ -3544,6 +3553,9 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .app-navbar > ul li.drop-menu:hover::after {
         width: 169px;
+    }
+    .col-lg-10{
+        width:100%;
     }
 }
 @media (max-width:991px){

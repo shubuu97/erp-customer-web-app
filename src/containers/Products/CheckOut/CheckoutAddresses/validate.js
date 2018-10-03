@@ -1,10 +1,7 @@
 import  * as yup from 'yup';
 var schema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
-    streetAddress1: yup.string().required(),
-    streetAddress2: yup.string().required(),
-
+    fullName: yup.string().required(),
+    address: yup.string().required(),
     // email: yup.string().email().required(),
     zipCode:yup.number().required(),
     city:yup.string().required(),

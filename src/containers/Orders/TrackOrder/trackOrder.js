@@ -26,13 +26,13 @@ export default class TrackOrders extends React.Component {
                     <label>Order Id :</label>
                     <span>#{orderDetails.orderId}</span>
                 </div>
-                {orderDetails.trackingNumber && <div className="track-d trackorder-num">
+                {/* {orderDetails.trackingNumber && <div className="track-d trackorder-num">
                     <label>Tracking Number :</label>
                     <span>#{orderDetails.trackingNumber}</span>
                 </div>}
                 {orderDetails.trackingNumber && <div className="track-order-desc">
                     <p>You can track your order from <a href={orderDetails.shipper && orderDetails.shipper.url} target="_blank">{orderDetails.shipper && orderDetails.shipper.name}</a> website with your tracking number.</p>
-                </div>}
+                </div>} */}
             </div>
             <div className="to-content">
                 <div className="to-content-box">

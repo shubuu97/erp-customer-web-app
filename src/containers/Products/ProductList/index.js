@@ -11,7 +11,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import productPlaceholder from '../../../assets/images/product-image-placeholder.jpg';
 import list from '../../../assets/images/list.png';
 import grid from '../../../assets/images/grid.png';
-
+import ReactImageMagnify from 'react-image-magnify';
 import { isEmpty } from 'lodash';
 import { addToCart } from '../action/product';
 import { findIndex } from 'lodash';
@@ -164,7 +164,18 @@ class ProductsContainer extends React.Component {
                   <div className="detailsContent">
                     <div className="imageContent">
                       <div className="mainImage">
-                        <img className="img-responsive" src={popupItemInfo.mainImageUrl.url} alt={popupItemInfo.itemName} />
+                      <ReactImageMagnify enlargedImagePosition='over'  {...{
+                          smallImage: {
+                              alt: popupItemInfo.itemName,
+                              isFluidWidth: true,
+                              src: popupItemInfo.mainImageUrl.url
+                          },
+                          largeImage: {
+                              src: popupItemInfo.mainImageUrl.url,
+                              width: 1000,
+                              height: 1600
+                          }
+                      }} />
                       </div>
                       <div className="subImages">
                         {popupItemInfo.images && popupItemInfo.images.map((image, key) => (

@@ -11,6 +11,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import asyncValidate from './validate';
 import {postData} from '../../../../action/common/post';
 import _get from 'lodash/get';
+import {showMessage} from '../../../../action/common.js';
+import {editAddress} from '../../../../action/editAddress';
+import {getData} from '../../../../action/common/get'
+import flatten from 'keypather/flatten';
+import expand from 'keypather/expand';
+import {resetZipToInitial} from '../../../../action/fetchFromZip';
+import {APPLICATION_BFF_URL} from '../../../../constants/urlConstants'
 
 
 class BillingAddress extends Component {
@@ -23,21 +30,29 @@ class BillingAddress extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.setEditOff();
+    this.props.dispatch(editAddress({}));
+    this.props.dispatch(resetZipToInitial());
   };
+
+  componentWillReceiveProps(nextProps)
+  {
+  console.log(nextProps,"next props is here")
+   if(nextProps.openEdit)
+   {
+     this.handleClickOpen()
+   }
+  }
 
    
   formSubmitHandler = (formData) => {
+    let addressType = this.props.addressType
     let data = {
-        fullName: formData.firstName + ' ' + formData.lastName,
-        address: formData.streetAddress1 + formData.streetAddress2,
-        contactNumber: formData.contact,
-        city: formData.city,
-        state: formData.state,
-        addressType : "billing",
-        zipCode: formData.zipCode, 
-        country: formData.country,
-        isPrimary: false
-    }
+      ...formData,addressType:addressType,
+      isActive: true,
+      isPrimary: false
+
+      }
 
     let options = {
     init: 'INIT_SAVE_ADDRESS',
@@ -46,7 +61,14 @@ class BillingAddress extends Component {
     }
     console.log(this.props.updateAddressBook, 'updateAddressBook');
     this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
-    console.log("Address Saved Successfully", success);
+      this.props.dispatch(showMessage({text:'Address Saved Succesfully',isSuccess:true}));
+    setTimeout(()=>{
+        this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+
+    },6000);
+    this.props.onSaveFormData();
+    this.handleClose();
     })
 }
   render() {
@@ -64,7 +86,7 @@ class BillingAddress extends Component {
           <form onSubmit={handleSubmit(this.formSubmitHandler)}>
             <DialogContent>
               <h2 className="modal-title">{this.props.addressType} <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
-              <DetailForm hideEmail={this.props.hideEmail} addContact={this.props.addContactField} />
+              <DetailForm  hideEmail={this.props.hideEmail} addContact={this.props.addContactField} />
             </DialogContent>
 
             <Button variant="contained" type="submit" color="secondary">
@@ -81,23 +103,26 @@ BillingAddress = reduxForm({
   form: 'BillingAddress',
   asyncValidate,
   enableReinitialize: true,
-  keepDirtyOnReinitialize: true
+  keepDirtyOnReinitialize:true
 })(BillingAddress)
 
 
 function mapStateToProps(state) {
-  let initialValues = {}
+  let initialValues = _get(state,'editAddressData.data',{})
 
   if (state.zipCodeData && state.zipCodeData.meta) {
     let meta = state.zipCodeData.meta;
     if (meta.form == "BillingAddress") {
       let fieldValue = meta.field.split('.')[0];
-      if (fieldValue != 'zipCode') {
-        let { country, state: stateobj, city } = state.zipCodeData.lookUpData;
+      if (fieldValue == 'zipCode') {
+        let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
         let expandObj = {};
-        expandObj[`${fieldValue}.country`] = country;
-        expandObj[`${fieldValue}.state`] = stateobj;
-        expandObj[`${fieldValue}.city`] = city;
+        expandObj = flatten(state.editAddressData.data);
+
+        expandObj[`country`] = country;
+        expandObj[`state`] = stateobj;
+        expandObj[`city`] = city;
+        initialValues = expand(expandObj);
 
       } else {
         let { country, state: stateobj, city } = state.zipCodeData.lookUpData;
@@ -109,8 +134,9 @@ function mapStateToProps(state) {
   }
   console.log(initialValues, 'initialValues');
   let updateAddressBook = _get(state, 'AddressBookData.lookUpData.data._links.updateAddressBook',{})
+  let billingAddress =  _get(state,'AddressBookData.lookUpData.data.billingAddress',[]);
 
-  return { initialValues: initialValues,updateAddressBook }
+  return {initialValues,updateAddressBook,billingAddress }
 }
 
 export default connect(mapStateToProps)(BillingAddress)

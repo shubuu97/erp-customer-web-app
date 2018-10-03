@@ -40,6 +40,8 @@ export default class Order extends React.Component {
         imgSrc={_get(saleProduct, 'images[0].url', '')}
         name={saleProduct.aliasName || saleProduct.itemName}
         currency={_get(saleProduct, 'price.currencyCode', '')}
+        weight={_get(saleProduct, 'weight.weight', '')}
+        weightUom={_get(saleProduct, 'weight.uom', '')}
         price={_get(saleProduct, 'price.price', '')}
         quantity={_get(saleProduct, 'quantity', '')}
       />
@@ -78,8 +80,9 @@ export default class Order extends React.Component {
             <div className="order-right">
               <div>
                 <div className="package-id">Package Id : <label>#ABC123456</label></div>
-                <div className="track-order-desc"><p>You can track your order from <a href="#" target="_blank">Fedex</a> website with your tracking number.</p></div>
-                <div className="tracking-number">Tracking Number <label>#ABC123456ACDD</label></div>
+                <div className="track-order-desc">Logistics Partner: <a href="#" target="_blank">Fedex</a></div>
+                <div className="tracking-number">Tracking Number: <label>#ABC123456ACDD</label></div>
+                <div className="package-id">Package Status : <label>IN TRANSIT</label></div>
               </div>
             </div>
           </div>

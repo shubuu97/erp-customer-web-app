@@ -11,6 +11,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import asyncValidate from './validate';
 import _get from 'lodash/get';
 import {postData} from '../../../../action/common/post';
+import {showMessage} from '../../../../action/common.js';
+import flatten from 'keypather/flatten';
+import expand from 'keypather/expand';
+
+
 
 
  class ShipDetailsForm extends Component
@@ -26,16 +31,11 @@ import {postData} from '../../../../action/common/post';
         this.setState({ open: false });
       };
       formSubmitHandler = (formData) => {
+        console.log(formData,"jkfjd")
         let data = {
-            fullName: formData.firstName + ' ' + formData.lastName,
-            address: formData.streetAddress + formData.streetAddress,
-            contactNumber: formData.contact,
-            city: formData.city,
-            state: formData.state,
-            addressType : "shipping",
-            zipCode: formData.zipCode, 
-            country: formData.country,
-            isPrimary: false
+        ...formData,addressType:"shipping",
+        isPrimary: false
+
         }
     
         let options = {
@@ -45,7 +45,12 @@ import {postData} from '../../../../action/common/post';
         }
         console.log(this.props.updateAddressBook, 'updateAddressBook');
         this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
-        console.log("Address Saved Successfully", success);
+                this.props.dispatch(showMessage({text:'Address Saved Succesfully',isSuccess:true}));
+              setTimeout(()=>{
+                  this.props.dispatch(showMessage({text:'',isSuccess:true}));
+                 this.handleClose()
+              },6000)
+    
         })
     }
     render()
@@ -86,7 +91,7 @@ import {postData} from '../../../../action/common/post';
 
 function mapStateToProps(state)
 {
-    let initialValues = {}
+    let initialValues = _get(state,'editAddressData.data',{})
 
     if(state.zipCodeData && state.zipCodeData.meta)
     {
@@ -97,9 +102,13 @@ function mapStateToProps(state)
       if(fieldValue != 'zipCode') {
         let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
         let expandObj = {};
+        expandObj = flatten(state.editAddressData.data);
+
         expandObj[`${fieldValue}.country`] = country;
         expandObj[`${fieldValue}.state`] = stateobj;
         expandObj[`${fieldValue}.city`] = city;
+        initialValues = expand(expandObj);
+
   
       } else {
         let {country,state:stateobj,city}  = state.zipCodeData.lookUpData;
