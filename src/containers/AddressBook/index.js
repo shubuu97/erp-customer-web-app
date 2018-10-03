@@ -1,7 +1,8 @@
 import React,{Component} from "react";
 import {connect} from 'react-redux';
 import profileSideBarHoc from '../../components/profileSideBarHoc'
-import {getData} from '../../action/common/get'
+import {getData} from '../../action/common/get';
+import {postData} from '../../action/common/post';
 import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../constants/GetAddress'
 import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
 import _get from 'lodash/get';
@@ -27,9 +28,22 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
             url=`${APPLICATION_BFF_URL}/customer/${localStorage.getItem('id')}/addressbook`
         }
         this.props.dispatch(getData(url, "",options))
+        console.log(this.props.billingAddress, this.props.shippingAddress, this.props.updateAddressBook)
     }
+    setPrimary =(data)=>{
+        console.log(data)
+        let options = {
+            init: 'INIT_UPDATEISPRIMARY_ADDRESS',
+            success: 'SUCCESSFULLY_UPDATED_ISPRIMARY',
+            error: 'FAILED_UPDATING_ISPRIMARY',  
+        }
 
- 
+        data.isPrimary = true
+        
+        this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+            console.log("IsPrimary updated Successfully", success);
+        })
+    }
 
     render() {
       let ShippingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
@@ -42,21 +56,26 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
                 fullName={addField.fullName}
                 state={addField.state}
                 country={addField.country}
-                zip={addField.zipCode} />
+                zip={addField.zipCode}
+                details={addField}
+                setActionry={this.setAction}
+                showGreenCheck={addField.isPrimary} />
         })
 
         let BillingAddressBox = _get(this.props,'billingAddress',[]).map(addField => {
             return <DisplayAddress 
                 key={addField.id}
                 fullName={addField.fullName}
-
                 isLoading={this.props.isLoading}
                 addressType={addField.addressType}
                 address={addField.address}
                 city={addField.city}
                 state={addField.state}
                 country={addField.country}
-                zip={addField.zipCode} />
+                zip={addField.zipCode} 
+                details={addField}
+                setPrimary={this.setPrimary}
+                showGreenCheck={addField.isPrimary} />
         })
         return(
             <div className="staticProfile-box">
@@ -81,17 +100,10 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
                             addressType="Billing Address" />
                     </div>
                 </div>
-                {/* <div className="row">
-                    <div className="col-md-12">
-                        <BillingAddress 
-                            onSaveFormData = {this.addressSaveHandler} hideEmail={true} addContactField={true} />
-                    </div>
-                </div> */}
             </div>
         )
     }
 }
-
 
 function mapStateToProps(state)
 {
