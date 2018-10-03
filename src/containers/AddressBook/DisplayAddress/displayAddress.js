@@ -17,7 +17,8 @@ const displayAddress = (props) => {
                 <h5>{props.fullName}</h5>
                 <p>{props.address}, {props.city}, {props.state}, {props.country}, {props.zip}</p>
                 <img src={checkGreen}  className="address-select-img" />
-                <img  src={addressEdit} className="address-edit-img" />            
+                <img  src={addressEdit} className="address-edit-img" />     
+                <img  src={addressEdit} className="address-edit-img" />       
             </div>
         </div>
     )
