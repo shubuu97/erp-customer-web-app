@@ -30,11 +30,11 @@ class ProductsInCart extends React.Component {
     if(type === 'add') {
       productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
     } else if(type === 'sub') {
-      if(productLocal.minimumQuantityToBuy<productLocal.quantity)
+      if(productLocal.minQyt<productLocal.quantity)
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
     else
     {
-      this.props.dispatch(showMessage({ text: "Can not Buy less than Minimum quantity", isSuccess: true }));
+      this.props.dispatch(showMessage({ text: `Minimum Quantity to buy this product is ${productLocal.minimumQuantityToBuy}${((productLocal.primaryUomCode && productLocal.primaryUomCode.name) || 'Grams')}`, isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);

@@ -12,6 +12,8 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import { find } from 'lodash';
+import {getData} from '../../../action/common/get';
+import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../../constants/GetAddress'
 
 class CheckOut extends Component {
 	constructor(props) {

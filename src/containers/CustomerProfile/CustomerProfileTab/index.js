@@ -10,7 +10,9 @@ import BankingInfo from '../BankingInfo';
 import profileSideBar from '../../../components/profileSideBarHoc';
 import * as qs from 'query-string'
 import { connect } from 'react-redux';
-import _get from 'lodash/get'
+import _get from 'lodash/get';
+import wc from './../../../assets/images/wc.png';
+import gc from './../../../assets/images/gc.png';
 
 function TabContainer(props) {
   return (
@@ -70,8 +72,8 @@ class CustomerProfileTab extends React.Component {
         <div className={classes.root + ' c-tabs'}>
           <AppBar position="static">
             <Tabs className={classes.tabStyle} value={value} onChange={this.handleChange} style={{ borderBottom: 'solid 1px #DDD', boxShadow: 'none' }} TabIndicatorProps={{ color: 'transparent' }}>
-              <Tab  className={value == 0 ? classes.tabActive : null} label="Account" />
-              <Tab className={value == 1 ? classes.tabActive : null} label="Banking" />
+              <Tab className={value == 0 ? classes.tabActive : null} label={<span className="c-tabs-label">{this.props.userAccountData.accountStatus && (value == 0 ? <img className="c-tabs-img" src={wc} />:<img className="c-tabs-img" src={gc} />)}Account</span>} />
+              <Tab className={value == 1 ? classes.tabActive : null} label={<span className="c-tabs-label">{this.props.userAccountData.bankingDetailStatus && (value == 1 ? <img className="c-tabs-img" src={wc} />:<img className="c-tabs-img" src={gc} />)}Banking</span>} />
             </Tabs>
           </AppBar>
           {value === 0 && <TabContainer><AccountInfo handleDisable={this.handleDisable} handleTabSwitch={this.handleTabSwitch} /></TabContainer>}
@@ -89,9 +91,13 @@ CustomerProfileTab.propTypes = {
 
 CustomerProfileTab = withStyles(styles)(CustomerProfileTab);
 
-CustomerProfileTab =  profileSideBar(CustomerProfileTab);
-
-export default CustomerProfileTab;
+function mapStateToProps(state) {
+  let userAccountData = {};
+  userAccountData = state.basicInfodata && state.basicInfodata.userAccountData
+  console.log("In the Tab view", userAccountData);
+  return { userAccountData }
+}
+export default profileSideBar(connect(mapStateToProps)(CustomerProfileTab));
 
 
 

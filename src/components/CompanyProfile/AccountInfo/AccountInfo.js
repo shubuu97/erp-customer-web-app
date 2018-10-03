@@ -10,18 +10,18 @@ class AccountInfo extends Component {
             <div className="form-box">
                         <div className="row">
                             <div className="col-sm-12 form-d form-input dsfd">
-                                <Field name='companyName'   label='Company Name' component={TextFieldInput} />
+                                <Field name='companyName'   label='Company Name *' component={TextFieldInput} />
                             </div>
                         </div>
                         <div className="row m-8">
                             <div className="form-d form-input p-8 col-sm-4">
-                                <Field name='firstName' label={'First Name'} component={TextFieldInput} />
+                                <Field name='firstName' label={'First Name *'} component={TextFieldInput} />
                             </div>
                             <div className="form-d form-input p-8 col-sm-4">
                                 <Field name='middleName' label={'Middle Name'} component={TextFieldInput} />
                             </div>
                             <div className="form-d form-input p-8 col-sm-4">
-                                <Field name='lastName' label='Last Name' component={TextFieldInput} />
+                                <Field name='lastName' label='Last Name *' component={TextFieldInput} />
                             </div>
                         </div>
                         <div className="row">
@@ -31,7 +31,7 @@ class AccountInfo extends Component {
                         </div>
                         <div className="row">
                             <div className="col-sm-12 form-d form-input">
-                                <Field name='designation' label='Designation' component={TextFieldInput} />
+                                <Field name='designation' label='Designation *' component={TextFieldInput} />
                             </div>
                         </div>
                 

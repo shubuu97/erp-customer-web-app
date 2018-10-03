@@ -27,11 +27,11 @@ class ProductsInCart extends React.Component {
     if(type === 'add') {
       productLocal.quantity = productLocal.quantity ? productLocal.quantity + 1 : 2;
     } else if(type === 'sub') {
-      if(productLocal.minimumQuantityToBuy<productLocal.quantity)
+      if(productLocal.minQyt<productLocal.quantity)
       productLocal.quantity = (productLocal.quantity && productLocal.quantity !== 1) ? productLocal.quantity - 1 : 1;
     else
     {
-      this.props.dispatch(showMessage({ text: "Can not Buy less than Minimum quantity", isSuccess: true }));
+      this.props.dispatch(showMessage({ text: `Minimum Quantity to buy this product is ${productLocal.minimumQuantityToBuy}${((productLocal.primaryUomCode && productLocal.primaryUomCode.name) || 'Grams')}`, isSuccess: true }));
     setTimeout(() => {
       this.props.dispatch(showMessage({ text: "", isSuccess: true }));
     }, 6000);
@@ -52,6 +52,9 @@ class ProductsInCart extends React.Component {
       let productLocal = productList[productIndex];
       productLocal.weight = {label: selectedWeight.unitCount +' '+((item.primaryUomCode && item.primaryUomCode.name) || 'Grams'), value: selectedWeight.price};
       productLocal.price = selectedWeight.price;
+      let minQyt = parseInt(productLocal.minimumQuantityToBuy/selectedWeight.unitCount) + (productLocal.minimumQuantityToBuy % selectedWeight.unitCount == 0 ? 0 : 1);
+      productLocal.quantity = minQyt;
+      productLocal.minQyt = minQyt;
       productLocal.total = productLocal.quantity * productLocal.price;
       productList[productIndex] = productLocal;
       this.setState({productsData: productList});

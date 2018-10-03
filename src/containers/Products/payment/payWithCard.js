@@ -25,7 +25,7 @@ export default class PayWithCard extends Component {
     } else {
       if(!this.state.authorizeCalled) {
         this.setState({authorizeCalled: true});
-        this.props.onPay(data);
+        this.props.onPay(data, 'card');
       }
     }
   }
