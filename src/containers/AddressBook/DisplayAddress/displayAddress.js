@@ -6,11 +6,11 @@ import checkGreen from '../../../assets/images/check-green.jpg';
 const displayAddress = (props) => {
     return (
         <div>
-            <div onClick={()=>props.setPrimary(props.details)} className={`address-detail ${props.showGreenCheck ? 'selected' : ''}`} >                
+            <div className={`address-detail ${props.showGreenCheck ? 'selected' : ''}`} >                
                 <h5>{props.fullName}</h5>
                 <p>{props.address}, {props.city}, {props.state}, {props.country}, {props.zip}</p>
-                <img src={checkGreen}  className="address-select-img" />
-                <img  src={addressEdit} className="address-edit-img" />            
+                <img alt="address checkbox" onClick={()=>props.setPrimary(props.details)} src={checkGreen} className="address-select-img" />
+                <img alt="address edit" src={addressEdit} className="address-edit-img" />            
             </div>
         </div>
     )

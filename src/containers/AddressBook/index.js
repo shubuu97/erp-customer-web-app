@@ -11,14 +11,14 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
 
  class AddressBook extends Component
 {
-    componentDidMount()
-    {
+    getAddress = () => {
         let url=''
         let options = {
 			init: REQUEST_ADDRESS_DATA,
 			success: RECEIVED_ADDRESS_DATA,
 			error: RECEIVED_ADDRESS_DATA_ERROR
         }
+        
         if(localStorage.getItem('role')=="company")
         {
             url=`${APPLICATION_BFF_URL}/businesscustomer/${localStorage.getItem('id')}/addressbook`
@@ -29,6 +29,10 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
         }
         this.props.dispatch(getData(url, "",options))
         console.log(this.props.billingAddress, this.props.shippingAddress, this.props.updateAddressBook)
+    }
+    componentDidMount()
+    {
+           this.getAddress();
     }
     setPrimary =(data)=>{
         console.log(data)
@@ -42,6 +46,7 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
         
         this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
             console.log("IsPrimary updated Successfully", success);
+            this.getAddress();
         })
     }
 
@@ -58,7 +63,7 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
                 country={addField.country}
                 zip={addField.zipCode}
                 details={addField}
-                setActionry={this.setAction}
+                setPrimary={this.setPrimary}
                 showGreenCheck={addField.isPrimary} />
         })
 
