@@ -7,7 +7,6 @@ import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
 import _get from 'lodash/get';
 import DisplayAddress from './DisplayAddress/displayAddress';
 import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddress';
-import withLoader from '../../components/LoaderHoc';
 import {postData} from '../../action/common/post';
 
  class AddressBook extends Component
@@ -32,13 +31,14 @@ import {postData} from '../../action/common/post';
     }
 
     addressSaveHandler = (formData) => {
+        console.log(formData, 'formdata')
         let data = {
             fullName: formData.firstName + ' ' + formData.lastName,
-            address: formData.streetAddress + formData.streetAddress,
+            address: formData.streetAddress + ',' + formData.streetAddress,
             contactNumber: formData.contact,
             city: formData.city,
             state: formData.state,
-            addressType : "shipping",
+            addressType : "Shipping",
             zipCode: formData.zipCode, 
             country: formData.country,
             isPrimary: false
@@ -68,7 +68,7 @@ import {postData} from '../../action/common/post';
                 zip={addField.zipCode} />
         })
 
-        let BillingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
+        let BillingAddressBox = _get(this.props,'billingAddress',[]).map(addField => {
             return <DisplayAddress 
                 key={addField.id}
                 isLoading={this.props.isLoading}
@@ -84,20 +84,30 @@ import {postData} from '../../action/common/post';
                 <h2 className="cart-heading">Address Book</h2>
                 <div className="row">
                     <div className="col-md-6">
-                    <h3 className="addressbook-title">Shipping Address</h3>
+                        <h3 className="addressbook-title">Shipping Address</h3>
                         {ShippingAddressBox}
+                        <BillingAddress 
+                            onSaveFormData={this.addressSaveHandler} 
+                            hideEmail={true} 
+                            addContactField={true}
+                            addressType="Shipping Address" />
                     </div>
                     <div className="col-md-6">
-                    <h3 className="addressbook-title">Billing Address</h3>
+                        <h3 className="addressbook-title">Billing Address</h3>
                         {BillingAddressBox}
+                        <BillingAddress 
+                            onSaveFormData={this.addressSaveHandler} 
+                            hideEmail={true} 
+                            addContactField={true} 
+                            addressType="Billing Address" />
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-md-12">
                         <BillingAddress 
                             onSaveFormData = {this.addressSaveHandler} hideEmail={true} addContactField={true} />
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }
