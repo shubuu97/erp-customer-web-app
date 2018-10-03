@@ -23,7 +23,29 @@ import _get from 'lodash/get'
       handleClose = () => {
         this.setState({ open: false });
       };
+      formSubmitHandler = (formData) => {
+        let data = {
+            fullName: formData.firstName + ' ' + formData.lastName,
+            address: formData.streetAddress + formData.streetAddress,
+            contactNumber: formData.contact,
+            city: formData.city,
+            state: formData.state,
+            addressType : "shipping",
+            zipCode: formData.zipCode, 
+            country: formData.country,
+            isPrimary: false
+        }
     
+        let options = {
+        init: 'INIT_SAVE_ADDRESS',
+        success: 'SUCCESSFULLY_SAVED_ADDRESS',
+        error: 'FAILED_SAVE_ADDRESS',  
+        }
+        console.log(this.props.updateAddressBook, 'updateAddressBook');
+        this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+        console.log("Address Saved Successfully", success);
+        })
+    }
     render()
     {
         return(
@@ -42,7 +64,7 @@ import _get from 'lodash/get'
                 </DialogContent>
                 <DialogActions className="m-footer">
             
-            <Button variant="contained" onClick={this.handleClose} color="secondary">
+            <Button type="submit" variant="contained" onClick={this.handleClose} color="secondary">
               Save Address
             </Button>
           </DialogActions>
@@ -85,8 +107,10 @@ function mapStateToProps(state)
       }
      }
     }
+    let updateAddressBook = _get(state, 'AddressBookData.lookUpData.data._links.updateAddressBook',{})
+
     console.log(initialValues,'initialValues')
-   return {initialValues:initialValues}
+   return {initialValues:initialValues,updateAddressBook}
 }
 
 export default connect(mapStateToProps)(ShipDetailsForm)

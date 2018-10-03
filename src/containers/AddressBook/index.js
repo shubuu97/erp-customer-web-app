@@ -46,7 +46,7 @@ import BillingAddress from '../Products/CheckOut/CheckoutAddresses/BillingAddres
                 zip={addField.zipCode} />
         })
 
-        let BillingAddressBox = _get(this.props,'shippingAddress',[]).map(addField => {
+        let BillingAddressBox = _get(this.props,'billingAddress',[]).map(addField => {
             return <DisplayAddress 
                 key={addField.id}
                 fullName={addField.fullName}

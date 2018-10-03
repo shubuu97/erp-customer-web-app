@@ -33,7 +33,7 @@ class BillingAddress extends Component {
         contactNumber: formData.contact,
         city: formData.city,
         state: formData.state,
-        addressType : "shipping",
+        addressType : "billing",
         zipCode: formData.zipCode, 
         country: formData.country,
         isPrimary: false
