@@ -9,6 +9,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import asyncValidate from './validate';
+import {postData} from '../../../../action/common/post';
+import _get from 'lodash/get';
 
 
 class BillingAddress extends Component {
@@ -23,11 +25,30 @@ class BillingAddress extends Component {
     this.setState({ open: false });
   };
 
+   
   formSubmitHandler = (formData) => {
-    console.log(formData, "formData");
-    this.props.onSaveFormData(formData);
-  }   
+    let data = {
+        fullName: formData.firstName + ' ' + formData.lastName,
+        address: formData.streetAddress1 + formData.streetAddress2,
+        contactNumber: formData.contact,
+        city: formData.city,
+        state: formData.state,
+        addressType : "billing",
+        zipCode: formData.zipCode, 
+        country: formData.country,
+        isPrimary: false
+    }
 
+    let options = {
+    init: 'INIT_SAVE_ADDRESS',
+    success: 'SUCCESSFULLY_SAVED_ADDRESS',
+    error: 'FAILED_SAVE_ADDRESS',  
+    }
+    console.log(this.props.updateAddressBook, 'updateAddressBook');
+    this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+    console.log("Address Saved Successfully", success);
+    })
+}
   render() {
     console.log("props is here", this.props)
     const {handleSubmit}=this.props;
@@ -42,7 +63,7 @@ class BillingAddress extends Component {
         >
           <form onSubmit={handleSubmit(this.formSubmitHandler)}>
             <DialogContent>
-              <h2 className="modal-title">Billing Address <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
+              <h2 className="modal-title">{this.props.addressType} <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
               <DetailForm hideEmail={this.props.hideEmail} addContact={this.props.addContactField} />
             </DialogContent>
 
@@ -86,8 +107,10 @@ function mapStateToProps(state) {
       }
     }
   }
-  console.log(initialValues, 'initialValues')
-  return { initialValues: initialValues }
+  console.log(initialValues, 'initialValues');
+  let updateAddressBook = _get(state, 'AddressBookData.lookUpData.data._links.updateAddressBook',{})
+
+  return { initialValues: initialValues,updateAddressBook }
 }
 
 export default connect(mapStateToProps)(BillingAddress)
