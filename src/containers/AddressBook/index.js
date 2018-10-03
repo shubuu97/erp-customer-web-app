@@ -1,7 +1,8 @@
 import React,{Component} from "react";
 import {connect} from 'react-redux';
 import profileSideBarHoc from '../../components/profileSideBarHoc'
-import {getData} from '../../action/common/get'
+import {getData} from '../../action/common/get';
+import {postData} from '../../action/common/post';
 import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../constants/GetAddress'
 import {APPLICATION_BFF_URL} from '../../constants/urlConstants';
 import _get from 'lodash/get';
@@ -15,7 +16,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
-import {postData} from '../../action/common/post'
 function Transition(props) {
     return <Slide direction="up" {...props} />;
   }
@@ -58,14 +58,15 @@ constructor(props)
      
         }
     
-    componentDidMount()
-    {
+
+    getAddress = () => {
         let url=''
         let options = {
 			init: REQUEST_ADDRESS_DATA,
 			success: RECEIVED_ADDRESS_DATA,
 			error: RECEIVED_ADDRESS_DATA_ERROR
         }
+        
         if(localStorage.getItem('role')=="company")
         {
             url=`${APPLICATION_BFF_URL}/businesscustomer/${localStorage.getItem('id')}/addressbook`
@@ -75,6 +76,7 @@ constructor(props)
             url=`${APPLICATION_BFF_URL}/customer/${localStorage.getItem('id')}/addressbook`
         }
         this.props.dispatch(getData(url, "",options))
+        console.log(this.props.billingAddress, this.props.shippingAddress, this.props.updateAddressBook)
     }
     deleteHandler=(index, addressType)=>
     {
@@ -120,6 +122,25 @@ constructor(props)
         })
         this.setState({openDeleteAddress: false, index:null, addressType:null})
       }
+    componentDidMount()
+    {
+           this.getAddress();
+    }
+    setPrimary =(data)=>{
+        console.log(data)
+        let options = {
+            init: 'INIT_UPDATEISPRIMARY_ADDRESS',
+            success: 'SUCCESSFULLY_UPDATED_ISPRIMARY',
+            error: 'FAILED_UPDATING_ISPRIMARY',  
+        }
+
+        data.isPrimary = true
+        
+        this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+            console.log("IsPrimary updated Successfully", success);
+            this.getAddress();
+        })
+    }
 
     render() {
       let ShippingAddressBox = _get(this.props,'shippingAddress',[]).map((addField,index) => {
@@ -135,7 +156,10 @@ constructor(props)
                 fullName={addField.fullName}
                 state={addField.state}
                 country={addField.country}
-                zip={addField.zipCode} />
+                zip={addField.zipCode}
+                details={addField}
+                setPrimary={this.setPrimary}
+                showGreenCheck={addField.isPrimary} />
         })
 
         let BillingAddressBox = _get(this.props,'billingAddress',[]).map((addField,index) => {
@@ -151,7 +175,10 @@ constructor(props)
                 city={addField.city}
                 state={addField.state}
                 country={addField.country}
-                zip={addField.zipCode} />
+                zip={addField.zipCode} 
+                details={addField}
+                setPrimary={this.setPrimary}
+                showGreenCheck={addField.isPrimary} />
         })
         return(
             <div className="staticProfile-box">
@@ -208,17 +235,10 @@ constructor(props)
           </DialogActions>
         </Dialog>
                 </div>
-                {/* <div className="row">
-                    <div className="col-md-12">
-                        <BillingAddress 
-                            onSaveFormData = {this.addressSaveHandler} hideEmail={true} addContactField={true} />
-                    </div>
-                </div> */}
             </div>
         )
     }
 }
-
 
 function mapStateToProps(state)
 {

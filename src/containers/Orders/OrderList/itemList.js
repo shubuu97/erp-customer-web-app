@@ -9,7 +9,7 @@ export default (props) => {
                     {props.name}
                 </span>
                 <label>
-                    {props.currency} {props.price}
+                    {props.currency} {props.price} per {props.weight}{props.weightUom}
                 </label>
             </div>
             <div className="order-detail">

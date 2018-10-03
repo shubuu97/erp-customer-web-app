@@ -46,7 +46,6 @@ class BillingAddress extends Component {
 
    
   formSubmitHandler = (formData) => {
-    debugger;
     let addressType = this.props.addressType
     let data = {
       ...formData,addressType:addressType,
