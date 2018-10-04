@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import profileSideBarHoc from '../../components/profileSideBarHoc'
 import { getData } from '../../action/common/get';
 import { postData } from '../../action/common/post';
+import {showMessage} from '../../action/common';
 import { REQUEST_ADDRESS_DATA, RECEIVED_ADDRESS_DATA, RECEIVED_ADDRESS_DATA_ERROR } from '../../constants/GetAddress'
 import { APPLICATION_BFF_URL } from '../../constants/urlConstants';
 import _get from 'lodash/get';
@@ -105,8 +106,21 @@ class AddressBook extends Component {
 
         }
         this.props.dispatch(postData(this.props.updateAddressBook.href, objectToDelete, null, options, this.props.updateAddressBook.verb)).then((success) => {
-            console.log("Address updated Successfully", success);
+            console.log("Deleted Successfully", success);
             this.getAddress();
+            this.props.dispatch(showMessage({text:'Your adddress has been deleted successfully.',isSuccess:true}));
+            setTimeout(()=>{
+                this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+            },6000)
+        })
+        .catch((error)=>
+        {
+            this.props.dispatch(showMessage({text:error.message,isSuccess:false}));
+            setTimeout(()=>{
+                this.props.dispatch(showMessage({text:'',isSuccess:false}));
+
+            },6000)
         })
         this.setState({ openDeleteAddress: false, index: null, addressType: null })
     }
@@ -126,6 +140,19 @@ class AddressBook extends Component {
         this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
             console.log("IsPrimary updated Successfully", success);
             this.getAddress();
+            this.props.dispatch(showMessage({text:'Address is set to primary',isSuccess:true}));
+            setTimeout(()=>{
+                this.props.dispatch(showMessage({text:'',isSuccess:true}));
+
+            },6000)
+        })
+        .catch((error)=>
+        {
+            this.props.dispatch(showMessage({text:error.message,isSuccess:false}));
+            setTimeout(()=>{
+                this.props.dispatch(showMessage({text:'',isSuccess:false}));
+
+            },6000)
         })
     }
     addressSaveHandler = () => {
