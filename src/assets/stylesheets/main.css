@@ -2658,10 +2658,10 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .order-search {
 	display: flex;
-	width: 320px;
+	width: 385px;
 }
 .order-search input {
-	width: 190px;
+	width: 170px;
 	height: 34px;
     margin-right: 5px;
     background: url('../images/input-search.png') no-repeat;
@@ -2917,11 +2917,13 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     opacity:1;
 }
 .sort-by {
-	display: flex;
+    display: flex;
+    margin-left: 15px;
 }
 .sort-by span {
 	width: 80px;
-	line-height: 36px;
+    line-height: 36px;
+    margin-right: 5px;
 }
 .product-list-box {
 	display: -ms-flexbox;
@@ -3533,7 +3535,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
         font-size: 1.3rem;
     }
     .order-search {
-        width: 280px;
+        width: 380px;
     }
     .order-search input {
         width: 160px;
