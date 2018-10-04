@@ -124,7 +124,7 @@ class BankingInfo extends Component
                     >
                         <DialogTitle id="alert-dialog-slide-title">
                             {/* <h2 className="modal-title">{"Confirmation"}</h2> */}
-                            <span onClick={()=>this.closeSubmitForApprove()}>close</span>
+                            <span className="modal-close2" onClick={()=>this.closeSubmitForApprove()}></span>
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">

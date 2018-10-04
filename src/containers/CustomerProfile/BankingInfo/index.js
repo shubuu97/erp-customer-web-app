@@ -61,6 +61,10 @@ constructor(props)
     });
 
   }
+
+  closeSubmitForApprove = () =>{
+    this.setState({openSubmitApprove: false});
+  }
   submitForApproval = () => {
     let requestObj = {
       ...this.props.formValue,
@@ -114,6 +118,7 @@ constructor(props)
                     >
                         <DialogTitle id="alert-dialog-slide-title">
                             {/* <h2 className="modal-title">{"Confirmation"}</h2> */}
+                            <span className="modal-close2" onClick={()=>this.closeSubmitForApprove()}></span>
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
