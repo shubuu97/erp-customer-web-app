@@ -71,7 +71,9 @@ const orderDetails = (props) => {
           </label>
         </div>
 
-        <span className="p-info" title="Your payment will be initiated against your order right away. Please choose payment method to proceed."><img src={paymentIinfo} /></span>
+        <span className="p-info" title="
+  Your payment will be initiated against your order right away.
+Please choose payment method to proceed."><img src={paymentIinfo} /></span>
       </div>
       <div className="p-method">
         {props.payNow ? <Select
