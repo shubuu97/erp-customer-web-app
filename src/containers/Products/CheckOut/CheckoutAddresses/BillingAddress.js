@@ -50,8 +50,7 @@ class BillingAddress extends Component {
     let data = {
       ...formData,addressType:addressType,
       isActive: true,
-      isPrimary: false
-
+      isPrimary: this.props.length==0 ? true : false
       }
 
     let options = {
@@ -61,6 +60,8 @@ class BillingAddress extends Component {
     }
     console.log(this.props.updateAddressBook, 'updateAddressBook');
     this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+      
+      this.props.reset(); 
       this.props.dispatch(showMessage({text:'Address Saved Succesfully',isSuccess:true}));
     setTimeout(()=>{
         this.props.dispatch(showMessage({text:'',isSuccess:true}));
@@ -85,13 +86,12 @@ class BillingAddress extends Component {
         >
           <form onSubmit={handleSubmit(this.formSubmitHandler)}>
             <DialogContent>
-              <h2 className="modal-title">{this.props.addressType} <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
+              <h2 className="modal-title">{this.props.headerTitle} <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
               <DetailForm  hideEmail={this.props.hideEmail} addContact={this.props.addContactField} />
+              <Button variant="contained" type="submit" color="secondary">
+                Save Address
+              </Button>
             </DialogContent>
-
-            <Button variant="contained" type="submit" color="secondary">
-              Save Address
-            </Button>
           </form>
         </Dialog>
       </div>

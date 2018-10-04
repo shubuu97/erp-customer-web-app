@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CheckoutAddresses from './CheckoutAddresses';
 import OrderDetails from './OrderDetails';
 import { connect } from 'react-redux';
 import { postCheckoutData } from '../action/checkout';
@@ -12,8 +11,8 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import { find } from 'lodash';
-import {getData} from '../../../action/common/get';
-import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../../constants/GetAddress'
+import AddressBook from '../../AddressBook/checkoutAddress'
+
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -31,8 +30,10 @@ class CheckOut extends Component {
 			termCondition: false,
 			showError: false,
 			payNow: false,
-			paymentMethod: {value:props.preferedPaymentMethod,
-			label:props.preferedPaymentMethod},
+			paymentMethod: {
+				value: props.preferedPaymentMethod,
+				label: props.preferedPaymentMethod
+			},
 			paymentTerms: [{ label: 'Current', value: 'current' }],
 			paymentConfig: []
 		};
@@ -92,8 +93,11 @@ class CheckOut extends Component {
 	placeOrder = () => {
 		const { userBasicInfo, role } = this.props;
 		const { paymentTerm } = this.state;
-		const shippingAddress = this.state.address[this.state.shippingSelctedAddress]
-		let billingAddress = this.state.address[this.state.billingSelectedAddress]
+		let billingAddress = find(this.props.billingAddress, { 'isPrimary': true });
+		let shippingAddress = find(this.props.shippingAddress, { 'isPrimary': true });
+
+		// const shippingAddress = this.state.address[this.state.shippingSelctedAddress]
+		// let billingAddress = this.state.address[this.state.billingSelectedAddress]
 		let items = [];
 		if (!this.state.termCondition) {
 			this.setState({ showError: 'Please accept terms and conditions.' });
@@ -127,24 +131,32 @@ class CheckOut extends Component {
 				paymentTerms: paymentTerm.value || 'current',
 				paymentMethod: "CASH",
 				shippingAmt: 10,
-				isShippingSameAsBilling: false,
-				billingAddress: {
-					address: billingAddress.companyAddress || billingAddress.address,
-					city: billingAddress.city,
-					country: billingAddress.country,
-					state: billingAddress.state,
-					zipCode: billingAddress.zipCode,
-					addressType: false
-				},
+				isBillingSameAsShipping: false,
 				shippingAddress: {
-					address: shippingAddress.companyAddress || shippingAddress.address,
+					address: shippingAddress.address,
 					city: shippingAddress.city,
 					country: shippingAddress.country,
 					state: shippingAddress.state,
 					zipCode: shippingAddress.zipCode,
-					addressType: false
+					addressType: false,
+					fullName: shippingAddress.fullName,
+					contactNumber: shippingAddress.contactNumber
 				}
 			}
+		}
+		if (billingAddress) {
+			orderData.data.billingAddress = {
+				address: billingAddress.address,
+				city: billingAddress.city,
+				country: billingAddress.country,
+				state: billingAddress.state,
+				zipCode: billingAddress.zipCode,
+				addressType: false,
+				fullName: billingAddress.fullName,
+				contactNumber: billingAddress.contactNumber
+			}
+		} else {
+			orderData.data.isBillingSameAsShipping = true;
 		}
 		this.props.dispatch(postCheckoutData(CHECKOUT_URL, orderData)).then((data) => {
 			console.log("ORDER PLACED SUCCESSFULLY", data);
@@ -160,12 +172,13 @@ class CheckOut extends Component {
 
 	}
 
-	makePayment = (paymentObj) => {
+	makePayment = (paymentObj, paymentMethod) => {
 		const { userBasicInfo, role } = this.props;
 		const { paymentTerm } = this.state;
 		console.log("paymentObj==", paymentObj);
-		const shippingAddress = this.state.address[this.state.shippingSelctedAddress]
-		let billingAddress = this.state.address[this.state.billingSelectedAddress]
+		let billingAddress = find(this.props.billingAddress, { 'isPrimary': true });
+		let shippingAddress = find(this.props.shippingAddress, { 'isPrimary': true });
+		
 		let items = [];
 		if (!this.state.termCondition) {
 			this.setState({ showError: 'Please accept terms and conditions.' });
@@ -197,21 +210,13 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: "CASH",
+				paymentMethod: paymentMethod || "CASH",
 				shippingAmt: 10,
-				isShippingSameAsBilling: false,
+				isBillingSameAsShipping: false,
 				opaqueData: paymentObj.opaqueData,
 				messages: {
 					statusCode: _get(paymentObj.messages, 'message[0].code', ''),
 					encryptedCardData: paymentObj.encryptedCardData
-				},
-				billingAddress: {
-					address: billingAddress.companyAddress || billingAddress.address,
-					city: billingAddress.city,
-					country: billingAddress.country,
-					state: billingAddress.state,
-					zipCode: billingAddress.zipCode,
-					addressType: false
 				},
 				shippingAddress: {
 					address: shippingAddress.companyAddress || shippingAddress.address,
@@ -219,9 +224,25 @@ class CheckOut extends Component {
 					country: shippingAddress.country,
 					state: shippingAddress.state,
 					zipCode: shippingAddress.zipCode,
-					addressType: false
+					addressType: false,
+					fullName: shippingAddress.fullName,
+					contactNumber: shippingAddress.contactNumber
 				}
 			}
+		}
+		if (billingAddress) {
+			orderData.data.billingAddress = {
+				address: billingAddress.address,
+				city: billingAddress.city,
+				country: billingAddress.country,
+				state: billingAddress.state,
+				zipCode: billingAddress.zipCode,
+				addressType: false,
+				fullName: billingAddress.fullName,
+				contactNumber: billingAddress.contactNumber
+			}
+		} else {
+			orderData.data.isBillingSameAsShipping = true;
 		}
 		this.setState({ isPaying: true });
 		this.props.dispatch(postCheckoutData(`${APPLICATION_BFF_URL}/order/makepayment`, orderData)).then((data) => {
@@ -265,11 +286,11 @@ class CheckOut extends Component {
 	paymentMethodUpdate = (val) => {
 		this.setState({ paymentMethod: val })
 	}
-	
+
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
-		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms,paymentMethod, currency } = this.state;
-		const { companyinfo, userInfo,paymenyWithCheckValues, paymentMethods,bankingData,preferedPaymentMethod } = this.props;
+		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms, paymentMethod, currency } = this.state;
+		const { companyinfo, userInfo, paymenyWithCheckValues, paymentMethods, bankingData, preferedPaymentMethod } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
 			<div className="checkout-container container">
@@ -279,15 +300,14 @@ class CheckOut extends Component {
 				<div className="col-md-9 cart-table-parent">
 					<div className="address-order-details">
 						<div className="address-container">
-							<CheckoutAddresses addressSelect={this.billingAddressSelect} selectedAddress={this.state.billingSelectedAddress} name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address} />
-							<CheckoutAddresses addressSelect={this.shippingAddressSelect} selectedAddress={this.state.shippingSelctedAddress} name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address} />
+							<AddressBook />
 						</div>
 					</div>
 				</div>
 				<OrderDetails
 					handlePay={this.handlePay}
 					paymenyWithCheckValues={paymenyWithCheckValues}
-					currency= {currency}
+					currency={currency}
 					bankingData={bankingData}
 					paymentMethod={paymentMethod}
 					paymentMethods={paymentMethods}
@@ -315,10 +335,12 @@ class CheckOut extends Component {
 	}
 }
 const mapStateToPtops = (state) => {
+	let billingAddress = _get(state, 'AddressBookData.lookUpData.data.billingAddress', []);
+	let shippingAddress = _get(state, 'AddressBookData.lookUpData.data.shippingAddress', []);
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo = state.licenseDetailsData.lookUpData.data;
-	let preferedPaymentMethod = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.preferredPaymentMethods','')
-	let bankingData = _get(state,'bankDetailsData.lookUpData.data')
+	let preferedPaymentMethod = _get(state, 'bankDetailsData.lookUpData.data.bankingDetailInfo.preferredPaymentMethods', '')
+	let bankingData = _get(state, 'bankDetailsData.lookUpData.data')
 	let paymentMethods = _get(state, 'bankDetailsData.lookUpData.data.paymentMethods.data', [])
 	let userBasicInfo = state.basicInfodata;
 	let userInfo = state.basicInfodata && state.basicInfodata.basicInfoData;
@@ -326,6 +348,6 @@ const mapStateToPtops = (state) => {
 	let isLoading = state.orderData.isFetching;
 	let paymenyWithCheckValues = _get(state, 'form.payWithCard.values')
 	let urlLinks = _get(state, 'urlLinks.formSearchData._links', {})
-	return { bankingData,cartProductList,paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods,preferedPaymentMethod };
+	return { billingAddress, shippingAddress, bankingData, cartProductList, paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods, preferedPaymentMethod };
 }
 export default connect(mapStateToPtops)(CheckOut);

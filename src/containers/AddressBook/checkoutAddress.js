@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import profileSideBarHoc from '../../components/profileSideBarHoc'
 import { getData } from '../../action/common/get';
 import { postData } from '../../action/common/post';
-import {showMessage} from '../../action/common';
 import { REQUEST_ADDRESS_DATA, RECEIVED_ADDRESS_DATA, RECEIVED_ADDRESS_DATA_ERROR } from '../../constants/GetAddress'
 import { APPLICATION_BFF_URL } from '../../constants/urlConstants';
 import _get from 'lodash/get';
@@ -106,21 +105,8 @@ class AddressBook extends Component {
 
         }
         this.props.dispatch(postData(this.props.updateAddressBook.href, objectToDelete, null, options, this.props.updateAddressBook.verb)).then((success) => {
-            console.log("Deleted Successfully", success);
+            console.log("Address updated Successfully", success);
             this.getAddress();
-            this.props.dispatch(showMessage({text:'Your adddress has been deleted successfully.',isSuccess:true}));
-            setTimeout(()=>{
-                this.props.dispatch(showMessage({text:'',isSuccess:true}));
-
-            },6000)
-        })
-        .catch((error)=>
-        {
-            this.props.dispatch(showMessage({text:error.message,isSuccess:false}));
-            setTimeout(()=>{
-                this.props.dispatch(showMessage({text:'',isSuccess:false}));
-
-            },6000)
         })
         this.setState({ openDeleteAddress: false, index: null, addressType: null })
     }
@@ -140,19 +126,6 @@ class AddressBook extends Component {
         this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
             console.log("IsPrimary updated Successfully", success);
             this.getAddress();
-            this.props.dispatch(showMessage({text:'Address is set to primary',isSuccess:true}));
-            setTimeout(()=>{
-                this.props.dispatch(showMessage({text:'',isSuccess:true}));
-
-            },6000)
-        })
-        .catch((error)=>
-        {
-            this.props.dispatch(showMessage({text:error.message,isSuccess:false}));
-            setTimeout(()=>{
-                this.props.dispatch(showMessage({text:'',isSuccess:false}));
-
-            },6000)
         })
     }
     addressSaveHandler = () => {
@@ -198,36 +171,54 @@ class AddressBook extends Component {
                 showGreenCheck={addField.isPrimary} />
         })
         return (
-            <div className="staticProfile-box">
-                <h2 className="cart-heading">Address Book</h2>
-                <div className="row">
-                    <div className="col-md-6">
-                        <h3 className="addressbook-title">Shipping Address</h3>
-                        {ShippingAddressBox}
-                        <BillingAddress
-                            setEditOff={this.setEditOff}
-                            editMode={this.state.editMode}
-                            onSaveFormData={this.addressSaveHandler}
-                            openEdit={this.state.editModeShipping.open}
-                            hideEmail={true}
-                            addContactField={true}
-                            addressType="shipping"
-                            headerTitle="Shipping Address"
-                        />
+            <div className="">
+                
+                <div className="billing-address">
+                    <div className="biling-address-title">
+                        <h4 className="addressbook-title">Shipping Address</h4>
                     </div>
-                    <div className="col-md-6">
-                        <h3 className="addressbook-title">Billing Address</h3>
+                    <div className="address-content">
+                    {ShippingAddressBox}
+                    <div className="addToCartButtonDiv">
+                    <BillingAddress
+                        setEditOff={this.setEditOff}
+                        editMode={this.state.editMode}
+                        length={_get(this.props,'shippingAddress.length',null)}
+                        onSaveFormData={this.addressSaveHandler}
+                        openEdit={this.state.editModeShipping.open}
+                        hideEmail={true}
+                        addContactField={true}
+                        addressType="shipping"
+                        headerTitle="Shipping Address"
+                    />
+                    </div>
+                    </div>
+                    
+                    </div>
+
+                    <div className="billing-address">
+                    <div className="biling-address-title">
+                        <h4 className="addressbook-title">Billing Address</h4>
+                    </div>
+                    <div className="address-content">
                         {BillingAddressBox}
+                        <div className="addToCartButtonDiv">
                         <BillingAddress
                             setEditOff={this.setEditOff}
                             editMode={this.state.editMode}
                             openEdit={this.state.editModeBilling.open}
                             onSaveFormData={this.addressSaveHandler}
                             hideEmail={true}
+                            length={_get(this.props,'billingAddress.length',null)}
                             addContactField={true}
                             addressType="billing"
                             headerTitle="Billing Address" />
+                            </div>
                     </div>
+                    
+                    </div>
+                    <div className="row">
+                   
                     <Dialog
                         open={this.state.openDeleteAddress}
                         TransitionComponent={Transition}
@@ -270,4 +261,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(profileSideBarHoc(AddressBook))
+export default connect(mapStateToProps)((AddressBook))

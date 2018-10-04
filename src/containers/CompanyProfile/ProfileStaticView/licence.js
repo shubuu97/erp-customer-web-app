@@ -43,7 +43,7 @@ if(Array.isArray(props.emailAddresses))
     Email=props.emailAddresses.map((email)=>
 {
     return( <div>
-        <div>Email Address -  {email.email}</div>
+        <div>{email.email}</div>
         
      </div>)
  
