@@ -12,8 +12,8 @@ const displayAddress = (props) => {
                 <p>{props.address}, {props.city}, {props.state}, {props.country}, {props.zip}</p>
                <img alt="address checkbox" onClick={()=>props.setPrimary(props.details)} src={checkGreen} className="address-select-img" />
                 <div className="address-custom">
-                <img onClick={()=>props.handleEdit(props.addressType,props.index)}  src={addressEdit} className="address-edit-img" />     
-                    <img  src={addressDelete} className="address-edit-img" onClick={()=>props.deleteHandler(props.index,props.addressType)} />
+                <img alt="address edit img" onClick={()=>props.handleEdit(props.addressType,props.index)}  src={addressEdit} className="address-edit-img" />     
+                    <img alt="address edit img" src={addressDelete} className="address-edit-img" onClick={()=>props.deleteHandler(props.index,props.addressType)} />
                 </div>   
             </div>
         </div>

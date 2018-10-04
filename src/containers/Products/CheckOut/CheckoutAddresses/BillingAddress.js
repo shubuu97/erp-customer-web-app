@@ -61,6 +61,8 @@ class BillingAddress extends Component {
     }
     console.log(this.props.updateAddressBook, 'updateAddressBook');
     this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+      
+      this.props.reset(); 
       this.props.dispatch(showMessage({text:'Address Saved Succesfully',isSuccess:true}));
     setTimeout(()=>{
         this.props.dispatch(showMessage({text:'',isSuccess:true}));
