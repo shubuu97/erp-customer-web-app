@@ -2814,7 +2814,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .package-id label, .tracking-number label {
 	color: #0e8c4f;
-    font-size: 16px;
+    font-size: 1.4rem;
     margin-bottom:0;
     text-transform: uppercase;
 }
@@ -3318,7 +3318,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 }
 .track-order-desc a {
     color: #0e8c4f;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
