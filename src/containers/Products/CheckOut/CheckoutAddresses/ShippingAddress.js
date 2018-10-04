@@ -57,7 +57,7 @@ import expand from 'keypather/expand';
     {
         return(
             <div>
-                <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.handleClickOpen}>New Address</Button>
+                <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.handleClickOpen}>Add New Address</Button>
                  <Dialog
           open={this.state.open}
           onClose={this.handleClose}
