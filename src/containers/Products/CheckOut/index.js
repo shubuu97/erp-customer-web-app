@@ -14,6 +14,8 @@ import _get from 'lodash/get';
 import { find } from 'lodash';
 import {getData} from '../../../action/common/get';
 import {REQUEST_ADDRESS_DATA,RECEIVED_ADDRESS_DATA,RECEIVED_ADDRESS_DATA_ERROR} from '../../../constants/GetAddress'
+import AddressBook from '../../AddressBook/addressBook'
+
 
 class CheckOut extends Component {
 	constructor(props) {
@@ -92,8 +94,11 @@ class CheckOut extends Component {
 	placeOrder = () => {
 		const { userBasicInfo, role } = this.props;
 		const { paymentTerm } = this.state;
-		const shippingAddress = this.state.address[this.state.shippingSelctedAddress]
-		let billingAddress = this.state.address[this.state.billingSelectedAddress]
+		let billingAddress = find(this.props.billingAddress,{'isPrimary':true});
+		let shippingAddress = find(this.props.shippingAddress,{'isPrimary':true});
+		
+		// const shippingAddress = this.state.address[this.state.shippingSelctedAddress]
+		// let billingAddress = this.state.address[this.state.billingSelectedAddress]
 		let items = [];
 		if (!this.state.termCondition) {
 			this.setState({ showError: 'Please accept terms and conditions.' });
@@ -134,7 +139,9 @@ class CheckOut extends Component {
 					country: billingAddress.country,
 					state: billingAddress.state,
 					zipCode: billingAddress.zipCode,
-					addressType: false
+					addressType: false,
+					fullName:billingAddress.fullName,
+					contactNumber:billingAddress.contactNumber
 				},
 				shippingAddress: {
 					address: shippingAddress.companyAddress || shippingAddress.address,
@@ -142,7 +149,9 @@ class CheckOut extends Component {
 					country: shippingAddress.country,
 					state: shippingAddress.state,
 					zipCode: shippingAddress.zipCode,
-					addressType: false
+					addressType: false,
+					fullName:shippingAddress.fullName,
+					contactNumber:shippingAddress.contactNumber
 				}
 			}
 		}
@@ -279,8 +288,7 @@ class CheckOut extends Component {
 				<div className="col-md-9 cart-table-parent">
 					<div className="address-order-details">
 						<div className="address-container">
-							<CheckoutAddresses addressSelect={this.billingAddressSelect} selectedAddress={this.state.billingSelectedAddress} name={userInfo.firstName + ' ' + userInfo.lastName} type={'Billing Address'} address={address} />
-							<CheckoutAddresses addressSelect={this.shippingAddressSelect} selectedAddress={this.state.shippingSelctedAddress} name={userInfo.firstName + ' ' + userInfo.lastName} type={'Shipping Address'} address={address} />
+						<AddressBook/>
 						</div>
 					</div>
 				</div>
@@ -315,6 +323,8 @@ class CheckOut extends Component {
 	}
 }
 const mapStateToPtops = (state) => {
+	let billingAddress = _get(state, 'AddressBookData.lookUpData.data.billingAddress', []);
+    let shippingAddress = _get(state, 'AddressBookData.lookUpData.data.shippingAddress', []);
 	let cartProductList = state.productData.cartProductList;
 	let companyinfo = state.licenseDetailsData.lookUpData.data;
 	let preferedPaymentMethod = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.preferredPaymentMethods','')
@@ -326,6 +336,6 @@ const mapStateToPtops = (state) => {
 	let isLoading = state.orderData.isFetching;
 	let paymenyWithCheckValues = _get(state, 'form.payWithCard.values')
 	let urlLinks = _get(state, 'urlLinks.formSearchData._links', {})
-	return { bankingData,cartProductList,paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods,preferedPaymentMethod };
+	return {billingAddress, shippingAddress,bankingData,cartProductList,paymenyWithCheckValues, companyinfo, userInfo, role, userBasicInfo, isLoading, urlLinks, paymentMethods,preferedPaymentMethod };
 }
 export default connect(mapStateToPtops)(CheckOut);
