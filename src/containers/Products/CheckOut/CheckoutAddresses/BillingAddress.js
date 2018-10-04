@@ -86,7 +86,7 @@ class BillingAddress extends Component {
         >
           <form onSubmit={handleSubmit(this.formSubmitHandler)}>
             <DialogContent>
-              <h2 className="modal-title">{this.props.addressType} <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
+              <h2 className="modal-title">{this.props.headerTitle} <Button variant="contained" classes={{ root: 'modal-close' }} onClick={this.handleClose} color="secondary"></Button></h2>
               <DetailForm  hideEmail={this.props.hideEmail} addContact={this.props.addContactField} />
               <Button variant="contained" type="submit" color="secondary">
                 Save Address

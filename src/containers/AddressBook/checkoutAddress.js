@@ -189,6 +189,7 @@ class AddressBook extends Component {
                         hideEmail={true}
                         addContactField={true}
                         addressType="shipping"
+                        headerTitle="Shipping Address"
                     />
                     </div>
                     </div>
@@ -210,7 +211,8 @@ class AddressBook extends Component {
                             hideEmail={true}
                             length={_get(this.props,'billingAddress.length',null)}
                             addContactField={true}
-                            addressType="billing" />
+                            addressType="billing"
+                            headerTitle="Billing Address" />
                             </div>
                     </div>
                     

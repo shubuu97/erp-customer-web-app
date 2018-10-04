@@ -212,6 +212,7 @@ class AddressBook extends Component {
                             hideEmail={true}
                             addContactField={true}
                             addressType="shipping"
+                            headerTitle="Shipping Address"
                         />
                     </div>
                     <div className="col-md-6">
@@ -224,7 +225,8 @@ class AddressBook extends Component {
                             onSaveFormData={this.addressSaveHandler}
                             hideEmail={true}
                             addContactField={true}
-                            addressType="billing" />
+                            addressType="billing"
+                            headerTitle="Billing Address" />
                     </div>
                     <Dialog
                         open={this.state.openDeleteAddress}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CheckoutAddresses from './CheckoutAddresses';
 import OrderDetails from './OrderDetails';
 import { connect } from 'react-redux';
 import { postCheckoutData } from '../action/checkout';
@@ -12,9 +11,7 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { addToCart } from '../action/product';
 import _get from 'lodash/get';
 import { find } from 'lodash';
-import { getData } from '../../../action/common/get';
-import { REQUEST_ADDRESS_DATA, RECEIVED_ADDRESS_DATA, RECEIVED_ADDRESS_DATA_ERROR } from '../../../constants/GetAddress'
-import AddressBook from '../../AddressBook/addressBook'
+import AddressBook from '../../AddressBook/checkoutAddress'
 
 
 class CheckOut extends Component {
@@ -132,7 +129,7 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: "",
+				paymentMethod: "CASH",
 				shippingAmt: 10,
 				isBillingSameAsShipping: false,
 				shippingAddress: {
@@ -213,7 +210,7 @@ class CheckOut extends Component {
 				items: items,
 				customerType: role == 'customer' ? 'Customer' : 'Business Customer',
 				paymentTerms: paymentTerm.value || 'current',
-				paymentMethod: paymentMethod || "",
+				paymentMethod: paymentMethod || "CASH",
 				shippingAmt: 10,
 				isBillingSameAsShipping: false,
 				opaqueData: paymentObj.opaqueData,
