@@ -50,8 +50,7 @@ class BillingAddress extends Component {
     let data = {
       ...formData,addressType:addressType,
       isActive: true,
-      isPrimary: false
-
+      isPrimary: this.props.length==0 ? true : false
       }
 
     let options = {
