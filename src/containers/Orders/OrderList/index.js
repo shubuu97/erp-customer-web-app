@@ -114,7 +114,8 @@ class OrderContainer extends React.Component {
           className="dialogbox-ui small"
         >
           <DialogTitle id="alert-dialog-slide-title">
-            <h2 className="modal-title">{"Confirmation"}</h2>
+            {/* <h2 className="modal-title">{"Confirmation"}</h2> */}
+            <span className="modal-close2" onClick={this.handleClose}></span>
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-slide-description">

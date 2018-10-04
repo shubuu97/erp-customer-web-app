@@ -61,6 +61,10 @@ constructor(props)
     });
 
   }
+
+  closeSubmitForApprove = () =>{
+    this.setState({openSubmitApprove: false});
+  }
   submitForApproval = () => {
     let requestObj = {
       ...this.props.formValue,
@@ -113,17 +117,19 @@ constructor(props)
                         className="dialogbox-ui small"
                     >
                         <DialogTitle id="alert-dialog-slide-title">
-                            <h2 className="modal-title">{"Confirmation"}</h2>
+                            {/* <h2 className="modal-title">{"Confirmation"}</h2> */}
+                            <span className="modal-close2" onClick={()=>this.closeSubmitForApprove()}></span>
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
-                                <p className="text-dialog">All Data Saved Successfully.Please submit your profile for approval</p>
+                                <p className="text-dialog">Your profile is ready to submit.</p>
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions className="col-sm-12 dialog-btn">
                             <Button onClick={this.submitForApproval} variant="contained" color="primary">
                                Submit for Approval
-            </Button>
+                        </Button>
+                        
               
                         </DialogActions>
                     </Dialog>

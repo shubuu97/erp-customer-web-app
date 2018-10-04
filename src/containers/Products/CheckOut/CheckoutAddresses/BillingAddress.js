@@ -77,7 +77,7 @@ class BillingAddress extends Component {
     const {handleSubmit}=this.props;
     return (
       <div>
-        <Button variant="contained" size='large' color="secondary" classes={{ root: 'add-cart-button' }} onClick={this.handleClickOpen}>New Address</Button>
+        <Button variant="contained" size='medium' color="primary" classes={{ root: '' }} onClick={this.handleClickOpen}>Add New Address</Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

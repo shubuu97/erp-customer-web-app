@@ -107,6 +107,20 @@ class CheckOut extends Component {
 			this.setState({ showError: 'Please accept payment term.' });
 			return;
 		}
+		if (!shippingAddress) {
+			this.props.dispatch(showMessage({ text: 'Please add or select shipping address', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
+			return;
+		}
+		if (!billingAddress) {
+			this.props.dispatch(showMessage({ text: 'Please add or select billing address', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
+			return;
+		}
 		this.props.cartProductList.map((item) => {
 			let itemObj = {
 				id: item.itemId,
@@ -178,7 +192,7 @@ class CheckOut extends Component {
 		console.log("paymentObj==", paymentObj);
 		let billingAddress = find(this.props.billingAddress, { 'isPrimary': true });
 		let shippingAddress = find(this.props.shippingAddress, { 'isPrimary': true });
-		
+
 		let items = [];
 		if (!this.state.termCondition) {
 			this.setState({ showError: 'Please accept terms and conditions.' });
@@ -186,6 +200,20 @@ class CheckOut extends Component {
 		}
 		if (!paymentTerm.value) {
 			this.setState({ showError: 'Please accept payment term.' });
+			return;
+		}
+		if (!shippingAddress) {
+			this.props.dispatch(showMessage({ text: 'Please add or select shipping address', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
+			return;
+		}
+		if (!billingAddress) {
+			this.props.dispatch(showMessage({ text: 'Please add or select billing address', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
 			return;
 		}
 		this.props.cartProductList.map((item) => {
