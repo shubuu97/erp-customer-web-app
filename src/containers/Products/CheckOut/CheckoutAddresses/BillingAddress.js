@@ -49,6 +49,7 @@ class BillingAddress extends Component {
     let addressType = this.props.addressType
     let data = {
       ...formData,addressType:addressType,
+      isActive: true,
       isPrimary: false
 
       }
@@ -66,16 +67,7 @@ class BillingAddress extends Component {
 
 
     },6000);
-   let url = {};
-    if(localStorage.getItem('role')=="company")
-        {
-            url=`${APPLICATION_BFF_URL}/businesscustomer/${localStorage.getItem('id')}/addressbook`
-        }
-        else
-        {
-            url=`${APPLICATION_BFF_URL}/customer/${localStorage.getItem('id')}/addressbook`
-        }
-      this.props.dispatch(getData(url, "",options))
+    this.props.onSaveFormData();
     this.handleClose();
     })
 }
