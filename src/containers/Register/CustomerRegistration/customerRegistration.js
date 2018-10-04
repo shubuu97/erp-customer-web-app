@@ -53,7 +53,7 @@ class CustomerRegistration extends Component {
     postData.basicInfo.lastName = formData.lastName;
     postData.basicInfo.middleName = formData.middleName;
     postData.basicInfo.email = formData.email;
-    // postData.basicInfo.contactNumber = '';
+    postData.basicInfo.contactNumber = formData.contactNumber;
     postData.basicInfo.addressInfo = [];
     let pushObj = {}
     pushObj.address = formData.address;

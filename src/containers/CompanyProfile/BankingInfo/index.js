@@ -14,11 +14,28 @@ import {connect} from 'react-redux';
 import {APPLICATION_BFF_URL} from '../../../constants/urlConstants'
 import {showMessage} from '../../../action/common';
 import {getApprovalStatus} from '../../../action/submitForApproval';
-import _get from 'lodash/get' 
+import _get from 'lodash/get';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+}
+
 
 class BankingInfo extends Component
 {
-
+  constructor(props)
+  {
+    super(props)
+    this.state = {
+      openSubmitApprove:false
+    }
+  }
   componentWillMount()
     {
       //this.props.dispatch(fetchBankingDetailsData(`${APPLICATION_BFF_URL}/businesscustomer/bankingdetails?_id=${localStorage.getItem("id")}`));
@@ -34,8 +51,9 @@ class BankingInfo extends Component
     }
      this.props.dispatch(postBankingData(requestObj,'',`${this.props.urlLinks.updateOrCreateBankingDetails.href}`)).then((data)=>{
         if(data.data.message) {
-
+          
           this.props.dispatch(showMessage({text: "Successfully Saved", isSuccess: true}));
+          this.setState({openSubmitApprove:true})
           setTimeout(()=>{
             this.props.dispatch(showMessage({text: "", isSuccess: true}));
           },6000);
@@ -90,9 +108,32 @@ class BankingInfo extends Component
 
                 <div className="form-btn-group">
                     <Button variant="contained" type='submit' color='primary'>Save</Button>
-                    <Button variant="contained"  disabled={this.props.invalid||!this.props.anyTouched} onClick={this.submitForApproval} color='primary'>Submit for approval</Button>
                 </div>
                 </form>
+                <Dialog
+                        open={this.state.openSubmitApprove  }
+                        TransitionComponent={Transition}
+                        keepMounted
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-slide-title"
+                        aria-describedby="alert-dialog-slide-description"
+                        className="dialogbox-ui small"
+                    >
+                        <DialogTitle id="alert-dialog-slide-title">
+                            <h2 className="modal-title">{"Confirmation"}</h2>
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-slide-description">
+                                <p className="text-dialog">All data saved successfully.Please submit your profile for approval</p>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions className="col-sm-12 dialog-btn">
+                            <Button onClick={this.submitForApproval} variant="contained" color="primary">
+                               Submit for Approval
+            </Button>
+              
+                        </DialogActions>
+                    </Dialog>
             </div>
         )
     }

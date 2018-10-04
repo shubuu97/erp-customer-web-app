@@ -27,9 +27,12 @@ export default class CustomerRegistration extends Component {
                         <Field name={'lastName'} label='Last Name *' component={TextFieldInput} />
                     </div>
                 </div>
-                <div className="row d-flex">
-                    <div className="col-sm-12 form-d form-d-full form-input">
+                <div className="row m-8 d-flex">
+                    <div className="col-sm-6 p-8 form-d form-d-full form-input">
                         <Field name='email' label='Email *' component={TextFieldInput} />
+                    </div>
+                    <div className="col-sm-6 p-8 form-d form-d-full form-input">
+                        <Field name='contactNumber' label='Contact Number *' component={TextFieldInput} />
                     </div>
                 </div>
                 <div className="row m-8 d-flex">
