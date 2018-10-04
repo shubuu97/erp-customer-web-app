@@ -4,6 +4,7 @@ var schema = yup.object().shape({
     address: yup.string().required(),
     // email: yup.string().email().required(),
     zipCode:yup.number().required(),
+    contactNumber:yup.number().required(),
     city:yup.string().required(),
     state:yup.string().required(),
     country:yup.string().required(),

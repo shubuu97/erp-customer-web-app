@@ -10,10 +10,10 @@ const displayAddress = (props) => {
             <div className={`address-detail ${props.showGreenCheck ? 'selected' : ''}`} >                
                 <h5>{props.fullName}</h5>
                 <p>{props.address}, {props.city}, {props.state}, {props.country}, {props.zip}</p>
-               <img alt="address checkbox" onClick={()=>props.setPrimary(props.details)} src={checkGreen} className="address-select-img" />
+               <img title="Set Primary"alt="address checkbox" onClick={()=>props.setPrimary(props.details)} src={checkGreen} className="address-select-img" />
                 <div className="address-custom">
-                <img onClick={()=>props.handleEdit(props.addressType,props.index)}  src={addressEdit} className="address-edit-img" />     
-                    <img  src={addressDelete} className="address-edit-img" onClick={()=>props.deleteHandler(props.index,props.addressType)} />
+                <img title='Edit' alt="address edit img" onClick={()=>props.handleEdit(props.addressType,props.index)}  src={addressEdit} className="address-edit-img" />     
+                <img title='Delete' alt="address delete img" src={addressDelete} className="address-edit-img" onClick={()=>props.deleteHandler(props.index,props.addressType)} />
                 </div>   
             </div>
         </div>
