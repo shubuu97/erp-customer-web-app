@@ -96,6 +96,9 @@ class BankingInfo extends Component
         }
       });
     }
+    closeSubmitForApprove = () =>{
+      this.setState({openSubmitApprove: false});
+    }
 
     render()
     {
@@ -120,18 +123,19 @@ class BankingInfo extends Component
                         className="dialogbox-ui small"
                     >
                         <DialogTitle id="alert-dialog-slide-title">
-                            <h2 className="modal-title">{"Confirmation"}</h2>
+                            {/* <h2 className="modal-title">{"Confirmation"}</h2> */}
+                            <span onClick={()=>this.closeSubmitForApprove()}>close</span>
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
-                                <p className="text-dialog">All data saved successfully.Please submit your profile for approval</p>
+                                <p className="text-dialog">Your profile is ready to submit.</p>
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions className="col-sm-12 dialog-btn">
                             <Button onClick={this.submitForApproval} variant="contained" color="primary">
                                Submit for Approval
-            </Button>
-              
+                            </Button>
+                            
                         </DialogActions>
                     </Dialog>
             </div>

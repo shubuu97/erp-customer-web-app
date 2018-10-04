@@ -1508,9 +1508,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .rel img {
 	width: 25px;
 }
-.rel.offers-icon img {
-	width: 30px;
-}
 .bell-round {
 	display: inline-block;
 	width: 16px;
@@ -2190,19 +2187,22 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	border-bottom: solid 1px #666;
     margin-bottom: 10px;
     display: flex;
+    text-transform: capitalize;
 }
 .modal-close {
-    background: transparent url('../images/close.png') no-repeat !important;
-    background-size: 16px !important;
+    background: #0e8c4f url('../images/close-white.png') no-repeat !important;
+    background-size: 14px !important;
     background-position: center;
     -webkit-box-shadow: none;
     box-shadow: none !important;
-    margin-top: auto !important; 
+    margin-top: auto !important;
     margin-left: auto !important;
     background-position: center !important;
     min-width: 20px !important;
-    padding: 0 !important;
-    opacity: 0.7;
+    padding: 14px !important;
+    opacity: 1;
+    border-radius: 2px !important;
+    min-height: 20px !important;
 }
 .flex-form > div:first-child {
 	width: calc(100% - 40px);
@@ -3066,13 +3066,15 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	background: #f8f8f8;
 }
 .text-dialog {
-	font-size: 1.6rem;
-	color: #000;
-	margin: 0;
+	font-size: 2rem;
+	color: #666;
+	margin: 0 0 20px;
+	text-align: center;
 }
 .dialog-btn {
 	margin: 0 !important;
-	padding: 0 15px 15px;
+	padding: 0 15px 30px;
+	justify-content: center !important;
 }
 .cart-backdrop {
     position: fixed;
@@ -3511,9 +3513,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     .navRight li {
         padding-right: 10px;
         padding-left: 10px;
-    }
-    .rel.offers-icon img {
-        width: 28px;
     }
     .user-avatar img {
         width: 22px;
@@ -4221,9 +4220,6 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     }
     .rel img {
         width: 21px;
-    }
-    .rel.offers-icon img {
-        width: 25px;
     }
     .mini-cart-popover {
         width: 280px;
