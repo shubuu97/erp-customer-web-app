@@ -44,6 +44,7 @@ export default class Order extends React.Component {
         weightUom={_get(saleProduct, 'weight.uom', '')}
         price={_get(saleProduct, 'price.price', '')}
         quantity={_get(saleProduct, 'quantity', '')}
+        goToProductDetails={this.props.goToProductDetails}
       />
       ])
     })

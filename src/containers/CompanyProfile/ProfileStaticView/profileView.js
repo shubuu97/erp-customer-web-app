@@ -49,7 +49,9 @@ routeChanger(tab)
                         <div className="col-md-5 profile-detail-box">
                             <h4 className="ac-heading">Account Details</h4>
                             <div className="seperator-box">
-                                <AccountView 
+                                <AccountView
+                                designation = {_get(this.props.accountDetails,'designation','')}
+                                companyName= {_get(this.props.accountDetails,'companyName','')} 
                                 addressInfo={_get(this.props.accountDetails,'addressInfo','')}
                                 contactNumber={_get(this.props.accountDetails,'contactNumber','')}
                                 email={_get(this.props.accountDetails,'email','')}
