@@ -63,6 +63,10 @@ class OrderContainer extends React.Component {
     this.setState({ openCancelOrder: true, readyForCancel: order });
   }
 
+  goToProductDetails = (itemId)=>{
+    console.log('Go to this product', itemId)
+  }
+
   handleClose = () => {
     this.setState({ openCancelOrder: false });
   };
@@ -103,6 +107,7 @@ class OrderContainer extends React.Component {
         <OrderDetails
           orderListData={this.props.orderListData || []}
           onCancelOrder={this.onCancelOrder}
+          goToProductDetails={this.goToProductDetails}
           handleTrack={this.handleTrack} />
         <Dialog
           open={this.state.openCancelOrder}

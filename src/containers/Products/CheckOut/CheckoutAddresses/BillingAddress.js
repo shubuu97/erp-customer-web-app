@@ -59,7 +59,18 @@ class BillingAddress extends Component {
     error: 'FAILED_SAVE_ADDRESS',  
     }
     console.log(this.props.updateAddressBook, 'updateAddressBook');
-    this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+    let address = ''
+    if(localStorage.getItem('role')=='company')
+    {
+      address = ' https://deverp.allonblock.com/customer-bff/businesscustomer/5ba38eb1aa4215001860e535/addressbook';
+
+    }
+    else
+    {
+      address = this.props.updateAddressBook.href;
+
+    }
+    this.props.dispatch(postData(address, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
       
       this.props.reset(); 
       this.props.dispatch(showMessage({text:'Address Saved Succesfully',isSuccess:true}));

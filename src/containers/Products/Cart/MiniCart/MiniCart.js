@@ -4,6 +4,8 @@ import {findIndex} from 'lodash';
 import Button from '@material-ui/core/Button';
 import _get from 'lodash/get';
 import {showMessage} from '../../../../action/common';
+import productPlaceholder from '../../../../assets/images/product-image-placeholder.jpg';
+
 
 
 
@@ -60,7 +62,7 @@ class ProductsInCart extends React.Component {
         description={product.itemShortDesc}
         quantity={product.quantity || ''}
         name={product.aliasName || product.itemName}
-        image={_get(product,'images[0].url','https://www.coghlans.com/images/products/products-camp-kitchen-thumb.jpg')}
+        image={_get(product,'images[0].url',productPlaceholder)}
         id={product.itemId}
         updateQuantity={this.updateQuantity}
         detail={product}
