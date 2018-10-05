@@ -59,7 +59,7 @@ class MainLayout extends Component {
           console.log("In Main Layout Component did mount", typeData);
 
          this.props.dispatch(setSelectedCategoryType(get(typeData, 'data.itemTypes[0]', null)));
-         this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), {}));
+         this.props.dispatch(applyFilter(get(typeData, 'data.itemTypes[0].products', []), {}, 'numerical'));
         }, (err) => {
           console.log(err);
         });
@@ -96,7 +96,7 @@ class MainLayout extends Component {
       console.log("Product Data", data);
      let indexOfItem = findIndex( get(data,'data.itemTypes',[]),{'id':get(this.props,'selectedCategoryType.id','')})||0
       this.props.dispatch(setSelectedCategoryType(get(data, `data.itemTypes[${indexOfItem}]`, null)));
-      this.props.dispatch(applyFilter(get(data, `data.itemTypes[${indexOfItem}].products`, []), {}));
+      this.props.dispatch(applyFilter(get(data, `data.itemTypes[${indexOfItem}].products`, []), {}, 'numerical'));
     }, (err) => {
       console.log(err);
     });

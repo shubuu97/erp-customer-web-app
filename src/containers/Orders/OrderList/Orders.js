@@ -27,6 +27,7 @@ export default class Orders extends React.Component {
           payment={_get(order, 'payment', {})}
           saleProducts={order.saleProducts}
           status={order.status}
+          goToProductDetails={this.props.goToProductDetails}
           order={order} />)
       })
     }
