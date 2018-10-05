@@ -3,8 +3,11 @@ var schema = yup.object().shape({
     fullName: yup.string().required(),
     address: yup.string().required(),
     // email: yup.string().email().required(),
-    zipCode:yup.number().required(),
-    contactNumber:yup.number().required(),
+    zipCode:yup.number().
+    typeError('Must be a Number').required('Zip Code is a required Field'),
+    contactNumber:yup.number().
+    typeError('Must be a Number').
+    required('Contact Number is required Field'),
     city:yup.string().required(),
     state:yup.string().required(),
     country:yup.string().required(),
