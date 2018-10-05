@@ -62,7 +62,7 @@ class BillingAddress extends Component {
     let address = ''
     if(localStorage.getItem('role')=='company')
     {
-      address = ' https://deverp.allonblock.com/customer-bff/businesscustomer/5ba38eb1aa4215001860e535/addressbook';
+      address = `${APPLICATION_BFF_URL}/businesscustomer/${localStorage.getItem('id')}/addressbook`;
 
     }
     else
