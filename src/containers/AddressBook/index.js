@@ -105,7 +105,8 @@ class AddressBook extends Component {
 
 
         }
-        this.props.dispatch(postData(this.props.updateAddressBook.href, objectToDelete, null, options, this.props.updateAddressBook.verb)).then((success) => {
+        let address = this.getServerUrlToUpdate();
+        this.props.dispatch(postData(address, objectToDelete, null, options, this.props.updateAddressBook.verb)).then((success) => {
             console.log("Deleted Successfully", success);
             this.getAddress();
             this.props.dispatch(showMessage({text:'Your adddress has been deleted successfully.',isSuccess:true}));
@@ -127,6 +128,21 @@ class AddressBook extends Component {
     componentDidMount() {
         this.getAddress();
     }
+    getServerUrlToUpdate = ()=>
+    {
+        let address = '';
+        if(localStorage.getItem('role')=='company')
+        {
+          address = ' https://deverp.allonblock.com/customer-bff/businesscustomer/5ba38eb1aa4215001860e535/addressbook';
+    
+        }
+        else
+        {
+          address = this.props.updateAddressBook.href;
+    
+        }
+        return address;
+    }
     setPrimary = (data) => {
         console.log(data)
         let options = {
@@ -135,9 +151,11 @@ class AddressBook extends Component {
             error: 'FAILED_UPDATING_ISPRIMARY',
         }
 
-        data.isPrimary = true
+        data.isPrimary = true;
+        let address = this.getServerUrlToUpdate();
 
-        this.props.dispatch(postData(this.props.updateAddressBook.href, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
+
+        this.props.dispatch(postData(address, data, null, options, this.props.updateAddressBook.verb)).then((success) => {
             console.log("IsPrimary updated Successfully", success);
             this.getAddress();
             this.props.dispatch(showMessage({text:'Address is set to primary',isSuccess:true}));
