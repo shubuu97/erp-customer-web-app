@@ -76,13 +76,17 @@ const orderDetails = (props) => {
 Please choose payment method to proceed."><img src={paymentIinfo} /></span>
       </div>
       <div className="p-method">
-        {props.payNow ? <Select
+      
+        {props.payNow ? 
+        <div>
+          <label for="paymentMethodLabel">Choose your payment method:- </label>
+          <Select
           name={'payment-Method'}
           placeholder='Payment Method'
           value={props.paymentMethod}
           options={props.paymentMethods}
           onChange={props.paymentMethodUpdate}
-        /> : null
+        /></div> : null
         }
       </div>
    
