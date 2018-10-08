@@ -63,7 +63,7 @@ Object.keys(filterObj).map((filterRange)=>
    let range =  filterRange.split('-');
    let min = range[0];
    let max = range[1];
-    filter(list, (item) => (item.basePrice && item.basePrice.price >=min && item.basePrice.price <=max )).map((product) => {
+    filter(list, (item) => (item.basePrice && item.basePrice.price >=min && item.basePrice.price <max )).map((product) => {
 
       dataObj.filteredData.push(product);
     });
