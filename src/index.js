@@ -86,11 +86,10 @@ if (process.env.NODE_ENV !== 'production') {
   };
  const persistedReducer = persistReducer(persistConfig, reducer);
 
+
   export const store = createStore(
     // reducer,
-    persistedReducer,
-    applyMiddleware(...middleware),
-  
+    persistedReducer,applyMiddleware(...middleware)
   );
   export const persistor = persistStore(store);
 
