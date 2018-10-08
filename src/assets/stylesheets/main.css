@@ -3385,6 +3385,13 @@ span.image-zoom {
     font-size: 18px;
     cursor: pointer;
 }
+.p-method {
+	margin-top: 15px;
+}
+.p-method label {
+	text-transform: uppercase;
+	margin: 0;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {
