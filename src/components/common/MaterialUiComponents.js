@@ -12,7 +12,7 @@ const TextFieldInput = (props) =>
    
   { 
     
-    let  {input,label,autoFocus,meta:{touched,error,pristine},...custom} = props;
+    let  {input,label, autoFocus, meta:{touched,error,pristine},...custom} = props;
     console.log(input,"error is here")
     return(
     [<TextField
