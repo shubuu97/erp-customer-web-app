@@ -2610,13 +2610,13 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
     padding-bottom: 0;
 }
 .order-left {
-	width: 60%;
+	width: 65%;
 	display: -ms-flexbox;
 	display: flex;
 	flex-wrap: wrap;
 }
 .order-right {
-	width: 40%;
+	width: 35%;
 	border-left: solid 1px #DDD;
 	padding-left: 20px;
 	display: flex;
@@ -2624,14 +2624,14 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	align-items: center;
 }
 .order-image {
-	padding-right: 20px;
-	width: 130px;
+	padding-right: 10px;
+	width: 95px;
 }
 .order-image img {
 	width: 80px;
 }
 .order-detail {
-	width: 35%;
+	width: 27%;
 	font-size: 16px;
 	max-width: 300px;
 }
