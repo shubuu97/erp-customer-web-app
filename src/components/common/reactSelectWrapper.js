@@ -10,7 +10,7 @@ RFReactSelect.defaultProps = {
 };
 
 
-export default function RFReactSelect({ input ,meta:{touched,error,pristine}, options, multi, className,placeholder}) {
+export default function RFReactSelect({ input,meta:{touched,error,pristine},disabled, options, multi, className,placeholder}) {
   const { name, value, onBlur, onChange, onFocus } = input;
   const transformedValue = transformValue(value, options, multi);
 
@@ -23,6 +23,7 @@ export default function RFReactSelect({ input ,meta:{touched,error,pristine}, op
       fontWeight: '000',
       color: 'rgba(0, 0, 0, 0.38)'}}>{placeholder}</label>,
     <Select
+    isDisabled={disabled}
       valueKey="value"
       name={name}
       placeholder={'Select'}
