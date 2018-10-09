@@ -8,11 +8,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FileUpload from './fileUpload';
 import CheckBox from '@material-ui/core/Checkbox'
 
-const TextFieldInput = (props, autoFocus) =>
+const TextFieldInput = (props) =>
    
   { 
     
-    let  {input,label,meta:{touched,error,pristine},...custom} = props;
+    let  {input,label,autoFocus,meta:{touched,error,pristine},...custom} = props;
     console.log(input,"error is here")
     return(
     [<TextField
