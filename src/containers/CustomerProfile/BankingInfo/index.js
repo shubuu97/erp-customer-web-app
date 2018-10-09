@@ -148,7 +148,8 @@ CustomerBankingDetails = reduxForm({
 const mapStateToProps = (state) => {
   let initialValues = state.bankDetailsData.lookUpData.data;
   let imageUrl = _get(state, 'bankDetailsData.lookUpData.data.bankingDetailInfo.voidCheckUrl', '')
-  let isLoading = state.bankDetailsData.isFetching
+  let isLoading = state.bankDetailsData.isFetching;
+  
   let formValue = _get(state,'form.CustomerBankingInfo.values',{});
   let urlLinks = _get(state, 'urlLinks.formSearchData._links', {});
   let bankDetailsData = _get(state,'bankDetailsData.lookUpData.data');
