@@ -153,7 +153,7 @@ class BankingInfo extends Component {
                                         <div>{this.state.acceptedFile && Array.isArray(this.state.acceptedFile) && this.state.acceptedFile.length > 0 ? <img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview} /> : <div>{this.props.imageUrl ? <img height={'150px'} width={'150px'} src={`${this.props.imageUrl}`} /> : <div>Try dropping some files here, or click to select files to upload.</div>}</div>}</div>
 
                                     </Dropzone>
-                                    <span className="image-zoom" onClick={this.handleOpenImage}><i class="fa fa-search-plus" aria-hidden="true"></i></span>
+                                    {this.state.acceptedFile && Array.isArray(this.state.acceptedFile) && this.state.acceptedFile.length > 0 ? <span className="image-zoom" onClick={this.handleOpenImage}><i class="fa fa-search-plus" aria-hidden="true"></i></span> : null} 
                                 </div>
 
                             </div>
