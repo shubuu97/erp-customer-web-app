@@ -122,13 +122,13 @@ constructor(props)
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
-                                <p className="text-dialog">Your profile is ready to submit.</p>
+                                { localStorage.getItem('customerStatus')!=='Approved' ? <p className="text-dialog">Your profile is ready to submit.</p> : <p className="text-dialog">Your profile has been updated successfully.</p>}
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions className="col-sm-12 dialog-btn">
-                            <Button onClick={this.submitForApproval} variant="contained" color="primary">
+                         { localStorage.getItem('customerStatus')!=='Approved'? <Button onClick={this.submitForApproval} variant="contained" color="primary">
                                Submit for Approval
-                        </Button>
+                        </Button>:null}
                         
               
                         </DialogActions>

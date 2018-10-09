@@ -33,6 +33,9 @@ export default class TrackOrders extends React.Component {
                 {orderDetails.trackingNumber && <div className="track-order-desc">
                     <p>You can track your order from <a href={orderDetails.shipper && orderDetails.shipper.url} target="_blank">{orderDetails.shipper && orderDetails.shipper.name}</a> website with your tracking number.</p>
                 </div>} */}
+                <div className="track-d trackorder-id t-address"><label>Shipping Address :</label><span>{orderDetails.shippingAddress.line1}, {orderDetails.shippingAddress.city}, {orderDetails.shippingAddress.state}, {orderDetails.shippingAddress.country}- {orderDetails.shippingAddress.zipCode}</span></div>
+
+                <div className="track-d trackorder-id t-address"><label>Billing Address :</label><span>{orderDetails.billingAddress.line1}, {orderDetails.billingAddress.city}, {orderDetails.billingAddress.state}, {orderDetails.billingAddress.country}- {orderDetails.billingAddress.zipCode}</span></div>
             </div>
             <div className="to-content">
                 <div className="to-content-box">
@@ -110,7 +113,7 @@ export default class TrackOrders extends React.Component {
                 </div>
 
             </div>
-        </div>)
+        </div >)
 
     }
 

@@ -40,7 +40,9 @@ class OrderContainer extends React.Component {
       orderDate: order.orderDate,
       orderId: order.id,
       trackingNumber: order.trackingNumber,
-      shipper: order.shipper
+      shipper: order.shipper,
+      billingAddress: order.billingAddress,
+      shippingAddress: order.shippingAddress
     };
     localStorage.setItem('orderedItem', JSON.stringify(item));
     localStorage.setItem('orderId', order.id)

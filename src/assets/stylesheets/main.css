@@ -2703,7 +2703,7 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	display: flex;
 	padding-bottom: 15px;
 	border-bottom: solid 1px #DDD;
-	justify-content: center;
+	/* justify-content: center; */
     align-items: center;
     margin-bottom: 50px;
     flex-wrap: wrap;
@@ -2711,7 +2711,20 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 .track-d {
 	font-size: 1.5rem;
 	text-transform: uppercase;
-	padding: 0 50px;
+	width: 100%;
+	margin-bottom: 5px;
+	color: #0e8c4f;
+}
+.track-d.trackorder-id.t-address {
+	margin-top: 5px;
+	text-transform: capitalize;
+	margin-bottom: 0;
+	color: #333;
+    font-size: 14px;
+    width: 50%;
+}
+.track-d.trackorder-id.t-address:nth-child(3) {
+	text-align: right;
 }
 .track-d label {
 	margin-bottom: 0;
@@ -3371,6 +3384,13 @@ span.image-zoom {
     color: #FFF;
     font-size: 18px;
     cursor: pointer;
+}
+.p-method {
+	margin-top: 15px;
+}
+.p-method label {
+	text-transform: uppercase;
+	margin: 0;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
