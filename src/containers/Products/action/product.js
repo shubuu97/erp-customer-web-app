@@ -78,16 +78,16 @@ if(Object.keys(filterObj).length==0||allFalse)
 if(orderKey=='a-z')
 {
   console.log(dataObj.filteredData,"ff");
-  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.aliasName.toLowerCase()], ['asc']);
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => (data.aliasName && data.aliasName.toLowerCase())], ['asc']);
 }
 if(orderKey=='z-a')
 {
   console.log(dataObj.filteredData,"ff");
-  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.aliasName.toLowerCase()], ['desc']);
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => (data.aliasName && data.aliasName.toLowerCase())], ['desc']);
 }
 if(orderKey=="numerical")
 {
-  dataObj.filteredData = orderBy(dataObj.filteredData, [data => data.basePrice.price], ['asc']);
+  dataObj.filteredData = orderBy(dataObj.filteredData, [data => (data.basePrice && data.basePrice.price)], ['asc']);
 }
 
   return {

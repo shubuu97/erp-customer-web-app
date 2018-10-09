@@ -16,6 +16,10 @@ export default (props) => {
                 <span>Quantity</span>
                 <label>{props.quantity}</label>
             </div>
+            <div className="order-detail">
+                <span>Sub Total</span>
+                <label>{parseFloat(props.quantity)*parseFloat(props.price)}</label>
+            </div>
         </div>
     )
 }
