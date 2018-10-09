@@ -46,6 +46,8 @@ class BillingAddress extends Component {
 
    
   formSubmitHandler = (formData) => {
+    
+    console.log(this.props.length,"length")
     let addressType = this.props.addressType
     let data = {
       ...formData,addressType:addressType,
@@ -146,8 +148,9 @@ function mapStateToProps(state) {
   console.log(initialValues, 'initialValues');
   let updateAddressBook = _get(state, 'AddressBookData.lookUpData.data._links.updateAddressBook',{})
   let billingAddress =  _get(state,'AddressBookData.lookUpData.data.billingAddress',[]);
+    let shippingAddress = _get(state, 'AddressBookData.lookUpData.data.shippingAddress', []);
 
-  return {initialValues,updateAddressBook,billingAddress }
+  return {initialValues,updateAddressBook,billingAddress,shippingAddress }
 }
 
 export default connect(mapStateToProps)(BillingAddress)

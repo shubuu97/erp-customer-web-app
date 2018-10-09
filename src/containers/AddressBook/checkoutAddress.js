@@ -228,7 +228,7 @@ class AddressBook extends Component {
                     <BillingAddress
                         setEditOff={this.setEditOff}
                         editMode={this.state.editMode}
-                        length={_get(this.props,'shippingAddress.length',null)}
+                        length={_get(this.props,'shippingAddress.length',0)}
                         onSaveFormData={this.addressSaveHandler}
                         openEdit={this.state.editModeShipping.open}
                         hideEmail={true}
@@ -254,7 +254,7 @@ class AddressBook extends Component {
                             openEdit={this.state.editModeBilling.open}
                             onSaveFormData={this.addressSaveHandler}
                             hideEmail={true}
-                            length={_get(this.props,'billingAddress.length',null)}
+                            length={_get(this.props,'billingAddress.length',0)}
                             addContactField={true}
                             addressType="billing"
                             headerTitle="Billing Address" />
