@@ -46,7 +46,7 @@ class AfterCheckout extends Component {
                 <div className="d-flex justify-content-between"><label>Order Date: </label><span>{moment().format('MMM Do YY')}</span></div>
                 <div className="d-flex justify-content-between"><label>Order Total: </label><span>$ {this.state.total}</span></div>
                 {/* <div className="d-flex justify-content-between"><label>Payment Method: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.method', '') || _get(this.props.orderData, 'data.paymentInfo.method', '')}</span></div> */}
-                <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.transactionId', '') || _get(this.props.orderData, 'data.paymentInfo.transactionId', '')}</span></div>
+                {/* <div className="d-flex justify-content-between"><label>Transaction ID: </label><span>{_get(this.props.orderData, 'data.salesOrder.payment.transactionId', '') || _get(this.props.orderData, 'data.paymentInfo.transactionId', '')}</span></div> */}
                { this.state.paymentStatus!="PLACE_ORDER"? <div className="d-flex justify-content-between"><label>Payment Status: </label><span style={styleOfPaymentFailed} >{this.state.paymentStatus}</span></div>:null}
 
             </div>
