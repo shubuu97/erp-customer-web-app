@@ -3,9 +3,9 @@ import  * as yup from 'yup';
 import _get from 'lodash/get';
 var schema = yup.object().shape({
     password: yup.string().required(),
-    newPassword: yup.mixed().test('match', 'New Password must not match with old password', function (password) {
+    newPassword: yup.mixed().test('match', 'New password can not be same as old password.', function (password) {
         return password !== this.parent.password
-      }).required('abcd'),
+      }).required('New Password is required'),
     confirmNewPassword: yup.mixed().test('match', 'Passwords do not match', function (password) {
         return password === this.parent.newPassword
       }).required('Password confirm is required'),
