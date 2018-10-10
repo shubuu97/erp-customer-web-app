@@ -129,6 +129,7 @@ render() {
                             </div>:null}
 
                  { _get(this.props,`formValue.bankingDetailInfo.bankDetails.${index}.preferredPaymentMethods`,'')=="Checking"? 
+                    <div className="form-d col-md-4 col-sm-6 form-input">
                     <div className="dropzone-parent">
                                 {/* <span onClick={this.handleRemove}>Remove</span> */}
                                     <Dropzone className="dropzone"
@@ -138,7 +139,7 @@ render() {
         
                                     </Dropzone>
                                     <span className="image-zoom" onClick={()=>this.handleOpenImage(index)}><i class="fa fa-search-plus" aria-hidden="true"></i></span>
-                                </div>:null}
+                                </div></div>:null}
 
 
                     {(fields.length == 1 || (fields.get(index) && fields.get(index)._id)) ? null : <div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
@@ -196,13 +197,13 @@ class BankingInfo extends Component {
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field disabled={customerStaus=="Approved"?true:false} name='creditLimit' label='Credit Limit' component={TextFieldInput} />
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
+                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
                                 <Field disabled={customerStaus=="Approved"?true:false} name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
+                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
                                 <Field disabled={customerStaus=="Approved"?true:false} name='invoiceCurrencyCode' label='Invoice Currency Code *' placeholder='Invoice Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
+                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
                                 <Field disabled={customerStaus=="Approved"?true:false} name='currencyCode'  placeholder='Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">

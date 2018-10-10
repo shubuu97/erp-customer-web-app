@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Payment from '../../payment';
 import paymentIinfo from './../../../../assets/images/info.png';
 import _get from 'lodash/get'
+import {ProgressBar} from 'react-bootstrap/lib';
 
 const orderDetails = (props) => {
   return (
@@ -48,6 +49,11 @@ const orderDetails = (props) => {
           onChange={props.paymentTermUpdate}
         /> */}
       </div>
+      <div className="credit-limit">
+        Credit Limit : $20000 <span></span>
+      </div>
+      {/* When progress bar is full then apply this class className="progress-bar-full" */}
+        <ProgressBar now={60}  label={`Used $10000`}/>  
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,
         support your experience throughout this website and for other
@@ -79,7 +85,7 @@ Please choose payment method to proceed."><img src={paymentIinfo} /></span>
       
         {props.payNow ? 
         <div>
-          <label for="paymentMethodLabel">Choose your payment method:- </label>
+          <label for="paymentMethodLabel">Choose your payment method: </label>
           <Select
           name={'payment-Method'}
           placeholder='Payment Method'
@@ -93,7 +99,7 @@ Please choose payment method to proceed."><img src={paymentIinfo} /></span>
      {!props.payNow ||_get(props,'paymentMethod.value','')=="Cash"? <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>:null}
-      {props.payNow&&_get(props,'paymentMethod.value','')!="Cash"?<Payment paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
+      {props.payNow&&_get(props,'paymentMethod.value','')!="Cash"?<Payment totalAmount={props.orderTotal} paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
     </div>
   )
 }
