@@ -107,7 +107,8 @@ class BankingInfo extends Component
         return(
             <div>
 <form onSubmit={handleSubmit(this.bankingDataSaveHandler)}> 
-<BankingInfoComponent {...this.props}/>
+<BankingInfoComponent {...this.props}
+/>
 
                 <div className="form-btn-group">
                     <Button variant="contained" type='submit' color='primary'>Save</Button>
@@ -152,7 +153,7 @@ class BankingInfo extends Component
 const mapStateToProps=(state)=>
 {
     let initialValues = state.bankDetailsData.lookUpData.data;
-    let imageUrl = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.voidCheckUrl','')
+    let bankDetails = _get(state,'bankDetailsData.lookUpData.data.bankingDetailInfo.bankDetails','')
 
     let isLoading= state.bankDetailsData.isFetching;
  let    formValue = _get(state,'form.CompanyBankingInfo.values',{})
@@ -162,7 +163,7 @@ const mapStateToProps=(state)=>
     
     let paymentMethods   = _get(state,"bankDetailsData.lookUpData.data.paymentMethods.data",[{label:'',value:''}])
 
-    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods,formValue,imageUrl}
+    return {initialValues,isLoading,urlLinks,currencyCodes,paymentTerms,paymentMethods,formValue,bankDetails}
 
 }
 
