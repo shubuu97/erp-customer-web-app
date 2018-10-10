@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { showMessage } from '../../../action/common';
 
+
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -107,8 +108,9 @@ class OrderContainer extends React.Component {
     return (
       <div >
         <OrderDetails
-          orderListData={this.props.orderListData || []}
+          orderListData={this.props.orderListData}
           onCancelOrder={this.onCancelOrder}
+          isLoading={this.props.isLoading}
           goToProductDetails={this.goToProductDetails}
           handleTrack={this.handleTrack} />
         <Dialog
@@ -145,7 +147,9 @@ class OrderContainer extends React.Component {
 
 function mapStateToProps(state) {
   let orderListData = _get(state, 'OrderListData.orderListData.data', [])
-  return { orderListData: orderListData };
+  let isLoading = _get(state, 'OrderListData.isFetching', true);
+  console.log("isLoading in order list",isLoading);
+  return { orderListData: orderListData, isLoading };
 }
 
 export default connect(mapStateToProps)(profileSideBar(FilterHoc(OrderContainer)))
