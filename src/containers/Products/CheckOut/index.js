@@ -241,11 +241,11 @@ class CheckOut extends Component {
 				paymentMethod: paymentMethod || "CASH",
 				shippingAmt: 10,
 				isBillingSameAsShipping: false,
-				opaqueData: paymentObj.opaqueData,
-				messages: {
-					statusCode: _get(paymentObj.messages, 'message[0].code', ''),
-					encryptedCardData: paymentObj.encryptedCardData
-				},
+				// opaqueData: paymentObj.opaqueData,
+				// messages: {
+				// 	statusCode: _get(paymentObj.messages, 'message[0].code', ''),
+				// 	encryptedCardData: paymentObj.encryptedCardData
+				// },
 				shippingAddress: {
 					address: shippingAddress.companyAddress || shippingAddress.address,
 					city: shippingAddress.city,
@@ -256,6 +256,15 @@ class CheckOut extends Component {
 					fullName: shippingAddress.fullName,
 					contactNumber: shippingAddress.contactNumber
 				}
+			}
+		}
+		if(paymentMethod == 'paypal') {
+			orderData.data.paymentData = paymentObj;
+		} else {
+			orderData.data.opaqueData = paymentObj.opaqueData;
+			orderData.data.messages = {
+				statusCode: _get(paymentObj.messages, 'message[0].code', ''),
+				encryptedCardData: paymentObj.encryptedCardData
 			}
 		}
 		if (billingAddress) {
@@ -273,7 +282,8 @@ class CheckOut extends Component {
 			orderData.data.isBillingSameAsShipping = true;
 		}
 		this.setState({ isPaying: true });
-		this.props.dispatch(postCheckoutData(`${APPLICATION_BFF_URL}/order/makepayment`, orderData)).then((data) => {
+		let paymentUrl = paymentMethod == 'paypal' ? `${APPLICATION_BFF_URL}/order/makepaymentwithpaypal` : `${APPLICATION_BFF_URL}/order/makepayment`;
+		this.props.dispatch(postCheckoutData(paymentUrl, orderData)).then((data) => {
 			console.log("ORDER PLACED SUCCESSFULLY", data);
 			this.props.dispatch(addToCart([]));
 			this.props.history.push('/orderSuccess');
@@ -287,6 +297,13 @@ class CheckOut extends Component {
 			this.setState({ isPaying: false });
 		});
 
+	}
+
+	onCancelPayment = (message) => {
+		this.props.dispatch(showMessage({ text: message || 'Something went wrong with payment', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 10000);
 	}
 	toggle = () => {
 		if (this.props.cartProductList.length > 0) {
@@ -304,6 +321,22 @@ class CheckOut extends Component {
 		this.setState({ termCondition: !this.state.termCondition, showError: '' })
 	}
 	handlePay = () => {
+		let billingAddress = find(this.props.billingAddress, { 'isPrimary': true });
+		let shippingAddress = find(this.props.shippingAddress, { 'isPrimary': true });
+		if (!shippingAddress) {
+			this.props.dispatch(showMessage({ text: 'Please add or select shipping address', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
+			return;
+		}
+		if (!billingAddress) {
+			this.props.dispatch(showMessage({ text: 'Please add or select billing address', isSuccess: false }));
+			setTimeout(() => {
+				this.props.dispatch(showMessage({ text: '', isSuccess: false }));
+			}, 6000);
+			return;
+		}
 		if (!this.state.termCondition) {
 			this.setState({ showError: 'Please accept terms and conditions.', payNow: false });
 			return;
@@ -339,6 +372,7 @@ class CheckOut extends Component {
 					bankingData={bankingData}
 					paymentMethod={paymentMethod}
 					paymentMethods={paymentMethods}
+					onCancelPayment={this.onCancelPayment}
 					paymentMethodUpdate={this.paymentMethodUpdate}
 					payNow={this.state.payNow}
 					termCondition={termCondition} selectTermCondition={this.selectTermCondition}

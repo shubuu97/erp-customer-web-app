@@ -51,10 +51,11 @@ class BillingAddress extends Component {
     let addressType = this.props.addressType
     let data = {
       ...formData,addressType:addressType,
-      isActive: true,
-      isPrimary: this.props.length==0 ? true : false
+      isActive: true
       }
-
+      if(this.props.length==0) {
+        data.isPrimary = true;
+      }
     let options = {
     init: 'INIT_SAVE_ADDRESS',
     success: 'SUCCESSFULLY_SAVED_ADDRESS',

@@ -42,7 +42,7 @@ export default class Payment extends Component {
         {authorizeNet.show && <PayWithCard detail={authorizeNet} onPay={this.props.onPay}/>}
         {authorizeNet.show && <PayWithCheck paymenyWithCheckValues={this.props.paymenyWithCheckValues} initialValues =  {
           {bankData:_get(this.props,'bankingData.bankingDetailInfo.bankDetails[0]',[])}} detail={authorizeNet} onPay={this.props.onPay}/>}
-        {paypal.show && <Paypal detail={paypal} totalAmount={this.props.totalAmount}/>}
+        {paypal.show && <Paypal detail={paypal} totalAmount={this.props.totalAmount} onPay={this.props.onPay} onCancelPayment={this.props.onCancelPayment}/>}
 
       </div>
     )
