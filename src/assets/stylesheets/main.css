@@ -593,7 +593,7 @@ table .custom-input input[type="date"]{
     max-width:120px;
 }
 .form-d input[type="text"][disabled], table td input[disabled] {
-    color: #000;
+    color: #999;
 }
 .form-d div:before, table td div:before {
     /* background: #000 !important; */
@@ -3391,6 +3391,34 @@ span.image-zoom {
 .p-method label {
 	text-transform: uppercase;
 	margin: 0;
+}
+.form-disabled >div >div {
+    background-color: transparent;
+    border-top: 0;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-top: -11px;
+}
+.form-select-label.form-disabled label {
+    position: relative;
+    font-size: 11px;
+    left: 0;
+    top: 0;
+}
+.progress {
+    background-color: #eee;
+}
+.progress-bar {
+    background-color: #448c4d;
+}
+.credit-limit {
+    font-size: 12px;
+    font-weight: bold;
+    color: #d4620a;
+}
+.progress.progress-bar-full .progress-bar{
+    background-color:#d4620a;
 }
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){

@@ -18,7 +18,7 @@ class TrackOrderContainer extends React.Component {
   }
   componentDidMount() {
     if (localStorage.getItem('orderId'))
-      this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${localStorage.getItem("id")}/history`, ''))
+      this.props.dispatch(fetchTrackData(`${APPLICATION_BFF_URL}/customer/orders/${localStorage.getItem("orderId")}/history`, ''))
     else
       this.props.history.push('/orders')
 

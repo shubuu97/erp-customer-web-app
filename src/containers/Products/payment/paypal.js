@@ -24,6 +24,7 @@ export default class PaymentWithPaypal extends Component {
 
 showPayPalButton=()=>
 {
+  var totalAmount = this.props.totalAmount;
   window.paypal.Button.render({
 
     // Set your environment
@@ -64,7 +65,7 @@ showPayPalButton=()=>
             payment: {
                 transactions: [
                     {
-                        amount: { total: '100', currency: 'USD' }
+                        amount: { total: totalAmount, currency: 'USD' }
                     }
                 ]
             }
@@ -75,6 +76,7 @@ showPayPalButton=()=>
         return actions.payment.execute().then(function() {
           console.log(data);
             window.alert('Payment Complete!');
+            this.props.onPay(data, 'card');
         });
     },
     onCancel:function (data,actions)
@@ -92,6 +94,7 @@ showPayPalButton=()=>
   this.setState({})
 }
   componentDidMount() {
+    console.log("In the paypal config", this.props);
     let payPalFound = false;
      for(let i=0;i<document.scripts.length;i++)
      {

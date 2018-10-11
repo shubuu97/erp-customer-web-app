@@ -2,7 +2,8 @@ import React from 'react';
 import Order from './order'
 import OrderList from '.';
 import _get from 'lodash/get';
-export default class Orders extends React.Component {
+import withLoader from '../../../components/LoaderHoc';
+class Orders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,3 +42,5 @@ export default class Orders extends React.Component {
     )
   }
 }
+
+export default withLoader(Orders);
