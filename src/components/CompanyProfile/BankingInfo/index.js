@@ -1,4 +1,3 @@
-
 import { Field, reduxForm, FieldArray, FormSection } from 'redux-form';
 import React, { Component } from 'react';
 import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiComponents';
@@ -17,14 +16,79 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import nature from './../../../assets/images/nature.jpg';
+import expand from 'keypather/expand';
+import flatten from 'keypather/flatten'
+import _get from 'lodash/get';
 function Transition(props) {
     return <Slide direction="up" {...props} />;
 }
 
 
 
-let BankDetailComponent = (props) => {
-    const { fields, meta: { error } } = props;
+class BankDetailComponent extends Component
+{
+constructor(props)
+{
+    super(props);
+    this.state={bankDetails:[],
+        openImage:false
+        
+    }
+}
+handleClose = () => {
+    this.setState({ openImage: false })
+}
+handleOpenImage = (index) => {
+    let stateImageUrl = _get(this.state,`bankDetails.bankDetails.${index}.voidCheckUrl.preview`,null) || _get(this.props,`bankDetails.${index}.voidCheckUrl`,null);
+    if(stateImageUrl)
+    this.props.handleOpenImage(stateImageUrl)
+    
+
+}
+
+
+    dropHandler = (accept, reject,fieldNumber) => {
+        debugger;
+    let expandObj = {}
+    let flat = flatten(this.state.bankDetails);
+    console.log(bankDetails,"+++++")
+    expandObj[fieldNumber] = accept[0];
+    Object.keys(flat).map((flatobj)=>
+{
+    expandObj[flatobj] = flat[flatobj];
+})
+    let bankDetails = expand(expandObj);
+     this.setState({bankDetails});
+
+
+        if (accept.length > 0) {
+            this.setState({ fieldNumber: accept,removed:false });
+            let formData = new FormData();
+            formData.append('file', accept[0])
+            formData.append('mediaType', 'customer')
+            formData.append('mediaTypeId', '1234567')
+            this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`, formData, 'fileUpload'))
+                .then((data) => {
+                    this.props.autofill(`bankingDetailInfo.${fieldNumber}`, data.message.relativeURL)
+                    this.props.dispatch(showMessage({ text: 'Upload success', isSuccess: true }));
+                    setTimeout(() => {
+                        this.props.dispatch(showMessage({ text: '', isSuccess: true }));
+
+                    }, 6000)
+                })
+                .catch((error) => {
+                    this.props.dispatch(showMessage({ text: error.message, isSuccess: true }));
+                    setTimeout(() => {
+                        this.props.dispatch(showMessage({ text: '', isSuccess: true }));
+
+                    }, 6000)
+                })
+
+        }
+    }
+render() {
+    console.log(this.props,'props is here')
+    const { fields, meta: { error } } = this.props;
     if (fields.length == 0)
         fields.push();
     return (
@@ -33,6 +97,10 @@ let BankDetailComponent = (props) => {
 
             (<div className="form-box">
                 <div className="row d-flex">
+                <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
+                                <Field  name={`${bank}.preferredPaymentMethods`} placeholder='Preferred Payment Method *' options={this.props.paymentMethods} component={ReactSelectWrapper} />
+                            </div>
+                            
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name={`${bank}.accountName`} label='Account Name *' component={TextFieldInput} />
                     </div>
@@ -56,6 +124,22 @@ let BankDetailComponent = (props) => {
                     <div className="form-d col-md-4 col-sm-6 form-input">
                         <Field name={`${bank}.accountStatus`} label='Account Status *' component={TextFieldInput} />
                     </div>
+                  { _get(this.props,`formValue.bankingDetailInfo.bankDetails.${index}.preferredPaymentMethods`,'')=="Checking"? <div className="form-d col-md-4 col-sm-6 form-input">
+                                <Field name={`${bank}.nameOnCheque`} label='Print Name On Check As *' component={TextFieldInput} />
+                            </div>:null}
+
+                 { _get(this.props,`formValue.bankingDetailInfo.bankDetails.${index}.preferredPaymentMethods`,'')=="Checking"? 
+                    <div className="form-d col-md-4 col-sm-6 form-input">
+                    <div className="dropzone-parent">
+                                {/* <span onClick={this.handleRemove}>Remove</span> */}
+                                    <Dropzone className="dropzone"
+                                        onDrop={(accept,reject)=>this.dropHandler(accept,reject,`${bank}.voidCheckUrl`)}>
+                                       <div>{_get(this.state,`bankDetails.bankDetails.${index}.voidCheckUrl`,null)  ? <img height={'200px'} width={'200px'} src={this.state.bankDetails.bankDetails[index].voidCheckUrl.preview} /> : <div>{_get(this.props,`bankDetails.${index}.voidCheckUrl`,null) ? <img height={'150px'} width={'150px'} src={_get(this.props,`bankDetails.${index}.voidCheckUrl`,null)} /> : <div>Try dropping some files here, or click to select files to upload.</div>}</div>}</div>
+            
+        
+                                    </Dropzone>
+                                    <span className="image-zoom" onClick={()=>this.handleOpenImage(index)}><i class="fa fa-search-plus" aria-hidden="true"></i></span>
+                                </div></div>:null}
 
 
                     {(fields.length == 1 || (fields.get(index) && fields.get(index)._id)) ? null : <div className="col-sm-12 form-btn-group-left"> <Button variant="contained" color='secondary' onClick={() => fields.remove(index)}>Remove</Button></div>}
@@ -65,51 +149,40 @@ let BankDetailComponent = (props) => {
         </div>
     )
 }
-
+}
 
 class BankingInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
             acceptedFile: [],
-            openImage: false
+            open: false,
+            removed:false,
+            url:''
         }
     }
     handleClose = () => {
-        this.setState({ openImage: false })
+        this.setState({ open: false })
     }
-    handleOpenImage = () => {
-        this.setState({ openImage: true })
+    handleOpenImage = (stateImageUrl) => {
+        console.log(stateImageUrl,"stateImageUrl");
+        this.setState({url:stateImageUrl,open:true})
+
     }
-    dropHandler = (accept, reject) => {
+  
+    handleRemove=()=>
+    {
+        this.props.autofill('bankingDetailInfo.voidCheckUrl', '');
+        this.setState({removed:true})
 
-        if (accept.length > 0) {
-            this.setState({ acceptedFile: accept });
-            let formData = new FormData();
-            formData.append('file', accept[0])
-            formData.append('mediaType', 'customer')
-            formData.append('mediaTypeId', '1234567')
-            this.props.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`, formData, 'fileUpload'))
-                .then((data) => {
-                    this.props.autofill('bankingDetailInfo.voidCheckUrl', data.message.relativeURL)
-                    this.props.dispatch(showMessage({ text: 'Upload success', isSuccess: true }));
-                    setTimeout(() => {
-                        this.props.dispatch(showMessage({ text: '', isSuccess: true }));
-
-                    }, 6000)
-                })
-                .catch((error) => {
-                    this.props.dispatch(showMessage({ text: error.message, isSuccess: true }));
-                    setTimeout(() => {
-                        this.props.dispatch(showMessage({ text: '', isSuccess: true }));
-
-                    }, 6000)
-                })
-
-        }
+    }
+    componentWillReceiveProps(props)
+    {
+        console.log(props);
     }
     render() {
-        console.log(this.props, 'props is here')
+        console.log(this.props, 'props is here');
+        let customerStaus = localStorage.getItem('customerStatus');
         return (
             <div className="">
 
@@ -119,25 +192,19 @@ class BankingInfo extends Component {
                         <h2 className="box-title">Company Banking Details</h2>
                         <div className="row d-flex">
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name='accountNumber' label='Account No *' component={TextFieldInput} />
+                                <Field  disabled={customerStaus=="Approved"?true:false} name='accountNumber' label='Account No *' component={TextFieldInput} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name='creditLimit' label='Credit Limit' component={TextFieldInput} />
+                                <Field disabled={customerStaus=="Approved"?true:false} name='creditLimit' label='Credit Limit' component={TextFieldInput} />
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
-                                <Field name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
+                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
+                                <Field disabled={customerStaus=="Approved"?true:false} name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
-                                <Field name='invoiceCurrencyCode' label='Invoice Currency Code *' placeholder='Invoice Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
+                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
+                                <Field disabled={customerStaus=="Approved"?true:false} name='invoiceCurrencyCode' label='Invoice Currency Code *' placeholder='Invoice Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name='nameOnCheque' label='Print Name On Check As *' component={TextFieldInput} />
-                            </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input">
-                                <Field name='currencyCode' label='Currency Code *' component={TextFieldInput} />
-                            </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
-                                <Field name='preferredPaymentMethods' placeholder='Preferred Payment Method *' options={this.props.paymentMethods} component={ReactSelectWrapper} />
+                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
+                                <Field disabled={customerStaus=="Approved"?true:false} name='currencyCode'  placeholder='Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field
@@ -147,14 +214,7 @@ class BankingInfo extends Component {
                                     style={{ height: '0', display: 'none' }}
 
                                 />
-                                <div className="dropzone-parent">
-                                    <Dropzone className="dropzone"
-                                        onDrop={this.dropHandler}>
-                                        <div>{this.state.acceptedFile && Array.isArray(this.state.acceptedFile) && this.state.acceptedFile.length > 0 ? <img height={'200px'} width={'200px'} src={this.state.acceptedFile[0].preview} /> : <div>{this.props.imageUrl ? <img height={'150px'} width={'150px'} src={`${this.props.imageUrl}`} /> : <div>Try dropping some files here, or click to select files to upload.</div>}</div>}</div>
-
-                                    </Dropzone>
-                                    {this.state.acceptedFile && Array.isArray(this.state.acceptedFile) && this.state.acceptedFile.length > 0 ? <span className="image-zoom" onClick={this.handleOpenImage}><i class="fa fa-search-plus" aria-hidden="true"></i></span> : null} 
-                                </div>
+                               
 
                             </div>
                         </div>
@@ -165,7 +225,7 @@ class BankingInfo extends Component {
                     <div className="row">
                         <div className="col-md-12">
 
-                            <FieldArray name='bankDetails' component={BankDetailComponent} />
+                            <FieldArray handleOpenImage={this.handleOpenImage} {...this.props} formValue={this.props.formValue} paymentMethods={this.props.paymentMethods} autofill={this.props.autofill} dispatch={this.props.dispatch} name='bankDetails' component={BankDetailComponent} />
                             {/* {BankDetailFields.map((info) => {
                             return (
                                 <div className="form-d col-md-4 col-sm-6 form-input">
@@ -179,7 +239,7 @@ class BankingInfo extends Component {
                     </div>
                 </FormSection>
                 <Dialog
-                    open={this.state.openImage}
+                    open={this.state.open}
                     TransitionComponent={Transition}
                     keepMounted
                     onClose={this.handleClose}
@@ -193,7 +253,7 @@ class BankingInfo extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-slide-description">
-                            <img src={this.state.acceptedFile.length > 0 ? this.state.acceptedFile[0].preview : this.props.imageUrl} className="imgBig" />
+                            <img src={this.state.url} />
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions className="col-sm-12 dialog-btn">
