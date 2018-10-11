@@ -3,6 +3,7 @@ import info from '../../../assets/images/info.png';
 import Button from '@material-ui/core/Button';
 
 export default (props) => {
+  console.log(props.image, 'shubham')
   if (props.isGridView) {
     return (
       <div className="col-sm-6 col-md-4 col-lg-3 product-parent" >
