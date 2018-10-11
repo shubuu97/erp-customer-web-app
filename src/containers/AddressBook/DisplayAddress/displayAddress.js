@@ -13,7 +13,7 @@ const displayAddress = (props) => {
                <img title="Set Primary"alt="address checkbox" onClick={()=>props.setPrimary(props.details)} src={checkGreen} className="address-select-img" />
                 <div className="address-custom">
                 <img title='Edit' alt="address edit img" onClick={()=>props.handleEdit(props.addressType,props.index)}  src={addressEdit} className="address-edit-img" />     
-                <img title='Delete' alt="address delete img" src={addressDelete} className="address-edit-img" onClick={()=>props.deleteHandler(props.index,props.addressType)} />
+                {!props.hideDeleteIcon && <img title='Delete' alt="address delete img" src={addressDelete} className="address-edit-img" onClick={()=>props.deleteHandler(props.index,props.addressType)} />}
                 </div>   
             </div>
         </div>

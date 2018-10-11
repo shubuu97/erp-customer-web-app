@@ -194,6 +194,7 @@ class AddressBook extends Component {
                 zip={addField.zipCode}
                 details={addField}
                 setPrimary={this.setPrimary}
+                hideDeleteIcon={true}
                 showGreenCheck={addField.isPrimary} />
         })
 
@@ -213,6 +214,7 @@ class AddressBook extends Component {
                 zip={addField.zipCode}
                 details={addField}
                 setPrimary={this.setPrimary}
+                hideDeleteIcon={true}
                 showGreenCheck={addField.isPrimary} />
         })
         return (

@@ -25,6 +25,8 @@ export default class PaymentWithPaypal extends Component {
 showPayPalButton=()=>
 {
   var totalAmount = this.props.totalAmount;
+  var onPayClick = this.props.onPay;
+  var onCancelPayment = this.props.onCancelPayment;
   window.paypal.Button.render({
 
     // Set your environment
@@ -76,17 +78,19 @@ showPayPalButton=()=>
         return actions.payment.execute().then(function() {
           console.log(data);
             window.alert('Payment Complete!');
-            this.props.onPay(data, 'card');
+            onPayClick(data, 'paypal');
         });
     },
     onCancel:function (data,actions)
     {
       actions.close();
       console.log(actions,"actions is here");
-      window.alert("You cancelled")
+      onCancelPayment("You have cancelled payment");
+      // window.alert("You cancelled")
     },
     onError:function(err)
     {
+        onCancelPayment(err.message);
         console.log(err,"error is here")
     }
 

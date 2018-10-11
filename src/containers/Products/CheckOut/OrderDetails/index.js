@@ -99,7 +99,7 @@ Please choose payment method to proceed."><img src={paymentIinfo} /></span>
      {!props.payNow ||_get(props,'paymentMethod.value','')=="Cash"? <div className="col-sm-12 cart-item-button">
         <Button variant="contained" size='large' color="primary" classes={{ root: 'add-cart-button' }} onClick={props.placeOrder} disabled={props.isLoading}>{!props.isLoading && 'PLACE ORDER'}{props.isLoading && <CircularProgress size={24} />}</Button>
       </div>:null}
-      {props.payNow&&_get(props,'paymentMethod.value','')!="Cash"?<Payment totalAmount={props.orderTotal} paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
+      {props.payNow&&_get(props,'paymentMethod.value','')!="Cash"?<Payment onCancelPayment={props.onCancelPayment} totalAmount={props.orderTotal} paymenyWithCheckValues={props.paymenyWithCheckValues} bankingData={props.bankingData} paymentConfig={props.paymentConfig} onPay={props.makePayment}/>:null}
     </div>
   )
 }
