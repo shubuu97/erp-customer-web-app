@@ -78,7 +78,7 @@ class ProductsInCart extends React.Component {
         description={product.itemShortDesc}
         quantity={product.quantity || 1}
         name={product.aliasName || product.itemName}
-        image={_get(product.images.find(img => img.isDefault ), 'url',productPlaceholder)}
+        image={_get(product.images && product.images.find(img => img.isDefault ), 'url',productPlaceholder)}
         id={product.itemId}
         updateQuantity={this.updateQuantity}
         weightChanger={this.weightChanger}
