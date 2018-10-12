@@ -19,35 +19,55 @@ export default class Order extends React.Component {
 
     }
   }
-  calucualtePrice=()=>
-  {
-   let salesProducts =  _get(this.props.order,'saleProducts',[]);
-   let orderTotal = 0;
-   let currency = ''
-   salesProducts.map((salesProduct)=>
-  {
-  orderTotal = orderTotal  + _get(salesProduct,'quantity',0)*_get(salesProduct,'price.price',0)
-  currency = _get(salesProduct,'price.currencyCode','')
-})
-  return  currency +' '+ orderTotal
+  calucualtePrice = () => {
+    let salesProducts = _get(this.props.order, 'saleProducts', []);
+    let orderTotal = 0;
+    let currency = ''
+    salesProducts.map((salesProduct) => {
+      orderTotal = orderTotal + _get(salesProduct, 'quantity', 0) * _get(salesProduct, 'price.price', 0)
+      currency = _get(salesProduct, 'price.currencyCode', '')
+    })
+    return currency + ' ' + orderTotal
   }
 
   render() {
-    let itemLists = this.props.saleProducts.map((saleProduct, index) => {
-      return ([<ItemList
-        saleProduct={saleProduct}
-        key={index}
-        imgSrc={_get(saleProduct, 'images[0].url', '')}
-        name={saleProduct.aliasName || saleProduct.itemName}
-        currency={_get(saleProduct, 'price.currencyCode', '')}
-        weight={_get(saleProduct, 'weight.weight', '')}
-        weightUom={_get(saleProduct, 'weight.uom', '')}
-        price={_get(saleProduct, 'price.price', '')}
-        quantity={_get(saleProduct, 'quantity', '')}
-        goToProductDetails={this.props.goToProductDetails}
-      />
-      ])
-    })
+    const orderedProduct = (productList) => (
+      productList.map((saleProduct, index) => {
+        return ([<ItemList
+          saleProduct={saleProduct}
+          key={index}
+          imgSrc={_get(saleProduct, 'images[0].url', '')}
+          name={saleProduct.aliasName || saleProduct.itemName}
+          currency={_get(saleProduct, 'price.currencyCode', '')}
+          weight={_get(saleProduct, 'weight.weight', '')}
+          weightUom={_get(saleProduct, 'weight.uom', '')}
+          price={_get(saleProduct, 'price.price', '')}
+          quantity={_get(saleProduct, 'quantity', '')}
+          goToProductDetails={this.props.goToProductDetails}
+        />
+        ])
+      })
+    );
+
+    const salesProductBox = (packagedData, list) => (
+      packagedData.map((item, index) => {
+        return (<div className="order-card-content">
+          <div className="order-box">
+            <div className="order-left">
+              {orderedProduct(list ? list : item.products)}
+            </div>
+            {!list && <div className="order-right">
+              <div>
+                <div className="package-id">Package Id : <label>{item.displayId}</label></div>
+                {item.trackingNumber && <div className="track-order-desc">Logistics Partner: <a href="#" target="_blank">{_get(item, 'shipper.name', '')}</a></div>}
+                {item.trackingNumber && <div className="tracking-number">Tracking Number: <label>#{item.trackingNumber}</label></div>}
+                <div className="package-id">Package Status : <label>{item.status}</label></div>
+              </div>
+            </div>}
+          </div>
+        </div>)
+      })
+    )
     return (
       <div className="order-card">
         <div className="order-card-header">
@@ -55,10 +75,6 @@ export default class Order extends React.Component {
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
             <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">{this.calucualtePrice()}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.calucualtePrice()} /></div></div>
-
-            {/* <div className="track-item"><label className="track-status">Logistics Partner</label><span className="track-id">{this.props.shipper}</span></div>
-          <div className="track-item"><label className="track-status">Tracking Number</label><span className="track-id">{this.props.trackingNumber}</span></div> */}
-
           </div>
           <div className="card-header-right">
             {/* <div className="orderStatus">
@@ -68,25 +84,13 @@ export default class Order extends React.Component {
                 <span>Sun, Apr 8<sup>th</sup> 2018</span>
               </div>
             </div> */}
-            {this.props.status == 'CANCELLED' ? null: null}
-            {this.props.status == 'INCOMING' ? <Button color='secondary' variant='contained' onClick={()=>this.props.onCancelOrder(this.props.order)}>Cancel Order</Button>: null}
+            {this.props.status == 'CANCELLED' ? null : null}
+            {this.props.status == 'INCOMING' ? <Button color='secondary' variant='contained' onClick={() => this.props.onCancelOrder(this.props.order)}>Cancel Order</Button> : null}
             {(this.props.status != 'INCOMING' && this.props.status != 'REJECTED' && this.props.status != 'CANCELLED') ? <Button color='secondary' onClick={() => this.props.handleTrack(this.props.order)} variant='contained'><i className="fa fa-map-marker"></i> &nbsp;History Details</Button> : null}
           </div>
         </div>
-        <div className="order-card-content">
-          <div className="order-box">
-            <div className="order-left">
-              {itemLists}
-            </div>
-            <div className="order-right">
-              <div>
-                <div className="package-id">Package Id : <label>#ABC123456</label></div>
-                <div className="track-order-desc">Logistics Partner: <a href="#" target="_blank">Fedex</a></div>
-                <div className="tracking-number">Tracking Number: <label>#ABC123456ACDD</label></div>
-                <div className="package-id">Package Status : <label>IN TRANSIT</label></div>
-              </div>
-            </div>
-          </div>
+        <div >
+          {(this.props.status == 'INCOMING' || this.props.status == 'ACCEPTED' || this.props.status == 'IN_PROGRESS' || this.props.status == 'REJECTED' || this.props.status == 'CANCELLED') ? salesProductBox([0], this.props.saleProducts) : salesProductBox(this.props.packages)}
         </div>
 
       </div>

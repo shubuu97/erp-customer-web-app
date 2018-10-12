@@ -6,27 +6,36 @@ import Button from '@material-ui/core/Button'
 export default class TrackOrders extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      placed: {
+        date: null
+      },
+      accepted: {
+        date: null
+      },
+      partPackaged: {
+        date: null
+      },
+      part: {
+        date: null
+      }
+    }
+  }
+  componentWillMount() {
+    const {orderDetails, trackData} = this.props;
   }
   render() {
-    let TrackOrderdata;
-    const {orderDetails} = this.props;
-    if (Array.isArray(this.props.trackData) && this.props.trackData.length) {
-      TrackOrderdata = this.props.trackData.map((track) => {
-        return (
-          <div>
-            <TrackOrder />
-          </div>)
-      })
-    } else {
-      TrackOrderdata = <div>No history yet    </div>
-    }
+    const {orderDetails, trackData} = this.props;
+
+    
     return (
       <div>
         <a className="back-history" onClick={()=>this.props.history.push('/orders')}><i class="fa fa-reply"></i> Back to My Orders</a>
         <h2 className="cart-heading">History Details</h2>
         <div>
-          <TrackOrder orderDetails={orderDetails}/>
+          <TrackOrder 
+              orderDetails={orderDetails} 
+            />
         </div>
       </div>)
   }
