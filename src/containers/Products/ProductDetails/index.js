@@ -32,7 +32,7 @@ class ProductDetailsContainer extends React.Component {
       productInfo.quantity = minQyt;
       productInfo.minQyt = minQyt;
     }
-    let mainImageUrl = (selectedProduct.images && selectedProduct.images[0]) || { url: productPlaceholder };
+    let mainImageUrl = (selectedProduct.images && selectedProduct.images.find(img=>img.isDefault)) || { url: productPlaceholder };
     this.setState({ productInfo, mainImageUrl });
     document.body.classList.add('product-details')
   }

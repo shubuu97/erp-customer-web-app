@@ -7,6 +7,7 @@ class ProductsListClass extends React.Component {
     render() {
     const productsData = Array.isArray(this.props.productsList) && this.props.productsList.length &&
         this.props.productsList.map(product =>
+            
             <Product
                 key={product._id}
                 code={product.itemNo}
@@ -14,12 +15,13 @@ class ProductsListClass extends React.Component {
                 description={product.itemDesc}
                 currency={product.currency && product.currency.code || ''}
                 name={product.aliasName || product.itemName}
-                image={(product.images && product.images[0] && product.images[0].url) || productPlaceholder}
+                image={(product.images && (product.images.find(img => img.isDefault )) && (product.images.find(img => img.isDefault )).url) || productPlaceholder}
                 id={product.itemId}
                 click={this.props.onProductClick}
                 detail={product}
                 {...this.props}
-            />);
+            />
+            );
     return (
         <div className="row">
             {productsData}
