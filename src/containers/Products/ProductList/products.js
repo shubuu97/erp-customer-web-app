@@ -15,7 +15,7 @@ class ProductsListClass extends React.Component {
                 description={product.itemDesc}
                 currency={product.currency && product.currency.code || ''}
                 name={product.aliasName || product.itemName}
-                image={((product.images.find(img => img.isDefault )) && (product.images.find(img => img.isDefault )).url) || productPlaceholder}
+                image={(product.images && (product.images.find(img => img.isDefault )) && (product.images.find(img => img.isDefault )).url) || productPlaceholder}
                 id={product.itemId}
                 click={this.props.onProductClick}
                 detail={product}
