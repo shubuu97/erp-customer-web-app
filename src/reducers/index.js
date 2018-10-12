@@ -23,6 +23,7 @@ import TrackData from '../containers/Orders/reducer/TrackOrder';
 import  uploadVoidCheck from './checkUpload';
 import AddressBookData from './getAddress';
 import editAddressData from './editAddress'
+import licenseZipCodeData from './licenseZipCode';
 let appReducer = combineReducers(
     {
         //reducer code will come here
@@ -38,6 +39,7 @@ let appReducer = combineReducers(
         siteDetailsData,
         licenseDetailsData,
         zipCodeData,
+        licenseZipCodeData,
         productData,
         commonData,
         approvaldata,

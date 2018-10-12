@@ -27,6 +27,7 @@ class Orders extends React.Component {
           shipper={_get(order, 'shipper.name', '')}
           payment={_get(order, 'payment', {})}
           saleProducts={order.saleProducts}
+          packages={order.packages}
           status={order.status}
           goToProductDetails={this.props.goToProductDetails}
           order={order} />)

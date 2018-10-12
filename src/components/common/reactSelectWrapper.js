@@ -10,10 +10,10 @@ RFReactSelect.defaultProps = {
 };
 
 
-export default function RFReactSelect({ input,meta:{touched,error,pristine},disabled, options, multi, className,placeholder}) {
+export default function RFReactSelect({ input,meta:{touched,error,pristine},disabled, onSelect, options, multi, className,placeholder}) {
   const { name, value, onBlur, onChange, onFocus } = input;
   const transformedValue = transformValue(value, options, multi);
-
+  console.log("In react select wrapper", onChange);
   return (
 
     [
@@ -32,7 +32,7 @@ export default function RFReactSelect({ input,meta:{touched,error,pristine},disa
       options={options}
       onChange={multi
         ? multiChangeHandler(onChange)
-        : singleChangeHandler(onChange)
+        : singleChangeHandler(onChange,onSelect)
       }
       onBlur={() => onBlur(value)}
       onFocus={onFocus}
@@ -51,9 +51,12 @@ export default function RFReactSelect({ input,meta:{touched,error,pristine},disa
 /**
  * onChange from Redux Form Field has to be called explicity.
  */
-function singleChangeHandler(func) {
+function singleChangeHandler(func, onSelect) {
+  console.log("singleChangeHandler", func);
   return function handleSingleChange(value) {
+    console.log("handleSingleChange", value);
     func(value ? value.value : '');
+    onSelect && onSelect(value ? value : '');
   };
 }
 

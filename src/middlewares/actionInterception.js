@@ -2,10 +2,12 @@ import {fetchZip} from '../action/fetchFromZip';
 import {showMessage} from '../action/common'
 import {uploadVoidCheck} from '../action/uploadVoidCheck'
 import {APPLICATION_BFF_URL} from '../constants/urlConstants'
+import { fetchLicenseZip } from '../action/fetchLicenseZip';
 
 export default (next,action,store)=>
 {
 let patt = /zipCode/g
+let patternLicenseZipCode=/licenseZipcode/g
 if(action &&action.type=='@@redux-form/BLUR'&&action.meta &&patt.test(action.meta.field))
 {
 store.dispatch(fetchZip(`${APPLICATION_BFF_URL}/zipcode/${action.payload}`,action.meta)).then(()=>{
@@ -30,4 +32,18 @@ store.dispatch(uploadVoidCheck(`${APPLICATION_BFF_URL}/customer/fileupload`,form
 return next(action)
 }
 
+if(action &&action.type=='@@redux-form/BLUR'&&action.meta &&patternLicenseZipCode.test(action.meta.field))
+{
+store.dispatch(fetchLicenseZip(`${APPLICATION_BFF_URL}/zipcode/${action.payload}`,action.meta)).then(()=>{
+
+}, (error)=>{
+    store.dispatch(showMessage({text: 'Zipcode is not found', isSuccess: false}));
+    setTimeout(()=>{
+        store.dispatch(showMessage({text: '', isSuccess: false}));
+    },2000
+)
+    return next(action)
+})
+return next(action)
+}
 }
