@@ -16,6 +16,7 @@ import flatten from 'keypather/flatten';
 import _get from 'lodash/get';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {receiveZip} from '../../../action/fetchFromZip';
+import {filter} from 'lodash';
 
 
 
@@ -32,6 +33,8 @@ class LicenseInfo extends Component
         ...values,
         businessCustomerId:localStorage.getItem('id')
     };
+    requestObj.companyInfo.licenseCountry = this.props.licenseCountry;
+    requestObj.companyInfo.licenseState = this.props.licenseState;
     let organizationInfo = _get(requestObj,'companyInfo.organizationInfo',null);
    if(organizationInfo)
     {
@@ -105,16 +108,24 @@ LicenseInfo = reduxForm({
 const mapStateToProps=(state)=>
 {
     console.log(state,"state is here")
+    let licenseTypes = [];
+    let licenseCountry = _get(state,"licenseDetailsData.lookUpData.data.companyInfo.licenseCountry", '');
+    let licenseState = _get(state,"licenseDetailsData.lookUpData.data.companyInfo.licenseState", '');
+    let licenseZipcode = _get(state,"licenseDetailsData.lookUpData.data.companyInfo.licenseZipcode", '');
+    
     let initialValues = state.licenseDetailsData.lookUpData.data;
      let companyCategories = _get(state,"licenseDetailsData.lookUpData.data.companyCategories.data",[{label:'',value:''}])
-     let licenseTypes = _get(state,"licenseDetailsData.lookUpData.data.licenseTypes.data",[{label:'',value:''}])
-
+     let licenseTypesFullList = _get(state,"licenseDetailsData.lookUpData.data.licenseTypes.data",[{label:'',value:''}])
+    console.log("licenseTypes Complete",licenseTypesFullList);
     let isLoading = state.licenseDetailsData.isFetching;
     let licenseDetailsData =  state.licenseDetailsData.lookUpData.data;
     let isSaving =   _get(state,'updateLicenseData.isFetching',false)
-
+    if(licenseState) {
+      licenseTypes = filter(licenseTypesFullList, license => license.state == licenseState);
+    }
     if(state.zipCodeData.meta)
     {
+      console.log(state.zipCodeData.meta,"meta is here")
      let meta = state.zipCodeData.meta;
      if(meta.form=="LicenseInfo"&&state.form&&state.form.LicenseInfo &&state.form.LicenseInfo.values)
      {
@@ -141,8 +152,27 @@ const mapStateToProps=(state)=>
       }
      }
     }
+    if(state.licenseZipCodeData.meta)
+    {
+     
+     let meta = state.licenseZipCodeData.meta;
+     if(meta.form=="LicenseInfo"&&state.form&&state.form.LicenseInfo &&state.form.LicenseInfo.values)
+     {
+      let fieldValue = meta.field !== 'licenseZipCode' ? meta.field.split('.licenseZipCode')[0] : 'licenseZipCode';
+      if(fieldValue != 'licenseZipCode') {
+  
+        let {country,state:stateobj,city, zipCode}  = state.licenseZipCodeData.lookUpData;
+        licenseCountry = country;
+        licenseState = stateobj;
+        licenseZipcode = zipCode;
+         licenseTypes = filter(licenseTypesFullList, license => license.state == stateobj);
+          
+  
+      } 
+     }
+    }
     let urlLinks = _get(state,'urlLinks.formSearchData._links',{});
-    return {initialValues,isLoading,urlLinks,companyCategories,licenseTypes,isSaving}
+    return {initialValues,isLoading,urlLinks,companyCategories,licenseTypes,isSaving, licenseCountry, licenseState, licenseZipcode}
 
 }
 

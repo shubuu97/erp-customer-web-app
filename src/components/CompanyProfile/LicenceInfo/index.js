@@ -5,12 +5,13 @@ import { TextFieldInput, ReactSelectWrapper } from '../../common/MaterialUiCompo
 import Button from '@material-ui/core/Button';
 import MenuItem from 'material-ui/MenuItem';
 import withLoader from '../../LoaderHoc'
+import {filter} from 'lodash'
 
 let props = {};
-props.licenseType = [{ label: 'Type1: Small Cultivation', value: 'Small Cultivation' }, { label: 'Type2: Medium Cultivation', value: 'Medium Cultivation' },{ label: 'Type3: Nursery Cultivation', value: 'Nursery Cultivation' }];
+props.licenseTypes = [{ label: 'Type1', value: 'Type1',stateCode:'RAJ' }, { label: 'Type2', value: 'Type2', stateCode:'RAJ' },{ label: 'Type3', value: 'Type3', stateCode:'MH' },{ label: 'Type4', value: 'Type4', stateCode:'MH' }];
 props.category = [{ label: 'Retailer', value: 'Retailer' }, { label: 'Distributer', value: 'Distributer' }];
 props.country = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
-props.state = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
+props.licenseState = [{ label: 'Rajasthan', value: 'RAJ' }, { label: 'Maharashtra', value: 'MH' }];
 props.city = [{ label: 'India', value: 'India' }, { label: 'China', value: 'India' }];
 
 
@@ -76,9 +77,10 @@ let contactField = (props) => {
 
 
 class LicenceInfo extends Component {
+    
    
     render() {
-        console.log(this.props,"props is here")
+        
         return (
             <div className="form-box">
             <div className="row">
@@ -93,7 +95,19 @@ class LicenceInfo extends Component {
                    
                     <div className="col-md-8 form-d">
                         
-                            <div className="row d-flex">                        
+                            <div className="row d-flex">  
+                               
+                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                    <Field name={'licenseZipcode'} label={'License Zip Code *'} component={TextFieldInput} />
+                                </div>    
+                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                    <label className="control-label small">License Country</label>
+                                    <span>{this.props.licenseCountry}</span>
+                                </div>   
+                                <div className="form-d col-md-4 col-sm-6 form-input">
+                                    <label className="control-label small">License State</label>
+                                    <span>{this.props.licenseState}</span>
+                                </div>              
                                 <div className="form-d col-md-4 col-sm-6 form-input form-select-label">
                                     <Field options={this.props.licenseTypes} placeholder='License Type *' name={'licenseType'} component={ReactSelectWrapper} label={'Licence Type *'} />
                                 </div>
