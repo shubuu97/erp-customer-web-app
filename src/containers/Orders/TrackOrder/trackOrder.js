@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import placedOn from './../../../assets/images/to1.png';
-import confirmationStatus from './../../../assets/images/to2.png';
-import processing from './../../../assets/images/to3.png';
-import dispatch from './../../../assets/images/to4.png';
+import confirmationStatus from './../../../assets/images/accepted.png';
+import processing from './../../../assets/images/in-progress.png';
+import partdispatch from './../../../assets/images/part-dispatched.png';
+import dispatch from './../../../assets/images/dispatched.png';
+import partPack from './../../../assets/images/part-packaged.png';
+import packagd from './../../../assets/images/packaged.png';
 import shipped from './../../../assets/images/to5.png';
 import transit from './../../../assets/images/to6.png';
-import delivered from './../../../assets/images/to7.png';
+import partdelivered from './../../../assets/images/part-delivered.png';
+import delivered from './../../../assets/images/delivered.png';
 import moment from 'moment';
 export default class TrackOrders extends React.Component {
     constructor(props) {
@@ -72,7 +76,7 @@ export default class TrackOrders extends React.Component {
                     </div>
                    {this.props.partPackaged.isTrue ? <div className="to-content-row">
                         <div className="to-content-img">
-                            <img src={dispatch} />
+                            <img src={partPack} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
@@ -82,7 +86,7 @@ export default class TrackOrders extends React.Component {
                     </div> : null}
                     {<div className="to-content-row">
                         <div className="to-content-img">
-                            <img src={dispatch} />
+                            <img src={packagd} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
@@ -92,7 +96,7 @@ export default class TrackOrders extends React.Component {
                     </div>}
                     {this.props.partDispatched.isTrue ? <div className="to-content-row">
                         <div className="to-content-img">
-                            <img src={dispatch} />
+                            <img src={partdispatch} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
@@ -122,7 +126,7 @@ export default class TrackOrders extends React.Component {
                     </div>
                    {this.props.partDelivered.isTrue ? <div className="to-content-row">
                         <div className="to-content-img">
-                            <img src={delivered} />
+                            <img src={partdelivered} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">

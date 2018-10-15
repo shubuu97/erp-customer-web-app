@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import _find from 'lodash/find';
+import orIcon from './../../../assets/images/or-icon.png';
 
 // var Accept;
 function new_script(src) {
@@ -125,9 +126,13 @@ showPayPalButton=()=>
   
   render() {
     return (
-      <div style={{display:'flex'}}>
+      <div>
+        <div className="or-seperator"><img src={orIcon} /></div>
+        <div style={{display:'flex'}}>
+      
       <div id="paypal-button-container"></div>
       </div>
+      </div> 
     );
   }
 }

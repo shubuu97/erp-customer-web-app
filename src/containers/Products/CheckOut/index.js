@@ -31,8 +31,8 @@ class CheckOut extends Component {
 			showError: false,
 			payNow: false,
 			paymentMethod: {
-				value: props.preferedPaymentMethod,
-				label: props.preferedPaymentMethod
+				value: 'Checking',
+				label: 'Checking'
 			},
 			paymentTerms: [{ label: 'Current', value: 'current' }],
 			paymentConfig: []
@@ -351,7 +351,7 @@ class CheckOut extends Component {
 	render() {
 		console.log(this.props.isLoading, "isLoading in checkout");
 		const { paymentConfig, subTotal, orderTotal, address, toggle, paymentTerm, termCondition, showError, paymentTerms, paymentMethod, currency } = this.state;
-		const { companyinfo, userInfo, paymenyWithCheckValues, paymentMethods, bankingData, preferedPaymentMethod } = this.props;
+		const { companyinfo, userInfo, paymenyWithCheckValues, paymentMethods, bankingData } = this.props;
 		console.log("companyinfo is here", userInfo);
 		return (
 			<div className="checkout-container container">
