@@ -2791,6 +2791,10 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	max-width: 80px;
 	max-height: 54px;
 }
+.to-content-img.part-packaged img{
+    max-width: 90px;
+    max-height: 62px;
+}
 .to-content-row.active .to-content-img {
 	border: solid 6px #0E8C4F;
 }
@@ -2840,7 +2844,8 @@ span.syncup-close, span.syncup-panding, span.syncup-done {
 	text-transform: uppercase;
 	color: #666;
 	font-size: 1.5rem;
-	margin-bottom: 0px;
+    margin-bottom: 0px;
+    width: 100%;
 }
 .to-content-row.active .to-status span {
 	color: #000;
