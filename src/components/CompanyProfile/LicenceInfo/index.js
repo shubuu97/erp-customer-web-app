@@ -77,7 +77,7 @@ let contactField = (props) => {
 
 
 class LicenceInfo extends Component {
-    
+   
    
     render() {
         
@@ -98,7 +98,7 @@ class LicenceInfo extends Component {
                             <div className="row d-flex">  
                                
                                 <div className="form-d col-md-4 col-sm-6 form-input">
-                                    <Field name={'licenseZipcode'} label={'License Zip Code *'} component={TextFieldInput} />
+                                    <Field name={'licenseZipcode'} label={'License Zip Code *'} component={TextFieldInput}  />
                                 </div>    
                                 <div className="form-d col-md-4 col-sm-6 form-input">
                                     <label className="control-label small">License Country</label>
