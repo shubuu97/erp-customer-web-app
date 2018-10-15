@@ -45,8 +45,8 @@ export default class TrackOrders extends React.Component {
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>Placed On</label>
-                            <span>{moment(orderDetails.orderDate).format('DD MMMM YYYY')}, 04:30 PM GMT</span>
+                            <span>{this.props.placedOn.displayName ? this.props.placedOn.displayName : ''}</span>
+                            <span>{this.props.placedOn.date ? moment(this.props.placedOn.date).format('DD MM YYYY, hh:mm: a'): 'will be update soon'}</span>
 
                         </div>
                     </div>
@@ -56,8 +56,8 @@ export default class TrackOrders extends React.Component {
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>Confirmation Status</label>
-                            <span>{orderDetails.status}</span>
+                            <span>{this.props.accepted.displayName ? this.props.accepted.displayName : ''}</span>
+                            <span>{this.props.accepted.date ? moment(this.props.accepted.date).format('DD MM YYYY, hh:mm: a') : null}</span>
                         </div>
                     </div>
                     <div className="to-content-row">
@@ -66,50 +66,80 @@ export default class TrackOrders extends React.Component {
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>Processing</label>
-                            <span>will be update soon</span>
+                            <span>{this.props.processing.displayName ? this.props.processing.displayName : ''}</span>
+                            <span>{this.props.processing.date ? moment(this.props.processing.date).format('DD MM YYYY, hh:mm: a'): 'will be update soon'}</span>
                         </div>
                     </div>
-                    <div className="to-content-row">
+                   {this.props.partPackaged.isTrue ? <div className="to-content-row">
                         <div className="to-content-img">
                             <img src={dispatch} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>Ready to Dispatch</label>
-                            <span>will be update soon</span>
+                            <label>{this.props.partPackaged.displayName }</label>
+                            <span>{this.props.partPackaged.date ? moment(this.props.placed.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon'}</span>
                         </div>
-                    </div>
-                    <div className="to-content-row">
+                    </div> : null}
+                    {<div className="to-content-row">
                         <div className="to-content-img">
-                            <img src={shipped} />
+                            <img src={dispatch} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>Shipped</label>
-                            <span>will be update soon</span>
+                            <label>{this.props.packaged.displayName || 'PACKAGED'}</label>
+                            <span>{this.props.packaged.date ? moment(this.props.packaged.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon'}</span>
                         </div>
-                    </div>
+                    </div>}
+                    {this.props.partDispatched.isTrue ? <div className="to-content-row">
+                        <div className="to-content-img">
+                            <img src={dispatch} />
+                        </div>
+                        <div className="to-border"></div>
+                        <div className="to-status">
+                            <label>{this.props.partDispatched.displayName}</label>
+                            <span>{this.props.partDispatched.date ? moment(this.props.partDispatched.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon'}</span>
+                        </div>
+                    </div> : null}
+                    {<div className="to-content-row">
+                        <div className="to-content-img">
+                            <img src={dispatch} />
+                        </div>
+                        <div className="to-border"></div>
+                        <div className="to-status">
+                            <label>{this.props.dispatched.displayName || 'DISPATCHED'}</label>
+                            <span>{this.props.dispatched.date ? moment(this.props.placed.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon'}</span>
+                        </div>
+                    </div>}
                     <div className="to-content-row">
                         <div className="to-content-img">
                             <img src={transit} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>In Transit</label>
-                            <span>will be update soon</span>
+                            <label>{this.props.inTransit.displayName || 'IN TRANSIT'}</label>
+                            <span>{this.props.inTransit.date ? moment(this.props.inTransit.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon' }</span>
                         </div>
                     </div>
-                    <div className="to-content-row">
+                   {this.props.partDelivered.isTrue ? <div className="to-content-row">
                         <div className="to-content-img">
                             <img src={delivered} />
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <label>Delivered</label>
-                            <span>will be update soon</span>
+                            <label>{this.props.partDelivered.displayName}</label>
+                            <span>{this.props.partDelivered.date ? moment(this.props.partDelivered.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon' }</span>
                         </div>
-                    </div>
+                    </div> : null}
+                    {<div className="to-content-row">
+                        <div className="to-content-img">
+                            <img src={delivered} />
+                        </div>
+                        <div className="to-border"></div>
+                        <div className="to-status">
+                            <label>{this.props.delivered.displayName || 'DELIVERED'}</label>
+                            <span>{this.props.delivered.date ? moment(this.props.delivered.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon' }</span>
+                        </div>
+                    </div> }
                 </div>
 
             </div>
