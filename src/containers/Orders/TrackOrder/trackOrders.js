@@ -26,8 +26,7 @@ export default class TrackOrders extends React.Component {
       },
       packaged: {
         date: null,
-        displayName: '',
-        isTrue: false
+        displayName: ''
       },
       partDispatched: {
         date: null,
@@ -36,8 +35,7 @@ export default class TrackOrders extends React.Component {
       },
       dispatched: {
         date: null,
-        displayName: '',
-        isTrue: false
+        displayName: ''
       },
       inTransit: {
         date: null,
@@ -50,8 +48,7 @@ export default class TrackOrders extends React.Component {
       },
       delivered: {
         date: null,
-        displayName: '',
-        isTrue: false
+        displayName: ''
       }
     }
   }
@@ -68,25 +65,25 @@ export default class TrackOrders extends React.Component {
         this.setState({ processing: { date: data.modifiedDate, displayName: 'IN PROGRESS' } })
       }
       else if (data.status == 'PART_PACKAGED') {
-        this.setState({ partPackaged: { date: data.modifiedDate, displayName: 'Your order is packaged.', isTrue: true } })
+        this.setState({ partPackaged: { date: data.modifiedDate, displayName: 'PART PACKAGED.', isTrue: true } })
       }
       else if (data.status == 'PACKAGED') {
-        this.setState({ packaged: { date: data.modifiedDate, displayName: 'Your order is packaged.', isTrue: true } })
+        this.setState({ packaged: { date: data.modifiedDate, displayName: 'ORDER PACKAGED' } })
       }
       else if (data.status == 'PART_DISPATCHED') {
-        this.setState({ partDispatched: { date: data.modifiedDate, displayName: 'Your order is dispatched.', isTrue: true } })
+        this.setState({ partDispatched: { date: data.modifiedDate, displayName: 'PART DISPATCHED', isTrue: true } })
       }
       else if (data.status == 'DISPATCHED') {
-        this.setState({ dispatched: { date: data.modifiedDate, displayName: 'Your order is dispatched.', isTrue: true } })
+        this.setState({ dispatched: { date: data.modifiedDate, displayName: 'ORDER DISPATCHED' } })
       }
       else if (data.status == 'IN_TRANSIT') {
-        this.setState({ inTransit: { date: data.modifiedDate, displayName: 'Your order is out for delivery.' } })
+        this.setState({ inTransit: { date: data.modifiedDate, displayName: 'OUT FOR DELIVERY' } })
       }
       else if (data.status == 'PART_DELIVERED') {
-        this.setState({ partDelivered: { date: data.modifiedDate, displayName: 'Your order is delivered.', isTrue: true } })
+        this.setState({ partDelivered: { date: data.modifiedDate, displayName: 'PART DELIVERED', isTrue: true } })
       }
       else if (data.status == 'DELIVERED') {
-        this.setState({ delivered: { date: data.modifiedDate, displayName: 'Your order is delivered.', isTrue: true } })
+        this.setState({ delivered: { date: data.modifiedDate, displayName: 'ORDER DELIVERED', isTrue: true } })
       }
     })
   }

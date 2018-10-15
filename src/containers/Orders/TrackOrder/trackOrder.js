@@ -66,7 +66,7 @@ export default class TrackOrders extends React.Component {
                         </div>
                         <div className="to-border"></div>
                         <div className="to-status">
-                            <span>{this.props.processing.displayName ? this.props.processing.displayName : ''}</span>
+                            <span>{this.props.processing.displayName ? this.props.processing.displayName : 'IN PROGRESS'}</span>
                             <span>{this.props.processing.date ? moment(this.props.processing.date).format('DD MM YYYY, hh:mm: a'): 'will be update soon'}</span>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ export default class TrackOrders extends React.Component {
                         <div className="to-border"></div>
                         <div className="to-status">
                             <label>{this.props.partPackaged.displayName }</label>
-                            <span>{this.props.partPackaged.date ? moment(this.props.placed.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon'}</span>
+                            <span>{this.props.partPackaged.date ? moment(this.props.partPackaged.date).format('DD MM YYYY, hh:mm: a') : 'will be update soon'}</span>
                         </div>
                     </div> : null}
                     {<div className="to-content-row">
