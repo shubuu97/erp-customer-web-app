@@ -166,6 +166,7 @@ const mapStateToProps=(state)=>
         licenseState = stateobj;
         licenseZipcode = zipCode;
          licenseTypes = filter(licenseTypesFullList, license => license.state == stateobj);
+         console.log(licenseTypes,"licenseTypesyogi")
           
   
       } 

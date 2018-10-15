@@ -12,8 +12,9 @@ RFReactSelect.defaultProps = {
 
 export default function RFReactSelect({ input,meta:{touched,error,pristine},disabled, onSelect, options, multi, className,placeholder}) {
   const { name, value, onBlur, onChange, onFocus } = input;
-  const transformedValue = transformValue(value, options, multi);
-  console.log("In react select wrapper", onChange);
+  let transformedValue = transformValue(value, options, multi);
+  if(transformedValue==undefined)
+  transformedValue='';
   return (
 
     [
@@ -77,6 +78,7 @@ function multiChangeHandler(func) {
  * wants the array of values in the form [{ value: "grape", label: "Grape" }]
  */
 function transformValue(value, options, multi) {
+  if(multi)
   if (multi && typeof value === 'string') return [];
 
   const filteredOptions = options.filter(option => {
