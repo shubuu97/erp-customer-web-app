@@ -7,26 +7,92 @@ export default class TrackOrders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placed: {
-        date: null
+      placedOn: {
+        date: null,
+        displayName: ''
       },
       accepted: {
-        date: null
+        date: null,
+        displayName: ''
+      },
+      processing: {
+        date: null,
+        displayName: ''
       },
       partPackaged: {
-        date: null
+        date: null,
+        displayName: '',
+        isTrue: false
       },
-      part: {
-        date: null
+      packaged: {
+        date: null,
+        displayName: '',
+        isTrue: false
+      },
+      partDispatched: {
+        date: null,
+        displayName: '',
+        isTrue: false
+      },
+      dispatched: {
+        date: null,
+        displayName: '',
+        isTrue: false
+      },
+      inTransit: {
+        date: null,
+        displayName: ''
+      },
+      partDelivered: {
+        date: null,
+        displayName: '',
+        isTrue: false
+      },
+      delivered: {
+        date: null,
+        displayName: '',
+        isTrue: false
       }
     }
   }
   componentWillMount() {
     const {orderDetails, trackData} = this.props;
+    trackData.map(data => {
+      if (data.status == 'INCOMING') {
+        this.setState({ placedOn: { date: data.modifiedDate, displayName: 'PLACED ON' } })
+      }
+      else if (data.status == 'ACCEPTED') {
+        this.setState({ accepted: { date: data.modifiedDate, displayName: 'ACCEPTED ON' } })
+      }
+      else if (data.status == 'IN_PROGRESS') {
+        this.setState({ processing: { date: data.modifiedDate, displayName: 'IN PROGRESS' } })
+      }
+      else if (data.status == 'PART_PACKAGED') {
+        this.setState({ partPackaged: { date: data.modifiedDate, displayName: 'Your order is packaged.', isTrue: true } })
+      }
+      else if (data.status == 'PACKAGED') {
+        this.setState({ packaged: { date: data.modifiedDate, displayName: 'Your order is packaged.', isTrue: true } })
+      }
+      else if (data.status == 'PART_DISPATCHED') {
+        this.setState({ partDispatched: { date: data.modifiedDate, displayName: 'Your order is dispatched.', isTrue: true } })
+      }
+      else if (data.status == 'DISPATCHED') {
+        this.setState({ dispatched: { date: data.modifiedDate, displayName: 'Your order is dispatched.', isTrue: true } })
+      }
+      else if (data.status == 'IN_TRANSIT') {
+        this.setState({ inTransit: { date: data.modifiedDate, displayName: 'Your order is out for delivery.' } })
+      }
+      else if (data.status == 'PART_DELIVERED') {
+        this.setState({ partDelivered: { date: data.modifiedDate, displayName: 'Your order is delivered.', isTrue: true } })
+      }
+      else if (data.status == 'DELIVERED') {
+        this.setState({ delivered: { date: data.modifiedDate, displayName: 'Your order is delivered.', isTrue: true } })
+      }
+    })
   }
+
   render() {
     const {orderDetails, trackData} = this.props;
-
     
     return (
       <div>
@@ -35,6 +101,16 @@ export default class TrackOrders extends React.Component {
         <div>
           <TrackOrder 
               orderDetails={orderDetails} 
+              placedOn={this.state.placedOn}
+              accepted={this.state.accepted}
+              processing={this.state.processing}
+              partPackaged={this.state.partPackaged}
+              packaged={this.state.packaged}
+              partDispatched={this.state.partDispatched}
+              dispatched={this.state.dispatched}
+              inTransit={this.state.inTransit}
+              partDelivered={this.state.partDelivered}
+              delivered={this.state.delivered}
             />
         </div>
       </div>)
