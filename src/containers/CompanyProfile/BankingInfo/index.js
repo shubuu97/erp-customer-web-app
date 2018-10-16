@@ -99,6 +99,9 @@ class BankingInfo extends Component
     closeSubmitForApprove = () =>{
       this.setState({openSubmitApprove: false});
     }
+    goToViewProfile = () =>{
+      this.props.history.push("/CompanyStaticProfileView")
+    }
 
     render()
     {
@@ -129,12 +132,15 @@ class BankingInfo extends Component
                         </DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
-                                {localStorage.getItem('customerStatus')!=='Approved' ? <p className="text-dialog">Your profile is ready to submit.</p> : <p className="text-dialog">Your profile has been updated successfully.</p>}=
+                                {localStorage.getItem('customerStatus')!=='Approved' ? <p className="text-dialog">Your profile is ready to submit.</p> : <p className="text-dialog">Your profile has been updated successfully.</p>}
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions className="col-sm-12 dialog-btn">
                             {localStorage.getItem('customerStatus')!=='Approved' ? <Button onClick={this.submitForApproval} variant="contained" color="primary">
                                Submit for Approval
+                            </Button> : null}
+                            {localStorage.getItem('customerStatus') =='Approved' ? <Button onClick={()=>this.goToViewProfile()} variant="contained" color="primary">
+                               OK
                             </Button> : null}
                             
                         </DialogActions>

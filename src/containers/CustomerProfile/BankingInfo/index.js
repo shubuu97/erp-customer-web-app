@@ -96,6 +96,9 @@ constructor(props)
       }
     });
   }
+  goToViewProfile = () =>{
+    this.props.history.push("/StaticProfileView")
+  }
   render() {
     const { handleSubmit } = this.props;
     console.log(this.props, "props is here")
@@ -129,7 +132,9 @@ constructor(props)
                          { localStorage.getItem('customerStatus')!=='Approved'? <Button onClick={this.submitForApproval} variant="contained" color="primary">
                                Submit for Approval
                         </Button>:null}
-                        
+                        { localStorage.getItem('customerStatus') =='Approved'? <Button onClick={()=>this.goToViewProfile()} variant="contained" color="primary">
+                               OK
+                        </Button>:null}
               
                         </DialogActions>
                     </Dialog>
