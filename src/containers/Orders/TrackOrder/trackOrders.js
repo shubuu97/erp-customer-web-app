@@ -24,9 +24,12 @@ export default class TrackOrders extends React.Component {
     }
   }
   componentWillMount() {
+    let currentOrderStatus = '';
     const {trackData} = this.props;
     let orderHistoryList = [];
     trackData.map(data => {
+      currentOrderStatus = data.status
+
       if (data.status == 'INCOMING') {
         let orderObj = {
           imgUrl: placedOn,
@@ -119,8 +122,12 @@ export default class TrackOrders extends React.Component {
       }
     })
     orderHistoryList = sortBy(orderHistoryList, 'historyDate');
-
-    // orderHistoryList.push()
+    const orderStatus = ['IN_PROGRESS', 'PACKAGED', 'DISPATCHED', 'IN_TRANSIT', 'DELIVERED']
+    const orderStatusPart = ['IN_PROGRESS', 'PART_PACKAGED', 'PART_DISPATCHED', 'IN_TRANSIT', 'PART_DELIVERED']
+    orderStatus.map(order => {
+      
+    })
+    orderHistoryList.push()
     this.setState({orderHistoryList});
   }
 
