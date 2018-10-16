@@ -19,16 +19,6 @@ export default class Order extends React.Component {
 
     }
   }
-  calucualtePrice = () => {
-    let salesProducts = _get(this.props.order, 'saleProducts', []);
-    let orderTotal = 0;
-    let currency = ''
-    salesProducts.map((salesProduct) => {
-      orderTotal = orderTotal + _get(salesProduct, 'quantity', 0) * _get(salesProduct, 'price.price', 0)
-      currency = _get(salesProduct, 'price.currencyCode', '')
-    })
-    return currency + ' ' + orderTotal
-  }
 
   render() {
     const orderedProduct = (productList) => (
@@ -74,7 +64,7 @@ export default class Order extends React.Component {
           <div style={{ width: '100%' }} className="card-header-left">
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
-            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">{this.props.orderTotal}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.props.orderTotal} /></div></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">USD {this.props.orderTotal}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.props.orderTotal} /></div></div>
           </div>
           <div className="card-header-right">
             {/* <div className="orderStatus">
