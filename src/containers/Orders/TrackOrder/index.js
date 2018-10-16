@@ -7,7 +7,7 @@ import TrackOrders from './trackOrders';
 import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { fetchTrackData } from '../action/getTrack';
 import profileSideBar from '../../../components/profileSideBarHoc';
-import {get} from 'lodash';
+import {get, isEmpty} from 'lodash';
 
 class TrackOrderContainer extends React.Component {
   constructor(props) {
@@ -25,29 +25,33 @@ class TrackOrderContainer extends React.Component {
 
       if(localStorage.getItem('orderedItem')){
         let item = JSON.parse(localStorage.getItem('orderedItem'));
+        console.log("In track order udpates",item, this.state.item);
         this.setState({item});
       }
     document.body.classList.add('track-order-page');
   }
   componentWillUnmount() {
     document.body.classList.remove('track-order-page');
+    this.setState({item: {}});
   }
 
   render() {
+    console.log(this.state.item);
     return (
       <div>
-        <TrackOrders
+       {get(this.props, 'trackData.data') && !isEmpty(this.state.item) && !this.props.isFetching ? <TrackOrders
           trackData={get(this.props, 'trackData.data', {})}
           orderDetails={this.state.item}
           history={this.props.history}
-        />
+        />:null}
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  return { trackData: state.TrackData.trackData };
+  let isFetching= state.TrackData.isFetching;
+  return { trackData: state.TrackData.trackData, isFetching };
 }
 
 export default connect(mapStateToProps)(profileSideBar(TrackOrderContainer))
