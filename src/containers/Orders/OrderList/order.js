@@ -74,7 +74,7 @@ export default class Order extends React.Component {
           <div style={{ width: '100%' }} className="card-header-left">
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
             <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
-            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">{this.calucualtePrice()}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.calucualtePrice()} /></div></div>
+            <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">{this.props.orderTotal}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.props.orderTotal} /></div></div>
           </div>
           <div className="card-header-right">
             {/* <div className="orderStatus">
@@ -90,7 +90,8 @@ export default class Order extends React.Component {
           </div>
         </div>
         <div >
-          {(this.props.status == 'INCOMING' || this.props.status == 'ACCEPTED' || this.props.status == 'IN_PROGRESS' || this.props.status == 'REJECTED' || this.props.status == 'CANCELLED') ? salesProductBox([0], this.props.saleProducts) : salesProductBox(this.props.packages)}
+        {salesProductBox(this.props.packages)}
+        {salesProductBox([0], this.props.saleProducts)}
         </div>
 
       </div>
