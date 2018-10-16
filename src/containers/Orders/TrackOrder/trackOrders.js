@@ -30,8 +30,7 @@ export default class TrackOrders extends React.Component {
       },
       partDispatched: {
         date: null,
-        displayName: '',
-        isTrue: false
+        displayName: ''
       },
       dispatched: {
         date: null,
@@ -43,8 +42,7 @@ export default class TrackOrders extends React.Component {
       },
       partDelivered: {
         date: null,
-        displayName: '',
-        isTrue: false
+        displayName: ''
       },
       delivered: {
         date: null,
@@ -71,7 +69,7 @@ export default class TrackOrders extends React.Component {
         this.setState({ packaged: { date: data.modifiedDate, displayName: 'ORDER PACKAGED' } })
       }
       else if (data.status == 'PART_DISPATCHED') {
-        this.setState({ partDispatched: { date: data.modifiedDate, displayName: 'PART DISPATCHED', isTrue: true } })
+        this.setState({ partDispatched: { date: data.modifiedDate, displayName: 'PART DISPATCHED' } })
       }
       else if (data.status == 'DISPATCHED') {
         this.setState({ dispatched: { date: data.modifiedDate, displayName: 'ORDER DISPATCHED' } })
@@ -80,10 +78,10 @@ export default class TrackOrders extends React.Component {
         this.setState({ inTransit: { date: data.modifiedDate, displayName: 'OUT FOR DELIVERY' } })
       }
       else if (data.status == 'PART_DELIVERED') {
-        this.setState({ partDelivered: { date: data.modifiedDate, displayName: 'PART DELIVERED', isTrue: true } })
+        this.setState({ partDelivered: { date: data.modifiedDate, displayName: 'PART DELIVERED' } })
       }
       else if (data.status == 'DELIVERED') {
-        this.setState({ delivered: { date: data.modifiedDate, displayName: 'ORDER DELIVERED', isTrue: true } })
+        this.setState({ delivered: { date: data.modifiedDate, displayName: 'ORDER DELIVERED' } })
       }
     })
   }
@@ -98,6 +96,7 @@ export default class TrackOrders extends React.Component {
         <div>
           <TrackOrder 
               orderDetails={orderDetails} 
+              trackData={trackData}
               placedOn={this.state.placedOn}
               accepted={this.state.accepted}
               processing={this.state.processing}
