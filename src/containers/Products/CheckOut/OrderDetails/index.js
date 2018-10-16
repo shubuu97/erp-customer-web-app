@@ -49,11 +49,11 @@ const orderDetails = (props) => {
           onChange={props.paymentTermUpdate}
         /> */}
       </div>
-      <div className="credit-limit">
+      {/* <div className="credit-limit">
         Credit Limit : $20000 <span></span>
-      </div>
+      </div> */}
       {/* When progress bar is full then apply this class className="progress-bar-full" */}
-        <ProgressBar now={60}  label={`Used $10000`}/>  
+        {/* <ProgressBar now={60}  label={`Used $10000`}/>   */}
       <div className="privacy-text cart-item">
         Your personal data will be used to process your order,
         support your experience throughout this website and for other

@@ -1,120 +1,133 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import placedOn from './../../../assets/images/to1.png';
-import confirmationStatus from './../../../assets/images/to2.png';
-import processing from './../../../assets/images/to3.png';
-import dispatch from './../../../assets/images/to4.png';
+import confirmationStatus from './../../../assets/images/accepted.png';
+import processing from './../../../assets/images/in-progress.png';
+import partdispatch from './../../../assets/images/part-dispatched.png';
+import dispatch from './../../../assets/images/dispatched.png';
+import partPack from './../../../assets/images/part-packaged.png';
+import packagd from './../../../assets/images/packaged.png';
 import shipped from './../../../assets/images/to5.png';
 import transit from './../../../assets/images/to6.png';
-import delivered from './../../../assets/images/to7.png';
-import moment from 'moment';
+import partdelivered from './../../../assets/images/part-delivered.png';
+import delivered from './../../../assets/images/delivered.png';
+
 export default class TrackOrders extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+  render() {
+    const { orderDetails, orderHistoryList } = this.props;
+    const renderHistroyData = () => orderHistoryList.map(data => {
+      return (
+        <div className={`to-content-row ${data.isActive ? 'active' : ''}`}>
+          <div className="to-content-img">
+            <img src={data.imgUrl} alt={data.displayName} />
+          </div>
+          <div className="to-border"></div>
+          <div className="to-status">
+            <span>{data.displayName}</span>
+            <span>{data.historyDate}</span>
+          </div>
+        </div>
+      )
+    })
 
-        }
-
-    }
-
-
-    render() {
-        const { orderDetails } = this.props;
-        return (<div className="trackorder-container">
-            <div className="track-order-detail">
-                <div className="track-d trackorder-id">
-                    <label>Order Id :</label>
-                    <span>#{orderDetails.orderId}</span>
-                </div>
-                {/* {orderDetails.trackingNumber && <div className="track-d trackorder-num">
-                    <label>Tracking Number :</label>
-                    <span>#{orderDetails.trackingNumber}</span>
-                </div>}
-                {orderDetails.trackingNumber && <div className="track-order-desc">
-                    <p>You can track your order from <a href={orderDetails.shipper && orderDetails.shipper.url} target="_blank">{orderDetails.shipper && orderDetails.shipper.name}</a> website with your tracking number.</p>
-                </div>} */}
-                {orderDetails.shippingAddress && <div className="track-d trackorder-id t-address"><label>Shipping Address :</label><span>{orderDetails.shippingAddress.line1}, {orderDetails.shippingAddress.city}, {orderDetails.shippingAddress.state}, {orderDetails.shippingAddress.country}- {orderDetails.shippingAddress.zipCode}</span></div>}
-
-                {orderDetails.billingAddress && <div className="track-d trackorder-id t-address"><label>Billing Address :</label><span>{orderDetails.billingAddress.line1}, {orderDetails.billingAddress.city}, {orderDetails.billingAddress.state}, {orderDetails.billingAddress.country}- {orderDetails.billingAddress.zipCode}</span></div>}
+    return (<div className="trackorder-container">
+      <div className="track-order-detail">
+        <div className="track-d trackorder-id">
+          <label>Order Id :</label>
+          <span>#{orderDetails.orderId}</span>
+        </div>
+        {orderDetails.shippingAddress && <div className="track-d trackorder-id t-address"><label>Shipping Address :</label><span>{orderDetails.shippingAddress.line1}, {orderDetails.shippingAddress.city}, {orderDetails.shippingAddress.state}, {orderDetails.shippingAddress.country}- {orderDetails.shippingAddress.zipCode}</span></div>}
+        {orderDetails.billingAddress && <div className="track-d trackorder-id t-address"><label>Billing Address :</label><span>{orderDetails.billingAddress.line1}, {orderDetails.billingAddress.city}, {orderDetails.billingAddress.state}, {orderDetails.billingAddress.country}- {orderDetails.billingAddress.zipCode}</span></div>}
+      </div>
+      <div className="to-content">
+        <div className="to-content-box">
+          {renderHistroyData()}
+          {orderDetails.status == 'ACCEPTED' ? <div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={processing} alt={'inprogress'} />
             </div>
-            <div className="to-content">
-                <div className="to-content-box">
-                    <div className="to-content-row active">
-                        <div className="to-content-img">
-                            <img src={placedOn} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>Placed On</label>
-                            <span>{moment(orderDetails.orderDate).format('DD MMMM YYYY')}, 04:30 PM GMT</span>
-
-                        </div>
-                    </div>
-                    <div className="to-content-row active">
-                        <div className="to-content-img">
-                            <img src={confirmationStatus} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>Confirmation Status</label>
-                            <span>{orderDetails.status}</span>
-                        </div>
-                    </div>
-                    <div className="to-content-row">
-                        <div className="to-content-img">
-                            <img src={processing} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>Processing</label>
-                            <span>will be update soon</span>
-                        </div>
-                    </div>
-                    <div className="to-content-row">
-                        <div className="to-content-img">
-                            <img src={dispatch} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>Ready to Dispatch</label>
-                            <span>will be update soon</span>
-                        </div>
-                    </div>
-                    <div className="to-content-row">
-                        <div className="to-content-img">
-                            <img src={shipped} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>Shipped</label>
-                            <span>will be update soon</span>
-                        </div>
-                    </div>
-                    <div className="to-content-row">
-                        <div className="to-content-img">
-                            <img src={transit} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>In Transit</label>
-                            <span>will be update soon</span>
-                        </div>
-                    </div>
-                    <div className="to-content-row">
-                        <div className="to-content-img">
-                            <img src={delivered} />
-                        </div>
-                        <div className="to-border"></div>
-                        <div className="to-status">
-                            <label>Delivered</label>
-                            <span>will be update soon</span>
-                        </div>
-                    </div>
-                </div>
-
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>IN PROGRESS</span>
+              <span>Will be updated soon</span>
             </div>
-        </div >)
+          </div>: null}
+          {orderDetails.status == 'ACCEPTED' || orderDetails.status == 'IN_PROGRESS' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={packagd} alt={'packagd'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>ORDER PACKAGED</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+          {orderDetails.status == 'ACCEPTED' || orderDetails.status == 'IN_PROGRESS' || orderDetails.status == 'PACKAGED' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={dispatch} alt={'dispatch'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>ORDER DISPATCHED</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+          {orderDetails.status == 'ACCEPTED' || orderDetails.status == 'IN_PROGRESS' || orderDetails.status == 'PACKAGED' || orderDetails.status == 'DISPATCHED' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={transit} alt={'dispatch'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>IN TRANSIT</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+          {orderDetails.status == 'ACCEPTED' || orderDetails.status == 'IN_PROGRESS' || orderDetails.status == 'PACKAGED' || orderDetails.status == 'DISPATCHED' || orderDetails.status == 'IN_TRANSIT' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={delivered} alt={'dispatch'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>ORDER DELIVERED</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+          
 
-    }
 
+          {/* PART PACKAGE */}
+
+          {orderDetails.status == 'PART_PACKAGED' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={partdispatch} alt={'dispatch'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>PART DISPATCHED</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+          {orderDetails.status == 'PART_PACKAGED' || orderDetails.status == 'PART_DISPATCHED' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={transit} alt={'dispatch'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>IN TRANSIT</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+          {orderDetails.status == 'PART_PACKAGED' || orderDetails.status == 'PART_DISPATCHED' || orderDetails.status == 'IN_TRANSIT' ?<div className={`to-content-row`}>
+            <div className="to-content-img">
+              <img src={delivered} alt={'dispatch'} />
+            </div>
+            <div className="to-border"></div>
+            <div className="to-status">
+              <span>ORDER DELIVERED</span>
+              <span>Will be updated soon</span>
+            </div>
+          </div>: null}
+        </div>
+      </div>
+    </div >)
+  }
 }
