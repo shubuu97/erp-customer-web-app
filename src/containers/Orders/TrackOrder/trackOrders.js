@@ -2,92 +2,131 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TrackOrder from './trackOrder';
 import Button from '@material-ui/core/Button'
+import moment from 'moment';
+import placedOn from './../../../assets/images/to1.png';
+import confirmationStatus from './../../../assets/images/accepted.png';
+import processing from './../../../assets/images/in-progress.png';
+import partdispatch from './../../../assets/images/part-dispatched.png';
+import dispatch from './../../../assets/images/dispatched.png';
+import partPack from './../../../assets/images/part-packaged.png';
+import packagd from './../../../assets/images/packaged.png';
+import shipped from './../../../assets/images/to5.png';
+import transit from './../../../assets/images/to6.png';
+import partdelivered from './../../../assets/images/part-delivered.png';
+import delivered from './../../../assets/images/delivered.png';
+import {sortBy} from 'lodash';
 
 export default class TrackOrders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placedOn: {
-        date: null,
-        displayName: ''
-      },
-      accepted: {
-        date: null,
-        displayName: ''
-      },
-      processing: {
-        date: null,
-        displayName: ''
-      },
-      partPackaged: {
-        date: null,
-        displayName: '',
-        isTrue: false
-      },
-      packaged: {
-        date: null,
-        displayName: ''
-      },
-      partDispatched: {
-        date: null,
-        displayName: ''
-      },
-      dispatched: {
-        date: null,
-        displayName: ''
-      },
-      inTransit: {
-        date: null,
-        displayName: ''
-      },
-      partDelivered: {
-        date: null,
-        displayName: ''
-      },
-      delivered: {
-        date: null,
-        displayName: ''
-      }
+      orderHistoryList:[]
     }
   }
   componentWillMount() {
-    const {orderDetails, trackData} = this.props;
+    const {trackData} = this.props;
+    let orderHistoryList = [];
     trackData.map(data => {
       if (data.status == 'INCOMING') {
-        this.setState({ placedOn: { date: data.modifiedDate, displayName: 'PLACED ON' } })
+        let orderObj = {
+          imgUrl: placedOn,
+          displayName: 'PLACED ON',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'ACCEPTED') {
-        this.setState({ accepted: { date: data.modifiedDate, displayName: 'ACCEPTED ON' } })
+        let orderObj = {
+          imgUrl: confirmationStatus,
+          displayName: 'ACCEPTED ON',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'IN_PROGRESS') {
-        this.setState({ processing: { date: data.modifiedDate, displayName: 'IN PROGRESS' } })
+        let orderObj = {
+          imgUrl: processing,
+          displayName: 'IN PROGRESS',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'PART_PACKAGED') {
-        this.setState({ partPackaged: { date: data.modifiedDate, displayName: 'PART PACKAGED.', isTrue: true } })
+        let orderObj = {
+          imgUrl: partPack,
+          displayName: 'PART PACKAGED',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'PACKAGED') {
-        this.setState({ packaged: { date: data.modifiedDate, displayName: 'ORDER PACKAGED' } })
+        let orderObj = {
+          imgUrl: packagd,
+          displayName: 'ORDER PACKAGED',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'PART_DISPATCHED') {
-        this.setState({ partDispatched: { date: data.modifiedDate, displayName: 'PART DISPATCHED' } })
+        let orderObj = {
+          imgUrl: partdispatch,
+          displayName: 'PART DISPATCHED',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'DISPATCHED') {
-        this.setState({ dispatched: { date: data.modifiedDate, displayName: 'ORDER DISPATCHED' } })
+        let orderObj = {
+          imgUrl: partdispatch,
+          displayName: 'ORDER DISPATCHED',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'IN_TRANSIT') {
-        this.setState({ inTransit: { date: data.modifiedDate, displayName: 'OUT FOR DELIVERY' } })
+        let orderObj = {
+          imgUrl: transit,
+          displayName: 'OUT FOR DELIVERY',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'PART_DELIVERED') {
-        this.setState({ partDelivered: { date: data.modifiedDate, displayName: 'PART DELIVERED' } })
+        let orderObj = {
+          imgUrl: partdelivered,
+          displayName: 'PART DELIVERED',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
       else if (data.status == 'DELIVERED') {
-        this.setState({ delivered: { date: data.modifiedDate, displayName: 'ORDER DELIVERED' } })
+        let orderObj = {
+          imgUrl: delivered,
+          displayName: 'ORDER DELIVERED',
+          historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          isActive: true
+        }
+        orderHistoryList.push(orderObj);
       }
     })
+    orderHistoryList = sortBy(orderHistoryList, 'historyDate');
+
+    // orderHistoryList.push()
+    this.setState({orderHistoryList});
   }
 
   render() {
     const {orderDetails, trackData} = this.props;
+    const {orderHistoryList} = this.state;
     
     return (
       <div>
@@ -97,16 +136,7 @@ export default class TrackOrders extends React.Component {
           <TrackOrder 
               orderDetails={orderDetails} 
               trackData={trackData}
-              placedOn={this.state.placedOn}
-              accepted={this.state.accepted}
-              processing={this.state.processing}
-              partPackaged={this.state.partPackaged}
-              packaged={this.state.packaged}
-              partDispatched={this.state.partDispatched}
-              dispatched={this.state.dispatched}
-              inTransit={this.state.inTransit}
-              partDelivered={this.state.partDelivered}
-              delivered={this.state.delivered}
+              orderHistoryList={orderHistoryList}
             />
         </div>
       </div>)
