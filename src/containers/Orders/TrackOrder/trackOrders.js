@@ -14,18 +14,20 @@ import shipped from './../../../assets/images/to5.png';
 import transit from './../../../assets/images/to6.png';
 import partdelivered from './../../../assets/images/part-delivered.png';
 import delivered from './../../../assets/images/delivered.png';
-import {sortBy} from 'lodash';
+import { sortBy } from 'lodash';
 
 export default class TrackOrders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      orderHistoryList:[]
+      orderHistoryList: [],
+      status: ''
     }
   }
   componentWillMount() {
     let currentOrderStatus = '';
-    const {trackData} = this.props;
+
+    const { trackData, orderDetails } = this.props;
     let orderHistoryList = [];
     trackData.map(data => {
       currentOrderStatus = data.status
@@ -35,6 +37,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: placedOn,
           displayName: 'PLACED ON',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -44,6 +47,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: confirmationStatus,
           displayName: 'ACCEPTED ON',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -53,6 +57,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: processing,
           displayName: 'IN PROGRESS',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -62,6 +67,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: partPack,
           displayName: 'PART PACKAGED',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -71,6 +77,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: packagd,
           displayName: 'ORDER PACKAGED',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -80,6 +87,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: partdispatch,
           displayName: 'PART DISPATCHED',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -89,6 +97,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: partdispatch,
           displayName: 'ORDER DISPATCHED',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -98,6 +107,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: transit,
           displayName: 'OUT FOR DELIVERY',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -107,6 +117,7 @@ export default class TrackOrders extends React.Component {
           imgUrl: partdelivered,
           displayName: 'PART DELIVERED',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
@@ -116,35 +127,37 @@ export default class TrackOrders extends React.Component {
           imgUrl: delivered,
           displayName: 'ORDER DELIVERED',
           historyDate: moment(data.modifiedDate).format('DD MM YYYY, hh:mm: a'),
+          historyDateModified: moment(data.modifiedDate),
           isActive: true
         }
         orderHistoryList.push(orderObj);
       }
     })
-    orderHistoryList = sortBy(orderHistoryList, 'historyDate');
-    const orderStatus = ['IN_PROGRESS', 'PACKAGED', 'DISPATCHED', 'IN_TRANSIT', 'DELIVERED']
-    const orderStatusPart = ['IN_PROGRESS', 'PART_PACKAGED', 'PART_DISPATCHED', 'IN_TRANSIT', 'PART_DELIVERED']
-    orderStatus.map(order => {
-      
-    })
-    orderHistoryList.push()
-    this.setState({orderHistoryList});
+    orderHistoryList = sortBy(orderHistoryList, 'historyDateModified');
+    console.log("orderDetails", orderDetails);
+
+    // orderHistoryList.push()
+    this.setState({ orderHistoryList });
+  }
+  backToOrder = () =>{
+    localStorage.removeItem('orderedItem');
+      this.props.history.push('/orders');
   }
 
   render() {
-    const {orderDetails, trackData} = this.props;
-    const {orderHistoryList} = this.state;
-    
+    const { orderDetails, trackData } = this.props;
+    const { orderHistoryList } = this.state;
+    console.log("orderDetails status", orderDetails);
     return (
       <div>
-        <a className="back-history" onClick={()=>this.props.history.push('/orders')}><i class="fa fa-reply"></i> Back to My Orders</a>
+        <a className="back-history" onClick={() => this.backToOrder()}><i class="fa fa-reply"></i> Back to My Orders</a>
         <h2 className="cart-heading">History Details</h2>
         <div>
-          <TrackOrder 
-              orderDetails={orderDetails} 
-              trackData={trackData}
-              orderHistoryList={orderHistoryList}
-            />
+          <TrackOrder
+            orderDetails={orderDetails}
+            trackData={trackData}
+            orderHistoryList={orderHistoryList}
+          />
         </div>
       </div>)
   }
