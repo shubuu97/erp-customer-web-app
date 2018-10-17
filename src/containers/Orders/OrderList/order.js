@@ -49,7 +49,7 @@ export default class Order extends React.Component {
             {!list && <div className="order-right">
               <div>
                 <div className="package-id">Package Id : <label>{item.displayId}</label></div>
-                {item.trackingNumber && <div className="track-order-desc">Logistics Partner: <a href="#" target="_blank">{_get(item, 'shipper.name', '')}</a></div>}
+                {item.trackingNumber && <div className="track-order-desc">Logistics Partner: <a href={_get(item, 'shipper.url', '')} target="_blank">{_get(item, 'shipper.name', '')}</a></div>}
                 {item.trackingNumber && <div className="tracking-number">Tracking Number: <label>#{item.trackingNumber}</label></div>}
                 <div className="package-id">Package Status : <label>{item.status}</label></div>
               </div>

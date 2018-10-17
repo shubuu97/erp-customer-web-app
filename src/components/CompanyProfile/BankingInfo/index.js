@@ -197,13 +197,13 @@ class BankingInfo extends Component {
                             <div className="form-d col-md-4 col-sm-6 form-input">
                                 <Field disabled={customerStaus=="Approved"?true:false} name='creditLimit' label='Credit Limit' component={TextFieldInput} />
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
+                            <div className={`form-d col-md-4 col-sm-6 form-input form-select-label ${customerStaus=="Approved"?'form-disabled':''}`}>
                                 <Field disabled={customerStaus=="Approved"?true:false} name='paymentTerms' placeholder='Payment Terms *' component={ReactSelectWrapper} options={this.props.paymentTerms}></Field>
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
+                            <div className={`form-d col-md-4 col-sm-6 form-input form-select-label ${customerStaus=="Approved"?'form-disabled':''}`}>
                                 <Field disabled={customerStaus=="Approved"?true:false} name='invoiceCurrencyCode' label='Invoice Currency Code *' placeholder='Invoice Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                             </div>
-                            <div className="form-d col-md-4 col-sm-6 form-input form-select-label form-disabled">
+                            <div className={`form-d col-md-4 col-sm-6 form-input form-select-label ${customerStaus=="Approved"?'form-disabled':''}`}>
                                 <Field disabled={customerStaus=="Approved"?true:false} name='currencyCode'  placeholder='Currency Code *' options={this.props.currencyCodes} component={ReactSelectWrapper} />
                             </div>
                             <div className="form-d col-md-4 col-sm-6 form-input">
