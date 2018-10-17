@@ -22,10 +22,12 @@ import {APPLICATION_BFF_URL} from '../../../../constants/urlConstants'
 
 class BillingAddress extends Component {
   state = {
-    open: false
+    open: false,
+    isAddAddress: false
   }
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  handleClickOpen = (isTrue) => {
+    let isAddAddress = isTrue ? true : false;
+    this.setState({ open: true, isAddAddress });
   };
 
   handleClose = () => {
@@ -55,6 +57,11 @@ class BillingAddress extends Component {
       }
       if(this.props.length==0) {
         data.isPrimary = true;
+      } else {
+        data.isPrimary = data.isPrimary ? data.isPrimary : false;
+      }
+      if(this.state.isAddAddress) {
+        delete data.id;
       }
     let options = {
     init: 'INIT_SAVE_ADDRESS',
@@ -91,7 +98,7 @@ class BillingAddress extends Component {
     const {handleSubmit}=this.props;
     return (
       <div>
-        <Button variant="contained" size='medium' color="primary" classes={{ root: '' }} onClick={this.handleClickOpen}>Add New Address</Button>
+        <Button variant="contained" size='medium' color="primary" classes={{ root: '' }} onClick={()=>this.handleClickOpen(true)}>Add New Address</Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

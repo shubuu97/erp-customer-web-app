@@ -28,12 +28,7 @@ return (
       </div>
       <div className="address-content">
        {address}
-        <div className="addToCartButtonDiv">
-          {props.type=="Billing Address"?<BillingAddress/>:<ShippingAddress/>}
-        </div>
       </div>
-      
-
     </div>)
 }
 
