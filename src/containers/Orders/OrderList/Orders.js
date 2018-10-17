@@ -22,6 +22,7 @@ class Orders extends React.Component {
           key={index}
           placedDate={order.orderDate}
           id={order.displayId  || order.id}
+          orderTotal={order.orderTotal}
           handleTrack={this.props.handleTrack}
           onCancelOrder={this.props.onCancelOrder}
           trackingNumber={_get(order, 'trackingNumber', '')}
