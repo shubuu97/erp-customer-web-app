@@ -3,12 +3,12 @@ import expand from 'keypather/expand';
 import {get} from 'lodash';
 var address=yup.object().shape({
     siteAddress:yup.string().required(),
-    contactNumber:yup.number().required(),
+    contactNumber:yup.number().typeError("Contact Number is a required field").required(),
     email:yup.string().email().required(),
     city:yup.string().required(),
     country:yup.string().required(),
     state:yup.string().required(),
-    zipCode:yup.number().required().min(4),
+    zipCode:yup.number().typeError("Zipcode is a required field").required().min(4),
 
     
 })
