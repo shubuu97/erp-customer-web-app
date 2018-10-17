@@ -17,6 +17,7 @@ class Orders extends React.Component {
     let orderListHeader = {}
     if (Array.isArray(this.props.orderListData) && this.props.orderListData.length > 0) {
       ordersList = this.props.orderListData.map((order, index) => {
+        console.log('order', order)
         return (<Order
           key={index}
           placedDate={order.orderDate}

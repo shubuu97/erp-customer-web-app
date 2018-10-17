@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { connect } from 'react-redux';
 import * as OPTIONS from '../constants/OrderList';
@@ -36,12 +34,13 @@ class TrackOrderContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.item);
     return (
       <div>
        {get(this.props, 'trackData.data') && !isEmpty(this.state.item) && !this.props.isFetching ? <TrackOrders
           trackData={get(this.props, 'trackData.data', {})}
           orderDetails={this.state.item}
+          displayId={localStorage.getItem('displayId')}
+          orderListData={this.props.orderListData}
           history={this.props.history}
         />:null}
       </div>
@@ -50,8 +49,9 @@ class TrackOrderContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
+  let orderListData = get(state, 'OrderListData.orderListData.data', [])
   let isFetching= state.TrackData.isFetching;
-  return { trackData: state.TrackData.trackData, isFetching };
+  return { trackData: state.TrackData.trackData, isFetching, orderListData};
 }
 
 export default connect(mapStateToProps)(profileSideBar(TrackOrderContainer))

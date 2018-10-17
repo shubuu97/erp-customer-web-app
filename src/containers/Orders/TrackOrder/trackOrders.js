@@ -155,6 +155,7 @@ export default class TrackOrders extends React.Component {
         <div>
           <TrackOrder
             orderDetails={orderDetails}
+            displayId={this.props.displayId}
             trackData={trackData}
             orderHistoryList={orderHistoryList}
           />

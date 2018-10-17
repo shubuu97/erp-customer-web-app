@@ -13,6 +13,7 @@ import delivered from './../../../assets/images/delivered.png';
 
 export default class TrackOrders extends React.Component {
   render() {
+    console.log(this.props.displayId, 'shubham')
     const { orderDetails, orderHistoryList } = this.props;
     const renderHistroyData = () => orderHistoryList.map(data => {
       return (
@@ -33,7 +34,7 @@ export default class TrackOrders extends React.Component {
       <div className="track-order-detail">
         <div className="track-d trackorder-id">
           <label>Order Id :</label>
-          <span>#{orderDetails.orderId}</span>
+          <span>#{this.props.displayId}</span>
         </div>
         {orderDetails.shippingAddress && <div className="track-d trackorder-id t-address"><label>Shipping Address :</label><span>{orderDetails.shippingAddress.line1}, {orderDetails.shippingAddress.city}, {orderDetails.shippingAddress.state}, {orderDetails.shippingAddress.country}- {orderDetails.shippingAddress.zipCode}</span></div>}
         {orderDetails.billingAddress && <div className="track-d trackorder-id t-address"><label>Billing Address :</label><span>{orderDetails.billingAddress.line1}, {orderDetails.billingAddress.city}, {orderDetails.billingAddress.state}, {orderDetails.billingAddress.country}- {orderDetails.billingAddress.zipCode}</span></div>}
