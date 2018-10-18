@@ -18,7 +18,10 @@ class ProfileView extends Component
 {
 componentDidMount()
 {
-    this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+    this.props.dispatch(postBasicInfoData({  email: localStorage.getItem('email')  }, '', `${APPLICATION_BFF_URL}/user/logindata`)).then((successData)=>{
+        let businessCustomerStatus = _get(successData, "data.content.businessCustomerStatus", null);
+        localStorage.setItem('customerStatus', businessCustomerStatus);
+      })
 
     this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`));
 
