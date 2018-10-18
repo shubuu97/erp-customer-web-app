@@ -11,10 +11,11 @@ var email = yup.object().shape({
 let licenInfoSchema  = yup.object().shape({
     licenseType: yup.string().required(),
     category: yup.string().required(),
+    licenseZipcode:yup.string().required(),
     licenseNumber:yup.string().required(),
     companyAddressInfo: yup.object().shape({
         companyAddress: yup.string().required(),
-        zipCode: yup.number().min(3).required(),
+        zipCode: yup.number().min(3).typeError("Zipcode is a required field").required(),
         country: yup.string().required(),
         state: yup.string().required(),
         city: yup.string().required()
@@ -34,10 +35,12 @@ let licenInfoSchema  = yup.object().shape({
 })
 var optionalLicenInfoSchema = yup.object().shape({
     licenseType: yup.string().required(),
+    licenseZipcode:yup.string().required(),
     category: yup.string().required(),
+    licenseNumber:yup.string().required(),
     companyAddressInfo: yup.object().shape({
         companyAddress: yup.string().required(),
-        zipCode: yup.number().min(3).required(),
+        zipCode: yup.number().min(3).typeError("Zipcode is a required field").required(),
         country: yup.string().required(),
         state: yup.string().required(),
         city: yup.string().required()

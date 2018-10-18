@@ -25,9 +25,13 @@ export default class TrackOrders extends React.Component {
     }
   }
   componentWillMount() {
+    let currentOrderStatus = '';
+
     const { trackData, orderDetails } = this.props;
     let orderHistoryList = [];
     trackData.map(data => {
+      currentOrderStatus = data.status
+
       if (data.status == 'INCOMING') {
         let orderObj = {
           imgUrl: placedOn,
@@ -151,6 +155,7 @@ export default class TrackOrders extends React.Component {
         <div>
           <TrackOrder
             orderDetails={orderDetails}
+            displayId={this.props.displayId}
             trackData={trackData}
             orderHistoryList={orderHistoryList}
           />

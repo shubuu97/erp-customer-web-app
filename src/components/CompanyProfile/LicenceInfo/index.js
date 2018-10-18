@@ -164,19 +164,19 @@ class LicenceInfo extends Component {
                                             <Field name={'name'} label={'Name'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'address'} label={'address'} component={TextFieldInput} />
+                                            <Field name={'address'} label={'Address'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
                                             <Field name={'zipCode'} label={'Zip Code'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'country'} label={'country'} component={TextFieldInput} />
+                                            <Field name={'country'} label={'Country'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'state'} label={'state'} component={TextFieldInput} />
+                                            <Field name={'state'} label={'State'} component={TextFieldInput} />
                                         </div>
                                         <div className="form-d col-md-4 col-sm-6 form-input">
-                                            <Field name={'city'} label={'city'} component={TextFieldInput} />
+                                            <Field name={'city'} label={'City'} component={TextFieldInput} />
                                         </div>
                                     </div>
                                 </div>
