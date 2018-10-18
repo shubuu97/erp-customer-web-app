@@ -17,7 +17,7 @@ function FilterData(WrappedComponent) {
         findByMonth = (e) => {
             let orderListData;
             if (e.target.value == "1") {
-                orderListData = filter(this.props.orderListData, function (item) {
+                orderListData = filter(this.state.orderListData, function (item) {
                     let isFilter = false;
                     let createdDate = moment(item.createdDate)
                     let todayDate = moment(new Date())
@@ -30,7 +30,7 @@ function FilterData(WrappedComponent) {
 
             }
             if (e.target.value == '6') {
-                orderListData = filter(this.props.orderListData, function (item) {
+                orderListData = filter(this.state.orderListData, function (item) {
                     let isFilter = false;
                     let createdDate = moment(item.createdDate)
                     let todayDate = moment(new Date())
@@ -44,7 +44,7 @@ function FilterData(WrappedComponent) {
 
             }
             if (e.target.value == 'all') {
-                orderListData = this.props.orderListData
+                orderListData = this.state.orderListData
 
 
             }
