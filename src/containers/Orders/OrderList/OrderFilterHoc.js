@@ -75,14 +75,36 @@ function FilterData(WrappedComponent) {
                 reverse(orderListData)
                 return this.setState({ orderListData, active })
             }
+            if (key == 'DISPATCHED') {
+                let orderListData = filter(this.props.orderListData, (order) => (order.status == 'PART_DISPATCHED' || order.status == 'DISPATCHED'));
 
-            let orderListData = filter(this.props.orderListData, ['status', key]);
-            orderListData = sortBy(orderListData, function (dateObj) {
-                return new Date(dateObj.orderDate);
-            });
-            reverse(orderListData)
-            this.setState({ orderListData, active })
+                // let orderListData = filter(this.props.orderListData, ['status', key]);
+                orderListData = sortBy(orderListData, function (dateObj) {
+                    return new Date(dateObj.orderDate);
+                });
+                reverse(orderListData)
+                this.setState({ orderListData, active })
+            }
+            if (key == 'ACCEPTED') {
 
+                let orderListData = filter(this.props.orderListData, ['status', key]);
+                orderListData = sortBy(orderListData, function (dateObj) {
+                    return new Date(dateObj.orderDate);
+                });
+                reverse(orderListData)
+                this.setState({ orderListData, active })
+            }
+
+            if (key == 'DELIVERED') {
+                let orderListData = filter(this.props.orderListData, (order) => (order.status == 'PART_DELIVERED' || order.status == 'DELIVERED'));
+
+                // let orderListData = filter(this.props.orderListData, ['status', key]);
+                orderListData = sortBy(orderListData, function (dateObj) {
+                    return new Date(dateObj.orderDate);
+                });
+                reverse(orderListData)
+                this.setState({ orderListData, active })
+            }
         }
         componentWillReceiveProps(nextProps) {
             let orderListData = sortBy(nextProps.orderListData, function (dateObj) {
@@ -120,7 +142,7 @@ function FilterData(WrappedComponent) {
                             <li className={this.state.active == 1 ? 'active' : null} onClick={() => this.filterData('ACCEPTED', 1)}>
                                 Accepted
                         </li>
-                            <li className={this.state.active == 2 ? 'active' : null} onClick={() => this.filterData('IN_TRANSIT', 2)}>
+                            <li className={this.state.active == 2 ? 'active' : null} onClick={() => this.filterData('DISPATCHED', 2)}>
                                 Dispatched
                         </li>
                             <li className={this.state.active == 3 ? 'active' : null} onClick={() => this.filterData('DELIVERED', 3)}>
