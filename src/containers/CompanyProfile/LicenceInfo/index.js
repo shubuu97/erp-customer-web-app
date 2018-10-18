@@ -76,13 +76,19 @@ class LicenseInfo extends Component
     {
      this.props.dispatch(receiveZip(null,null,null,null))
     }
+    handleKeyDown = function (e, cb) {
+      if (e.key === 'Enter' && e.shiftKey === false) {
+        e.preventDefault();
+        cb(this.updateSubmitHandler);
+      }
+    };
     render()
     {
         console.log("this is props",this.props)
         const {handleSubmit} = this.props;
         return(
             <div>
-            <form onSubmit={handleSubmit(this.updateSubmitHandler)}>
+            <form onSubmit={handleSubmit(this.updateSubmitHandler)} onKeyDown={(e) => { this.handleKeyDown(e, handleSubmit); }}>
             <LicenseInfoComponent {...this.props} licenseDetailsData = {this.props.licenseDetailsData}/>
             <div className="row d-flex">
                 <div className="col-sm-12 form-btn-group">

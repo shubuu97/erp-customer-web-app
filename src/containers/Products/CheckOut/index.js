@@ -342,6 +342,9 @@ class CheckOut extends Component {
 			return;
 		} else {
 			this.setState({ payNow: !this.state.payNow })
+			setTimeout(()=>{
+				window.scrollTo(250,600);
+			}, 150);
 		}
 	}
 	paymentMethodUpdate = (val) => {
