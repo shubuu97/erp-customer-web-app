@@ -12,7 +12,10 @@ import profileSideBar from '../../../components/profileSideBarHoc';
 class ProfileView extends Component {
   componentDidMount() {
 
-    this.props.dispatch(postBasicInfoData({ email: localStorage.getItem('email') }, '', `${APPLICATION_BFF_URL}/user/logindata`))
+    this.props.dispatch(postBasicInfoData({ email: localStorage.getItem('email') }, '', `${APPLICATION_BFF_URL}/user/logindata`)).then((successData)=>{
+      let customerStatus = _get(successData, "data.content.customerStatus", null);
+      localStorage.setItem('customerStatus', customerStatus);
+    })
 
     this.props.dispatch(fetchBankingDetailsData(`${this.props.urlLinks.getBankingDetailsInfo.href}?_id=${localStorage.getItem("id")}`));
 
