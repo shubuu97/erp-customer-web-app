@@ -47,7 +47,7 @@ class ProductsContainer extends React.Component {
   }
   showInfo = (item) => {
     let popupItemInfo = item;
-    popupItemInfo.mainImageUrl = (popupItemInfo.images && popupItemInfo.images[0]) || { url: productPlaceholder }
+    popupItemInfo.mainImageUrl = popupItemInfo.images && popupItemInfo.images.find(img => img.isDefault) || { url: productPlaceholder }
     console.log(popupItemInfo);
     this.setState({ openItemInfo: true, popupItemInfo });
   }

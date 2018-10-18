@@ -3445,6 +3445,15 @@ span.image-zoom {
     position: relative;
     color: rgba(0, 0, 0, 0.54);
 }
+.reject-cancel {
+    margin: auto;
+}
+.reject-cancel img{
+    max-width:60px;
+}
+.cancel-text {
+    color: red;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {

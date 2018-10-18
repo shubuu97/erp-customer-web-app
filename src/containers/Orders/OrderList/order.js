@@ -10,6 +10,8 @@ import greenCheck from './../../../assets/images/green-check.png';
 import mapicon from './../../../assets/images/map-marker.png';
 import PaymentStatus from './paymentStatus';
 import _get from 'lodash/get';
+import rejected from './../../../assets/images/rejected.png';
+import cancelled from './../../../assets/images/cancelled.png';
 
 
 export default class Order extends React.Component {
@@ -49,9 +51,19 @@ export default class Order extends React.Component {
             {!list && <div className="order-right">
               <div>
                 <div className="package-id">Package Id : <label>{item.displayId}</label></div>
-                {item.trackingNumber && <div className="track-order-desc">Logistics Partner: <a href="#" target="_blank">{_get(item, 'shipper.name', '')}</a></div>}
+                {item.trackingNumber && <div className="track-order-desc">Logistics Partner: <a href={_get(item, 'shipper.url', '')} target="_blank">{_get(item, 'shipper.name', '')}</a></div>}
                 {item.trackingNumber && <div className="tracking-number">Tracking Number: <label>#{item.trackingNumber}</label></div>}
                 <div className="package-id">Package Status : <label>{item.status}</label></div>
+              </div>
+            </div>}
+            {this.props.status == 'REJECTED' && <div className="order-right">
+              <div className="reject-cancel">
+                <img src={rejected} alt={'rejected'} />
+              </div>
+            </div>}
+            {this.props.status == 'CANCELLED' && <div className="order-right">
+              <div className="reject-cancel">
+                <img src={cancelled} alt={'cancelled'} />
               </div>
             </div>}
           </div>
@@ -63,7 +75,7 @@ export default class Order extends React.Component {
         <div className="order-card-header">
           <div style={{ width: '100%' }} className="card-header-left">
             <div className="track-item"><label className="track-status">Order Id</label><span className="track-id">{this.props.id}</span></div>
-            <div className="track-item"><label className="track-status">{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
+            <div className="track-item"><label className={`track-status ${this.props.status == 'REJECTED' || this.props.status == 'CANCELLED' ? 'cancel-text' : ''}`}>{this.props.status}</label><span className="order-track-date">{moment(this.props.placedDate).format('DD MMMM YYYY')}</span></div>
             <div className="track-item"><label className="track-status">Order Total</label><span className="order-track-date">USD {this.props.orderTotal}</span> <div className="p-status"><PaymentStatus payment={this.props.payment} order={this.props.order} orderTotal={this.props.orderTotal} /></div></div>
           </div>
           <div className="card-header-right">
@@ -80,8 +92,8 @@ export default class Order extends React.Component {
           </div>
         </div>
         <div >
-        {salesProductBox(this.props.packages)}
-        {salesProductBox([0], this.props.saleProducts)}
+          {salesProductBox(this.props.packages)}
+          {salesProductBox([0], this.props.saleProducts)}
         </div>
 
       </div>

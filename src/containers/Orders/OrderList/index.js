@@ -40,13 +40,15 @@ class OrderContainer extends React.Component {
       supplier: order.supplier,
       orderDate: order.orderDate,
       orderId: order.id,
+      displayId: order.displayId,
       trackingNumber: order.trackingNumber,
       shipper: order.shipper,
       billingAddress: order.billingAddress,
       shippingAddress: order.shippingAddress
     };
     localStorage.setItem('orderedItem', JSON.stringify(item));
-    localStorage.setItem('orderId', order.id)
+    localStorage.setItem('orderId', order.id);
+    localStorage.setItem('displayId', order.displayId)
     this.props.history.push('/track')
   }
   componentDidMount() {
@@ -105,6 +107,7 @@ class OrderContainer extends React.Component {
   }
 
   render() {
+    console.log('this.props.orderListData', this.props.orderListData)
     return (
       <div >
         <OrderDetails
