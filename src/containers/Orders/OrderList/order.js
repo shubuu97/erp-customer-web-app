@@ -93,7 +93,7 @@ export default class Order extends React.Component {
         </div>
         <div >
           {salesProductBox(this.props.packages)}
-          {salesProductBox([0], this.props.saleProducts)}
+          {(this.props.saleProducts && this.props.saleProducts.length) ?  salesProductBox([0], this.props.saleProducts) : null}
         </div>
 
       </div>
