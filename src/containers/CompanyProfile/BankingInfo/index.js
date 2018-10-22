@@ -136,10 +136,10 @@ class BankingInfo extends Component
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions className="col-sm-12 dialog-btn">
-                            {localStorage.getItem('customerStatus')!=='Approved' ? <Button onClick={this.submitForApproval} variant="contained" color="primary">
+                            {localStorage.getItem('customerStatus')!=='Approved'  && localStorage.getItem('customerStatus') !=='In Approval' ? <Button onClick={this.submitForApproval} variant="contained" color="primary">
                                Submit for Approval
                             </Button> : null}
-                            {localStorage.getItem('customerStatus') =='Approved' ? <Button onClick={()=>this.goToViewProfile()} variant="contained" color="primary">
+                            {localStorage.getItem('customerStatus') =='Approved'  || localStorage.getItem('customerStatus') =='In Approval' ? <Button onClick={()=>this.goToViewProfile()} variant="contained" color="primary">
                                OK
                             </Button> : null}
                             
