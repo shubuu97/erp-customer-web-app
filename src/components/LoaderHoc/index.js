@@ -12,7 +12,7 @@ const rectLoader = () => (<div className='loader-wrapper'>
     </div>
 </div>);
 const matLoader = () => (
-   <div>
+   <div className="loader-center">
       
     <CircularProgress />
     </div>

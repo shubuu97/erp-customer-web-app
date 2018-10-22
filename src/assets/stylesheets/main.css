@@ -3454,6 +3454,15 @@ span.image-zoom {
 .cancel-text {
     color: red;
 }
+.loader-center {
+    display: flex;
+    text-align: center;
+    height: 100%;
+    min-height: 350px;
+}
+.loader-center > div {
+    margin: auto;
+}
 /*************************************** MEDIA QUERY CSS *****************************************/
 @media (min-width:0){
     .d-flex .col-sm-6.form-d {

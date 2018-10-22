@@ -78,7 +78,6 @@ showPayPalButton=()=>
     onAuthorize: function(data, actions) {
         return actions.payment.execute().then(function() {
           console.log(data);
-            window.alert('Payment Complete!');
             onPayClick(data, 'paypal');
         });
     },
