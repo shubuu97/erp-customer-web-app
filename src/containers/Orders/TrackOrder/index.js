@@ -6,6 +6,7 @@ import { APPLICATION_BFF_URL } from '../../../constants/urlConstants';
 import { fetchTrackData } from '../action/getTrack';
 import profileSideBar from '../../../components/profileSideBarHoc';
 import {get, isEmpty} from 'lodash';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class TrackOrderContainer extends React.Component {
   constructor(props) {
@@ -42,7 +43,9 @@ class TrackOrderContainer extends React.Component {
           displayId={localStorage.getItem('displayId')}
           orderListData={this.props.orderListData}
           history={this.props.history}
-        />:null}
+        />:<div className="loader-center">
+          <CircularProgress />
+        </div>}
       </div>
     )
   }
