@@ -114,7 +114,7 @@ class ProductsContainer extends React.Component {
   render() {
     const { categoryTypeAndItems, selectedCategoryType, filteredDataSet,selectedCategory } = this.props;
     console.log("Product Data with type", selectedCategoryType);
-    const { openItemInfo, popupItemInfo, filteredData, isGridView } = this.state;
+    const { openItemInfo, filteredData,popupItemInfo, isGridView } = this.state;
     console.log("filteredDataSet==", filteredDataSet);
     const NoProduct = () => (
       <div className="no-product-text">

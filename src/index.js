@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {HashRouter,Route,Switch,Link} from 'react-router-dom';
 import {createLogger} from 'redux-logger';
-import {createStore,applyMiddleware} from 'redux';
+import {createStore,applyMiddleware,compose} from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
@@ -86,10 +86,11 @@ if (process.env.NODE_ENV !== 'production') {
   };
  const persistedReducer = persistReducer(persistConfig, reducer);
 
+ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   export const store = createStore(
     // reducer,
-    persistedReducer,applyMiddleware(...middleware)
+    persistedReducer,composeEnhancers(applyMiddleware(...middleware))
   );
   export const persistor = persistStore(store);
 

@@ -88,7 +88,7 @@ SiteInfo=reduxForm({
     form:'SiteInfo',
     asyncValidate:asyncValidate,
     enableReinitialize:true,
-  keepDirtyOnReinitialize:true
+    keepDirtyOnReinitialize:true
 })(SiteInfo)
 
 const mapStateToProps=(state)=>
