@@ -31,8 +31,8 @@ class CheckOut extends Component {
 			showError: false,
 			payNow: false,
 			paymentMethod: {
-				value: 'Checking',
-				label: 'Checking'
+				value: 'Cash',
+				label: 'Cash'
 			},
 			paymentTerms: [{ label: 'Current', value: 'current' }],
 			paymentConfig: []

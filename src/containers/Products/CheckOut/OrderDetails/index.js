@@ -92,6 +92,7 @@ Please choose payment method to proceed."><img src={paymentIinfo} /></span>
           value={props.paymentMethod}
           options={props.paymentMethods}
           onChange={props.paymentMethodUpdate}
+          isDisabled={true}
         /></div> : null
         }
       </div>
